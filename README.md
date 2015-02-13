@@ -49,14 +49,12 @@ function drawLeafletMarker(coords) {
   marker.addTo(leafletMap);
 }
 
-// Get locations with your venue
+// Get locations within your venue
 api.location.Get({ venue: "< your venue >" }, function (locations) {
   for (var i = 0; i < locations.length; i++) {
-    // Get nodes attached to each location to find their coordinates on the map
-    var nodes = locations[i].nodes;
-    for (var j = 0 ; j < nodes.length; j++) {
-      if (nodes[j].map === map.id) {
-        api.node.Get({ id: "< node ID >" }, function (node) {
+    for (var j = 0 ; j < locations[i].nodes.length; j++) {
+      if (locations[i].nodes[j].map === map.id) {
+        api.node.Get({ id: locations[i].nodes[j].id }, function (node) {
           drawLeafletMarker([node.x, node.y]);
         });
       }
