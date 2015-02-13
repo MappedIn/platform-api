@@ -27,13 +27,13 @@ var map, leafletMap;
 
 function initLeafletMap (tilesetURL) {
   leafletMap = L.map("< Div ID >", { crs: L.CRS.Simple });
-  var tiles = L.tileLayer(tilesetURL, { zoom: 0, minZoom: 0, maxZoom: '< map's max zoom level >' });
+  var tiles = L.tileLayer(tilesetURL, { zoom: 0, minZoom: 0, maxZoom: "< map's max zoom level >" });
   leafletMap.addLayer(tiles);
 }
 
-api.map.Get({ venue: '< your venue name >'}, function (maps) {
+api.map.Get({ venue: "< your venue name >"}, function (maps) {
   map = maps[0];
-  var perspective = map.perspectives['< persepective name >'];
+  var perspective = map.perspectives["< persepective name >"];
   initLeafletMap(perspective.tiles);
 });
 ```
@@ -50,13 +50,13 @@ function drawLeafletMarker(coords) {
 }
 
 // Get locations with your venue
-api.location.Get({ venue: '< your venue >' }, function (locations) {
+api.location.Get({ venue: "< your venue >" }, function (locations) {
   for (var i = 0; i < locations.length; i++) {
     // Get nodes attached to each location to find their coordinates on the map
     var nodes = locations[i].nodes;
     for (var j = 0 ; j < nodes.length; j++) {
       if (nodes[j].map === map.id) {
-        api.node.Get({ id: '< node ID >' }, function (node) {
+        api.node.Get({ id: "< node ID >" }, function (node) {
           drawLeafletMarker([node.x, node.y]);
         });
       }
@@ -78,8 +78,8 @@ function displayDirections(directions) {
   leafletMap.addLayer(new L.polyline(path, { /* Leaflet Path Options */ }));
 }
 api.directions.toNode({ 
-  origin: '< origin node ID >', 
-  destination: '< destination node ID >',
+  origin: "< origin node ID >", 
+  destination: "< destination node ID >",
   venue: MI.slug, 
 }, displayDirections);
 ```
