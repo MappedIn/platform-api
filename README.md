@@ -5,13 +5,7 @@ This documentation is intented for partners and integrators of the MappedIn Plat
 
 ## Getting Started
 
-Start by installing the MappedIn API.
-
-```
-npm install mappedin-api
-```
-
-Then initialize the API object in your javascript application.
+Initialize the API object in your javascript application.
 
 ```javascript
 var api = new MappedInAPI({ 
