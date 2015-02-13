@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+	<script>
+		var leafletMap;
+
+		function initLeafletMap (tilesetURL) {
+		  // Prepare URL for Leaflet
+		  var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
+		  leafletMap = L.map("map", { crs: L.CRS.Simple });
+		  var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: 15 });
+		  console.log(tiles)
+		  leafletMap.addLayer(tiles);
+
+		}
+
+	</script>
+</head>
+<body>
+	<div id='map' style='width: 100%; height: 100%; left: 0px; top: 0px; position: absolute;'></div>
+	<script> 
+		initLeafletMap('https://1985c37ddfb0e4a5ad5c-772f388539d96f7662d548a9309bd9c3.ssl.cf1.rackcdn.com/maps/53090f43b6d4b6ab117837d8_files');
+	</script>
+</body>
+</html>

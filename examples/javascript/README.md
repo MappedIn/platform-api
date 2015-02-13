@@ -18,6 +18,8 @@ api.init(function() {
 });
 ```
 
+[Click here to see a working example](sample.html)
+
 ## Displaying a Map
 
 MappedIn maps can be displayed with any technologies that support tilesets. In the example below, we are using Leaflet to display our map. 
@@ -26,8 +28,10 @@ MappedIn maps can be displayed with any technologies that support tilesets. In t
 var map, leafletMap;
 
 function initLeafletMap (tilesetURL) {
+  // Prepare URL for Leaflet
+  var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
   leafletMap = L.map("< Div ID >", { crs: L.CRS.Simple });
-  var tiles = L.tileLayer(tilesetURL, { zoom: 0, minZoom: 0, maxZoom: "< map's max zoom level >" });
+  var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: "< map's max zoom level >" });
   leafletMap.addLayer(tiles);
 }
 
