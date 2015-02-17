@@ -49,22 +49,27 @@ function drawLeafletMarker(coords) {
 }
 
 // Get locations within your venue
-$.ajax({ url: 'https://api.mappedin.com/1/location', data: 'venue=< your venue slug >', type: 'GET', success: function (locations) {
-  for (var i = 0; i < locations.length; i++) {
-    for (var j = 0 ; j < locations[i].nodes.length; j++) {
-      if (locations[i].nodes[j].map === map.id) {
-        $.ajax({ 
-          url: 'https://api.mappedin.com/1/node', 
-          data: 'id=' + locations[i].nodes[j].id, 
-          type: 'GET', 
-          success: function (node) {
-            drawLeafletMarker([node.x, node.y]);
-          }
-        });
+$.ajax({ 
+  url: 'https://api.mappedin.com/1/location', 
+  data: 'venue=< your venue slug >', 
+  type: 'GET', 
+  success: function (locations) {
+    for (var i = 0; i < locations.length; i++) {
+      for (var j = 0 ; j < locations[i].nodes.length; j++) {
+        if (locations[i].nodes[j].map === map.id) {
+          $.ajax({ 
+            url: 'https://api.mappedin.com/1/node', 
+            data: 'id=' + locations[i].nodes[j].id, 
+            type: 'GET', 
+            success: function (node) {
+              drawLeafletMarker([node.x, node.y]);
+            }
+          });
+        }
       }
     }
   }
-}});
+});
 ```
 
 ## Get Directions!
