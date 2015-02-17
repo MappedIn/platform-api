@@ -7,40 +7,91 @@
 
 	<script>
 		var leafletMap;
-		var client = new XMLHttpRequest();
+		var key;
 
-		function sendRequest (url, args, cb) {
-			var data = [];
-			for (var attr in args) {
-				data.push(attr + '=' + args[attr]);
-			}
-			data = data.join('&');
-			$.ajax({
-			    url: url,
-			    type: 'GET',
-			    data: data,
-			    success: function(result) { 
-			    	alert('PUT completed', result); 
-			    },
-			    end: function () { 
-			    	console.log("END")
-			    },
-			    error: function (error) { 
-			    	console.log("AW'WELL", error)
-			    }
+		// Auth
+		var AUTHORIZE_URI = 'http://auth.mappedin.com/oauth2/authorize?response_type=code&client_id=' + encodeURIComponent(key) + '&scope=manage+edit+admin&state=';
+		function authorize(r) {
+			var state = crypto.randomBytes(32).toString('hex');
+			r.set('oauth2.state', state);
+			r.redirect(AUTHORIZE_URI + encodeURIComponent(state));
+		};
+
+		// Rest Calls
+		function getMapsBySlug(slug, cb) {
+			$.ajax({ 
+				url: 'https://api.mappedin.com/1/map', 
+				data: 'slug=' + slug, 
+				type: 'GET', 
+				success: cb
+			});
+		}
+		function getNodeById(id, cb) {
+			$.ajax({ 
+				url: 'https://api.mappedin.com/1/node', 
+				data: 'id=' + id, 
+				type: 'GET', 
+				success: cb
+			});
+		}
+		function getLocationsByVenue(venue, cb) {
+			$.ajax({ 
+				url: 'https://api.mappedin.com/1/location', 
+				data: 'venue=' + venue, 
+				type: 'GET', 
+				success: cb
+			});
+		}
+		function getDirectionsFromNodeToNode(start, end, cb) {
+			$.ajax({ 
+				url: 'https://api.mappedin.com/1/directions', 
+				data: 'origin=' + start + '&destination=' + end, 
+				type: 'GET', 
+				success: cb
 			});
 		}
 
+		// Leaflet
 		function initLeafletMap (tilesetURL) {
-		  // Prepare URL for Leaflet
-		  var bounds = [
+			// Prepare URL for Leaflet
+			var bounds = [];
+			var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
+			leafletMap = L.map("map", { crs: L.CRS.Simple });
+			var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: 15 });
+			leafletMap.addLayer(tiles);
+		}
+		function displayDirections(directions) {
+			var path = [];
+			for (var i = 0; i < directions.path.length; i++) {
+				var coords = [directions.path[i].x, direction.path[i].y];
+				var latlng = leafletMap.unproject(coords, leafletMap.getMaxZoom());
+				path.push(latlng);
+			}
+			leafletMap.addLayer(new L.polyline(path, { /* Leaflet Path Options */ }));
+		}
 
-		  ];
-		  var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
-		  leafletMap = L.map("map", { crs: L.CRS.Simple });
-		  var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: 15 });
-		  console.log(tiles)
-		 // leafletMap.addLayer(tiles);
+		// Main 
+		function init(slug, cb) {
+			getMapsBySlug(slug, function (maps) {
+				map = maps[0];
+				var perspective = map.perspectives["< persepective name >"];
+				initLeafletMap(perspective.tiles);
+				cb();
+			});
+		}
+		function addLocationPinsToMap(slug, cb) {
+			getLocationsByVenue("< your venue slug >", function (locations) {
+				for (var i = 0; i < locations.length; i++) {
+					for (var j = 0 ; j < locations[i].nodes.length; j++) {
+						if (locations[i].nodes[j].map === map.id) {
+							getNodeById(locations[i].nodes[j].id, function (node) {
+								drawLeafletMarker([node.x, node.y]);
+							});
+				    	}
+				    }
+			  	}
+			  	cb();
+			});
 		}
 
 	</script>
@@ -48,9 +99,18 @@
 <body>
 	<div id='map' style='width: 100%; height: 100%; left: 0px; top: 0px; position: absolute;'></div>
 	<script> 
-		var url, data;
-		sendRequest('https://api.mappedin.com/1/venue', { slug: 'wem-digital' });
-		//initLeafletMap('https://1985c37ddfb0e4a5ad5c-772f388539d96f7662d548a9309bd9c3.ssl.cf1.rackcdn.com/maps/53090f43b6d4b6ab117837d8_files');
+		var slug = 'wem-digital';
+		// Init Map
+		init(slug, function () {
+			// Get Locations and Draw a pin for each location on the current map
+			addLocationPinsToMap(slug, function () {
+				// Draw some directions
+				var start = "< origin node ID >";
+				var end = "< destination node ID >";
+				getDirectionFromNodeToNode(start, end, displayDirections);
+			});
+		});
+
 	</script>
 </body>
 </html>
