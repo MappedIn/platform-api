@@ -5,18 +5,8 @@ This documentation is intented for partners and integrators of the MappedIn Plat
 
 ## Getting Started
 
-Initialize the API object in your javascript application.
+Setting up permissions. 
 
-```javascript
-var api = new MappedInAPI({ 
-  key: '< your key >',
-  secret: '< your secret >'
-});
-
-api.init(function() {
-  /* Begin using API! */
-});
-```
 
 [Click here to see a working example](sample.html)
 
@@ -31,15 +21,15 @@ function initLeafletMap (tilesetURL) {
   // Prepare URL for Leaflet
   var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
   leafletMap = L.map("< Div ID >", { crs: L.CRS.Simple });
-  var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: "< map's max zoom level >" });
+  var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: "< tileset's max zoom level >" });
   leafletMap.addLayer(tiles);
 }
 
-api.map.Get({ venue: "< your venue name >"}, function (maps) {
+$.ajax({ url: 'https://api.mappedin.com/1/map', data: 'slug=< your venue slug >', type: 'GET', success: function (maps) {
   map = maps[0];
   var perspective = map.perspectives["< persepective name >"];
   initLeafletMap(perspective.tiles);
-});
+}});
 ```
 
 ## Adding Content to a Map
@@ -54,17 +44,17 @@ function drawLeafletMarker(coords) {
 }
 
 // Get locations within your venue
-api.location.Get({ venue: "< your venue >" }, function (locations) {
+$.ajax({ url: 'https://api.mappedin.com/1/location', data: 'venue=< your venue slug >', type: 'GET', success: function (locations) {
   for (var i = 0; i < locations.length; i++) {
     for (var j = 0 ; j < locations[i].nodes.length; j++) {
       if (locations[i].nodes[j].map === map.id) {
-        api.node.Get({ id: locations[i].nodes[j].id }, function (node) {
+        $.ajax({ url: 'https://api.mappedin.com/1/node', data: 'id=' + locations[i].nodes[j].id, type: 'GET', success: function (node) {
           drawLeafletMarker([node.x, node.y]);
-        });
+        }});
       }
     }
   }
-});
+}});
 ```
 
 ## Get Directions!
@@ -79,11 +69,13 @@ function displayDirections(directions) {
   }
   leafletMap.addLayer(new L.polyline(path, { /* Leaflet Path Options */ }));
 }
-api.directions.toNode({ 
-  origin: "< origin node ID >", 
-  destination: "< destination node ID >",
-  venue: MI.slug, 
-}, displayDirections);
+
+$.ajax({ 
+  url: 'https://api.mappedin.com/1/directions', 
+  data: 'origin=< origin node ID >&destination=< destination node ID >', 
+  type: 'GET', 
+  success: displayDirections 
+});
 ```
 
 ## API v1 Documentation
