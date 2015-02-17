@@ -1,7 +1,7 @@
-MappedIn REST API & Javascript
+Getting Started with MappedIn REST API
 ========
 
-This documentation is intented for partners and integrators of the MappedIn Platform. In a few simple steps you can begin using MappedIn data into your Javascript applications. 
+This documentation is intented for partners and integrators of the MappedIn Platform. In a few simple steps you can begin using MappedIn in your applications. 
 
 ## Getting Started
 
