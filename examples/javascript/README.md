@@ -25,11 +25,16 @@ function initLeafletMap (tilesetURL) {
   leafletMap.addLayer(tiles);
 }
 
-$.ajax({ url: 'https://api.mappedin.com/1/map', data: 'slug=< your venue slug >', type: 'GET', success: function (maps) {
-  map = maps[0];
-  var perspective = map.perspectives["< persepective name >"];
-  initLeafletMap(perspective.tiles);
-}});
+$.ajax({ 
+  url: 'https://api.mappedin.com/1/map', 
+  data: 'slug=< your venue slug >', 
+  type: 'GET', 
+  success: function (maps) {
+    map = maps[0];
+    var perspective = map.perspectives["< persepective name >"];
+    initLeafletMap(perspective.tiles);
+  }
+});
 ```
 
 ## Adding Content to a Map
@@ -48,9 +53,14 @@ $.ajax({ url: 'https://api.mappedin.com/1/location', data: 'venue=< your venue s
   for (var i = 0; i < locations.length; i++) {
     for (var j = 0 ; j < locations[i].nodes.length; j++) {
       if (locations[i].nodes[j].map === map.id) {
-        $.ajax({ url: 'https://api.mappedin.com/1/node', data: 'id=' + locations[i].nodes[j].id, type: 'GET', success: function (node) {
-          drawLeafletMarker([node.x, node.y]);
-        }});
+        $.ajax({ 
+          url: 'https://api.mappedin.com/1/node', 
+          data: 'id=' + locations[i].nodes[j].id, 
+          type: 'GET', 
+          success: function (node) {
+            drawLeafletMarker([node.x, node.y]);
+          }
+        });
       }
     }
   }
