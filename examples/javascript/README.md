@@ -58,7 +58,7 @@ function getNodeById(id, cb) {
   });
 }
 
-function getLocationByVenue(venue, cb) {
+function getLocationsByVenue(venue, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/location', 
     data: 'venue=' + venue, 
@@ -67,7 +67,7 @@ function getLocationByVenue(venue, cb) {
   });
 }
 
-getLocationByVenue("< your venue slug >", function (locations) {
+getLocationsByVenue("< your venue slug >", function (locations) {
   for (var i = 0; i < locations.length; i++) {
     for (var j = 0 ; j < locations[i].nodes.length; j++) {
       if (locations[i].nodes[j].map === map.id) {
