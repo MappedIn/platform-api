@@ -22,15 +22,19 @@ function initLeafletMap (tilesetURL) {
   leafletMap.addLayer(tiles);
 }
 
-$.ajax({ 
-  url: 'https://api.mappedin.com/1/map', 
-  data: 'slug=< your venue slug >', 
-  type: 'GET', 
-  success: function (maps) {
-    map = maps[0];
-    var perspective = map.perspectives["< persepective name >"];
-    initLeafletMap(perspective.tiles);
-  }
+function getMapsBySlug(slug, cb) {
+  $.ajax({ 
+    url: 'https://api.mappedin.com/1/map', 
+    data: 'slug=' + slug, 
+    type: 'GET', 
+    success: cb
+  });
+}
+
+getMapsBySlug("< your venue slug >", function (maps) {
+  map = maps[0];
+  var perspective = map.perspectives["< persepective name >"];
+  initLeafletMap(perspective.tiles);
 });
 ```
 
@@ -45,27 +49,36 @@ function drawLeafletMarker(coords) {
   marker.addTo(leafletMap);
 }
 
-$.ajax({ 
-  url: 'https://api.mappedin.com/1/location', 
-  data: 'venue=< your venue slug >', 
-  type: 'GET', 
-  success: function (locations) {
-    for (var i = 0; i < locations.length; i++) {
-      for (var j = 0 ; j < locations[i].nodes.length; j++) {
-        if (locations[i].nodes[j].map === map.id) {
-          $.ajax({ 
-            url: 'https://api.mappedin.com/1/node', 
-            data: 'id=' + locations[i].nodes[j].id, 
-            type: 'GET', 
-            success: function (node) {
-              drawLeafletMarker([node.x, node.y]);
-            }
-          });
-        }
+function getNodeById(id, cb) {
+  $.ajax({ 
+    url: 'https://api.mappedin.com/1/node', 
+    data: 'id=' + id, 
+    type: 'GET', 
+    success: cb
+  });
+}
+
+function getLocationByVenue(venue, cb) {
+  $.ajax({ 
+    url: 'https://api.mappedin.com/1/location', 
+    data: 'venue=' + venue, 
+    type: 'GET', 
+    success: cb
+  });
+}
+
+getLocationByVenue("< your venue slug >", function (locations) {
+  for (var i = 0; i < locations.length; i++) {
+    for (var j = 0 ; j < locations[i].nodes.length; j++) {
+      if (locations[i].nodes[j].map === map.id) {
+        getNodeById(locations[i].nodes[j].id, function (node) {
+          drawLeafletMarker([node.x, node.y]);
+        });
       }
     }
   }
 });
+
 ```
 
 ## Get Directions!
@@ -81,12 +94,17 @@ function displayDirections(directions) {
   leafletMap.addLayer(new L.polyline(path, { /* Leaflet Path Options */ }));
 }
 
-$.ajax({ 
-  url: 'https://api.mappedin.com/1/directions', 
-  data: 'origin=< origin node ID >&destination=< destination node ID >', 
-  type: 'GET', 
-  success: displayDirections 
-});
+function getDirectionsFromNodeToNode(start, end, cb) {
+  $.ajax({ 
+    url: 'https://api.mappedin.com/1/directions', 
+    data: 'origin=' + start + '&destination=' + end, 
+    type: 'GET', 
+    success: cb
+  });
+}
+
+getDirectionFromNodeToNode("< origin node ID >", "< destination node ID >", displayDirections);
+
 ```
 
 ## API v1 Documentation
