@@ -94,16 +94,16 @@ function displayDirections(directions) {
   leafletMap.addLayer(new L.polyline(path, { /* Leaflet Path Options */ }));
 }
 
-function getDirectionsFromNodeToNode(start, end, cb) {
+function getDirectionsFromNodeToNode(slug, start, end, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/directions', 
-    data: 'origin=' + start + '&destination=' + end, 
+    data: 'origin=' + start + '&destination=' + end + '&venue=' + slug, 
     type: 'GET', 
     success: cb
   });
 }
 
-getDirectionFromNodeToNode("< origin node ID >", "< destination node ID >", displayDirections);
+getDirectionFromNodeToNode("< your venue slug >", "< origin node ID >", "< destination node ID >", displayDirections);
 
 ```
 

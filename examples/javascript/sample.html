@@ -42,10 +42,10 @@
 				success: cb
 			});
 		}
-		function getDirectionsFromNodeToNode(start, end, cb) {
+		function getDirectionsFromNodeToNode(slug, start, end, cb) {
 			$.ajax({ 
 				url: 'https://api.mappedin.com/1/directions', 
-				data: 'origin=' + start + '&destination=' + end, 
+				data: 'origin=' + start + '&destination=' + end + '&venue=' + slug, 
 				type: 'GET', 
 				success: cb
 			});
@@ -107,7 +107,7 @@
 				// Draw some directions
 				var start = "< origin node ID >";
 				var end = "< destination node ID >";
-				getDirectionFromNodeToNode(start, end, displayDirections);
+				getDirectionFromNodeToNode(slug, start, end, displayDirections);
 			});
 		});
 
