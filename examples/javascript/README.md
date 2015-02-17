@@ -5,10 +5,7 @@ This documentation is intented for partners and integrators of the MappedIn Plat
 
 ## Getting Started
 
-Setting up permissions. 
-
-
-[Click here to see a working example](sample.html)
+TODO: Setting up permissions. 
 
 ## Displaying a Map
 
@@ -48,7 +45,6 @@ function drawLeafletMarker(coords) {
   marker.addTo(leafletMap);
 }
 
-// Get locations within your venue
 $.ajax({ 
   url: 'https://api.mappedin.com/1/location', 
   data: 'venue=< your venue slug >', 
