@@ -9,9 +9,14 @@
 
 	<script>
 		var token;
+		var grant = { 
+			grant_type: "client_credentials", 
+			client_id: "538de74b4efd3a5732d73338", 
+			client_secret: "pfa4tC0apn7UrEvtzU1P" 
+		};
 		var host = {
-			auth: 'http://auth.localhost:8484',	//'http://auth.mappedin.com',
-			api: 'http://api.localhost:8002'	//'https://api.mappedin.com'
+			auth: 'https://auth.mappedin.com',
+			api: 'https://api.mappedin.com/1/'
 		}
 		var leaflet = {
 			map: null, 
@@ -29,20 +34,17 @@
 		};
 
 		// Auth
-		function authenticate(cb) {
+		function authenticate(grant, cb) {
 			$.ajax({ 
 				url: host.auth + '/oauth2/token', 
-				data: { grant_type: "client_credentials", client_id: '', client_secret: '' }, 
+				data: grant, 
 				type: 'POST',
 				success: function (result) {
 					token = result;
 					cb();
 				},
 				error: function (result) {
-					token = {};
-					token.token_type = 'Bearer';
-					token.access_token = 'Zt3kio4aIS6SD1Nuy89R3Pe5K8wDJF95RhiWPBosLKQ=';
-					cb();
+					console.log("Error Authenticating.")
 				}
 			});
 		};
@@ -50,7 +52,7 @@
 		var api = {
 			Get: function (asset, data, cb) {
 				$.ajax({
-					url: host.api + '/1/' + asset,
+					url: host.api + asset,
 					data: data,
 					type: 'GET',
 					beforeSend: function (xhr) {
@@ -167,7 +169,7 @@
 	<div id='map' style='width: 100%; height: 100%; left: 0px; top: 0px; position: absolute;'></div>
 	<div id="poi-list" style="position: absolute; left: 10px; bottom: 10px;"></div>
 	<script>
-		authenticate(function (result) {
+		authenticate(grant, function (result) {
 			init(slug, function () {
 				getModelData(function () {
 					initLocationMarkers(slug);
