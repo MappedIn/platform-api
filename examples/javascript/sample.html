@@ -51,13 +51,7 @@
 			Get: function (asset, data, cb) {
 				$.ajax({
 					url: host.api + '/1/' + asset,
-					data: function () {
-						var result = [];
-						Object.keys(data).forEach(function(attr) {
-							result.push(attr + '=' + data[attr]);
-						});
-						return result.join('&');
-					}(),
+					data: data,
 					type: 'GET',
 					beforeSend: function (xhr) {
 						xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);

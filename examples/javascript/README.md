@@ -1,7 +1,7 @@
 MappedIn REST API & Javascript
 ========
 
-This documentation is intented for partners and integrators of the MappedIn Platform. The steps you can begin using MappedIn in your Javascript applications. 
+This documentation is intented for partners and integrators of the MappedIn Platform. The following steps will help you get setup so you can begin using MappedIn in your Javascript applications. 
 
 ## Getting Started
 
@@ -11,7 +11,11 @@ Before you can make REST calls to MappedIn API, you need to retrieve a token by 
 var token;
 $.ajax({ 
   url: 'http://api.mappedin.com/1/oauth2/token', 
-  data: { grant_type: "client_credentials", client_id: '< your client id >', client_secret: '< your client secret >' }, 
+  data: { 
+    grant_type: "client_credentials", 
+    client_id: '< your client id >', 
+    client_secret: '< your client secret >' 
+  }, 
   type: 'POST',
   success: function (result) {
     token = result;
@@ -40,7 +44,7 @@ function initLeafletMap (tilesetURL) {
 function getMapsBySlug(slug, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/map', 
-    data: 'slug=' + slug, 
+    data: { slug: slug }, 
     type: 'GET',
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
@@ -70,7 +74,7 @@ function drawLeafletMarker(coords) {
 function getNodeById(id, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/node', 
-    data: 'id=' + id, 
+    data: { id: id }, 
     type: 'GET', 
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
@@ -82,7 +86,7 @@ function getNodeById(id, cb) {
 function getLocationsByVenue(venue, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/location', 
-    data: 'venue=' + venue, 
+    data: { venue: venue }, 
     type: 'GET', 
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
@@ -121,7 +125,11 @@ function displayDirections(directions) {
 function getDirectionsFromNodeToNode(slug, start, end, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/directions', 
-    data: 'origin=' + start + '&destination=' + end + '&venue=' + slug, 
+    data: { 
+      venue: slug, 
+      origin: start, 
+      destination: end 
+    },
     type: 'GET',
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
