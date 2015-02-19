@@ -1,7 +1,7 @@
 MappedIn REST API & Javascript
 ========
 
-This documentation is intented for partners and integrators of the MappedIn Platform. The following steps will help you get setup so you can begin using MappedIn in your Javascript applications. 
+This documentation is intented for partners and integrators of the MappedIn Platform. The following steps will help you get setup so you can begin using MappedIn in your Javascript applications. Click [here](sample.html) to see a working sample application.
 
 ## Getting Started
 
@@ -26,7 +26,7 @@ $.ajax({
 
 ## Displaying a Map
 
-MappedIn maps can be displayed with any technologies that support tilesets. In the example below, we are using Leaflet to display our map. 
+MappedIn maps can be displayed with any technologies that support tilesets. In the example below, we are using Leaflet to display our map.
 
 ```javascript
 var map, leafletMap;
@@ -140,6 +140,28 @@ function getDirectionsFromNodeToNode(slug, start, end, cb) {
 
 getDirectionFromNodeToNode("< your venue slug >", "< origin node ID >", "< destination node ID >", displayDirections);
 
+```
+
+## Perspectives
+
+In order to display data onto perspective maps, data points must be projected onto your desired perspective map; projective.js will help you do this. First, initialize your perspective object with the control/target points found within your map's perspective object. Once your perspective object is initialized, use projective.transform to project points onto your perspective map's coordinate system.
+
+```javascript 
+var projective;
+
+function initProjective (perspective) {
+  var control = [],
+      target = [];
+  perspective.reference.forEach(function (pr) {
+    control.push([parseFloat(pr.control.x),parseFloat(pr.control.y)]);
+    target.push([parseFloat(pr.target.x),parseFloat(pr.target.y)]);
+  });
+  projective = new Projective({ from: control, to: target });
+}
+
+initProjective(map.perspectives['< your perspective name >']);
+
+var projectedPoint = projective.transform([ '< x value >', '< y value >']);
 ```
 
 ## API v1 Documentation
