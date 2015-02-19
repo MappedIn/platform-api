@@ -1,11 +1,24 @@
 MappedIn REST API & Javascript
 ========
 
-This documentation is intented for partners and integrators of the MappedIn Platform. In a few simple steps you can begin using MappedIn in your Javascript applications. 
+This documentation is intented for partners and integrators of the MappedIn Platform. The steps you can begin using MappedIn in your Javascript applications. 
 
 ## Getting Started
 
-TODO: Setting up permissions. 
+Before you can make REST calls to MappedIn API, you need to retrieve a token by authenticating with your client key and secret.
+
+```javascript
+var token;
+$.ajax({ 
+  url: 'http://api.mappedin.com/1/oauth2/token', 
+  data: { grant_type: "client_credentials", client_id: '< your client id >', client_secret: '< your client secret >' }, 
+  type: 'POST',
+  success: function (result) {
+    token = result;
+  },
+  error: function (result) {}
+});
+```
 
 ## Displaying a Map
 
@@ -15,10 +28,12 @@ MappedIn maps can be displayed with any technologies that support tilesets. In t
 var map, leafletMap;
 
 function initLeafletMap (tilesetURL) {
-  // Prepare Tileset URL for Leaflet
-  var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
   leafletMap = L.map("< Div ID >", { crs: L.CRS.Simple });
-  var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: "< tileset's max zoom level >" });
+  // Prepare Tileset URL for Leaflet
+  var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png",
+  var zoomOffset = 8,
+  var maxZoom = Math.ceil(Math.log((Math.max(perspective.size.height, perspective.size.width)))/Math.log(2)) - zoomOffset;
+  var tiles = L.tileLayer(url, { zoomOffset: zoomOffset, zoom: 0, minZoom: 0, maxZoom: maxZoom, continuousWorld: true });
   leafletMap.addLayer(tiles);
 }
 
@@ -26,7 +41,10 @@ function getMapsBySlug(slug, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/map', 
     data: 'slug=' + slug, 
-    type: 'GET', 
+    type: 'GET',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+    }, 
     success: cb
   });
 }
@@ -54,6 +72,9 @@ function getNodeById(id, cb) {
     url: 'https://api.mappedin.com/1/node', 
     data: 'id=' + id, 
     type: 'GET', 
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+    }, 
     success: cb
   });
 }
@@ -63,6 +84,9 @@ function getLocationsByVenue(venue, cb) {
     url: 'https://api.mappedin.com/1/location', 
     data: 'venue=' + venue, 
     type: 'GET', 
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+    }, 
     success: cb
   });
 }
@@ -98,7 +122,10 @@ function getDirectionsFromNodeToNode(slug, start, end, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/directions', 
     data: 'origin=' + start + '&destination=' + end + '&venue=' + slug, 
-    type: 'GET', 
+    type: 'GET',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+    }, 
     success: cb
   });
 }

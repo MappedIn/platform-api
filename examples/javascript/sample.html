@@ -4,113 +4,183 @@
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
 	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="./projective.js"></script>
+	<script src="./externals/numeric.js"></script>
 
 	<script>
-		var leafletMap;
-		var key;
+		var token;
+		var host = {
+			auth: 'http://auth.localhost:8484',	//'http://auth.mappedin.com',
+			api: 'http://api.localhost:8002'	//'https://api.mappedin.com'
+		}
+		var leaflet = {
+			map: null, 
+			layers: {},
+			maxBounds: null
+		};
+		var projective;
 
-		// Auth
-		var AUTHORIZE_URI = 'http://auth.mappedin.com/oauth2/authorize?response_type=code&client_id=' + encodeURIComponent(key) + '&scope=manage+edit+admin&state=';
-		function authorize(r) {
-			var state = crypto.randomBytes(32).toString('hex');
-			r.set('oauth2.state', state);
-			r.redirect(AUTHORIZE_URI + encodeURIComponent(state));
+		var slug = 'mappedin-mall';
+		var map = null;
+		var perspective;
+		var cache = {
+			nodeById: {},
+			locations: []
 		};
 
-		// Rest Calls
-		function getMapsBySlug(slug, cb) {
+		// Auth
+		function authenticate(cb) {
 			$.ajax({ 
-				url: 'https://api.mappedin.com/1/map', 
-				data: 'slug=' + slug, 
-				type: 'GET', 
-				success: cb
+				url: host.auth + '/oauth2/token', 
+				data: { grant_type: "client_credentials", client_id: '', client_secret: '' }, 
+				type: 'POST',
+				success: function (result) {
+					token = result;
+					cb();
+				},
+				error: function (result) {
+					token = {};
+					token.token_type = 'Bearer';
+					token.access_token = 'Zt3kio4aIS6SD1Nuy89R3Pe5K8wDJF95RhiWPBosLKQ=';
+					cb();
+				}
 			});
-		}
-		function getNodeById(id, cb) {
-			$.ajax({ 
-				url: 'https://api.mappedin.com/1/node', 
-				data: 'id=' + id, 
-				type: 'GET', 
-				success: cb
-			});
-		}
-		function getLocationsByVenue(venue, cb) {
-			$.ajax({ 
-				url: 'https://api.mappedin.com/1/location', 
-				data: 'venue=' + venue, 
-				type: 'GET', 
-				success: cb
-			});
-		}
-		function getDirectionsFromNodeToNode(slug, start, end, cb) {
-			$.ajax({ 
-				url: 'https://api.mappedin.com/1/directions', 
-				data: 'origin=' + start + '&destination=' + end + '&venue=' + slug, 
-				type: 'GET', 
-				success: cb
-			});
-		}
-
-		// Leaflet
-		function initLeafletMap (tilesetURL) {
-			// Prepare URL for Leaflet
-			var bounds = [];
-			var url = tilesetURL + ((tilesetURL.substr(tilesetURL.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png";
-			leafletMap = L.map("map", { crs: L.CRS.Simple });
-			var tiles = L.tileLayer(url, { zoomOffset: 8, zoom: 0, minZoom: 0, maxZoom: 15 });
-			leafletMap.addLayer(tiles);
-		}
-		function displayDirections(directions) {
-			var path = [];
-			for (var i = 0; i < directions.path.length; i++) {
-				var coords = [directions.path[i].x, direction.path[i].y];
-				var latlng = leafletMap.unproject(coords, leafletMap.getMaxZoom());
-				path.push(latlng);
+		};
+		// REST Calls
+		var api = {
+			Get: function (asset, data, cb) {
+				$.ajax({
+					url: host.api + '/1/' + asset,
+					data: function () {
+						var result = [];
+						Object.keys(data).forEach(function(attr) {
+							result.push(attr + '=' + data[attr]);
+						});
+						return result.join('&');
+					}(),
+					type: 'GET',
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+					},
+					success: cb
+				})
 			}
-			leafletMap.addLayer(new L.polyline(path, { /* Leaflet Path Options */ }));
-		}
+		};
 
-		// Main 
+		// Init
 		function init(slug, cb) {
-			getMapsBySlug(slug, function (maps) {
+			api.Get('map', { venue: slug }, function (maps) {
 				map = maps[0];
-				var perspective = map.perspectives["< persepective name >"];
-				initLeafletMap(perspective.tiles);
+				perspective = map.perspectives["Main"];
+				initProjective(perspective);
+				initMap(perspective.tiles || perspective.image);
 				cb();
 			});
 		}
-		function addLocationPinsToMap(slug, cb) {
-			getLocationsByVenue("< your venue slug >", function (locations) {
-				for (var i = 0; i < locations.length; i++) {
-					for (var j = 0 ; j < locations[i].nodes.length; j++) {
-						if (locations[i].nodes[j].map === map.id) {
-							getNodeById(locations[i].nodes[j].id, function (node) {
-								drawLeafletMarker([node.x, node.y]);
+		function initMap (tiles) {
+			// Prepare URL for Leaflet
+			var	url = tiles + ((tiles.substr(tiles.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png",
+				maxZoom = Math.ceil(Math.log((Math.max(perspective.size.height, perspective.size.width)))/Math.log(2)) - 8;
+			leaflet.map = L.map('map', { 
+				crs: L.CRS.Simple, 
+				zoom: 0, 
+				minZoom: 0, 
+				maxZoom: maxZoom, 
+				center: [0,0] 
+			}).addLayer(new L.tileLayer(url, { 
+				zoomOffset: 8, 
+				zoom: 0, 
+				minZoom: 0, 
+				maxZoom: maxZoom, 
+				noWrap: true, 
+				continuousWorld: true 
+			}));
+			leaflet.maxBounds = getMaxBounds();
+			leaflet.map.setMaxBounds(leaflet.maxBounds);
+		}
+		function initProjective (perspective) {
+			var control = [],
+				target = [];
+			perspective.reference.forEach(function (pr) {
+				control.push([parseFloat(pr.control.x),parseFloat(pr.control.y)]);
+				target.push([parseFloat(pr.target.x),parseFloat(pr.target.y)]);
+			});
+			projective = new Projective({ from: control, to: target });
+		}
+		//
+		function getModelData(cb) {
+			api.Get('location', { venue: slug }, function (locations) {
+				api.Get('node', { map: map.id }, function (nodes) {
+					api.Get('category', { venue: slug }, function (categories) {
+						cache.locations = locations;
+						for (var i = 0; i < nodes.length; i++) {
+							cache.nodeById[nodes[i].id] = nodes[i];
+						}
+						var poiDiv = $('#poi-list');
+						for (var i = 0; i < categories.length; i++) {
+							var radio = $('<input/>', { type: 'radio', name: 'category', value: categories[i].id }).on('change', function (e) {
+								changeCategoryById($(this).val());
 							});
-				    	}
-				    }
-			  	}
-			  	cb();
+							var label = $('<label/>', { html: radio }).append(categories[i].name).append('<br>');
+							poiDiv.append(label);
+						}
+						return cb();
+					});
+				});
 			});
 		}
-
+		function initLocationMarkers(slug) {
+			for (var i = 0; i < cache.locations.length; i++) {
+				if (!cache.locations[i].categories) continue;
+				for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
+					if (cache.locations[i].nodes[j].map === map.id) {
+						var node = cache.nodeById[cache.locations[i].nodes[j].node];
+						if (!node) continue;
+						var latlng = leaflet.map.unproject(projective.transform([node.x, node.y]), leaflet.map.getMaxZoom());
+						cache.locations[i].categories.forEach(function(category) {
+							leaflet.layers[category] = leaflet.layers[category] || L.layerGroup([]);
+							leaflet.layers[category].addLayer(L.marker(latlng));
+						});
+			    	}
+			    }
+		  	}
+		}
+		function changeCategoryById(id) {
+			Object.keys(leaflet.layers).forEach(function (layer) {
+				leaflet.map.removeLayer(leaflet.layers[layer]);
+			});
+			leaflet.map.addLayer(leaflet.layers[id]);
+		}
+		function drawDirections(slug, start, end) {
+			api.Get('directions', { venue: slug, origin: start, destination: end }, function (directions) {
+				var path = [];
+				for (var i = 0; i < directions.path.length; i++) {
+					var coords = projective.transform([directions.path[i].x, directions.path[i].y]);
+					var latlng = leaflet.map.unproject(coords, leaflet.map.getMaxZoom());
+					path.push(latlng);
+				}
+				leaflet.map.addLayer(new L.polyline(path, { color: '#ff0000', opacity: 0.7 }));
+			});
+		}
+		function getMaxBounds() {
+			var southWest = leaflet.map.unproject([0, perspective.size.height], leaflet.map.getMaxZoom());
+			var northEast = leaflet.map.unproject([perspective.size.width, 0], leaflet.map.getMaxZoom());
+			return new L.LatLngBounds(southWest, northEast);
+		}
 	</script>
 </head>
 <body>
 	<div id='map' style='width: 100%; height: 100%; left: 0px; top: 0px; position: absolute;'></div>
-	<script> 
-		var slug = 'wem-digital';
-		// Init Map
-		init(slug, function () {
-			// Get Locations and Draw a pin for each location on the current map
-			addLocationPinsToMap(slug, function () {
-				// Draw some directions
-				var start = "< origin node ID >";
-				var end = "< destination node ID >";
-				getDirectionFromNodeToNode(slug, start, end, displayDirections);
+	<div id="poi-list" style="position: absolute; left: 10px; bottom: 10px;"></div>
+	<script>
+		authenticate(function (result) {
+			init(slug, function () {
+				getModelData(function () {
+					initLocationMarkers(slug);
+					drawDirections(slug, "536bed0c0b5ce4291424ded6", "536bed0c0b5ce4291424dea6");
+				});
 			});
 		});
-
 	</script>
 </body>
 </html>
