@@ -41,10 +41,10 @@ function initLeafletMap (tilesetURL) {
   leafletMap.addLayer(tiles);
 }
 
-function getMapsBySlug(slug, cb) {
+function getMapsByVenue(slug, cb) {
   $.ajax({ 
     url: 'https://api.mappedin.com/1/map', 
-    data: { slug: slug }, 
+    data: { venue: slug }, 
     type: 'GET',
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
