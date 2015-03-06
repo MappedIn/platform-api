@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="./projective.js"></script>
+	<script src="./externals/numeric.js"></script>
+
+	<script>
+		var token;
+		var grant = { 
+			grant_type: "client_credentials", 
+			client_id: "< your client key >", 
+			client_secret: "< your client secret >" 
+		};
+		var host = {
+			auth: 'https://auth.mappedin.com',
+			api: 'https://api.mappedin.com/1/'
+		}
+		var leaflet = {
+			map: null, 
+			layers: {},
+			maxBounds: null
+		};
+		var projective;
+
+		var slug = 'mappedin-mall';
+		var map = null;
+		var perspective;
+		var cache = {
+			nodeById: {},
+			locations: []
+		};
+
+		// Auth
+		function authenticate(grant, cb) {
+			$.ajax({ 
+				url: host.auth + '/oauth2/token', 
+				data: grant, 
+				type: 'POST',
+				success: function (result) {
+					token = result;
+					cb();
+				},
+				error: function (result) {
+					console.log("Error Authenticating.")
+				}
+			});
+		};
+		// REST Calls
+		var api = {
+			Get: function (asset, data, cb) {
+				$.ajax({
+					url: host.api + asset,
+					data: data,
+					type: 'GET',
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+					},
+					success: cb
+				})
+			}
+		};
+
+		// Init
+		function init(slug, cb) {
+			api.Get('map', { venue: slug }, function (maps) {
+				map = maps[0];
+				perspective = map.perspectives["Main"];
+				initProjective(perspective);
+				initMap(perspective.tiles || perspective.image);
+				cb();
+			});
+		}
+		function initMap (tiles) {
+			// Prepare URL for Leaflet
+			var	url = tiles + ((tiles.substr(tiles.length-1, 1) !== '/') ? '/' : '') + "{z}/{x}_{y}.png",
+				maxZoom = Math.ceil(Math.log((Math.max(perspective.size.height, perspective.size.width)))/Math.log(2)) - 8;
+			leaflet.map = L.map('map', { 
+				crs: L.CRS.Simple, 
+				zoom: 0, 
+				minZoom: 0, 
+				maxZoom: maxZoom, 
+				center: [0,0] 
+			}).addLayer(new L.tileLayer(url, { 
+				zoomOffset: 8, 
+				zoom: 0, 
+				minZoom: 0, 
+				maxZoom: maxZoom, 
+				noWrap: true, 
+				continuousWorld: true 
+			}));
+			leaflet.maxBounds = getMaxBounds();
+			leaflet.map.setMaxBounds(leaflet.maxBounds);
+		}
+		function initProjective (perspective) {
+			var control = [],
+				target = [];
+			perspective.reference.forEach(function (pr) {
+				control.push([parseFloat(pr.control.x),parseFloat(pr.control.y)]);
+				target.push([parseFloat(pr.target.x),parseFloat(pr.target.y)]);
+			});
+			projective = new Projective({ from: control, to: target });
+		}
+		//
+		function getModelData(cb) {
+			api.Get('location', { venue: slug }, function (locations) {
+				api.Get('node', { map: map.id }, function (nodes) {
+					api.Get('category', { venue: slug }, function (categories) {
+						cache.locations = locations;
+						for (var i = 0; i < nodes.length; i++) {
+							cache.nodeById[nodes[i].id] = nodes[i];
+						}
+						var poiDiv = $('#poi-list');
+						for (var i = 0; i < categories.length; i++) {
+							var radio = $('<input/>', { type: 'radio', name: 'category', value: categories[i].id }).on('change', function (e) {
+								changeCategoryById($(this).val());
+							});
+							var label = $('<label/>', { html: radio }).append(categories[i].name).append('<br>');
+							poiDiv.append(label);
+						}
+						return cb();
+					});
+				});
+			});
+		}
+		function initLocationMarkers(slug) {
+			for (var i = 0; i < cache.locations.length; i++) {
+				if (!cache.locations[i].categories) continue;
+				for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
+					if (cache.locations[i].nodes[j].map === map.id) {
+						var node = cache.nodeById[cache.locations[i].nodes[j].node];
+						if (!node) continue;
+						var latlng = leaflet.map.unproject(projective.transform([node.x, node.y]), leaflet.map.getMaxZoom());
+						cache.locations[i].categories.forEach(function(category) {
+							leaflet.layers[category] = leaflet.layers[category] || L.layerGroup([]);
+							leaflet.layers[category].addLayer(L.marker(latlng));
+						});
+			    	}
+			    }
+		  	}
+		}
+		function changeCategoryById(id) {
+			Object.keys(leaflet.layers).forEach(function (layer) {
+				leaflet.map.removeLayer(leaflet.layers[layer]);
+			});
+			leaflet.map.addLayer(leaflet.layers[id]);
+		}
+		function drawDirections(slug, start, end) {
+			api.Get('directions', { venue: slug, origin: start, destination: end }, function (directions) {
+				var path = [];
+				for (var i = 0; i < directions.path.length; i++) {
+					var coords = projective.transform([directions.path[i].x, directions.path[i].y]);
+					var latlng = leaflet.map.unproject(coords, leaflet.map.getMaxZoom());
+					path.push(latlng);
+				}
+				leaflet.map.addLayer(new L.polyline(path, { color: '#ff0000', opacity: 0.7 }));
+			});
+		}
+		function getMaxBounds() {
+			var southWest = leaflet.map.unproject([0, perspective.size.height], leaflet.map.getMaxZoom());
+			var northEast = leaflet.map.unproject([perspective.size.width, 0], leaflet.map.getMaxZoom());
+			return new L.LatLngBounds(southWest, northEast);
+		}
+	</script>
+</head>
+<body>
+	<div id='map' style='width: 100%; height: 100%; left: 0px; top: 0px; position: absolute;'></div>
+	<div id="poi-list" style="position: absolute; left: 10px; bottom: 10px;"></div>
+	<script>
+		authenticate(grant, function (result) {
+			init(slug, function () {
+				getModelData(function () {
+					initLocationMarkers(slug);
+					drawDirections(slug, "536bed0c0b5ce4291424ded6", "536bed0c0b5ce4291424dea6");
+				});
+			});
+		});
+	</script>
+</body>
+</html>
