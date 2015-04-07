@@ -66,8 +66,13 @@
 		// Init
 		function init(slug, cb) {
 			api.Get('map', { venue: slug }, function (maps) {
+				// Getting the first map returned by MappedIn API
 				map = maps[0];
-				perspective = map.perspectives["Main"];
+				
+				// Getting the first perspective that belongs to this map
+				perspective = map.perspectives[0];
+				
+				// Initializing the leaflet map
 				initProjective(perspective);
 				initMap(perspective.tiles || perspective.image);
 				cb();
