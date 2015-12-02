@@ -24,7 +24,6 @@ var map = null;
 var perspective;
 var tileLayer = null;
 var cache = {
-	nodeById: {},
 	locations: []
 };
 var categoryId;
@@ -249,60 +248,49 @@ function initProjective (perspective) {
 **/
 function getModelData(cb) {
 	 cache = {
-		nodeById: {},
 		locations: []
 	};
 
 	// Getting all locations for our venue. 
 	// You can also get all the location with the node objects inserted within my by passing 'embed' parameter like so:
 	// api.Get('location', { venue: venueId, embed: 'nodes' }, function (locations) { ... });
-	api.Get('location', { venue: venueId }, function (locations) {
-	
-		// Getting all nodes that belong to our currently selected map
+	api.Get('location', { venue: venueId, embed: 'nodes' }, function (locations) {
 
-		api.Get('node', { map: map.id }, function (nodes) {
-		
-			// Getting all categories that have been defined for this venue in the MappedIn portal
-			api.Get('category', { venue: venueId }, function (categories) {
-				// Caching all of our locations
-				cache.locations = locations;
-				
-				// Creating a hash table of all of our nodes in our cache
-				for (var i = 0; i < nodes.length; i++) {
-					cache.nodeById[nodes[i].id] = nodes[i];
-				}
-				
-				// Dynamically creating a dropdown for you to switch between different 
-				// category marker layers in Leaflet
-				
-				var categoryListDiv = $('#category-list');
-				categoryListDiv.empty();
-				for (var i = 0; i < categories.length; i++) {
+		// Getting all categories that have been defined for this venue in the MappedIn portal
+		api.Get('category', { venue: venueId }, function (categories) {
+			// Caching all of our locations
+			cache.locations = locations;
+			// Dynamically creating a dropdown for you to switch between different 
+			// category marker layers in Leaflet
+			
+			var categoryListDiv = $('#category-list');
+			categoryListDiv.empty();
+			for (var i = 0; i < categories.length; i++) {
 
 
-					var link = $('<a/>', { 
-						role: "menuitem", 
-						tabindex:"-1", 
-						text:categories[i].name, 
-						href: "#",
-						value: categories[i].id, 
-						click: function(e){
-							categoryId = $(this).attr("value");
-							changeCategoryById(categoryId);
-							$('#categoriesDropdown').html($(this).text() + ' <span class="caret"></span>');
-							return true;
-						}
-					});
+				var link = $('<a/>', { 
+					role: "menuitem", 
+					tabindex:"-1", 
+					text:categories[i].name, 
+					href: "#",
+					value: categories[i].id, 
+					click: function(e){
+						categoryId = $(this).attr("value");
+						changeCategoryById(categoryId);
+						$('#categoriesDropdown').html($(this).text() + ' <span class="caret"></span>');
+						return true;
+					}
+				});
 
-					var listItem = $('<li/>', { role: "presentation", html: link});
-					categoryListDiv.append(listItem);
-				}
+				var listItem = $('<li/>', { role: "presentation", html: link});
+				categoryListDiv.append(listItem);
+			}
 
 
 
-				return cb();
-			});
+			return cb();
 		});
+
 	});
 }
 
@@ -329,10 +317,8 @@ function initLocationMarkers(venueId) {
 		for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
 			// Only parse nodes that belong in the currently displayed map
 			if (cache.locations[i].nodes[j].map === map.id) {
-				// Make sure the current node exists in our node cache and is not null
-				// NOTE: This error should not occur for a venue in production. If it does please,
-				// contact MappedIn support as this error indicates bad venue data has some been created
-				var node = cache.nodeById[cache.locations[i].nodes[j].node];
+				
+				var node = cache.locations[i].nodes[j];
 				if (!node) continue;
 				
 				// Using our projective transform matrix, we convert the node's x and y position into a LatLng 
@@ -356,18 +342,61 @@ function initLocationMarkers(venueId) {
 	    	}
 	    }
   	}
+  	leaflet.layers["UserTapped"] = L.layerGroup([]);
 }
 
 /**
 * This function contains sample code to show how to setup click events on a Leaflet map and markers.
 **/
 function initMapInteraction() {
-	// Hooking a click event on the map that displays an alert with the click's transformed co-ordinate
-	// Same co-ordinate that is used by the nodes
-	/*leaflet.map.on('click', function(e) {
+	// Hooking a click event on the map so that we can find the closest location associated with the click
+	leaflet.map.on('click', function(e) {
 		var pos = leaflet.map.project(e.latlng, leaflet.map.getMaxZoom());
-		alert("You clicked at co-ordinate " + pos.x + ", " + pos.y);
-	});*/
+		//console.log("You clicked at co-ordinate " + pos.x + ", " + pos.y);
+
+		//find closest location
+		var closestLocation;
+		var closestNode;
+		var distance=Number.MAX_VALUE;
+		for (var i = 0; i < cache.locations.length; i++) {
+			var location = cache.locations[i];
+			if (location.type === 'legend') continue;  // skip locations that are legend types
+			for (var j = 0 ; j < location.nodes.length; j++) {
+				var node = location.nodes[j];
+				if (node && node.map===map.id) {   //make sure the node is on the map that's being displayed
+					//transform coordinates into the current perspective
+					var perspectivePosition = projective.transform([node.x, node.y]);
+					//calculate distance
+					var temp = Math.sqrt(Math.pow(pos.x-perspectivePosition[0],2) + Math.pow(pos.y-perspectivePosition[1],2));
+					if (temp<distance) {
+						closestLocation = location;
+						closestNode = node;
+						distance = temp;
+					}
+				}
+			}
+		}
+
+		//remove all markers on the map
+		clearLocationMarkers();
+
+		//convert to leaflet coordinates
+		var latlng = leaflet.map.unproject(projective.transform([closestNode.x, closestNode.y]), leaflet.map.getMaxZoom());
+		//create a marker
+		var marker = L.marker(latlng);
+		marker.location = closestLocation;
+		//clear the UserTapped layer, and add the marker
+		var userTappedLayer = leaflet.layers["UserTapped"];
+		userTappedLayer.eachLayer(function(layer){
+			userTappedLayer.removeLayer(layer);
+		});
+		userTappedLayer.addLayer(marker);
+		//display the layer on the map
+		leaflet.map.addLayer(userTappedLayer);
+		//show the location profile
+		showLocationProfile(closestLocation);
+
+	});
 	
 	// Setting click events on all the markers to display an alert containing their location's name
 	for (category in leaflet.layers) {
