@@ -19,6 +19,7 @@ Before you can make REST calls to MappedIn API, you need to retrieve a token by 
     };
 ```
 
+Start the demo by opening the index.html file in your browser.
 
 ## API v1 Documentation
 
