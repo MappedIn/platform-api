@@ -5,10 +5,10 @@ This example illustrates how to invoke MappedIn REST API and use Leaflet to disp
 
 ## Getting Started
 
-Before you can make REST calls to MappedIn API, you need to retrieve a token by authenticating with your client key and secret.  In index.html, enter your set of key and serect. And change the venueId to the venue you are accessing.  Set the perspective name as well.  If you don't know what perspective name to use, contact us and we'll let you know.
+Before you can make REST calls to MappedIn API, you need to retrieve a token by authenticating with your client key and secret.  In `sample.html` (not `sample.js`) , enter your set of key and serect. And change the venueId to the venue you are accessing.  Set the perspective name as well.  If you don't know what perspective name to use, contact us and we'll let you know.
 
 ```javascript
-    var perspectiveName = "Main";
+    var perspectiveName = "Main Kiosk";
     var venueId = 'mappedin-mall';
     // Authenticate with the API keys with the MappedIn server
     var grant = { 
@@ -19,7 +19,7 @@ Before you can make REST calls to MappedIn API, you need to retrieve a token by 
     };
 ```
 
-Start the demo by opening the index.html file in your browser.
+Start the demo by opening the sample.html file in your browser.
 
 ## API v1 Documentation
 
