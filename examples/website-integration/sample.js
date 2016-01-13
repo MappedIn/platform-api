@@ -2,7 +2,6 @@
 // Setting up our global variables
 var token;
 
-
 // We will be using MappedIn API V1
 var host = {
 	auth: 'https://auth.mappedin.com',
@@ -125,7 +124,7 @@ function init(venueId, perspectiveName, cb) {
 		perspective = map.perspectives[0];
 		
 		// Initializing the leaflet map
-		initProjective(perspective);
+		//initProjective(perspective); //redundant?
 		changeMap(perspectiveName);
 
 
@@ -364,9 +363,15 @@ function initLocationMarkers(venueId) {
 				// Create and cache Leaflet marker layers for the current location's categories
 				// These layers will be used for toggling markers for different categories on our map
 				cache.locations[i].categories.forEach(function(category) {
-					leaflet.layers[category] = leaflet.layers[category] || L.layerGroup([]);
+					leaflet.layers[category] = leaflet.layers[category] || L.LayerGroup.collision({margin:5});
 					
-					var marker = L.marker(latlng);
+					//var textIcon = L.divIcon({html: "<span class='location-label'>" + cache.locations[i].name + "</span>"});
+					var textIcon = L.divIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
+					//var textIcon = L.divIcon({className: '', html: "<div class='location-label'>" + getLogoURL(cache.locations[i].logo) + "</div>"});
+					//var textIcon = L.icon({iconUrl: url(getLogoURL(cache.locations[i].logo))});
+					//var textIcon = L.icon({iconUrl: "twitter-round.png", iconSize: [92, 92]});
+
+					var marker = L.marker(latlng, {icon: textIcon});
 					
 					// NOTE: In production code it is recommended that you do not add custom properties like this.
 					// Instead extend the marker class to add such new properties. 

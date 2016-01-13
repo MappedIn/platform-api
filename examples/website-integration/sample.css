@@ -87,3 +87,15 @@ body {
 	background-size: contain;
 	background-position: left;
 }
+
+.location-label {
+	background: white;
+	border: 2px solid #006666;
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	padding: 5px 5px 5px 5px;
+	font-size: medium;
+	border-radius: 5px;
+}
+
