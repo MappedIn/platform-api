@@ -1,7 +1,5 @@
 /*global $*/
 // Setting up our global variables
-var token;
-
 
 // We will be using MappedIn API V1
 var host = {
