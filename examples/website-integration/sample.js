@@ -337,6 +337,50 @@ function clearLocationMarkers() {
 		leaflet.map.removeLayer(leaflet.layers[layer]);
 	});
 }
+/**
+ * A simple icon that stretches to fit its contents
+ * 
+ */
+L.FillIcon = L.DivIcon.extend({
+	options: {
+		//iconSize: [12, 12], // also can be set through CSS
+		/*
+		iconAnchor: (Point)
+		popupAnchor: (Point)
+		html: (String)
+		bgPos: (Point)
+		*/
+		className: 'leaflet-div-icon',
+		html: false
+	},
+	_setIconStyles: function (img, name) {
+
+		var options = this.options,
+		size = L.point(options[name + 'Size']),
+		anchor;
+
+
+		if (name === 'shadow') {
+			anchor = L.point(options.shadowAnchor || options.iconAnchor);
+		} else {
+			anchor = L.point(options.iconAnchor);
+		}
+
+		img.className = options.className;
+
+		img.style.marginLeft = '-50%';
+		img.style.marginTop  = '-50%';
+
+		//img.style.width  = '100%';
+		//img.style.height = '100%';
+		
+	}
+});
+
+L.fillIcon = function (options) {
+	return new L.FillIcon(options);
+};
+
 
 /**
 * This function is used to pre-process all of our locations and create marker layers for them 
@@ -352,7 +396,7 @@ function initLocationMarkers(venueId) {
 	for (var i = 0; i < cache.locations.length; i++) {
 		// Skip parsing any locations that do not have any categories
 		if (!cache.locations[i].categories) continue;
-		console.log("Mapping " + cache.locations[i].name + "("+cache.locations[i].sortOrder + ")");
+
 		// Processing all nodes for the current location
 		for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
 			// Only parse nodes that belong in the currently displayed map
@@ -370,13 +414,20 @@ function initLocationMarkers(venueId) {
 				cache.locations[i].categories.forEach(function(category) {
 					leaflet.layers[category] = leaflet.layers[category] || L.LayerGroup.collision({margin:5});
 					
-					//var textIcon = L.divIcon({html: "<span class='location-label'>" + cache.locations[i].name + "</span>"});
-					var textIcon = L.divIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
-					//var textIcon = L.divIcon({className: '', html: "<div class='location-label'>" + getLogoURL(cache.locations[i].logo) + "</div>"});
-					//var textIcon = L.icon({iconUrl: url(getLogoURL(cache.locations[i].logo))});
-					//var textIcon = L.icon({iconUrl: "twitter-round.png", iconSize: [92, 92]});
+					//var locationIcon = L.divIcon({html: "<span class='location-label'>" + cache.locations[i].name + "</span>"});
+					var locationIcon = L.divIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
+					//var locationIcon = L.divIcon({className: '', html: "<div class='location-label'>" + getLogoURL(cache.locations[i].logo) + "</div>"});
+					//var locationIcon = L.icon({iconUrl: url(getLogoURL(cache.locations[i].logo))});
+					//var locationIcon = L.icon({iconUrl: "twitter-round.png", iconSize: [92, 92]});
+					//var locationIcon = L.divIcon({
+					//var locationIcon = L.fillIcon({
+                		//className: 'label',
+                		//className: 'location-label',
+                		//html: cache.locations[i].name
+                		//iconSize: [100, 100]
+            		//});
 
-					var marker = L.marker(latlng, {icon: textIcon});
+					var marker = L.marker(latlng, {icon: locationIcon});
 					
 					// NOTE: In production code it is recommended that you do not add custom properties like this.
 					// Instead extend the marker class to add such new properties. 
