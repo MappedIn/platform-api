@@ -344,18 +344,23 @@ function clearLocationMarkers() {
 **/
 function initLocationMarkers(venueId) {
 	
+	cache.locations.sort(function(a, b) {
+		return a.sortOrder - b.sortOrder;
+	});
+
+
 	for (var i = 0; i < cache.locations.length; i++) {
 		// Skip parsing any locations that do not have any categories
 		if (!cache.locations[i].categories) continue;
-		
+		console.log("Mapping " + cache.locations[i].name + "("+cache.locations[i].sortOrder + ")");
 		// Processing all nodes for the current location
 		for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
 			// Only parse nodes that belong in the currently displayed map
 			if (cache.locations[i].nodes[j].map === map.id) {
-				
+
 				var node = cache.locations[i].nodes[j];
 				if (!node) continue;
-				
+
 				// Using our projective transform matrix, we convert the node's x and y position into a LatLng 
 				// object for drawing on our Leaflet map
 				var latlng = leaflet.map.unproject(projective.transform([node.x, node.y]), leaflet.map.getMaxZoom());
