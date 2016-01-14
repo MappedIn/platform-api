@@ -12,15 +12,16 @@
 </head>
 <body>
 	<h1>For test/development purposes only.</h1><br>
-	<p>Use this sample tool to retrieve your MappedIn API token, which needs to be sent with any query against the MappedIn API. It should be valid for two days (you can inspect the "expires_in" property of the token to be sure.</p>
+	<p>Use this sample tool to retrieve your MappedIn API token, which needs to be sent with any query against the MappedIn API. It should be valid for two days (you can inspect the "expires_in" property of the token to be sure.)</p>
 	<p>For production usage, you need to set up your own server your app can query for your current token. Your server should cache the current token, and only request a new one when the old token is close to expiry.</p>
 	<p><b>DO NOT STORE YOUR API KEY AND SECRET INSIDE YOUR WEBPAGE</b></p>
 	<br>
-	<p>Input your key and secret, then hit submit. Copy the result into the "token" definition of sample.js</p>
-	<form id="form">
-	  API Key: <input type="text" id="keyField" value=""><br>
-	  Secret: <input type="text" id="secretField" value=""><br><br>
-	  <input type="button" onclick="getToken(this.form)" value="Submit">
+	<p>Input your key and secret, then hit submit. Copy the resulant JSON into the "token" definition of sample.html</p>
+	<form id="form" style="table;padding: 5px">
+		<div style = "display: table-row"><label style="display: table-cell; padding: 5px" align = "right">API Key: </label><input type="text" style="display: table-cell; width: 300px" id="keyField" value=""></div>
+		<div style = "display: table-row"><label style="display: table-cell; padding: 5px" align = "right">Secret: </label><input type="text" style="display: table-cell; width: 300px" id="secretField" value=""></div>
+		<input type="button" onclick="getToken(this.form)" value="Submit">
+
 	</form>
 
 	</div>
