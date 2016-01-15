@@ -92,10 +92,13 @@ body {
 	background: white;
 	border: 2px solid #006666;
 	position: relative;
-	display: inline-block;
+	left:-50%;
+	display: inline;
 	white-space: nowrap;
 	padding: 5px 5px 5px 5px;
 	font-size: medium;
 	border-radius: 5px;
-}
+	text-align:center;
+	vertical-align: baseline;
 
+}

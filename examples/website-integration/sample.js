@@ -338,12 +338,14 @@ function clearLocationMarkers() {
 	});
 }
 /**
- * A simple icon that stretches to fit its contents
+ * A simple icon extding DivIcon that doesn't set it's the margin/size, 
+ * which made it difficult to center text labels on their markers. Use
+ * this with a CSS class like localtion-label.
  * 
  */
 L.FillIcon = L.DivIcon.extend({
 	options: {
-		//iconSize: [12, 12], // also can be set through CSS
+		iconSize: [12, 12], // also can be set through CSS
 		/*
 		iconAnchor: (Point)
 		popupAnchor: (Point)
@@ -366,13 +368,21 @@ L.FillIcon = L.DivIcon.extend({
 			anchor = L.point(options.iconAnchor);
 		}
 
-		img.className = options.className;
+		if (!anchor && size) {
+			anchor = size.divideBy(2, true);
+		}
 
-		img.style.marginLeft = '-50%';
-		img.style.marginTop  = '-50%';
+		img.className = 'leaflet-marker-' + name + ' ' + options.className;
 
-		//img.style.width  = '100%';
-		//img.style.height = '100%';
+		// if (anchor) {
+		// 	img.style.marginLeft = (-anchor.x) + 'px';
+		// 	img.style.marginTop  = (-anchor.y) + 'px';
+		// }
+
+		// if (size) {
+		// 	img.style.width  = size.x + 'px';
+		// 	img.style.height = size.y + 'px';
+		// }
 		
 	}
 });
@@ -414,18 +424,8 @@ function initLocationMarkers(venueId) {
 				cache.locations[i].categories.forEach(function(category) {
 					leaflet.layers[category] = leaflet.layers[category] || L.LayerGroup.collision({margin:5});
 					
-					//var locationIcon = L.divIcon({html: "<span class='location-label'>" + cache.locations[i].name + "</span>"});
-					var locationIcon = L.divIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
-					//var locationIcon = L.divIcon({className: '', html: "<div class='location-label'>" + getLogoURL(cache.locations[i].logo) + "</div>"});
-					//var locationIcon = L.icon({iconUrl: url(getLogoURL(cache.locations[i].logo))});
-					//var locationIcon = L.icon({iconUrl: "twitter-round.png", iconSize: [92, 92]});
-					//var locationIcon = L.divIcon({
-					//var locationIcon = L.fillIcon({
-                		//className: 'label',
-                		//className: 'location-label',
-                		//html: cache.locations[i].name
-                		//iconSize: [100, 100]
-            		//});
+					var locationIcon = L.fillIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
+					//var locationIcon = L.fillIcon({className: 'location-label', html: cache.locations[i].name});
 
 					var marker = L.marker(latlng, {icon: locationIcon});
 					
