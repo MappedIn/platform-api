@@ -1,9 +1,3 @@
-/*global $*/
-// Setting up our global variables
-<<<<<<< HEAD
-=======
-var token;
->>>>>>> Paul/Clustering
 
 // We will be using MappedIn API V1
 var host = {
