@@ -1,5 +1,9 @@
 /*global $*/
 // Setting up our global variables
+<<<<<<< HEAD
+=======
+var token;
+>>>>>>> Paul/Clustering
 
 // We will be using MappedIn API V1
 var host = {
@@ -123,7 +127,7 @@ function init(venueId, perspectiveName, cb) {
 		perspective = map.perspectives[0];
 		
 		// Initializing the leaflet map
-		initProjective(perspective);
+		//initProjective(perspective); //redundant?
 		changeMap(perspectiveName);
 
 
@@ -336,6 +340,60 @@ function clearLocationMarkers() {
 		leaflet.map.removeLayer(leaflet.layers[layer]);
 	});
 }
+/**
+ * A simple icon extding DivIcon that doesn't set it's the margin/size, 
+ * which made it difficult to center text labels on their markers. Use
+ * this with a CSS class like localtion-label.
+ * 
+ */
+L.FillIcon = L.DivIcon.extend({
+	options: {
+		iconSize: [12, 12], // also can be set through CSS
+		/*
+		iconAnchor: (Point)
+		popupAnchor: (Point)
+		html: (String)
+		bgPos: (Point)
+		*/
+		className: 'leaflet-div-icon',
+		html: false
+	},
+	_setIconStyles: function (img, name) {
+
+		var options = this.options,
+		size = L.point(options[name + 'Size']),
+		anchor;
+
+
+		if (name === 'shadow') {
+			anchor = L.point(options.shadowAnchor || options.iconAnchor);
+		} else {
+			anchor = L.point(options.iconAnchor);
+		}
+
+		if (!anchor && size) {
+			anchor = size.divideBy(2, true);
+		}
+
+		img.className = 'leaflet-marker-' + name + ' ' + options.className;
+
+		// if (anchor) {
+		// 	img.style.marginLeft = (-anchor.x) + 'px';
+		// 	img.style.marginTop  = (-anchor.y) + 'px';
+		// }
+
+		// if (size) {
+		// 	img.style.width  = size.x + 'px';
+		// 	img.style.height = size.y + 'px';
+		// }
+		
+	}
+});
+
+L.fillIcon = function (options) {
+	return new L.FillIcon(options);
+};
+
 
 /**
 * This function is used to pre-process all of our locations and create marker layers for them 
@@ -343,18 +401,23 @@ function clearLocationMarkers() {
 **/
 function initLocationMarkers(venueId) {
 	
+	cache.locations.sort(function(a, b) {
+		return a.sortOrder - b.sortOrder;
+	});
+
+
 	for (var i = 0; i < cache.locations.length; i++) {
 		// Skip parsing any locations that do not have any categories
 		if (!cache.locations[i].categories) continue;
-		
+
 		// Processing all nodes for the current location
 		for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
 			// Only parse nodes that belong in the currently displayed map
 			if (cache.locations[i].nodes[j].map === map.id) {
-				
+
 				var node = cache.locations[i].nodes[j];
 				if (!node) continue;
-				
+
 				// Using our projective transform matrix, we convert the node's x and y position into a LatLng 
 				// object for drawing on our Leaflet map
 				var latlng = leaflet.map.unproject(projective.transform([node.x, node.y]), leaflet.map.getMaxZoom());
@@ -362,9 +425,12 @@ function initLocationMarkers(venueId) {
 				// Create and cache Leaflet marker layers for the current location's categories
 				// These layers will be used for toggling markers for different categories on our map
 				cache.locations[i].categories.forEach(function(category) {
-					leaflet.layers[category] = leaflet.layers[category] || L.layerGroup([]);
+					leaflet.layers[category] = leaflet.layers[category] || L.LayerGroup.collision({margin:5});
 					
-					var marker = L.marker(latlng);
+					var locationIcon = L.fillIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
+					//var locationIcon = L.fillIcon({className: 'location-label', html: cache.locations[i].name});
+
+					var marker = L.marker(latlng, {icon: locationIcon});
 					
 					// NOTE: In production code it is recommended that you do not add custom properties like this.
 					// Instead extend the marker class to add such new properties. 
