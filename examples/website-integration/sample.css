@@ -89,15 +89,17 @@ body {
 }
 
 .location-label {
-	background: white;
-	border: 2px solid #006666;
+	background: black;
+	color: white;
+	opacity: 0.8;
+	/*border: 2px solid #006666;*/
 	position: relative;
 	left:-50%;
 	display: inline;
 	white-space: nowrap;
 	padding: 5px 5px 5px 5px;
 	font-size: medium;
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	text-align:center;
 	vertical-align: baseline;
 
