@@ -25,6 +25,7 @@ var cache = {
 };
 var categoryId;
 var defaultZoom = 2;
+var markerLayerGroup = L.LayerGroup.collision({margin:0})
 
 // Auth
 /**
@@ -330,6 +331,7 @@ function getModelData(cb) {
 *  This function removeds all location markers from the map
 **/
 function clearLocationMarkers() {
+	markerLayerGroup.clearLayers()
 	Object.keys(leaflet.layers).forEach(function (layer) {
 		leaflet.map.removeLayer(leaflet.layers[layer]);
 	});
@@ -431,7 +433,10 @@ function initLocationMarkers(venueId) {
 					// More info here: http://stackoverflow.com/a/17424238/616561
 					marker.location = cache.locations[i];
 					
-					leaflet.layers[category].addLayer(marker);
+					// Keep track of the marker so can use it when the user selects a category
+					cache.locations[i].marker = marker
+
+					//leaflet.layers[category].addLayer(marker);
 				});
 	    	}
 	    }
@@ -542,7 +547,17 @@ function changeCategoryById(id) {
 
 	// Just show the currently provided category (id) layer on the map
 	if (leaflet.layers[id]) {
-		leaflet.map.addLayer(leaflet.layers[id]);
+		leaflet.map.removeLayer(markerLayerGroup)
+		
+		clearLocationMarkers();
+
+		for (i = 0; i < cache.locations.length; i++) {
+			var location = cache.locations[i]
+			if (location.categories.indexOf(id) > -1) {
+				markerLayerGroup.addLayer(location.marker)
+			}
+		}
+		leaflet.map.addLayer(markerLayerGroup);
 	}
 }
 
