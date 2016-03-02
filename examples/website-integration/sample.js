@@ -27,6 +27,8 @@ var categoryId;
 var defaultZoom = 2;
 var markerLayerGroup = L.LayerGroup.collision({margin:0})
 
+var ALL_LOCATIONS = "ALL"
+
 // Auth
 /**
 * Our authentication function for requesting an OAuth token from the MappedIn server.
@@ -298,9 +300,26 @@ function getModelData(cb) {
 			
 			var categoryListDiv = $('#category-list');
 			categoryListDiv.empty();
+
+			// Make a special option to show all locations
+			var link = $('<a/>', { 
+				role: "menuitem", 
+				tabindex:"-1", 
+				text: ALL_LOCATIONS, 
+				href: "#",
+				value: ALL_LOCATIONS, 
+				click: function(e){
+					categoryId = $(this).attr("value");
+					changeCategoryById(categoryId);
+					$('#categoriesDropdown').html($(this).text() + ' <span class="caret"></span>');
+					return true;
+				}
+			});
+			var listItem = $('<li/>', { role: "presentation", html: link});
+			categoryListDiv.append(listItem);
+
+			// Make an option to show all locations in each category
 			for (var i = 0; i < categories.length; i++) {
-
-
 				var link = $('<a/>', { 
 					role: "menuitem", 
 					tabindex:"-1", 
@@ -421,7 +440,6 @@ function initLocationMarkers(venueId) {
 				// Create and cache Leaflet marker layers for the current location's categories
 				// These layers will be used for toggling markers for different categories on our map
 				cache.locations[i].categories.forEach(function(category) {
-					leaflet.layers[category] = leaflet.layers[category] || L.LayerGroup.collision({margin:5});
 					
 					var locationIcon = L.fillIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
 					//var locationIcon = L.fillIcon({className: 'location-label', html: cache.locations[i].name});
@@ -546,19 +564,16 @@ function changeCategoryById(id) {
 	clearLocationMarkers();
 
 	// Just show the currently provided category (id) layer on the map
-	if (leaflet.layers[id]) {
-		leaflet.map.removeLayer(markerLayerGroup)
-		
-		clearLocationMarkers();
+	leaflet.map.removeLayer(markerLayerGroup)
 
-		for (i = 0; i < cache.locations.length; i++) {
-			var location = cache.locations[i]
-			if (location.categories.indexOf(id) > -1) {
-				markerLayerGroup.addLayer(location.marker)
-			}
+	clearLocationMarkers();
+	for (i = 0; i < cache.locations.length; i++) {
+		var location = cache.locations[i]
+		if ((id == ALL_LOCATIONS && location.categories.length > 0) || location.categories.indexOf(id) > -1) {
+			markerLayerGroup.addLayer(location.marker)
 		}
-		leaflet.map.addLayer(markerLayerGroup);
 	}
+	leaflet.map.addLayer(markerLayerGroup);
 }
 
 /**
