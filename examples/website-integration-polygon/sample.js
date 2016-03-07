@@ -19,7 +19,6 @@ var maps = {};
 var projective;
 var map = null;
 var perspective;
-var fullPolyMode = false // If a map is set up with entrance nodes, abandon the marker based code and use polygons for everything
 var tileLayer = null;
 var cache = {
 	locations: []
@@ -258,7 +257,7 @@ function changeMap(perspectiveName) {
 	leaflet.maxBounds = getMaxBounds();
 	leaflet.map.setMaxBounds(leaflet.maxBounds);
 	getModelData(function(){
-		initLocationMarkers(venueId);
+		//initLocationMarkers(venueId);
 		initMapInteraction();
 		changeCategoryById(categoryId);
 
@@ -268,11 +267,12 @@ function changeMap(perspectiveName) {
 
 			for (var j = 0; j < location.polygons.length; j++) {
 				var polyData =  cache.polygons[location.polygons[j].id]
-				console.log(polyData.map + " and " + map.id)
-				if (polyData.map == map.id) {
+				if (polyData.map == map.id && (polyData._locations == null || polyData._locations[location.id] == null)) {
 					var polygon = createPolygon(polyData)
 					leaflet.map.addLayer(polygon)
 					polyData._locations[location.id] = location.id
+
+					createLabelMarker(location, polyData)
 				}
 			}
 
@@ -345,6 +345,7 @@ function getModelData(cb) {
 				for (var i = 0; i < polygons.length; i++) {
 					polygons[i]["_highlighted"] = false
 					polygons[i]["_locations"] = {}
+					polygons[i]["_markers"] = {}
 					cache.polygons[polygons[i].id] = polygons[i]
 				}
 
@@ -466,138 +467,31 @@ L.fillIcon = function (options) {
 };
 
 
-/**
-* This function is used to pre-process all of our locations and create marker layers for them 
-* depending on their category
-**/
-function initLocationMarkers(venueId) {
+function createLabelMarker(location, polyData) {
+
+	// Very rough approximation, not the true polygon centre.
+	var coordinates = polyData.polygon.getBounds().getCenter();
+	var locationIcon = L.fillIcon({className: '', html: "<div class='location-label'>" + location.name + "</div>"});
+	var marker = L.marker(coordinates, {icon: locationIcon});
 	
-	cache.locations.sort(function(a, b) {
-		return a.sortOrder - b.sortOrder;
-	});
+	marker.mLocation = location;
+	marker.mPolygon = polyData.id;
+	marker.on("click", onLabelMarkerClick)
+	
+	polyData._markers[location.id] = marker
 
-
-	for (var i = 0; i < cache.locations.length; i++) {
-		// Skip parsing any locations that do not have any categories
-		if (!cache.locations[i].categories) continue;
-
-		// Processing all nodes for the current location
-		for (var j = 0 ; j < cache.locations[i].nodes.length; j++) {
-			// Only parse nodes that belong in the currently displayed map
-			if (cache.locations[i].nodes[j].map === map.id) {
-
-				var node = cache.locations[i].nodes[j];
-				if (!node) continue;
-
-				// Using our projective transform matrix, we convert the node's x and y position into a LatLng 
-				// object for drawing on our Leaflet map
-				var latlng = leaflet.map.unproject(projective.transform([node.x, node.y]), leaflet.map.getMaxZoom());
-				
-				// Create and cache Leaflet marker layers for the current location's categories
-				// These layers will be used for toggling markers for different categories on our map
-				cache.locations[i].categories.forEach(function(category) {
-					
-					var locationIcon = L.fillIcon({className: '', html: "<div class='location-label'>" + cache.locations[i].name + "</div>"});
-					//var locationIcon = L.fillIcon({className: 'location-label', html: cache.locations[i].name});
-
-					var marker = L.marker(latlng, {icon: locationIcon});
-					
-					// NOTE: In production code it is recommended that you do not add custom properties like this.
-					// Instead extend the marker class to add such new properties. 
-					// More info here: http://stackoverflow.com/a/17424238/616561
-					marker.location = cache.locations[i];
-					
-					// Keep track of the marker so can use it when the user selects a category
-					cache.locations[i].marker = marker
-
-					//leaflet.layers[category].addLayer(marker);
-				});
-	    	}
-	    }
-  	}
-  	leaflet.layers["UserTapped"] = L.layerGroup([]);
 }
 
 /**
 * This function contains sample code to show how to setup click events on a Leaflet map and markers.
 **/
 function initMapInteraction() {
-	// Hooking a click event on the map so that we can find the closest location associated with the click
-	leaflet.map.on('click', onMarkerClicked);
-	
-	// Setting click events on all the markers to display an alert containing their location's name
-	for (category in leaflet.layers) {
-		for (mId in leaflet.layers[category].getLayers()) {
-			var marker = leaflet.layers[category].getLayers()[mId];
-			marker.on('click', function(e) {
-				var pos = leaflet.map.project(e.latlng, leaflet.map.getMaxZoom());
-				showLocationProfile(this.location);
-				//alert("You clicked on the " + this.location.name + " marker \n" 
-				//	+ "Located at co-ordinate " + pos.x.toFixed(2) + ", " + pos.y.toFixed(2));
-			});
-		}
-	}
-}
 
-/**
-* This function is called when the map is clicked on
-**/
-function onMarkerClicked(e) {
-	return
-	var pos = leaflet.map.project(e.latlng, leaflet.map.getMaxZoom());
-
-	clearHighlightPolygon()
-
-	//console.log("You clicked at co-ordinate " + pos.x + ", " + pos.y);
-	//find closest location
-	var closestLocation;
-	var closestNode;
-	var distance=Number.MAX_VALUE;
-	for (var i = 0; i < cache.locations.length; i++) {
-		var location = cache.locations[i];
-		if (location.type === 'legend') continue;  // skip locations that are legend types
-		for (var j = 0 ; j < location.nodes.length; j++) {
-			var node = location.nodes[j];
-			if (node && node.map===map.id) {   //make sure the node is on the map that's being displayed
-				//transform coordinates into the current perspective
-				var perspectivePosition = projective.transform([node.x, node.y]);
-				//calculate distance
-				var temp = Math.sqrt(Math.pow(pos.x-perspectivePosition[0],2) + Math.pow(pos.y-perspectivePosition[1],2));
-				if (temp<distance) {
-					closestLocation = location;
-					closestNode = node;
-					distance = temp;
-				}
-			}
-		}
-	}
-	
-	//remove all markers on the map
-	clearLocationMarkers();
-	
-	//convert to leaflet coordinates
-	var latlng = leaflet.map.unproject(projective.transform([closestNode.x, closestNode.y]), leaflet.map.getMaxZoom());
-	//create a marker
-	var marker = L.marker(latlng);
-	marker.location = closestLocation;
-	if (closestLocation.polygons.length > 0) {
-		console.log("Highlighting " + closestLocation.polygons[0].id + " on " + closestLocation.name)
-		highlightPolygon(closestLocation.polygons[0].id)
-	} else {
-		console.log("No polygon for " + closestLocation.name)
-	}
-	//clear the UserTapped layer, and add the marker
-	var userTappedLayer = leaflet.layers["UserTapped"];
-	userTappedLayer.eachLayer(function(layer){
-		userTappedLayer.removeLayer(layer);
+	// Clear the map if we click on nothing
+	leaflet.map.on('click', function () {
+		clearLocationProfile()
+		clearHighlightPolygon()
 	});
-	userTappedLayer.addLayer(marker);
-
-	//display the layer on the map
-	leaflet.map.addLayer(userTappedLayer);
-	//show the location profile
-	showLocationProfile(closestLocation);
-
 }
 
 function highlightPolygon(id, style) {
@@ -610,7 +504,6 @@ function highlightPolygon(id, style) {
 }
 
 function createPolygon(polyData) {
-	console.log("Creating")
 	var vertexes = []
 	for (var j = 0; j < polyData.vertexes.length; j++) {
 		var vert = leaflet.map.unproject(projective.transform([polyData.vertexes[j].x, polyData.vertexes[j].y]), leaflet.map.getMaxZoom())
@@ -644,7 +537,6 @@ function onPolygonClick(event) {
 	clearHighlightPolygon()
 	var polygonData = cache.polygons[event.target.mId]
 	highlightPolygon(event.target.mId, polygonStyles.highlight)
-	console.log("Clicked: " + polygonData)
 	console.log(polygonData._locations)
 	var keys = Object.keys(polygonData._locations)
 	if (keys.length > 0) {
@@ -657,6 +549,16 @@ function onPolygonClick(event) {
 			}
 		}
 	}
+}
+
+function onLabelMarkerClick(event) {
+	clearHighlightPolygon()
+
+	console.log(event.target)
+	showLocationProfile(event.target.mLocation)
+	highlightPolygon(event.target.mPolygon, polygonStyles.highlight)
+
+	clearLocationMarkers()
 }
 
 function clearHighlightPolygon() {
@@ -695,13 +597,18 @@ function showLocationProfile(location) {
 	}, 500);
 }
 
-
+function clearLocationProfile() {
+	var locationProfileDiv = $('#location-profile');
+	locationProfileDiv.removeClass('fade-in');
+}
 
 /**
 * Function to quickly switch between different category marker layers in Leaflet
 **/
 function changeCategoryById(id) {
 	clearLocationMarkers();
+	clearHighlightPolygon();
+	clearLocationProfile();
 
 	// Just show the currently provided category (id) layer on the map
 	leaflet.map.removeLayer(markerLayerGroup)
@@ -709,8 +616,14 @@ function changeCategoryById(id) {
 	clearLocationMarkers();
 	for (i = 0; i < cache.locations.length; i++) {
 		var location = cache.locations[i]
-		if ((id == ALL_LOCATIONS && location.categories.length > 0) || location.categories.indexOf(id) > -1) {
-			markerLayerGroup.addLayer(location.marker)
+		if (((id == ALL_LOCATIONS && location.categories.length > 0) || location.categories.indexOf(id) > -1)) {
+			for (var j = 0; j < location.polygons.length; j ++) {
+				var polyData = cache.polygons[location.polygons[j].id]
+				console.log(polyData)
+				var marker = polyData._markers[location.id]
+
+				markerLayerGroup.addLayer(marker)
+			}
 		}
 	}
 	leaflet.map.addLayer(markerLayerGroup);
