@@ -472,11 +472,12 @@ L.fillIcon = function (options) {
 
 function createLabelMarker(location, polyData) {
 
-	// Very rough approximation, not the true polygon centre.
-	var coordinates = polyData.polygon.getBounds().getCenter();
+	// Place labels in the true center of the polygons
+	var coordinates = getCentroid(polyData.polygon);
+	console.log(coordinates)
 	var locationIcon = L.fillIcon({className: '', html: "<div class='location-label'>" + location.name + "</div>"});
 	var marker = L.marker(coordinates, {icon: locationIcon});
-	
+
 	marker.mLocation = location;
 	marker.mPolygon = polyData.id;
 	marker.on("click", onLabelMarkerClick)
@@ -686,4 +687,30 @@ function getMaxBounds() {
 	var southWest = leaflet.map.unproject([0, perspective.size.height], leaflet.map.getMaxZoom());
 	var northEast = leaflet.map.unproject([perspective.size.width, 0], leaflet.map.getMaxZoom());
 	return new L.LatLngBounds(southWest, northEast);
+}
+
+
+// Polygon centroid algorithm from http://stackoverflow.com/a/22796806/2283791
+function getCentroid (polygon) {
+    var twoTimesSignedArea = 0;
+    var cxTimes6SignedArea = 0;
+    var cyTimes6SignedArea = 0;
+
+    console.log("Getting lat/langs of")
+    
+    var points = polygon.getLatLngs()
+	console.log(points)
+    var length = points.length
+
+    var x = function (i) { return points[i % length].lat };
+    var y = function (i) { return points[i % length].lng };
+
+    for ( var i = 0; i < length; i++) {
+        var twoSA = x(i)*y(i+1) - x(i+1)*y(i);
+        twoTimesSignedArea += twoSA;
+        cxTimes6SignedArea += (x(i) + x(i+1)) * twoSA;
+        cyTimes6SignedArea += (y(i) + y(i+1)) * twoSA;
+    }
+    var sixSignedArea = 3 * twoTimesSignedArea;
+    return [ cxTimes6SignedArea / sixSignedArea, cyTimes6SignedArea / sixSignedArea];        
 }
