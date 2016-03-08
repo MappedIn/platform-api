@@ -27,8 +27,12 @@ var categoryId;
 var defaultZoom = 2;
 var markerLayerGroup = L.LayerGroup.collision({margin:0})
 
+// Special value that means to show every location in the "category" dropdown
 var ALL_LOCATIONS = "ALL"
 
+// Predefined styles used to create hover effects and highlight polygons
+// Feel free to add your own and use them in highlightPoygon, or change
+// the existing ones.
 var polygonStyles = {
 	invisible: {
 		fillOpacity: 0.0,
@@ -160,7 +164,9 @@ function init(venueId, perspectiveName, cb) {
 	});
 }
 
-
+/**
+* Initialize the map for use
+*/
 function initMap (tiles) {
 	$('#map').empty();
 
@@ -190,7 +196,7 @@ function initMap (tiles) {
 
 	leaflet.map.setZoom(defaultZoom);
 	
-	// Setting up the max bounds for the map since our venue is not as bug as the world
+	// Setting up the max bounds for the map since our venue is not as big as the world
 	leaflet.maxBounds = getMaxBounds();
 	leaflet.map.setMaxBounds(leaflet.maxBounds);
 }
@@ -257,7 +263,6 @@ function changeMap(perspectiveName) {
 	leaflet.maxBounds = getMaxBounds();
 	leaflet.map.setMaxBounds(leaflet.maxBounds);
 	getModelData(function(){
-		//initLocationMarkers(venueId);
 		initMapInteraction();
 		changeCategoryById(categoryId);
 
@@ -270,7 +275,7 @@ function changeMap(perspectiveName) {
 				if (polyData.map == map.id && (polyData._locations == null || polyData._locations[location.id] == null)) {
 					var polygon = createPolygon(polyData)
 					leaflet.map.addLayer(polygon)
-					polyData._locations[location.id] = location.id
+					polyData._locations[location.id] = location
 
 					createLabelMarker(location, polyData)
 				}
@@ -280,6 +285,9 @@ function changeMap(perspectiveName) {
 	});
 }
 
+/**
+* Initalizes a floor for use
+*/
 function initFloor(myMap, perspectiveName) {
 	var floorsDiv = $('#floors');
 	var index = _.findIndex(myMap.perspectives, function(item){
@@ -333,6 +341,7 @@ function getModelData(cb) {
 	// api.Get('location', { venue: venueId, embed: 'nodes' }, function (locations) { ... });
 	api.Get('location', { venue: venueId, embed: 'nodes' }, function (locations) {
 
+		// Get all polygons on the venue defined in Portal (ie, the building blocks of the map used to create the 3D model/map perspectives)
 		api.Get('polygon', {venue: venueId}, function (polygons) {
 			// Caching all of our locations
 			cache.locations = locations;
@@ -340,9 +349,10 @@ function getModelData(cb) {
 			// Getting all categories that have been defined for this venue in the MappedIn portal
 			api.Get('category', { venue: venueId }, function (categories) {
 				
-				// Caching all of our polyhons
+				// Caching all of our polygons
 				cache.polygons = {};
 				for (var i = 0; i < polygons.length; i++) {
+					// Set up some internal data for polygons to use
 					polygons[i]["_highlighted"] = false
 					polygons[i]["_locations"] = {}
 					polygons[i]["_markers"] = {}
@@ -413,20 +423,13 @@ function clearLocationMarkers() {
 	});
 }
 /**
- * A simple icon extding DivIcon that doesn't set it's the margin/size, 
+ * A simple icon extding DivIcon that doesn't set the margin/size, 
  * which made it difficult to center text labels on their markers. Use
  * this with a CSS class like localtion-label.
- * 
  */
 L.FillIcon = L.DivIcon.extend({
 	options: {
 		iconSize: [12, 12], // also can be set through CSS
-		/*
-		iconAnchor: (Point)
-		popupAnchor: (Point)
-		html: (String)
-		bgPos: (Point)
-		*/
 		className: 'leaflet-div-icon',
 		html: false
 	},
@@ -490,12 +493,17 @@ function initMapInteraction() {
 	// Clear the map if we click on nothing
 	leaflet.map.on('click', function () {
 		clearLocationProfile()
-		clearHighlightPolygon()
+		clearHighlightPolygons()
+		clearLocationMarkers()
 	});
 }
 
+/**
+* This function sets a polygon to a certain visual style that won't be overridden by the mouseover effect.
+* Remove it with the clearHighlightPolygons function. Used mostly on mouse click, but you could highlight
+* things with your own styles for other reasons.
+*/
 function highlightPolygon(id, style) {
-	console.log("Highlighting " + id)
 	var polyData = cache.polygons[id]
 	var polygon = polyData.polygon
 	polyData._highlighted = true
@@ -503,6 +511,10 @@ function highlightPolygon(id, style) {
 	
 }
 
+/**
+* Takes MappedIn Polygon data creates the corrisponding Leaflet polygon in the map's frame of reference.
+* Each MappedIn polygon should only have one Leaflet polygon. Use highlightPolygon to change the styles.
+*/
 function createPolygon(polyData) {
 	var vertexes = []
 	for (var j = 0; j < polyData.vertexes.length; j++) {
@@ -519,6 +531,9 @@ function createPolygon(polyData) {
 	return polygon
 }
 
+/**
+* Give a subtle hover effect when the mouse goes over a polygon
+*/
 function onPolygonMouseover(event) {
 	var polygonData = cache.polygons[event.target.mId]
 	if (!polygonData._highlighted) {
@@ -526,6 +541,9 @@ function onPolygonMouseover(event) {
 	}
 }
 
+/**
+* If we were hovering over a polygon, turn off the highlight when the mouse leaves.
+*/
 function onPolygonMouseout(event) {
 	var polygonData = cache.polygons[event.target.mId]
 	if (!polygonData._highlighted) {
@@ -533,39 +551,43 @@ function onPolygonMouseout(event) {
 	}
 }
 
+/**
+* Handle clicking on a polygon by highlighting it and displaying the location's information
+*/
 function onPolygonClick(event) {
-	clearHighlightPolygon()
+	clearHighlightPolygons()
 	var polygonData = cache.polygons[event.target.mId]
 	highlightPolygon(event.target.mId, polygonStyles.highlight)
-	console.log(polygonData._locations)
 	var keys = Object.keys(polygonData._locations)
 	if (keys.length > 0) {
-		// Organize cache.locations better so we don't have to do this
-		for (var i = 0; i < cache.locations.length; i++) {
-			var location = cache.locations[i]
-			if (location.id == keys[0]) {
-				showLocationProfile(location)
-				return
-			}
-		}
+		// If your venue has multiple polygons with multiple locations, it's up to you to determine
+		// which location a user is interested in when they click on a polygon.
+		// Otherwise, they will always want the first (and only) one
+		showLocationProfile(polygonData._locations[keys[0]])
 	}
 }
 
+/**
+* Handle the user clicking on a label marker for a specific location by behaving as though the polygon
+* for that location was clicked on.
+*/ 
 function onLabelMarkerClick(event) {
-	clearHighlightPolygon()
+	clearHighlightPolygons()
 
-	console.log(event.target)
 	showLocationProfile(event.target.mLocation)
 	highlightPolygon(event.target.mPolygon, polygonStyles.highlight)
 
 	clearLocationMarkers()
 }
 
-function clearHighlightPolygon() {
+/**
+* Clears the highlight effect from all polygons.
+*/
+function clearHighlightPolygons() {
 	for (id in cache.polygons) {
 		var polyData = cache.polygons[id]
-		polyData._highlighted = false
-		if (polyData.polygon) {
+		if (polyData._highlighted = true && polyData.polygon) {
+			polyData._highlighted = false
 			polyData.polygon.setStyle(polygonStyles.invisible)
 		}
 	}
@@ -578,6 +600,9 @@ function getLogoURL(logo) {
 	return logo.small || logo['140x140'] || logo.xsmall || logo['66x66'] || logo.original;
 }
 
+/**
+* Displays the information for a given location at the bottom of the page
+*/
 function showLocationProfile(location) {
 	var locationProfileDiv = $('#location-profile');
 	locationProfileDiv.removeClass('fade-in');
@@ -597,6 +622,9 @@ function showLocationProfile(location) {
 	}, 500);
 }
 
+/**
+* Clears any previously displayed location information
+*/
 function clearLocationProfile() {
 	var locationProfileDiv = $('#location-profile');
 	locationProfileDiv.removeClass('fade-in');
@@ -607,19 +635,17 @@ function clearLocationProfile() {
 **/
 function changeCategoryById(id) {
 	clearLocationMarkers();
-	clearHighlightPolygon();
+	clearHighlightPolygons();
 	clearLocationProfile();
 
-	// Just show the currently provided category (id) layer on the map
-	leaflet.map.removeLayer(markerLayerGroup)
-
-	clearLocationMarkers();
+	// Add markers for all locations in the relevant categories to our markerLayerGroup
 	for (i = 0; i < cache.locations.length; i++) {
 		var location = cache.locations[i]
 		if (((id == ALL_LOCATIONS && location.categories.length > 0) || location.categories.indexOf(id) > -1)) {
 			for (var j = 0; j < location.polygons.length; j ++) {
+
+				// Retrieve the existing marker
 				var polyData = cache.polygons[location.polygons[j].id]
-				console.log(polyData)
 				var marker = polyData._markers[location.id]
 
 				markerLayerGroup.addLayer(marker)
