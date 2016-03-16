@@ -1,3 +1,4 @@
+// Set Three.js scene
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
 var cameraOrbit = new THREE.Object3D()
@@ -7,18 +8,50 @@ var map, controls
 
 var mouse = new THREE.Vector2();
 var raycaster = new THREE.Raycaster();
-
-
 var renderer = new THREE.WebGLRenderer({"antialias": true});
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
 
-function init() {
+var polygons = {}
+var nodes = {}
+var maps = {}
+var locations = {}
+var categories = {}
+
+var venueId
+
+function init(venueId) {
+	MappedIn.api.Get('node', {venue: venueId}, initNodes)
+	MappedIn.api.Get('polygon', {venue: venueId}, initPolygons)
+	MappedIn.api.Get('location', {venue: venueId}, initLocations)
+
 	//initMapView()
+}
+
+function initNodes(results) {
+	for (var node of results) {
+		nodes[node.id] = node
+	}
+	console.log(nodes)
+}
+
+function initPolygons(results) {
+	//return
+	for (var polygon of results) {
+		polygons[polygon.id] = polygon
+	}
+	console.log(polygons)
+}
+
+function initLocations(results) {
+	for (var location of results) {
+		locations[location.id] = location
+	}
+	console.log(locations)
 }
 
 function initMapView() {
 
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
 	window.addEventListener( 'mousemove', onMouseMove, false );
 
 	renderer.setClearColor(0xffffff)
