@@ -1,6 +1,7 @@
 var colors = {
 	hover: 0xcccccc,
 	select: 0x0000ff
+	backgroundColor: 0xffffff
 }
 
 // Set Three.js scene
@@ -15,80 +16,21 @@ var mouse = new THREE.Vector2();
 var raycaster = new THREE.Raycaster();
 var renderer;
 
-var polygons = {}
-var nodes = {}
-var maps = {}
-var locations = {}
-var categories = {}
-var venue = {}
+var venue
 
 var venueId
 
 var highlightedPolygons = {}
 
-var numAPICalls = 6
+// var numAPICalls = 6
 
 // This doesn't handle errors at all right now
 function init(venueId) {
-	MappedIn.api.Get('venue', {slug: venueId}, loadVenue)
-	MappedIn.api.Get('node', {venue: venueId}, loadNodes)
-	MappedIn.api.Get('polygon', {venue: venueId}, loadPolygons)
-	MappedIn.api.Get('location', {venue: venueId}, loadLocations)
-	MappedIn.api.Get('category', {venue: venueId}, loadCategories)
-	MappedIn.api.Get('map', {venue: venueId}, loadMaps)
 
-	//initMapView()
+	venue = new MappedIn.Venue(venueId, initPostVenueLoaded)
 }
 
-function loadVenue(results) {
-	venue = results[0]
-	initPostAPI()
-}
-
-function loadNodes(results) {
-	for (var node of results) {
-		nodes[node.id] = node
-	}
-	initPostAPI()
-}
-
-function loadPolygons(results) {
-	for (var polygon of results) {
-		polygons[polygon.id] = polygon
-	}
-	initPostAPI()
-}
-
-function loadLocations(results) {
-	for (var location of results) {
-		locations[location.id] = location
-	}
-	initPostAPI()
-}
-
-function loadCategories(results) {
-	for (var category of results) {
-		categories[category.id] = category
-	}
-	initPostAPI()
-}
-
-function loadMaps(results) {
-	results.sort(function (a, b) {
-		return a.elevation - b.elevation
-	})
-
-	for (var map of results) {
-		maps[map.id] = map
-	}
-	initPostAPI()
-}
-
-function initPostAPI() {
-	numAPICalls--
-	if (numAPICalls > 0) {
-		return
-	}
+function initPostVenueLoaded() {
 
 	var canvas = document.getElementById( 'mapView' );
 	initMapView(canvas)
@@ -103,10 +45,7 @@ function initMapView(canvas) {
 	window.addEventListener( 'mousemove', onMouseMove, false );
 	window.addEventListener( 'click', onMouseClick, false);
 
-	renderer.setClearColor(0xffffff)
-	//renderer.setPixelRatio( window.devicePixelRatio );
-
-	//renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setClearColor(colors.backgroundColor)
 	renderer.setSize( canvas.width, canvas.height);
 
 	//THREE.ImageUtils.crossOrigin = '*'
@@ -114,13 +53,7 @@ function initMapView(canvas) {
 	//directionalLight.castShadow = true
 	scene.add( directionalLight );
 
-	//var container = document.getElementById( 'container' );
-	//canvas.appendChild( renderer.domElement );
-
 	camera.position.z = 1000;
-	//cameraOrbit.add(camera)
-	//scene.add(cameraOrbit)
-	//cameraOrbit.rotation.x = .6
 
 	raycaster.near = 0
 	raycaster.far = 10000
@@ -144,9 +77,9 @@ function initMapView(canvas) {
 	controls.maxDistance = 2000
 
 	//controls.rotateUp(.6)
-	var mapId = Object.keys(maps)[0]
-	var mtl = maps[mapId].scene.mtl
-	var obj = maps[mapId].scene.obj
+	var mapId = Object.keys(venue.maps)[0]
+	var mtl = venue.maps[mapId].scene.mtl
+	var obj = venue.maps[mapId].scene.obj
 
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
@@ -255,7 +188,7 @@ function clearAllPolygonColors() {
 function detectPolygonUnderMouse() {
 	raycaster.setFromCamera( mouse, camera );
 	var intersects = raycaster.intersectObjects( scene.children, true);
-	return intersects.length && polygons[intersects[0].object.name] && polygons[intersects[0].object.name].entrances ? intersects[0].object : null
+	return intersects.length && venue.polygons[intersects[0].object.name] && venue.polygons[intersects[0].object.name].entrances ? intersects[0].object : null
 }
 
 var lastHover = null

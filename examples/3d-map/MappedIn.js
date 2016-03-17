@@ -54,6 +54,7 @@ MappedIn.api = {
 					return getObjects(nextLink, handleResponse);
 				}
 			}
+			console.log(cb)
 			cb(objects, statusText, xhr);
 		}
 		var url = MappedIn.host.api + asset;
