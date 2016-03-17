@@ -13,7 +13,7 @@ var map, controls
 
 var mouse = new THREE.Vector2();
 var raycaster = new THREE.Raycaster();
-var renderer = new THREE.WebGLRenderer({"antialias": true});
+var renderer;
 
 var polygons = {}
 var nodes = {}
@@ -90,39 +90,42 @@ function initPostAPI() {
 		return
 	}
 
-	initMapView()
+	var canvas = document.getElementById( 'mapView' );
+	initMapView(canvas)
 }
 
-function initMapView() {
+function initMapView(canvas) {
+	renderer = new THREE.WebGLRenderer({canvas: canvas, "antialias": true})
 
 
-
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
+	
+	//document.body.appendChild( renderer.domElement );
 	window.addEventListener( 'mousemove', onMouseMove, false );
 	window.addEventListener( 'click', onMouseClick, false);
 
 	renderer.setClearColor(0xffffff)
-	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight);
+	//renderer.setPixelRatio( window.devicePixelRatio );
+
+	//renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( canvas.width, canvas.height);
 
 	//THREE.ImageUtils.crossOrigin = '*'
 	directionalLight.position.set( 0, 0, .2);
 	//directionalLight.castShadow = true
 	scene.add( directionalLight );
 
-	var container = document.getElementById( 'container' );
-	container.appendChild( renderer.domElement );
+	//var container = document.getElementById( 'container' );
+	//canvas.appendChild( renderer.domElement );
 
 	camera.position.z = 1000;
 	//cameraOrbit.add(camera)
-	scene.add(cameraOrbit)
+	//scene.add(cameraOrbit)
 	//cameraOrbit.rotation.x = .6
 
 	raycaster.near = 0
 	raycaster.far = 10000
 
-	controls = new THREE.OrbitControls(camera, container)
+	controls = new THREE.OrbitControls(camera, canvas)
 	//controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
 	controls.enableDamping = true;
  	controls.dampingFactor = 0.25;
@@ -176,16 +179,19 @@ function onError(error) {
 	console.log(error)
 }
 
+function calculateMouseCoordinates() {
+	mouse.x = ( event.clientX / renderer.domElement.width ) * 2 - 1;
+	mouse.y = - ( event.clientY / renderer.domElement.height ) * 2 + 1;
+}
+
 function onMouseMove( event ) {
 	event.preventDefault();
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	calculateMouseCoordinates()
 }
 
 function onMouseClick(event) { 
 	event.preventDefault();
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	calculateMouseCoordinates()
 
 	var polygon = detectPolygonUnderMouse()
 

@@ -1,33 +1,12 @@
-MappedIn = MappedIn || {}
+var MappedIn = MappedIn || {}
+
+MappedIn.token = {}
 
 // We will be using MappedIn API V1
 MappedIn.host = {
 	auth: 'https://auth.mappedin.com',
 	api: 'https://api.mappedin.com/1/'
 }
-
-// Auth
-/**
-* Our authentication function for requesting an OAuth token from the MappedIn server.
-* We will need this token for requesting any data from our API. 
-*
-* Note: A MappedIn token expires after 24 hours. You should setup your code in your production 
-* environment to be able to renew or request a new token before it expires
-**/
-MappedIn.authenticate = function (grant, cb) {
-	$.ajax({ 
-		url: MappedIn.host.auth + '/oauth2/token', 
-		data: grant, 
-		type: 'POST',
-		success: function (result) {
-			token = result;
-			cb();
-		},
-		error: function (result) {
-			console.log("Error Authenticating.")
-		}
-	});
-};
 
 // Our main API object for requesting data from MappedIn
 MappedIn.api = {
@@ -44,7 +23,7 @@ MappedIn.api = {
 				type: 'GET',
 				// Remember to include the OAuth token with every API request with MappedIn servers
 				beforeSend: function (xhr) {
-					xhr.setRequestHeader("Authorization", token.token_type + ' ' + token.access_token);
+					xhr.setRequestHeader("Authorization", MappedIn.token.token_type + ' ' + MappedIn.token.access_token);
 				},
 				success: cb
 			});
