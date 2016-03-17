@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset=utf-8>
-		<title>My first Three.js app</title>
+		<title>MappedIn 3D Map</title>
 		<style>
 			body { margin: 0; }
 			canvas { width: 100%; height: 100% }
@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<div id="container"></div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="./MappedIn.js"></script>
 		<script src="externals/three.min.js"></script>
 		<script src="externals/loaders/MTLLoader.js"></script>
@@ -26,7 +27,7 @@
 			if (Object.keys(token).length == 0) {
 				document.write("EMTPY TOKEN! For testing you can use Token.html to calculate your temporary access token, and paste it into sample.html")
 			}
-			init();
+			init(venueId);
 		</script>
 
 	</body>

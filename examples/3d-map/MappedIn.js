@@ -1,4 +1,4 @@
-MappedIn = {}
+MappedIn = MappedIn || {}
 
 // We will be using MappedIn API V1
 MappedIn.host = {

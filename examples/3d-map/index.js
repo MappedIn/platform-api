@@ -1,3 +1,8 @@
+var colors = {
+	hover: 0xcccccc,
+	select: 0x0000ff
+}
+
 // Set Three.js scene
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
@@ -15,44 +20,87 @@ var nodes = {}
 var maps = {}
 var locations = {}
 var categories = {}
+var venue = {}
 
 var venueId
 
+var highlightedPolygons = {}
+
+var numAPICalls = 6
+
+// This doesn't handle errors at all right now
 function init(venueId) {
-	MappedIn.api.Get('node', {venue: venueId}, initNodes)
-	MappedIn.api.Get('polygon', {venue: venueId}, initPolygons)
-	MappedIn.api.Get('location', {venue: venueId}, initLocations)
+	MappedIn.api.Get('venue', {slug: venueId}, loadVenue)
+	MappedIn.api.Get('node', {venue: venueId}, loadNodes)
+	MappedIn.api.Get('polygon', {venue: venueId}, loadPolygons)
+	MappedIn.api.Get('location', {venue: venueId}, loadLocations)
+	MappedIn.api.Get('category', {venue: venueId}, loadCategories)
+	MappedIn.api.Get('map', {venue: venueId}, loadMaps)
 
 	//initMapView()
 }
 
-function initNodes(results) {
+function loadVenue(results) {
+	venue = results[0]
+	initPostAPI()
+}
+
+function loadNodes(results) {
 	for (var node of results) {
 		nodes[node.id] = node
 	}
-	console.log(nodes)
+	initPostAPI()
 }
 
-function initPolygons(results) {
-	//return
+function loadPolygons(results) {
 	for (var polygon of results) {
 		polygons[polygon.id] = polygon
 	}
-	console.log(polygons)
+	initPostAPI()
 }
 
-function initLocations(results) {
+function loadLocations(results) {
 	for (var location of results) {
 		locations[location.id] = location
 	}
-	console.log(locations)
+	initPostAPI()
+}
+
+function loadCategories(results) {
+	for (var category of results) {
+		categories[category.id] = category
+	}
+	initPostAPI()
+}
+
+function loadMaps(results) {
+	results.sort(function (a, b) {
+		return a.elevation - b.elevation
+	})
+
+	for (var map of results) {
+		maps[map.id] = map
+	}
+	initPostAPI()
+}
+
+function initPostAPI() {
+	numAPICalls--
+	if (numAPICalls > 0) {
+		return
+	}
+
+	initMapView()
 }
 
 function initMapView() {
 
+
+
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 	window.addEventListener( 'mousemove', onMouseMove, false );
+	window.addEventListener( 'click', onMouseClick, false);
 
 	renderer.setClearColor(0xffffff)
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -93,28 +141,31 @@ function initMapView() {
 	controls.maxDistance = 2000
 
 	//controls.rotateUp(.6)
+	var mapId = Object.keys(maps)[0]
+	var mtl = maps[mapId].scene.mtl
+	var obj = maps[mapId].scene.obj
 
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
-	mtlLoader.setBaseUrl( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
-	mtlLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
-	mtlLoader.load( '56e854c2eeed12201c34bb7e.mtl', function( materials ) {
+	//mtlLoader.setBaseUrl( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
+	//mtlLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
+	mtlLoader.load( mtl, function( materials ) {
 
 		materials.preload();
 
 		var objLoader = new THREE.OBJLoader();
 		objLoader.setMaterials( materials );
-		objLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
+		//objLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
 		//objLoader.crossOrigin='*'
-		objLoader.load( '56e854c4d31f092f0d9668bc.obj', function ( object ) {
+		objLoader.load( obj, function ( object ) {
 			//object.position.y = 0;
 			map = object
 			scene.add( object );
 		}, onProgress, onError );
 
 	});
-
-	render();
+	
+	render()
 }
 
 function onProgress(progress) {
@@ -131,26 +182,96 @@ function onMouseMove( event ) {
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
 
-var lastHighlight
-var lastHighlightMaterial
+function onMouseClick(event) { 
+	event.preventDefault();
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+	var polygon = detectPolygonUnderMouse()
+
+	clearAllPolygonColors()
+	if (polygon) {
+		onPolygonClick(polygon)
+	}
+
+}
+
+function onMouseDown(event) {
+	var polygon = detectPolygonUnderMouse()
+}
+
+function onPolygonMouseOver(polygon) {
+	if (polygon._MIKeepColorUntilCleared) {
+		return
+	}
+
+	setPolygonColor(polygon, colors.hover, false)
+}
+
+function onPolygonMouseOut(polygon) {
+	if (polygon._MIKeepColorUntilCleared) {
+		return
+	}
+
+	clearPolygonColor(polygon)
+}
+
+function onPolygonClick(polygon) {
+	clearPolygonColor(polygon)
+	highlightedPolygons[polygon.name] = polygon
+	setPolygonColor(polygon, colors.select, true)
+}
+
+function setPolygonColor(polygon, color, keepUntilCleared) {
+	if (!polygon._MIOriginalMaterial) {
+		polygon._MIOriginalMaterial = polygon.material.clone()
+	}
+
+	polygon._MIKeepColorUntilCleared = keepUntilCleared
+	polygon.material.color.set(color)
+}
+
+function clearPolygonColor(polygon) {
+	polygon._MIKeepColorUntilCleared = false
+
+	if (polygon._MIOriginalMaterial) {
+		polygon.material = polygon._MIOriginalMaterial.clone()
+	}
+}
+
+function clearAllPolygonColors() {
+	for (var id of Object.keys(highlightedPolygons)) {
+		clearPolygonColor(highlightedPolygons[id])
+	}
+	highlightedPolygons = {}
+}
+
+function detectPolygonUnderMouse() {
+	raycaster.setFromCamera( mouse, camera );
+	var intersects = raycaster.intersectObjects( scene.children, true);
+	return intersects.length && polygons[intersects[0].object.name] && polygons[intersects[0].object.name].entrances ? intersects[0].object : null
+}
+
+var lastHover = null
 function render() {
 	requestAnimationFrame( render );
 
-	// find intersections
-	raycaster.setFromCamera( mouse, camera );
-	var intersects = raycaster.intersectObjects( scene.children, true);
-	//console.log(intersects)
-	if (intersects.length > 0) {
-		if (lastHighlight != intersects[0]) {
-			if (lastHighlight) {
-				lastHighlight.material = lastHighlightMaterial
-			} 
-			lastHighlight = intersects[0].object
-			delete lastHighlightMaterial
-			lastHighlightMaterial = lastHighlight.material.clone()
-			intersects[0].object.material.color.set( 0x0000ff );
+	// Check if we are hovering over a polygon
+	var polygon = detectPolygonUnderMouse()
+
+
+	if (polygon != lastHover) {
+		if (lastHover) {
+			onPolygonMouseOut(lastHover)
+			lastHover = null 
+		}
+
+		if (polygon) {
+			lastHover = polygon
+			onPolygonMouseOver(polygon)
 		}
 	}
+	
 
 	renderer.render( scene, camera );
 
