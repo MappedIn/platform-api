@@ -5,7 +5,7 @@ MappedIn.MapView = function(canvas, venue) {
 
 	this.highlightedPolygons = {}
 	this.scene = new THREE.Scene();
-	this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+	this.camera = new THREE.PerspectiveCamera( 40, canvas.width / canvas.height, 0.1, 10000 );
 	//this.cameraOrbit = new THREE.Object3D()
 	this.map = null
 	
@@ -14,8 +14,6 @@ MappedIn.MapView = function(canvas, venue) {
 	this.raycaster = new THREE.Raycaster();
 
 	this.renderer = new THREE.WebGLRenderer({canvas: canvas, "antialias": true})
-
-
 	
 	//document.body.appendChild( renderer.domElement );
 	window.addEventListener( 'mousemove', this.onMouseMove.bind(this), false );
@@ -23,6 +21,7 @@ MappedIn.MapView = function(canvas, venue) {
 
 	this.renderer.setClearColor(colors.backgroundColor)
 	this.renderer.setSize( canvas.width, canvas.height);
+	//this.renderer.setPixelRatio( window.devicePixelRatio );
 
 	//THREE.ImageUtils.crossOrigin = '*'
 	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
@@ -30,7 +29,7 @@ MappedIn.MapView = function(canvas, venue) {
 	//directionalLight.castShadow = true
 	this.scene.add( this.directionalLight );
 
-	this.camera.position.z = 1000;
+	this.camera.position.z = 2000;
 
 	this.raycaster.near = 0
 	this.raycaster.far = 10000
@@ -51,9 +50,8 @@ MappedIn.MapView = function(canvas, venue) {
 	this.controls.maxAzimuthAngle = Math.PI / 2 - .2
 	this.controls.minAzimuthAngle = .2 - Math.PI / 2
 	this.controls.minDistance = 100
-	this.controls.maxDistance = 2000
+	this.controls.maxDistance = 4000
 
-	
 	//Need to handle multi-maps
 	var mapId = Object.keys(this.venue.maps)[0]
 	var mtl = this.venue.maps[mapId].scene.mtl
@@ -61,8 +59,6 @@ MappedIn.MapView = function(canvas, venue) {
 
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
-	//mtlLoader.setBaseUrl( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
-	//mtlLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
 	mtlLoader.scene = this.scene
 	mtlLoader.load( mtl, this.mtlLoaded.bind(this));
 	
@@ -80,7 +76,6 @@ MappedIn.MapView.prototype.mtlLoaded = function (materials) {
 }
 
 MappedIn.MapView.prototype.objLoaded = function (object) {
-	//this.map = object
 	this.scene.add( object );
 }
 
