@@ -9,6 +9,7 @@ var venue
 
 var venueId
 var mapView
+var cavas
 
 // var numAPICalls = 6
 
@@ -20,10 +21,15 @@ function init(venueId) {
 
 function initPostVenueLoaded() {
 
-	var canvas = document.getElementById( 'mapView' );
-	mapView = new MappedIn.MapView(canvas, venue)
+	canvas = document.getElementById( 'mapView' );
+	mapView = new MappedIn.MapView(canvas, venue, initPostMapLoaded)
+
 }
 
+function initPostMapLoaded() {
 
+	mapView.createMarker("Test", 0, "location-label")
+
+}
 
 

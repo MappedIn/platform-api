@@ -1,0 +1,19 @@
+body {
+	font-family: "Open Sans"
+}
+
+#mapView {
+	width: 500px;
+	height: 500px;
+}
+
+.location-label {
+	background: black;
+	color: white;
+	opacity: 0.8;
+	padding: 5px 5px 5px 5px;
+	font-size: medium;
+	/*border-radius: 5px;*/
+	text-align:center;
+	vertical-align: baseline;
+}
