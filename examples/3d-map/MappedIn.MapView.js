@@ -178,33 +178,34 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	element.style.zIndex = 10
 	element.style.position = 'absolute'
 
-	var target = this.maps[this.currentMap].objectsDictionary["56e6cde3c753ca085e000008"]
+	var target = this.maps[this.currentMap].objectsDictionary["56e704c2c753ca085e000088"]
 
 	// Not true center
 	target.geometry.computeBoundingBox()
+	console.log(target)
 	var box = target.geometry.boundingBox
 	element._mAnchor = new THREE.Vector3(
 		box.min.x + (box.max.x - box.min.x) / 2,
 		box.min.y + (box.max.y - box.min.y) / 2,
 		box.max.z) // Or min or the middle again
 
+	//element._mAnchor = target.matrixWorld.getPosition()
+	element.style.top = "0px"
+	element.style.left = "0px"
 	this._updateMarkerPosition(element)
 
 	this.canvas.appendChild(element)
 	this.markers.push(element)
 }
-
+var count = 0
 MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
-	//var projection = this._projector.projectVector(marker._mAnchor, this.camera)
-	var projection = marker._mAnchor.project(this.camera)
 
-	var left = ((projection.x + 1) / 2) * this.canvas.offsetWidth
-	var top = ((-projection.y + 1) / 2) * this.canvas.offsetHeight
+	var projection = marker._mAnchor.clone().project(this.camera)
 
-	marker.style.left = left + "px"
-	marker.style.top = top + "px"
+	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth - (marker.offsetWidth / 2)
+	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight - (marker.offsetHeight / 2)
 
-	console.log(projection)
+	marker.style.transform = "translate(" + left + "px, " + top + "px)"
 }
 
 MappedIn.MapView.prototype.render = function() {
@@ -212,7 +213,6 @@ MappedIn.MapView.prototype.render = function() {
 
 	// Check if we are hovering over a polygon
 	var polygon = this.detectPolygonUnderMouse()
-
 
 	if (polygon != this.lastHover) {
 		if (this.lastHover) {
