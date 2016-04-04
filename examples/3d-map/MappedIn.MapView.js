@@ -31,7 +31,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//this.renderer.setPixelRatio( window.devicePixelRatio );
 
 	//THREE.ImageUtils.crossOrigin = '*'
-	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8);
 	this.directionalLight.position.set( 0, 0, .2);
 	//directionalLight.castShadow = true
 	this.scene.add( this.directionalLight );
@@ -68,6 +68,9 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
 	mtlLoader.scene = this.scene
+	// Set this dynamically later
+	mtlLoader.setBaseUrl( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
+	//mtlLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
 	mtlLoader.load( mtl, this.mtlLoaded.bind(this));
 
 	this.render()
@@ -171,25 +174,14 @@ MappedIn.MapView.prototype.onPolygonClick = function(polygon) {
 	this.setPolygonColor(polygon, colors.select, true)
 }
 
-MappedIn.MapView.prototype.createMarker = function(text, position, className) {
+MappedIn.MapView.prototype.createMarker = function(text, anchor, className) {
 	var element = document.createElement('div')
 	element.className = className
 	element.innerHTML = text
 	element.style.zIndex = 10
 	element.style.position = 'absolute'
 
-	var target = this.maps[this.currentMap].objectsDictionary["56e704c2c753ca085e000088"]
-
-	// Not true center
-	target.geometry.computeBoundingBox()
-	console.log(target)
-	var box = target.geometry.boundingBox
-	element._mAnchor = new THREE.Vector3(
-		box.min.x + (box.max.x - box.min.x) / 2,
-		box.min.y + (box.max.y - box.min.y) / 2,
-		box.max.z) // Or min or the middle again
-
-	//element._mAnchor = target.matrixWorld.getPosition()
+	element._mAnchor = anchor
 	element.style.top = "0px"
 	element.style.left = "0px"
 	this._updateMarkerPosition(element)
@@ -197,7 +189,23 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	this.canvas.appendChild(element)
 	this.markers.push(element)
 }
-var count = 0
+
+MappedIn.MapView.prototype.getPositionPolygon = function (polygonId) {
+	var target = this.maps[this.currentMap].objectsDictionary[polygonId]
+	if(target) {
+		// Not true center
+		target.geometry.computeBoundingBox()
+		console.log(target)
+		var box = target.geometry.boundingBox
+		return new THREE.Vector3(
+			box.min.x + (box.max.x - box.min.x) / 2,
+			box.min.y + (box.max.y - box.min.y) / 2,
+			box.max.z) // Or min or the middle again
+	} else {
+		return null
+	}
+}
+
 MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 
 	var projection = marker._mAnchor.clone().project(this.camera)
