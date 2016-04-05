@@ -28,6 +28,7 @@ function initPostVenueLoaded() {
 
 function initPostMapLoaded() {
 
+	var i = 0
 	for (locationId of Object.keys(venue.locations)) {
 		var location = venue.locations[locationId]
 		for (polygon of location.polygons) {
@@ -36,6 +37,10 @@ function initPostMapLoaded() {
 				mapView.createMarker(location.name, position, "location-label")
 			}
 		}
+		i++
+		if (i > 4) {
+			//break
+		}	
 	}
 
 }

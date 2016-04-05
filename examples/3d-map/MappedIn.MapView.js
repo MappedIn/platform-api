@@ -1,3 +1,9 @@
+MappedIn.Marker = function (element, shadowElement, anchor) {
+	this.element = element
+	this.shadowElement = shadowElement
+	this.anchor = anchor
+}
+
 MappedIn.MapView = function(canvas, venue, callback) {
 	this.venue = venue
 	this.canvas = canvas
@@ -12,7 +18,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.maps = {}
 
 	this.markers = []
-	
+	this.constraints = {}
 
  	this.mouse = new THREE.Vector2();
 	this.raycaster = new THREE.Raycaster();
@@ -73,7 +79,65 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//mtlLoader.setPath( 'https://d3j72de684fey1.cloudfront.net/uploads/' );
 	mtlLoader.load( mtl, this.mtlLoaded.bind(this));
 
+
+	// Set up physics
+	this.engine = Matter.Engine.create({
+		render: {
+			element: canvas,
+		
+      		options: {
+	            width: canvas.offsetWidth,
+	            height: canvas.offsetHeight,
+	            background: '#fafafa',
+	            wireframeBackground: '#222',
+	            hasBounds: false,
+	            enabled: true,
+	            wireframes: true,
+	            showSleeping: true,
+	            showDebug: false,
+	            showBroadphase: false,
+	            showBounds: false,
+	            showVelocity: false,
+	            showCollisions: false,
+	            showAxes: false,
+	            showPositions: false,
+	            showAngleIndicator: false,
+	            showIds: false,
+	            showShadows: false
+	        }
+		}
+	})
+
+	this.engine.world.gravity.y = 0
+
+	//Matter.Events.on(this.engine, "collisionStart", this.onMakerCollisionStart.bind(this))
+	//Matter.Events.on(this.engine, "collisionEnd", this.onMakerCollisionStop.bind(this))
+
+	// run the engine
+	Matter.Engine.run(this.engine);
+
 	this.render()
+}
+
+MappedIn.MapView.prototype.onMakerCollisionStart = function(event) {
+	for (pair of event.pairs) {
+		console.log(this.constraints[pair.bodyA])
+		this.constraints[pair.bodyA].stiffness = .1
+		this.constraints[pair.bodyA].length = 20
+		this.constraints[pair.bodyB].stiffness = .1
+		this.constraints[pair.bodyB].length = 20
+
+	}
+}
+
+MappedIn.MapView.prototype.onMakerCollisionStop = function(event) {
+	for (pair of event.pairs) {
+		console.log(this.constraints[pair.bodyA])
+		this.constraints[pair.bodyA].stiffness = 1.0
+		this.constraints[pair.bodyA].length = .01
+		this.constraints[pair.bodyB].stiffness = 1.0
+		this.constraints[pair.bodyB].length = .01
+	}
 }
 
 MappedIn.MapView.prototype.mtlLoaded = function (materials) {
@@ -174,20 +238,48 @@ MappedIn.MapView.prototype.onPolygonClick = function(polygon) {
 	this.setPolygonColor(polygon, colors.select, true)
 }
 
-MappedIn.MapView.prototype.createMarker = function(text, anchor, className) {
+MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	var element = document.createElement('div')
 	element.className = className
 	element.innerHTML = text
-	element.style.zIndex = 10
 	element.style.position = 'absolute'
 
-	element._mAnchor = anchor
+	element._mPosition = position
 	element.style.top = "0px"
 	element.style.left = "0px"
-	this._updateMarkerPosition(element)
+	//
 
 	this.canvas.appendChild(element)
 	this.markers.push(element)
+
+	var anchor = Matter.Bodies.rectangle(0, 0, 10, 10, {
+		friction: 1.0,
+		density: 100,
+		collisionFilter: {
+			group: -1,
+			mask: 0
+		}
+	})
+	element._mAnchor = anchor
+
+	var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth, element.offsetHeight, {
+		density: 1,
+		frictionAir: 0.9
+		//slop: 0.5
+	})
+
+	element._mShadowElement = shadowElement
+	Matter.World.add(this.engine.world, [anchor, shadowElement])
+	var constraint = Matter.Constraint.create({
+		bodyA: anchor,
+		bodyB: shadowElement,
+		stiffness: 0.9,
+		length: 20
+
+	})
+	this.constraints[shadowElement] = constraint
+	Matter.World.add(this.engine.world, [constraint])
+	this._updateMarkerPosition(element)
 }
 
 MappedIn.MapView.prototype.getPositionPolygon = function (polygonId) {
@@ -208,12 +300,17 @@ MappedIn.MapView.prototype.getPositionPolygon = function (polygonId) {
 
 MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 
-	var projection = marker._mAnchor.clone().project(this.camera)
+	var projection = marker._mPosition.clone().project(this.camera)
 
 	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth - (marker.offsetWidth / 2)
 	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight - (marker.offsetHeight / 2)
 
-	marker.style.transform = "translate(" + left + "px, " + top + "px)"
+	Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
+	Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
+	Matter.Body.setAngularVelocity(marker._mShadowElement, 0)
+	//marker._mAnchorP.left = left
+
+	marker.style.transform = "translate(" + marker._mShadowElement.position.x + "px, " + marker._mShadowElement.position.y + "px)"
 }
 
 MappedIn.MapView.prototype.render = function() {
