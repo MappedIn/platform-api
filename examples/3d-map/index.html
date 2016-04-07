@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="./sample.css">
 		<meta charset=utf-8>
 		<title>MappedIn 3D Map</title>
 		<style>
@@ -9,28 +10,34 @@
 		</style>
 	</head>
 	<body>
-		<canvas id="mapView" width="500" height="500"></canvas>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<script src="./MappedIn.js"></script>
 		<script src="./MappedIn.Venue.js"></script>
+		<script src="./MappedIn.Map.js"></script>
 		<script src="./MappedIn.MapView.js"></script>
-		<script src="externals/three.min.js"></script>
+		<script src="externals/three.js"></script>
+		<script src="externals/matter.js"></script>
 		<script src="externals/loaders/MTLLoader.js"></script>
 		<script src="externals/loaders/OBJLoader.js"></script>
+		<script src="externals/loaders/SVGLoader.js"></script>
+		<script src="externals/Projector.js"></script>
 		<script src="externals/OrbitControls.js"></script>
 		<script src="./index.js"></script>
 		<script>
-			var venueId = 'polygon-test';
+			var venueId = 'paul-test';
 		
 			// DEV/TESTING: Use the token.html utility to retrieve your 48h API access token. Paste the results in here as the definition for token
 			// PROCUTION: Retrieve the access token dynamically from your server, which holds your API key and secret and does the OATH authentication itself
 			MappedIn.token = {}
-
+			
 			if (Object.keys(MappedIn.token).length == 0) {
 				document.write("EMTPY TOKEN! For testing you can use Token.html to calculate your temporary access token, and paste it into sample.html")
 			}
 			init(venueId);
 		</script>
+
+		<div id="mapView"></div>
 
 	</body>
 </html>
