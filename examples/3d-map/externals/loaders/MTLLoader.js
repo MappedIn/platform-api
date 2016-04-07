@@ -331,7 +331,6 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 					params[ 'map' ] = this.loadTexture( this.baseUrl + value );
 					params[ 'map' ].wrapS = this.wrap;
 					params[ 'map' ].wrapT = this.wrap;
-
 					break;
 
 				case 'ns':
@@ -344,12 +343,9 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 					break;
 
 				case 'd':
-
-					if ( value < 1 ) {
-
+					if ( value < 1 || materialName.indexOf("_image") > 0) {
 						params[ 'opacity' ] = value;
 						params[ 'transparent' ] = true;
-
 					}
 
 					break;
@@ -396,7 +392,6 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 		var texture;
 		var loader = THREE.Loader.Handlers.get( url );
 		var manager = ( this.manager !== undefined ) ? this.manager : THREE.DefaultLoadingManager;
-
 		if ( loader === null ) {
 
 			loader = new THREE.TextureLoader( manager );
@@ -407,7 +402,6 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 		texture = loader.load( url, onLoad, onProgress, onError );
 
 		if ( mapping !== undefined ) texture.mapping = mapping;
-
 		return texture;
 
 	}
