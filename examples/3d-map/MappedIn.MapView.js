@@ -12,10 +12,13 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 	this.highlightedPolygons = {}
 	this.scene = new THREE.Scene();
-	this.camera = new THREE.PerspectiveCamera( 40, canvas.offsetWidth / canvas.offsetHeight, 0.1, 10000 );
+	this.camera = new THREE.PerspectiveCamera( 40, canvas.offsetWidth / canvas.offsetHeight, 10, 20000 );
 	//this.cameraOrbit = new THREE.Object3D()
 	this.currentMap = null
 	this.maps = {}
+
+	this._clock = new THREE.Clock(true)
+	this.markerSlop = 10;
 
 	this.markers = []
 	this.constraints = {}
@@ -42,10 +45,10 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//directionalLight.castShadow = true
 	this.scene.add( this.directionalLight );
 
-	this.camera.position.z = 2000;
+	this.camera.position.z = 1000;
 
-	this.raycaster.near = 0
-	this.raycaster.far = 10000
+	//this.raycaster.near = 0
+	//this.raycaster.far = 10000
 
 	this.controls = new THREE.OrbitControls(this.camera, this.canvas)
 	//controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
@@ -63,14 +66,13 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.controls.maxAzimuthAngle = Math.PI / 2 - .2
 	this.controls.minAzimuthAngle = .2 - Math.PI / 2
 	this.controls.minDistance = 100
-	this.controls.maxDistance = 4000
+	this.controls.maxDistance = 15000
 
 	//Need to handle multi-maps
 	this.currentMap = Object.keys(this.venue.maps)[0]
 	this.maps[this.currentMap] = new MappedIn.Map(this.currentMap)
 	var mtl = this.venue.maps[this.currentMap].scene.mtl
-	
-
+	console.log(mtl)
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
 	mtlLoader.scene = this.scene
@@ -109,6 +111,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	})
 
 	this.engine.world.gravity.y = 0
+	this.engine.enableSleeping = true
 
 	//Matter.Events.on(this.engine, "collisionStart", this.onMakerCollisionStart.bind(this))
 	//Matter.Events.on(this.engine, "collisionEnd", this.onMakerCollisionStop.bind(this))
@@ -142,12 +145,17 @@ MappedIn.MapView.prototype.onMakerCollisionStop = function(event) {
 
 MappedIn.MapView.prototype.mtlLoaded = function (materials) {
 
+	console.log(this.venue.maps[this.currentMap].scene.obj)
 	materials.preload();
 	var mapId = Object.keys(this.venue.maps)[0]
 	var obj = this.venue.maps[this.currentMap].scene.obj
 	var objLoader = new THREE.OBJLoader();
 	objLoader.setMaterials( materials );
-	objLoader.load( obj, this.objLoaded.bind(this), console.log, console.log)
+	objLoader.load( obj, this.objLoaded.bind(this), this.onDownloadEvent, this.onDownloadEvent)
+}
+
+MappedIn.MapView.prototype.onDownloadEvent = function (event) {
+
 }
 
 MappedIn.MapView.prototype.objLoaded = function (object) {
@@ -262,10 +270,10 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	})
 	element._mAnchor = anchor
 
-	var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth, element.offsetHeight, {
+	var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth + (this.markerSlop * 2), element.offsetHeight + (this.markerSlop * 2) , {
 		density: 1,
-		frictionAir: 0.9
-		//slop: 0.5
+		frictionAir: 0.9,
+		slop: this.markerSlop
 	})
 
 	element._mShadowElement = shadowElement
@@ -273,8 +281,8 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	var constraint = Matter.Constraint.create({
 		bodyA: anchor,
 		bodyB: shadowElement,
-		stiffness: 0.9,
-		length: 20
+		stiffness: 0.1,
+		length: .001
 
 	})
 	this.constraints[shadowElement] = constraint
@@ -302,15 +310,20 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 
 	var projection = marker._mPosition.clone().project(this.camera)
 
-	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth - (marker.offsetWidth / 2)
-	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight - (marker.offsetHeight / 2)
+	var origin = Matter.Vector.sub(marker._mShadowElement.bounds.min, marker._mShadowElement.position)
+
+	var width = (marker.offsetWidth + this.markerSlop * 2) / 2
+	var height = (marker.offsetWidth + this.markerSlop * 2) / 2
+
+	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth - width
+	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight - height
 
 	Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
 	Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
 	Matter.Body.setAngularVelocity(marker._mShadowElement, 0)
 	//marker._mAnchorP.left = left
 
-	marker.style.transform = "translate(" + marker._mShadowElement.position.x + "px, " + marker._mShadowElement.position.y + "px)"
+	marker.style.transform = "translate(" + (marker._mShadowElement.position.x + this.markerSlop)+ "px, " + (marker._mShadowElement.position.y + this.markerSlop) + "px)"
 }
 
 MappedIn.MapView.prototype.render = function() {
@@ -335,6 +348,7 @@ MappedIn.MapView.prototype.render = function() {
 		this._updateMarkerPosition(marker)
 	}
 
+	//Matter.Engine.update(this.engine, this._clock.getDelta())
 
 	this.renderer.render( this.scene, this.camera );
 
