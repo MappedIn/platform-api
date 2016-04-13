@@ -18,7 +18,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.maps = {}
 
 	this._clock = new THREE.Clock(true)
-	this.markerSlop = 10;
+	this.markerSlop = 5;
 
 	this.markers = []
 	this.constraints = {}
@@ -112,7 +112,21 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 	this.engine.world.gravity.y = 0
 	this.engine.enableSleeping = true
+	this.engine.positionIterations = 1 // Costs accuracy, but fix the jiiters when a label is stuck somewhere it doesn't really fit
+	//this.engine.timing.timeScale = 0.8
 
+	var wallOptions = {
+		isStatic: true
+	}
+
+	var walls = [
+		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, -50, this.canvas.offsetWidth, 100, wallOptions),
+		Matter.Bodies.rectangle(-50, this.canvas.offsetHeight / 2, 100, this.canvas.offsetHeight, wallOptions),
+		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, this.canvas.offsetHeight + 50, this.canvas.offsetWidth, 100, wallOptions),
+		Matter.Bodies.rectangle(this.canvas.offsetWidth + 50, this.canvas.offsetHeight / 2, 100, this.canvas.offsetHeight, wallOptions)
+	]
+
+	Matter.World.add(this.engine.world, walls)
 	//Matter.Events.on(this.engine, "collisionStart", this.onMakerCollisionStart.bind(this))
 	//Matter.Events.on(this.engine, "collisionEnd", this.onMakerCollisionStop.bind(this))
 
@@ -262,7 +276,10 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 
 	var anchor = Matter.Bodies.rectangle(0, 0, 10, 10, {
 		friction: 1.0,
-		density: 100,
+		frictionStatic: 1,
+		frictionAir: 1,
+		density: 1000,
+		//
 		collisionFilter: {
 			group: -1,
 			mask: 0
@@ -271,9 +288,13 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	element._mAnchor = anchor
 
 	var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth + (this.markerSlop * 2), element.offsetHeight + (this.markerSlop * 2) , {
-		density: 1,
-		frictionAir: 0.9,
-		slop: this.markerSlop
+		density: 0.1,
+		slop: this.markerSlop,
+		//restitution: .1,
+		inertia: Infinity,
+		sleepThreshold: 1,
+		frictionAir: 0.9
+		//frictionStatic: 0.8
 	})
 
 	element._mShadowElement = shadowElement
@@ -315,15 +336,26 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 	var width = (marker.offsetWidth + this.markerSlop * 2) / 2
 	var height = (marker.offsetWidth + this.markerSlop * 2) / 2
 
-	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth - width
-	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight - height
+	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth// - width
+	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight// - height
 
-	Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
-	Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
+	if (left < -this.canvas.offsetWidth * .75 || left > this.canvas.offsetWidth * 1.25 || top < -this.canvas.offsetHeight * .75 || top > this.canvas.offsetHeight * 1.25) {
+		marker.style.visibility = "hidden"
+		return
+	} else if (marker.style.visibility == "hidden") {
+		marker.style.visibility = "visible"
+	}
+
+	var target = Matter.Vector.create(left, top)
+
+	//Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
+	//Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
+	Matter.Body.translate(marker._mAnchor, Matter.Vector.sub(target, marker._mAnchor.bounds.min))
 	Matter.Body.setAngularVelocity(marker._mShadowElement, 0)
 	//marker._mAnchorP.left = left
 
-	marker.style.transform = "translate(" + (marker._mShadowElement.position.x + this.markerSlop)+ "px, " + (marker._mShadowElement.position.y + this.markerSlop) + "px)"
+	//if (marker._lastPosition)
+	marker.style.transform = "translate(" + (marker._mShadowElement.position.x - (marker.offsetWidth / 2)) + "px, " + (marker._mShadowElement.position.y - (marker.offsetHeight /2)) + "px)"
 }
 
 MappedIn.MapView.prototype.render = function() {
