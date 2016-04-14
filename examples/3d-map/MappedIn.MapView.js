@@ -119,11 +119,13 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		isStatic: true
 	}
 
+	var wallWidth = 100
+
 	var walls = [
-		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, -50, this.canvas.offsetWidth, 100, wallOptions),
-		Matter.Bodies.rectangle(-50, this.canvas.offsetHeight / 2, 100, this.canvas.offsetHeight, wallOptions),
-		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, this.canvas.offsetHeight + 50, this.canvas.offsetWidth, 100, wallOptions),
-		Matter.Bodies.rectangle(this.canvas.offsetWidth + 50, this.canvas.offsetHeight / 2, 100, this.canvas.offsetHeight, wallOptions)
+		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, -wallWidth, this.canvas.offsetWidth, wallWidth * 2, wallOptions),
+		Matter.Bodies.rectangle(-wallWidth, this.canvas.offsetHeight / 2, wallWidth * 2, this.canvas.offsetHeight, wallOptions),
+		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, this.canvas.offsetHeight + wallWidth, this.canvas.offsetWidth, wallWidth * 2, wallOptions),
+		Matter.Bodies.rectangle(this.canvas.offsetWidth + wallWidth, this.canvas.offsetHeight / 2, wallWidth * 2, this.canvas.offsetHeight, wallOptions)
 	]
 
 	Matter.World.add(this.engine.world, walls)
@@ -293,8 +295,8 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 		//restitution: .1,
 		inertia: Infinity,
 		sleepThreshold: 1,
-		frictionAir: 0.9
-		//frictionStatic: 0.8
+		frictionAir: 0.9,
+		frictionStatic: 0.1
 	})
 
 	element._mShadowElement = shadowElement
@@ -302,8 +304,8 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	var constraint = Matter.Constraint.create({
 		bodyA: anchor,
 		bodyB: shadowElement,
-		stiffness: 0.1,
-		length: .001
+		stiffness: 0.7,
+		length: 100
 
 	})
 	this.constraints[shadowElement] = constraint
@@ -339,11 +341,18 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth// - width
 	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight// - height
 
-	if (left < -this.canvas.offsetWidth * .75 || left > this.canvas.offsetWidth * 1.25 || top < -this.canvas.offsetHeight * .75 || top > this.canvas.offsetHeight * 1.25) {
-		marker.style.visibility = "hidden"
+	if (left < -this.canvas.offsetWidth * .20 || left > this.canvas.offsetWidth * 1.2 || top < -this.canvas.offsetHeight * .20 || top > this.canvas.offsetHeight * 1.2) {
+		//marker.style.visibility = "hidden"
+		if (!marker._oldOpacity) {
+			marker._oldOpacity = marker.style.opacity
+			marker.style.opacity = 0
+		}
 		return
-	} else if (marker.style.visibility == "hidden") {
-		marker.style.visibility = "visible"
+	} else if (marker.style.opacity == 0) {
+		//marker.style.visibility = "visible"
+		marker.style.opacity = marker._oldOpacity
+		marker._oldOpacity = null
+
 	}
 
 	var target = Matter.Vector.create(left, top)
