@@ -18,7 +18,8 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.maps = {}
 
 	this._clock = new THREE.Clock(true)
-	this.markerSlop = 5;
+	this._markerSlop = .5;
+	this._markerBuffer = 5
 
 	this.markers = []
 	this.constraints = {}
@@ -113,7 +114,8 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.engine.world.gravity.y = 0
 	this.engine.enableSleeping = true
 	this.engine.positionIterations = 1 // Costs accuracy, but fix the jiiters when a label is stuck somewhere it doesn't really fit
-	//this.engine.timing.timeScale = 0.8
+	this.engine.timing.timeScale = 1
+
 
 	var wallOptions = {
 		isStatic: true
@@ -131,6 +133,23 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	Matter.World.add(this.engine.world, walls)
 	//Matter.Events.on(this.engine, "collisionStart", this.onMakerCollisionStart.bind(this))
 	//Matter.Events.on(this.engine, "collisionEnd", this.onMakerCollisionStop.bind(this))
+
+	Matter.Events.on(this.engine, "collisionActive", function (event) {
+		for (pair of event.pairs) {
+			if (this.constraints[pair.bodyA.id]&& this.constraints[pair.bodyB.id]) {
+				if (this.constraints[pair.bodyA.id].stiffness > 0.01) {
+				//this.constraints[pair.bodyA.id].length *= 1.1
+				this.constraints[pair.bodyA.id].stiffness *= .5
+				//console.log(this.constraints[pair.bodyA.id])
+			//this.constraints[pair.bodyB.id].length++
+				}
+				if (this.constraints[pair.bodyB.id].stiffness > 0.01) {
+					this.constraints[pair.bodyB.id].stiffness *= .5
+				//this.constraints[pair.bodyA.id].length *= 1.1
+				}
+			}
+		}
+	}.bind(this))
 
 	// run the engine
 	Matter.Engine.run(this.engine);
@@ -289,13 +308,13 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 	})
 	element._mAnchor = anchor
 
-	var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth + (this.markerSlop * 2), element.offsetHeight + (this.markerSlop * 2) , {
+	var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth + (this._markerBuffer * 2), element.offsetHeight + (this._markerBuffer * 2) , {
 		density: 0.1,
-		slop: this.markerSlop,
+		slop: this._markerSlop,
 		//restitution: .1,
 		inertia: Infinity,
 		sleepThreshold: 1,
-		frictionAir: 0.9,
+		frictionAir: 0.2,
 		frictionStatic: 0.1
 	})
 
@@ -305,12 +324,13 @@ MappedIn.MapView.prototype.createMarker = function(text, position, className) {
 		bodyA: anchor,
 		bodyB: shadowElement,
 		stiffness: 0.7,
-		length: 100
+		length: 1
 
 	})
-	this.constraints[shadowElement] = constraint
+	this.constraints[shadowElement.id] = constraint
 	Matter.World.add(this.engine.world, [constraint])
 	this._updateMarkerPosition(element)
+	Matter.Body.translate(element._mShadowElement, Matter.Vector.sub(element._mAnchor.position, Matter.Vector.create(1,1)))
 }
 
 MappedIn.MapView.prototype.getPositionPolygon = function (polygonId) {
@@ -335,8 +355,8 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 
 	var origin = Matter.Vector.sub(marker._mShadowElement.bounds.min, marker._mShadowElement.position)
 
-	var width = (marker.offsetWidth + this.markerSlop * 2) / 2
-	var height = (marker.offsetWidth + this.markerSlop * 2) / 2
+	var width = (marker.offsetWidth + this._markerBuffer * 2) / 2
+	var height = (marker.offsetWidth + this._markerBuffer * 2) / 2
 
 	var left = (projection.x + 1)  / 2 * this.canvas.offsetWidth// - width
 	var top = (-projection.y + 1) / 2 * this.canvas.offsetHeight// - height
@@ -356,6 +376,13 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 	}
 
 	var target = Matter.Vector.create(left, top)
+	if (this.constraints[marker._mShadowElement.id].length > 1) {
+		this.constraints[marker._mShadowElement.id].length *= .9
+	}
+	if (this.constraints[marker._mShadowElement.id].stiffness < .7) {
+		this.constraints[marker._mShadowElement.id].stiffness *= 1.5
+	}
+	
 
 	//Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
 	//Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
