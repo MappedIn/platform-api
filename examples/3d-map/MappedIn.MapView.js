@@ -13,7 +13,9 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.highlightedPolygons = {}
 	this.scene = new THREE.Scene();
 	this.camera = new THREE.PerspectiveCamera( 40, canvas.offsetWidth / canvas.offsetHeight, 10, 20000 );
-	//this.cameraOrbit = new THREE.Object3D()
+	this.cameraOrbit = new THREE.Object3D()
+	this.cameraOrbit.add(this.camera)
+	this.scene.add(this.cameraOrbit)
 	this.currentMap = null
 	this.maps = {}
 
@@ -51,15 +53,15 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//this.raycaster.near = 0
 	//this.raycaster.far = 10000
 
-	this.controls = new THREE.OrbitControls(this.camera, this.canvas)
+	this.controls = new MappedIn.CameraControls(this.camera, this.canvas)
 	//controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
 	this.controls.enableDamping = true;
  	this.controls.dampingFactor = 0.25;
 	this.controls.enableZoom = true;
 
 	// Set the default angle
-	this.controls.minPolarAngle = Math.PI - .6
-	this.controls.update()
+	this.cameraOrbit.rotation.x = .6
+	//this.controls.update()
 	
 	// Set camera contstraints
 	this.controls.maxPolarAngle = Math.PI - .2
@@ -338,7 +340,7 @@ MappedIn.MapView.prototype.getPositionPolygon = function (polygonId) {
 	if(target) {
 		// Not true center
 		target.geometry.computeBoundingBox()
-		console.log(target)
+		//console.log(target)
 		var box = target.geometry.boundingBox
 		return new THREE.Vector3(
 			box.min.x + (box.max.x - box.min.x) / 2,
