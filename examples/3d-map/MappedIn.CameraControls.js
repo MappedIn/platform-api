@@ -4,13 +4,19 @@ MappedIn.CameraControls = function (camera, canvas) {
 	this.elevation = camera.parent
 	this.orbit = this.elevation.parent
 
-	this.zoomSpeed = 1
+	this.zoomSpeed = 0.5
 	this.rotateSpeed = 100
 
 	this.enabled = true
 	this.enableZoom = true
 	this.enablePan = true
 	this.enableRotate = true
+
+	this.minZoom = 100
+	this.maxZoom = 10000
+
+	this.minAzimuthAngle = .1
+	this.maxAzimuthAngle = 1
 
 	this.mouseButtons = { ORBIT: THREE.MOUSE.RIGHT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.LEFT };
 	var scope = this
@@ -53,11 +59,22 @@ MappedIn.CameraControls = function (camera, canvas) {
 	}
 
 	var tilt = function(radians) {
+		
 		scope.elevation.rotation.x += radians
 	}
 
-	var zoom = function (zoomIncrease) {
-		scope.camera.position.z += zoomIncrease
+	var zoom = function (zoom) {
+		console.log(zoom)
+		// var newZoom = scope.camera.position.z + zoomIncrease
+		// if ((newZoom > 0 && newZoom < this.maxZoom) || (newZoom < 0 && newZoom > this.minZoom)) {
+		// 	scope.camera.position.z += zoomIncrease
+		// } else {
+		// 	console.log("Exceeded zoom limits: " + newZoom)
+		// }
+		if (isNaN(zoom)) {
+			return
+		}
+		scope.camera.position.z = Math.min(Math.max(zoom, scope.minZoom), scope.maxZoom)
 	}
 
 	function handleMouseDownRotate( event ) {
@@ -137,6 +154,32 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		panStart.copy( panEnd );
 
+		//scope.update();
+
+	}
+
+	function handleMouseWheel( event ) {
+
+		//console.log( 'handleMouseWheel' );
+
+		var delta = 0;
+
+		if ( event.wheelDelta !== undefined ) {
+
+			// WebKit / Opera / Explorer 9
+
+			delta = event.wheelDelta;
+
+		} else if ( event.detail !== undefined ) {
+
+			// Firefox
+
+			delta = - event.detail;
+
+		}
+		console.log("Delta: " + delta)
+		console.log("Zooming to: " + (scope.camera.position.z - (delta * scope.zoomSpeed)))
+		zoom(scope.camera.position.z - (delta * scope.zoomSpeed))
 		//scope.update();
 
 	}
@@ -237,8 +280,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		event.preventDefault();
 		event.stopPropagation();
 
-		//handleMouseWheel( event );
-		handleMouseMoveDolly(event)
+		handleMouseWheel( event );
 
 	}
 
