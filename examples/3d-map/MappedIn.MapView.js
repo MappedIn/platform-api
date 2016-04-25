@@ -13,8 +13,10 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.highlightedPolygons = {}
 	this.scene = new THREE.Scene();
 	this.camera = new THREE.PerspectiveCamera( 40, canvas.offsetWidth / canvas.offsetHeight, 10, 20000 );
+	this.cameraElevation = new THREE.Object3D()
+	this.cameraElevation.add(this.camera)
 	this.cameraOrbit = new THREE.Object3D()
-	this.cameraOrbit.add(this.camera)
+	this.cameraOrbit.add(this.cameraElevation)
 	this.scene.add(this.cameraOrbit)
 	this.currentMap = null
 	this.maps = {}
@@ -60,7 +62,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.controls.enableZoom = true;
 
 	// Set the default angle
-	this.cameraOrbit.rotation.x = .6
+	this.cameraElevation.rotation.x = .6
 	//this.controls.update()
 	
 	// Set camera contstraints

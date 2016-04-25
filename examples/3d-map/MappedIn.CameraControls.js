@@ -1,10 +1,11 @@
 MappedIn.CameraControls = function (camera, canvas) {
 	this.camera = camera
 	this.canvas = canvas
-	this.orbit = camera.parent
+	this.elevation = camera.parent
+	this.orbit = this.elevation.parent
 
 	this.zoomSpeed = 1
-	this.rotateSpeed = 10
+	this.rotateSpeed = 100
 
 	this.enabled = true
 	this.enableZoom = true
@@ -29,6 +30,35 @@ MappedIn.CameraControls = function (camera, canvas) {
 	var dollyStart = new THREE.Vector2();
 	var dollyEnd = new THREE.Vector2();
 	var dollyDelta = new THREE.Vector2();
+
+	var rotateScale = new THREE.Vector3();
+	var rotateTranslation = new THREE.Vector3();
+	var rotateQuaternion = new THREE.Quaternion();
+
+	var rotateDeltaQuaternion = new THREE.Quaternion();
+	var rotateDeltaEuler = new THREE.Euler(0, 0, 0, 'XYZ')
+
+	var rotateAxis = new THREE.Vector3();
+
+
+	// Public camera manipulation functions
+	var pan = function(right, down) {
+		scope.orbit.position.x += right
+		scope.orbit.position.y += down
+	}
+
+	var rotate = function (radians) {
+
+		scope.orbit.rotation.z += radians
+	}
+
+	var tilt = function(radians) {
+		scope.elevation.rotation.x += radians
+	}
+
+	var zoom = function (zoomIncrease) {
+		scope.camera.position.z += zoomIncrease
+	}
 
 	function handleMouseDownRotate( event ) {
 
@@ -65,10 +95,13 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		// rotating across whole screen goes 360 degrees around
 		//rotateLeft( 2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed );
-		scope.orbit.rotation.y += rotateDelta.x / scope.rotateSpeed
+		//scope.orbit.rotation.y += -rotateDelta.x / scope.rotateSpeed
 		// rotating up and down along whole screen attempts to go 360, but limited to 180
 		//rotateUp( 2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed );
-		scope.orbit.rotation.z += rotateDelta.y / scope.rotateSpeed
+		//scope.orbit.rotation.z += rotateDelta.y / scope.rotateSpeed
+
+		rotate(-rotateDelta.x / scope.rotateSpeed)
+		tilt(-rotateDelta.y / scope.rotateSpeed)
 
 		rotateStart.copy( rotateEnd );
 
@@ -84,7 +117,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		dollyDelta.subVectors( dollyEnd, dollyStart );
 
-		scope.camera.position.z += dollyDelta.y * scope.zoomSpeed
+		zoom(dollyDelta.y * scope.zoomSpeed)
 		//console.log(dollyDelta)
 		dollyStart.copy( dollyEnd );
 
@@ -100,8 +133,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		panDelta.subVectors( panEnd, panStart );
 
-		scope.orbit.position.x -= panDelta.x
-		scope.orbit.position.y += panDelta.y
+		pan(-panDelta.x, panDelta.y)
 
 		panStart.copy( panEnd );
 
@@ -332,6 +364,4 @@ MappedIn.CameraControls = function (camera, canvas) {
 	this.canvas.addEventListener( 'touchstart', onTouchStart, false );
 	this.canvas.addEventListener( 'touchend', onTouchEnd, false );
 	this.canvas.addEventListener( 'touchmove', onTouchMove, false );
-
-	console.log("YES")
 }
