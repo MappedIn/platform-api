@@ -28,17 +28,29 @@ function initPostVenueLoaded() {
 
 function initPostMapLoaded() {
 
+	mapView.onPolygonClick = function (polygon) {
+		for (locationId of Object.keys(venue.locations)) {
+			var location = venue.locations[locationId]
+			for (polygonId of location.polygons) {
+				if (polygonId.id == polygon.name) {
+					console.log(location.name)
+				}
+			}
+		} 
+	}
+
 	var i = 0
 	for (locationId of Object.keys(venue.locations)) {
 		var location = venue.locations[locationId]
+		mapView.displayTitle(location)
 		for (polygon of location.polygons) {
 			var position = mapView.getPositionPolygon(polygon.id)
 			if (position) {
-				mapView.createMarker(location.name, position, "location-label")
+				//mapView.createMarker(location.name, position, "location-label")
 			}
 		}
 		i++
-		if (i > 4) {
+		if (i > 5) {
 			//break
 		}	
 	}

@@ -20,6 +20,14 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.scene.add(this.cameraOrbit)
 	this.currentMap = null
 	this.maps = {}
+	this.font = {}
+
+	var fontLoader = new THREE.FontLoader();
+	fontLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_bold.typeface.js', function (response) {
+		this.font = response;
+
+	}.bind(this))
+
 
 	this._clock = new THREE.Clock(true)
 	this._markerSlop = .5;
@@ -45,7 +53,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//this.renderer.setPixelRatio( window.devicePixelRatio );
 
 	//THREE.ImageUtils.crossOrigin = '*'
-	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8);
+	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0);
 	this.directionalLight.position.set( 0, 0, .2);
 	//directionalLight.castShadow = true
 	this.scene.add( this.directionalLight );
@@ -397,6 +405,100 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 	//if (marker._lastPosition)
 	marker.style.transform = "translate(" + (marker._mShadowElement.position.x - (marker.offsetWidth / 2)) + "px, " + (marker._mShadowElement.position.y - (marker.offsetHeight /2)) + "px)"
 }
+
+MappedIn.MapView.prototype.displayTitle = function (location) {
+	for (polygon of location.polygons) {
+		this.drawText(venue.polygons[polygon.id], location.name)
+	}
+}
+
+MappedIn.MapView.prototype.drawText = function (polygon, text) {
+	// Find longest side
+	var max = this.findLongestSide(polygon)
+		console.log(text + " :" + max.angle)
+		// create text, anchor to center of line
+		var textGeo = {}
+	    var textGeo = new THREE.TextGeometry( text, {
+	        font: this.font,
+	        size: 20, // font size
+	        height: 1, // how much extrusion (how thick / deep are the letters)
+	        curveSegments: 1,
+	        bevelThickness: 0,
+	        bevelSize: 0,
+	        bevelEnabled: true
+	    });
+   		textGeo.computeBoundingBox();
+
+		var textMaterial = new THREE.MeshBasicMaterial( { color: 0x000000} );
+
+		var textMesh = new THREE.Mesh(textGeo,textMaterial)
+
+		//textMesh.position = THREE.Vector3(max.a.x - (venue.maps[this.currentMap].width / 2), -max.a.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5)
+		
+		textMesh.translateX(max.a.x - (venue.maps[this.currentMap].width / 2))
+		textMesh.translateY(-max.a.y + (venue.maps[this.currentMap].height / 2))
+		textMesh.translateZ(polygon.geometry.scale.z * 6.5)
+		textMesh.rotation.z = max.angle
+		this.scene.add(textMesh)
+
+
+		//textMesh.updateMatrix()
+
+		// loop:
+			// Are we still in the polygon?
+				// scale corners out in both directions
+			// Take last points
+			// Scale text
+			// Place text
+
+			var material = new THREE.LineBasicMaterial({
+				color: 0x0000ff,
+				linewidth: 10
+			});
+
+			var geometry = new THREE.Geometry();
+			geometry.vertices.push(
+			 	new THREE.Vector3(max.a.x - (venue.maps[this.currentMap].width / 2), -max.a.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5),
+			 	new THREE.Vector3(max.b.x - (venue.maps[this.currentMap].width / 2), -max.b.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5)
+			);
+			// for (vertex of polygon.vertexes) {
+			// 	console.log(polygon.geometry.scale.z)
+			// 	geometry.vertices.push(new THREE.Vector3(vertex.x - (venue.maps[this.currentMap].width / 2), -vertex.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5))
+			// }
+
+			var line = new THREE.Line( geometry, material );
+			this.scene.add( line );
+
+}
+
+MappedIn.MapView.prototype.findLongestSide = function (polygon) {
+	var max = {
+		length: -1, 
+		a: Matter.Vector.create(0, 0), 
+		b: Matter.Vector.create(0, 0),
+		angle: 0
+	}
+
+	for (var i = 0; i < polygon.vertexes.length; i++) {
+		var vertex1 = polygon.vertexes[i]
+		var vertex2 = polygon.vertexes[(i + 1) %  polygon.vertexes.length]
+
+		var vector1 = Matter.Vector.create(vertex1.x, vertex1.y)
+		var vector2 = Matter.Vector.create(vertex2.x, vertex2.y)
+
+		var length = Matter.Vector.magnitude(Matter.Vector.sub(vector2, vector1))
+		if (length > max.length) {
+			max.length = length
+			max.a = Matter.Vector.clone(vector1)
+			max.b = Matter.Vector.clone(vector2)
+			max.angle = Matter.Vector.angle(vector2, vector1)
+		}
+	}
+
+	return max
+}
+
+
 
 MappedIn.MapView.prototype.render = function() {
 	requestAnimationFrame( this.render.bind(this) );
