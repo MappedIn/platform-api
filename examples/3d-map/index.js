@@ -38,11 +38,24 @@ function initPostMapLoaded() {
 			}
 		} 
 	}
-
+	var testAll = true
+	var testLocations = [
+		"Glamour",
+		"Cotton On",
+		"Guess",
+		"Justice",
+		"Optical Images",
+		"Hat Shack",
+		"Churromania",
+		"Fit2Run"
+	]
 	var i = 0
 	for (locationId of Object.keys(venue.locations)) {
 		var location = venue.locations[locationId]
-		mapView.displayTitle(location)
+
+		if (testAll || testLocations.indexOf(location.name) >= 0) {
+			mapView.displayTitle(location)
+		}
 		for (polygon of location.polygons) {
 			var position = mapView.getPositionPolygon(polygon.id)
 			if (position) {

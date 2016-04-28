@@ -414,11 +414,11 @@ MappedIn.MapView.prototype.displayTitle = function (location) {
 
 MappedIn.MapView.prototype.drawText = function (polygon, text) {
 	// Find longest side
-	var max = this.findLongestSide(polygon)
-		console.log(text + " :" + max.angle)
+	var max = this.findNodeEntrance(polygon)
+		//console.log(text + " :" + max.angle)
 		// create text, anchor to center of line
 		var textGeo = {}
-	    var textGeo = new THREE.TextGeometry( text, {
+	    var textGeo = new THREE.TextGeometry( "  " + text + "  ", {
 	        font: this.font,
 	        size: 20, // font size
 	        height: 1, // how much extrusion (how thick / deep are the letters)
@@ -433,14 +433,38 @@ MappedIn.MapView.prototype.drawText = function (polygon, text) {
 
 		var textMesh = new THREE.Mesh(textGeo,textMaterial)
 
+
 		//textMesh.position = THREE.Vector3(max.a.x - (venue.maps[this.currentMap].width / 2), -max.a.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5)
 		
-		textMesh.translateX(max.a.x - (venue.maps[this.currentMap].width / 2))
-		textMesh.translateY(-max.a.y + (venue.maps[this.currentMap].height / 2))
+		var bounds = textMesh.geometry.boundingBox
+		var size = new THREE.Vector3(0, 0, 0) 
+		size.copy(bounds.max)
+		size.sub(bounds.min)
+
+		textMesh.translateX(max.mid.x - (venue.maps[this.currentMap].width / 2))
+		textMesh.translateY(-max.mid.y + (venue.maps[this.currentMap].height / 2))
 		textMesh.translateZ(polygon.geometry.scale.z * 6.5)
 		textMesh.rotation.z = max.angle
+
+		// console.log(max.nodeAngle)
+		// console.log((Math.PI / 4))
+		// console.log((Math.PI * .75))
+		if (max.nodeAngle < (Math.PI * -.75) || max.nodeAngle > (Math.PI * .75)) {
+			//console.log("Sliders")
+			if (max.angle < 0) {
+				textMesh.rotation.z = max.angle + (Math.PI)
+			}
+			textMesh.translateX(-size.x - 30)
+		}
+
+		if (max.nodeAngle < (Math.PI * .5) && max.nodeAngle > 0 && max.angle > 0) {
+			//console.log("Alt sliiders")
+			textMesh.translateX(-size.x - 30)
+		}
 		this.scene.add(textMesh)
 
+		console.log(text)
+		console.log(max)
 
 		//textMesh.updateMatrix()
 
@@ -496,6 +520,92 @@ MappedIn.MapView.prototype.findLongestSide = function (polygon) {
 	}
 
 	return max
+}
+
+
+MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
+	var min = {
+		length: 1000000, 
+		a: Matter.Vector.create(0, 0), 
+		b: Matter.Vector.create(0, 0),
+		mid: Matter.Vector.create(0, 0),
+		node: Matter.Vector.create(0,0),
+		angle: 0,
+		nodeAngle: 0
+	}
+	//console.log(polygon)
+	//console.log(this.venue.nodes[polygon.entrances[0].id])
+	if (!polygon.entrances) {
+		console.log("No entrances on " + polygon.id)
+		return min
+	}
+
+	if (!this.venue.nodes[polygon.entrances[0].id]) {
+		console.log("No node " + polygon.entrances[0].id)
+		return min
+	}
+
+	if (!this.venue.nodes[polygon.entrances[0].id].paths[0]) {
+		console.log("No path on " + this.venue.nodes[polygon.entrances[0].id].id)
+		return min
+	}
+
+	var node = this.venue.nodes[this.venue.nodes[polygon.entrances[0].id].paths[0].node]
+
+	//console.log(node)
+
+	if (!node) {
+		console.log("No link to path from " + this.venue.nodes[polygon.entrances[0].id].paths[0].node)
+		return min
+	}
+	var vectorNode = Matter.Vector.create(node.x, node.y)
+
+	for (var i = 0; i < polygon.vertexes.length; i++) {
+		var vertex1 = polygon.vertexes[i]
+		var vertex2 = polygon.vertexes[(i + 1) %  polygon.vertexes.length]
+
+		var vector1 = Matter.Vector.create(vertex1.x, vertex1.y)
+		var vector2 = Matter.Vector.create(vertex2.x, vertex2.y)
+
+		var vectorMid = Matter.Vector.div(Matter.Vector.add(vector1, vector2), 2)
+		var delta = Matter.Vector.sub(vectorMid, vectorNode)
+		var length = Matter.Vector.magnitude(delta)
+
+		if (length < min.length) {
+			min.length = length
+			min.a = Matter.Vector.clone(vector1)
+			min.b = Matter.Vector.clone(vector2)
+			min.mid = Matter.Vector.clone(vectorMid)
+			min.node = Matter.Vector.clone(vectorNode)
+			min.nodeAngle = Matter.Vector.angle(vectorNode, vectorMid)
+
+			if (min.nodeAngle < 0) {
+				if (Matter.Vector.angle(vector2, vector1) < 0 || Matter.Vector.angle(vector2, vector1) > Math.PI * .5) {
+					console.log("No flip a")
+				 	min.angle = -Matter.Vector.angle(vector2, vector1) - (Math.PI / 2)
+				 } else {
+				 	min.angle = -Matter.Vector.angle(vector2, vector1) + (Math.PI / 2)
+				 	console.log("No flip b")
+				 }
+			} else {
+				if (Matter.Vector.angle(vector2, vector1) <= 0 ) {
+					console.log("Flip a")
+			 		min.angle = -Matter.Vector.angle(vector2, vector1) - (Math.PI / 2)
+			 	} else {
+			 		console.log("Flip b")
+			 		min.angle = Matter.Vector.angle(vector2, vector1) + (Math.PI / 2)
+			 	}
+				//console.log("Flips")
+			}
+			//min.angle = Matter.Vector.angle(vector2, vector1) + (Math.PI / 2)
+			}
+		}
+		console.log(vectorNode)
+		console.log(min.mid)
+		console.log("Node angle: " + min.nodeAngle)
+		console.log("Face Angle: " + Matter.Vector.angle(min.b, min.a))
+		console.log("Angle: " + min.angle)
+	return min
 }
 
 
