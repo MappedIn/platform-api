@@ -47,7 +47,9 @@ function initPostMapLoaded() {
 		"Optical Images",
 		"Hat Shack",
 		"Churromania",
-		"Fit2Run"
+		"Fit2Run",
+		"United World Soccer",
+		"H&M"
 	]
 	var i = 0
 	for (locationId of Object.keys(venue.locations)) {

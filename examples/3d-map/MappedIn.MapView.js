@@ -449,18 +449,18 @@ MappedIn.MapView.prototype.drawText = function (polygon, text) {
 		// console.log(max.nodeAngle)
 		// console.log((Math.PI / 4))
 		// console.log((Math.PI * .75))
-		if (max.nodeAngle < (Math.PI * -.75) || max.nodeAngle > (Math.PI * .75)) {
-			//console.log("Sliders")
-			if (max.angle < 0) {
-				textMesh.rotation.z = max.angle + (Math.PI)
-			}
-			textMesh.translateX(-size.x - 30)
-		}
+		// if (max.nodeAngle < (Math.PI * -.75) || max.nodeAngle > (Math.PI * .75)) {
+		// 	//console.log("Sliders")
+		// 	if (max.angle < 0) {
+		// 		textMesh.rotation.z = max.angle + (Math.PI)
+		// 	}
+		// 	textMesh.translateX(-size.x - 30)
+		// }
 
-		if (max.nodeAngle < (Math.PI * .5) && max.nodeAngle > 0 && max.angle > 0) {
-			//console.log("Alt sliiders")
-			textMesh.translateX(-size.x - 30)
-		}
+		// if (max.nodeAngle < (Math.PI * .5) && max.nodeAngle > 0 && max.angle > 0) {
+		// 	//console.log("Alt sliiders")
+		// 	textMesh.translateX(-size.x - 30)
+		// }
 		this.scene.add(textMesh)
 
 		console.log(text)
@@ -521,15 +521,15 @@ MappedIn.MapView.prototype.findLongestSide = function (polygon) {
 
 	return max
 }
-
-
+var twoPi = Math.PI * 2
 MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 	var min = {
 		length: 1000000, 
-		a: Matter.Vector.create(0, 0), 
-		b: Matter.Vector.create(0, 0),
-		mid: Matter.Vector.create(0, 0),
-		node: Matter.Vector.create(0,0),
+		a: new THREE.Vector2(0, 0), 
+		b: new THREE.Vector2(0, 0),
+		mid: new THREE.Vector2(0, 0),
+		node: new THREE.Vector2(0,0),
+		face: new THREE.Vector2(0, 0),
 		angle: 0,
 		nodeAngle: 0
 	}
@@ -558,57 +558,55 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 		console.log("No link to path from " + this.venue.nodes[polygon.entrances[0].id].paths[0].node)
 		return min
 	}
-	var vectorNode = Matter.Vector.create(node.x, node.y)
+	var vectorNode = new THREE.Vector2(node.x, node.y)
+	var vectorMid = new THREE.Vector2(0, 0)
+	var delta = new THREE.Vector2(0, 0)
+	//var face = new THREE.Vector2(0, 0)
+
+	var testVector = new THREE.Vector2(0, 0)
 
 	for (var i = 0; i < polygon.vertexes.length; i++) {
 		var vertex1 = polygon.vertexes[i]
 		var vertex2 = polygon.vertexes[(i + 1) %  polygon.vertexes.length]
 
-		var vector1 = Matter.Vector.create(vertex1.x, vertex1.y)
-		var vector2 = Matter.Vector.create(vertex2.x, vertex2.y)
+		var vector1 = new THREE.Vector2(vertex1.x, vertex1.y)
+		var vector2 = new THREE.Vector2(vertex2.x, vertex2.y)
 
-		var vectorMid = Matter.Vector.div(Matter.Vector.add(vector1, vector2), 2)
-		var delta = Matter.Vector.sub(vectorMid, vectorNode)
-		var length = Matter.Vector.magnitude(delta)
+		
+		vectorMid.copy(vector1).add(vector2).divideScalar(2)
+		//console.log(vectorMid.divideScalar(2))
+		delta.subVectors(vectorMid, vectorNode)
+		var length = delta.length(delta)
 
 		if (length < min.length) {
 			min.length = length
-			min.a = Matter.Vector.clone(vector1)
-			min.b = Matter.Vector.clone(vector2)
-			min.mid = Matter.Vector.clone(vectorMid)
-			min.node = Matter.Vector.clone(vectorNode)
-			min.nodeAngle = Matter.Vector.angle(vectorNode, vectorMid)
+			min.a.copy(vector1)
+			min.b.copy(vector2)
+			min.mid.copy(vectorMid)
+			min.node.copy(vectorNode)
+			//min.nodeAngle = face.subVectors(vectorNode, vectorMid).angle()
+			min.face.subVectors(vector2, vector1) // - (Math.PI / 2)
+			min.angle = Math.atan2(min.face.x, min.face.y)
 
-			if (min.nodeAngle < 0) {
-				if (Matter.Vector.angle(vector2, vector1) < 0 || Matter.Vector.angle(vector2, vector1) > Math.PI * .5) {
-					console.log("No flip a")
-				 	min.angle = -Matter.Vector.angle(vector2, vector1) - (Math.PI / 2)
-				 } else {
-				 	min.angle = -Matter.Vector.angle(vector2, vector1) + (Math.PI / 2)
-				 	console.log("No flip b")
-				 }
-			} else {
-				if (Matter.Vector.angle(vector2, vector1) <= 0 ) {
-					console.log("Flip a")
-			 		min.angle = -Matter.Vector.angle(vector2, vector1) - (Math.PI / 2)
-			 	} else {
-			 		console.log("Flip b")
-			 		min.angle = Matter.Vector.angle(vector2, vector1) + (Math.PI / 2)
-			 	}
-				//console.log("Flips")
-			}
-			//min.angle = Matter.Vector.angle(vector2, vector1) + (Math.PI / 2)
-			}
+			testVector.subVectors(vectorNode, vector1)
+			min.nodeAngle = Math.atan2(testVector.x, testVector.y)
+
+
 		}
-		console.log(vectorNode)
-		console.log(min.mid)
-		console.log("Node angle: " + min.nodeAngle)
-		console.log("Face Angle: " + Matter.Vector.angle(min.b, min.a))
-		console.log("Angle: " + min.angle)
+	}
+	if ((min.angle + twoPi - .0001) % twoPi < (min.nodeAngle + twoPi - .0001) % twoPi ){
+		console.log("Flips")
+		min.angle = min.angle - Math.PI	
+	} 
+	//console.log(min.a)
+	//console.log(min.b)
+	console.log(-Math.PI)
+	console.log(min.angle > -Math.PI)
+	console.log("Node angle: " + min.nodeAngle)
+	//console.log("Face Angle: " + Matter.Vector.angle(min.b, min.a))
+	console.log("Angle: " + min.angle)
 	return min
 }
-
-
 
 MappedIn.MapView.prototype.render = function() {
 	requestAnimationFrame( this.render.bind(this) );
