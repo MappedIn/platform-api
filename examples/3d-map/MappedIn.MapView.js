@@ -53,10 +53,13 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//this.renderer.setPixelRatio( window.devicePixelRatio );
 
 	//THREE.ImageUtils.crossOrigin = '*'
-	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0);
-	this.directionalLight.position.set( 0, 0, .2);
-	//directionalLight.castShadow = true
+	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.3);
+	this.directionalLight.position.set( -150, -150, 350);
+	//this.directionalLight.castShadow = true
 	this.scene.add( this.directionalLight );
+	
+	this.hemisphericalLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.77)
+	this.scene.add(this.hemisphericalLight)
 
 	this.camera.position.z = 1000;
 
@@ -210,6 +213,8 @@ MappedIn.MapView.prototype.objLoaded = function (object) {
 	//this.maps[this.currentMap].objectsDictionary = {}
 	for (child of object.children) {
 		this.maps[this.currentMap].objectsDictionary[child.name] = child
+		child.material.side = THREE.DoubleSide
+		//console.log(child)
 	}
 
 	this.maps[this.currentMap].map = object
@@ -415,83 +420,92 @@ MappedIn.MapView.prototype.displayTitle = function (location) {
 MappedIn.MapView.prototype.drawText = function (polygon, text) {
 	// Find longest side
 	var max = this.findNodeEntrance(polygon)
-		//console.log(text + " :" + max.angle)
-		// create text, anchor to center of line
-		var textGeo = {}
-	    var textGeo = new THREE.TextGeometry( "  " + text + "  ", {
-	        font: this.font,
-	        size: 20, // font size
-	        height: 1, // how much extrusion (how thick / deep are the letters)
-	        curveSegments: 1,
-	        bevelThickness: 0,
-	        bevelSize: 0,
-	        bevelEnabled: true
-	    });
-   		textGeo.computeBoundingBox();
 
-		var textMaterial = new THREE.MeshBasicMaterial( { color: 0x000000} );
+	if (max.length == 0) {
+		console.log("Could not draw " + text)
+		return
+	}
+	//console.log(text + " :" + max.angle)
+	// create text, anchor to center of line
+	var textGeo = {}
+    var textGeo = new THREE.TextGeometry(text, {
+        font: this.font,
+        size: 16, // font size
+        height: 1, // how much extrusion (how thick / deep are the letters)
+        curveSegments: 1,
+        bevelThickness: 0,
+        bevelSize: 0,
+        bevelEnabled: true
+    });
+		textGeo.computeBoundingBox();
 
-		var textMesh = new THREE.Mesh(textGeo,textMaterial)
+	var textMaterial = new THREE.MeshBasicMaterial( { color: 0x000000} );
 
+	var textMesh = new THREE.Mesh(textGeo,textMaterial)
 
-		//textMesh.position = THREE.Vector3(max.a.x - (venue.maps[this.currentMap].width / 2), -max.a.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5)
-		
-		var bounds = textMesh.geometry.boundingBox
-		var size = new THREE.Vector3(0, 0, 0) 
-		size.copy(bounds.max)
-		size.sub(bounds.min)
+	var bounds = textMesh.geometry.boundingBox
+	console.log(bounds)
+	var size = new THREE.Vector3(0, 0, 0) 
+	size.copy(bounds.max)
+	size.sub(bounds.min)
 
-		textMesh.translateX(max.mid.x - (venue.maps[this.currentMap].width / 2))
-		textMesh.translateY(-max.mid.y + (venue.maps[this.currentMap].height / 2))
-		textMesh.translateZ(polygon.geometry.scale.z * 6.5)
+	textMesh.translateX(max.mid.x - (venue.maps[this.currentMap].width / 2))
+	textMesh.translateY(-max.mid.y + (venue.maps[this.currentMap].height / 2))
+	textMesh.translateZ(polygon.geometry.scale.z * 6.5)
+
+	console.log(text)
+	console.log(max.angle)
+
+	if (max.angle > Math.PI / 2 && max.angle < Math.PI * 1.25 || max.angle < - Math.PI / 2 && max.angle > -Math.PI * 1.25) {
+		textMesh.rotation.z = max.angle + (Math.PI)
+		textMesh.translateX(-size.x - 20)
+		textMesh.translateY(-size.y / 2)
+	} else {
 		textMesh.rotation.z = max.angle
+		textMesh.translateY(-size.y / 2)
+		textMesh.translateX(20)
+	}
 
-		// console.log(max.nodeAngle)
-		// console.log((Math.PI / 4))
-		// console.log((Math.PI * .75))
-		// if (max.nodeAngle < (Math.PI * -.75) || max.nodeAngle > (Math.PI * .75)) {
-		// 	//console.log("Sliders")
-		// 	if (max.angle < 0) {
-		// 		textMesh.rotation.z = max.angle + (Math.PI)
-		// 	}
-		// 	textMesh.translateX(-size.x - 30)
-		// }
+	textMesh.updateMatrix()
+	var material = new THREE.LineBasicMaterial({
+	 	color: 0x0000ff,
+	 	linewidth: 10
+	});
 
-		// if (max.nodeAngle < (Math.PI * .5) && max.nodeAngle > 0 && max.angle > 0) {
-		// 	//console.log("Alt sliiders")
-		// 	textMesh.translateX(-size.x - 30)
-		// }
-		this.scene.add(textMesh)
+	var materialBad = new THREE.MeshBasicMaterial( { color: 0xff0000} ); 
 
-		console.log(text)
-		console.log(max)
 
-		//textMesh.updateMatrix()
+	this.scene.add(textMesh)
 
-		// loop:
-			// Are we still in the polygon?
-				// scale corners out in both directions
-			// Take last points
-			// Scale text
-			// Place text
+	console.log(textMesh.rotation)
+	var rayDirection = new THREE.Vector3(1, 0, 0)
+	var rayPosition = new THREE.Vector3(0, 0, 0)
+	textMesh.localToWorld(rayPosition.copy(textMesh.position))
+	rayPosition.z = 5
 
-			var material = new THREE.LineBasicMaterial({
-				color: 0x0000ff,
-				linewidth: 10
-			});
+	rayDirection.applyQuaternion(textMesh.quaternion)
+	var raycaster = new THREE.Raycaster(rayPosition, rayDirection, textMesh.rotation)
+	var intersects = raycaster.intersectObject(this.maps[this.currentMap].objectsDictionary[polygon.id])
+	//var intersects = raycaster.intersectObjects(this.scene.children, true)
 
-			var geometry = new THREE.Geometry();
-			geometry.vertices.push(
-			 	new THREE.Vector3(max.a.x - (venue.maps[this.currentMap].width / 2), -max.a.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5),
-			 	new THREE.Vector3(max.b.x - (venue.maps[this.currentMap].width / 2), -max.b.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5)
-			);
-			// for (vertex of polygon.vertexes) {
-			// 	console.log(polygon.geometry.scale.z)
-			// 	geometry.vertices.push(new THREE.Vector3(vertex.x - (venue.maps[this.currentMap].width / 2), -vertex.y + (venue.maps[this.currentMap].height / 2), polygon.geometry.scale.z * 6.5))
-			// }
+	console.log("Testing hit on ")
+	console.log(this.maps[this.currentMap].objectsDictionary[polygon.id])
 
-			var line = new THREE.Line( geometry, material );
-			this.scene.add( line );
+	var distance = size.x + 40
+
+	if (intersects.length > 0) {
+		distance = intersects[0].distance
+		console.log("Hit: " + intersects[0].distance)
+	} else {
+		this.scene.remove(textMesh)
+		console.log("No intersection")
+	}
+
+	if (distance < size.x) {
+		console.log(distance + " too small for " + text + " (" + size.x + ")")
+		textMesh.material = materialBad
+		this.scene.remove(textMesh)
+	}
 
 }
 
@@ -531,7 +545,8 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 		node: new THREE.Vector2(0,0),
 		face: new THREE.Vector2(0, 0),
 		angle: 0,
-		nodeAngle: 0
+		nodeAngle: 0,
+		geometry: new THREE.Geometry()
 	}
 	//console.log(polygon)
 	//console.log(this.venue.nodes[polygon.entrances[0].id])
@@ -572,6 +587,7 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 		var vector1 = new THREE.Vector2(vertex1.x, vertex1.y)
 		var vector2 = new THREE.Vector2(vertex2.x, vertex2.y)
 
+		min.geometry.vertices.push(new THREE.Vector3(vector1.x, vector1.y, polygon.geometry.scale.z * 6))
 		
 		vectorMid.copy(vector1).add(vector2).divideScalar(2)
 		//console.log(vectorMid.divideScalar(2))
@@ -598,13 +614,7 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 	if ((min.angle < min.nodeAngle && (min.angle - min.nodeAngle > -(Math.PI))) || (min.nodeAngle - min.angle < -(Math.PI)  && min.angle > min.nodeAngle )) {	
 		min.angle = min.angle - Math.PI	
 	} 
-	//console.log(min.a)
-	//console.log(min.b)
-	// console.log(-Math.PI)
-	// console.log(min.angle > -Math.PI)
-	// console.log("Node angle: " + min.nodeAngle)
-	// //console.log("Face Angle: " + Matter.Vector.angle(min.b, min.a))
-	// console.log("Angle: " + min.angle)
+
 	return min
 }
 
