@@ -23,7 +23,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.font = {}
 
 	var fontLoader = new THREE.FontLoader();
-	fontLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/fonts/helvetiker_bold.typeface.js', function (response) {
+	fontLoader.load('externals/droid_sans_regular.typeface.js', function (response) {
 		this.font = response;
 
 	}.bind(this))
@@ -594,17 +594,17 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 
 		}
 	}
-	if ((min.angle + twoPi - .0001) % twoPi < (min.nodeAngle + twoPi - .0001) % twoPi ){
-		console.log("Flips")
+
+	if ((min.angle < min.nodeAngle && (min.angle - min.nodeAngle > -(Math.PI))) || (min.nodeAngle - min.angle < -(Math.PI)  && min.angle > min.nodeAngle )) {	
 		min.angle = min.angle - Math.PI	
 	} 
 	//console.log(min.a)
 	//console.log(min.b)
-	console.log(-Math.PI)
-	console.log(min.angle > -Math.PI)
-	console.log("Node angle: " + min.nodeAngle)
-	//console.log("Face Angle: " + Matter.Vector.angle(min.b, min.a))
-	console.log("Angle: " + min.angle)
+	// console.log(-Math.PI)
+	// console.log(min.angle > -Math.PI)
+	// console.log("Node angle: " + min.nodeAngle)
+	// //console.log("Face Angle: " + Matter.Vector.angle(min.b, min.a))
+	// console.log("Angle: " + min.angle)
 	return min
 }
 
