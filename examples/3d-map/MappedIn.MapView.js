@@ -88,7 +88,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.currentMap = Object.keys(this.venue.maps)[0]
 	this.maps[this.currentMap] = new MappedIn.Map(this.currentMap)
 	var mtl = this.venue.maps[this.currentMap].scene.mtl
-	console.log(mtl)
+	//console.log(mtl)
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
 	mtlLoader.scene = this.scene
@@ -174,7 +174,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 MappedIn.MapView.prototype.onMakerCollisionStart = function(event) {
 	for (pair of event.pairs) {
-		console.log(this.constraints[pair.bodyA])
+		//console.log(this.constraints[pair.bodyA])
 		this.constraints[pair.bodyA].stiffness = .1
 		this.constraints[pair.bodyA].length = 20
 		this.constraints[pair.bodyB].stiffness = .1
@@ -185,7 +185,7 @@ MappedIn.MapView.prototype.onMakerCollisionStart = function(event) {
 
 MappedIn.MapView.prototype.onMakerCollisionStop = function(event) {
 	for (pair of event.pairs) {
-		console.log(this.constraints[pair.bodyA])
+		//console.log(this.constraints[pair.bodyA])
 		this.constraints[pair.bodyA].stiffness = 1.0
 		this.constraints[pair.bodyA].length = .01
 		this.constraints[pair.bodyB].stiffness = 1.0
@@ -195,7 +195,7 @@ MappedIn.MapView.prototype.onMakerCollisionStop = function(event) {
 
 MappedIn.MapView.prototype.mtlLoaded = function (materials) {
 
-	console.log(this.venue.maps[this.currentMap].scene.obj)
+	//console.log(this.venue.maps[this.currentMap].scene.obj)
 	materials.preload();
 	var mapId = Object.keys(this.venue.maps)[0]
 	var obj = this.venue.maps[this.currentMap].scene.obj
@@ -296,6 +296,10 @@ MappedIn.MapView.prototype.onPolygonClick = function(polygon) {
 	this.clearPolygonColor(polygon)
 	this.highlightedPolygons[polygon.name] = polygon
 	this.setPolygonColor(polygon, colors.select, true)
+}
+
+MappedIn.MapView.prototype.getNodeById = function(polygonId) {
+	return this.scene.getObjectByName(polygonId)
 }
 
 MappedIn.MapView.prototype.createMarker = function(text, position, className) {
@@ -439,12 +443,12 @@ MappedIn.MapView.prototype.drawText = function (polygon, text) {
     });
 		textGeo.computeBoundingBox();
 
-	var textMaterial = new THREE.MeshBasicMaterial( { color: 0x000000} );
+	var textMaterial = new THREE.MeshBasicMaterial( { color: colors.text} );
 
 	var textMesh = new THREE.Mesh(textGeo,textMaterial)
 
 	var bounds = textMesh.geometry.boundingBox
-	console.log(bounds)
+	//console.log(bounds)
 	var size = new THREE.Vector3(0, 0, 0) 
 	size.copy(bounds.max)
 	size.sub(bounds.min)
@@ -454,7 +458,7 @@ MappedIn.MapView.prototype.drawText = function (polygon, text) {
 	textMesh.translateZ(polygon.geometry.scale.z * 6.5)
 
 	console.log(text)
-	console.log(max.angle)
+	//console.log(max.angle)
 
 	if (max.angle > Math.PI / 2 && max.angle < Math.PI * 1.25 || max.angle < - Math.PI / 2 && max.angle > -Math.PI * 1.25) {
 		textMesh.rotation.z = max.angle + (Math.PI)
@@ -477,7 +481,7 @@ MappedIn.MapView.prototype.drawText = function (polygon, text) {
 
 	this.scene.add(textMesh)
 
-	console.log(textMesh.rotation)
+	//console.log(textMesh.rotation)
 	var rayDirection = new THREE.Vector3(1, 0, 0)
 	var rayPosition = new THREE.Vector3(0, 0, 0)
 	textMesh.localToWorld(rayPosition.copy(textMesh.position))
@@ -486,23 +490,19 @@ MappedIn.MapView.prototype.drawText = function (polygon, text) {
 	rayDirection.applyQuaternion(textMesh.quaternion)
 	var raycaster = new THREE.Raycaster(rayPosition, rayDirection, textMesh.rotation)
 	var intersects = raycaster.intersectObject(this.maps[this.currentMap].objectsDictionary[polygon.id])
-	//var intersects = raycaster.intersectObjects(this.scene.children, true)
-
-	console.log("Testing hit on ")
-	console.log(this.maps[this.currentMap].objectsDictionary[polygon.id])
 
 	var distance = size.x + 40
 
 	if (intersects.length > 0) {
 		distance = intersects[0].distance
-		console.log("Hit: " + intersects[0].distance)
+		//console.log("Hit: " + intersects[0].distance)
 	} else {
 		this.scene.remove(textMesh)
-		console.log("No intersection")
+		//console.log("No intersection")
 	}
 
 	if (distance < size.x) {
-		console.log(distance + " too small for " + text + " (" + size.x + ")")
+		//console.log(distance + " too small for " + text + " (" + size.x + ")")
 		textMesh.material = materialBad
 		this.scene.remove(textMesh)
 	}
@@ -550,18 +550,29 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 	}
 	//console.log(polygon)
 	//console.log(this.venue.nodes[polygon.entrances[0].id])
+
+	var polyName = "Nil"
+	// try {
+	// 	 polyName = this.venue.locations[polygon.locations[0]].name
+	// } catch (e) {
+
+	// }
+
 	if (!polygon.entrances) {
-		console.log("No entrances on " + polygon.id)
+		console.log("MAP ERROR: No entrances on " + polygon.id + " (" + polyName + ")")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0xff5000, true) // Orange
 		return min
 	}
 
 	if (!this.venue.nodes[polygon.entrances[0].id]) {
-		console.log("No node " + polygon.entrances[0].id)
+		console.log("MAP ERROR: Entrance node " + polygon.entrances[0].id + " on polygon " + polygon.id + " (" + polyName + ") does not exist")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0xffdd00, true) // Yellow
 		return min
 	}
 
 	if (!this.venue.nodes[polygon.entrances[0].id].paths[0]) {
-		console.log("No path on " + this.venue.nodes[polygon.entrances[0].id].id)
+		console.log("MAP ERROR: No nodes in path for entrance node " + this.venue.nodes[polygon.entrances[0].id].id + " on polygon " + polygon.id + " (" + polyName + ")")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0xff28a5, true) // Pink
 		return min
 	}
 
@@ -570,7 +581,8 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 	//console.log(node)
 
 	if (!node) {
-		console.log("No link to path from " + this.venue.nodes[polygon.entrances[0].id].paths[0].node)
+		this.setPolygonColor(this.getNodeById(polygon.id), 0x00fb7a, true) // Green
+		//console.log("MAP ERROR: Entrance " + polygon.entrances[0].id + " links to invalid node " + this.venue.nodes[polygon.entrances[0].id].paths[0].node + " on " + polygon.id + " (" + polyName + ")")
 		return min
 	}
 	var vectorNode = new THREE.Vector2(node.x, node.y)

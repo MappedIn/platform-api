@@ -1,7 +1,8 @@
 var colors = {
-	hover: 0xcccccc,
-	select: 0x0000ff,
-	backgroundColor: 0xffffff
+	hover: 0xb2d7fe, //0xcccccc,
+	select: 0x4ca1fc,
+	backgroundColor: 0xffffff,
+	text: 0x00000
 }
 
 // Set Three.js scene
@@ -38,26 +39,15 @@ function initPostMapLoaded() {
 			}
 		} 
 	}
-	var testAll = true
-	var testLocations = [
-		"Glamour",
-		"Cotton On",
-		"Guess",
-		"Justice",
-		"Optical Images",
-		"Hat Shack",
-		"Churromania",
-		"Fit2Run",
-		"United World Soccer",
-		"H&M",
-		"Original Penguin",
-		"Subway"
-	]
+	var drawLabels = true
+
+	var testLocations = []
+
 	var i = 0
 	for (locationId of Object.keys(venue.locations)) {
 		var location = venue.locations[locationId]
 
-		if (testAll || testLocations.indexOf(location.name) >= 0) {
+		if (drawLabels || testLocations.indexOf(location.name) >= 0) {
 			mapView.displayTitle(location)
 		}
 		for (polygon of location.polygons) {
