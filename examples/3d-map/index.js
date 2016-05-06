@@ -1,7 +1,8 @@
 var colors = {
-	hover: 0xcccccc,
-	select: 0x0000ff,
-	backgroundColor: 0xffffff
+	hover: 0xb2d7fe, //0xcccccc,
+	select: 0x4ca1fc,
+	backgroundColor: 0xffffff,
+	text: 0x00000
 }
 
 // Set Three.js scene
@@ -28,17 +29,35 @@ function initPostVenueLoaded() {
 
 function initPostMapLoaded() {
 
+	mapView.onPolygonClick = function (polygon) {
+		for (locationId of Object.keys(venue.locations)) {
+			var location = venue.locations[locationId]
+			for (polygonId of location.polygons) {
+				if (polygonId.id == polygon.name) {
+					console.log(location.name)
+				}
+			}
+		} 
+	}
+	var drawLabels = true
+
+	var testLocations = []
+
 	var i = 0
 	for (locationId of Object.keys(venue.locations)) {
 		var location = venue.locations[locationId]
+
+		if (drawLabels || testLocations.indexOf(location.name) >= 0) {
+			mapView.displayTitle(location)
+		}
 		for (polygon of location.polygons) {
 			var position = mapView.getPositionPolygon(polygon.id)
 			if (position) {
-				mapView.createMarker(location.name, position, "location-label")
+				//mapView.createMarker(location.name, position, "location-label")
 			}
 		}
 		i++
-		if (i > 4) {
+		if (i > 5) {
 			//break
 		}	
 	}

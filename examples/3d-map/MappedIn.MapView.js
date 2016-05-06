@@ -20,6 +20,14 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.scene.add(this.cameraOrbit)
 	this.currentMap = null
 	this.maps = {}
+	this.font = {}
+
+	var fontLoader = new THREE.FontLoader();
+	fontLoader.load('externals/droid_sans_regular.typeface.js', function (response) {
+		this.font = response;
+
+	}.bind(this))
+
 
 	this._clock = new THREE.Clock(true)
 	this._markerSlop = .5;
@@ -45,10 +53,13 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//this.renderer.setPixelRatio( window.devicePixelRatio );
 
 	//THREE.ImageUtils.crossOrigin = '*'
-	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.8);
-	this.directionalLight.position.set( 0, 0, .2);
-	//directionalLight.castShadow = true
+	this.directionalLight = new THREE.DirectionalLight( 0xffffff, 0.3);
+	this.directionalLight.position.set( -150, -150, 350);
+	//this.directionalLight.castShadow = true
 	this.scene.add( this.directionalLight );
+	
+	this.hemisphericalLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.77)
+	this.scene.add(this.hemisphericalLight)
 
 	this.camera.position.z = 1000;
 
@@ -77,7 +88,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.currentMap = Object.keys(this.venue.maps)[0]
 	this.maps[this.currentMap] = new MappedIn.Map(this.currentMap)
 	var mtl = this.venue.maps[this.currentMap].scene.mtl
-	console.log(mtl)
+	//console.log(mtl)
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.crossOrigin='*'
 	mtlLoader.scene = this.scene
@@ -163,7 +174,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 MappedIn.MapView.prototype.onMakerCollisionStart = function(event) {
 	for (pair of event.pairs) {
-		console.log(this.constraints[pair.bodyA])
+		//console.log(this.constraints[pair.bodyA])
 		this.constraints[pair.bodyA].stiffness = .1
 		this.constraints[pair.bodyA].length = 20
 		this.constraints[pair.bodyB].stiffness = .1
@@ -174,7 +185,7 @@ MappedIn.MapView.prototype.onMakerCollisionStart = function(event) {
 
 MappedIn.MapView.prototype.onMakerCollisionStop = function(event) {
 	for (pair of event.pairs) {
-		console.log(this.constraints[pair.bodyA])
+		//console.log(this.constraints[pair.bodyA])
 		this.constraints[pair.bodyA].stiffness = 1.0
 		this.constraints[pair.bodyA].length = .01
 		this.constraints[pair.bodyB].stiffness = 1.0
@@ -184,7 +195,7 @@ MappedIn.MapView.prototype.onMakerCollisionStop = function(event) {
 
 MappedIn.MapView.prototype.mtlLoaded = function (materials) {
 
-	console.log(this.venue.maps[this.currentMap].scene.obj)
+	//console.log(this.venue.maps[this.currentMap].scene.obj)
 	materials.preload();
 	var mapId = Object.keys(this.venue.maps)[0]
 	var obj = this.venue.maps[this.currentMap].scene.obj
@@ -202,6 +213,8 @@ MappedIn.MapView.prototype.objLoaded = function (object) {
 	//this.maps[this.currentMap].objectsDictionary = {}
 	for (child of object.children) {
 		this.maps[this.currentMap].objectsDictionary[child.name] = child
+		child.material.side = THREE.DoubleSide
+		//console.log(child)
 	}
 
 	this.maps[this.currentMap].map = object
@@ -283,6 +296,10 @@ MappedIn.MapView.prototype.onPolygonClick = function(polygon) {
 	this.clearPolygonColor(polygon)
 	this.highlightedPolygons[polygon.name] = polygon
 	this.setPolygonColor(polygon, colors.select, true)
+}
+
+MappedIn.MapView.prototype.getNodeById = function(polygonId) {
+	return this.scene.getObjectByName(polygonId)
 }
 
 MappedIn.MapView.prototype.createMarker = function(text, position, className) {
@@ -396,6 +413,221 @@ MappedIn.MapView.prototype._updateMarkerPosition = function (marker) {
 
 	//if (marker._lastPosition)
 	marker.style.transform = "translate(" + (marker._mShadowElement.position.x - (marker.offsetWidth / 2)) + "px, " + (marker._mShadowElement.position.y - (marker.offsetHeight /2)) + "px)"
+}
+
+MappedIn.MapView.prototype.displayTitle = function (location) {
+	for (polygon of location.polygons) {
+		this.drawText(venue.polygons[polygon.id], location.name)
+	}
+}
+
+MappedIn.MapView.prototype.drawText = function (polygon, text) {
+	// Find longest side
+	var max = this.findNodeEntrance(polygon)
+
+	if (max.length == 0) {
+		console.log("Could not draw " + text)
+		return
+	}
+	//console.log(text + " :" + max.angle)
+	// create text, anchor to center of line
+	var textGeo = {}
+    var textGeo = new THREE.TextGeometry(text, {
+        font: this.font,
+        size: 16, // font size
+        height: 1, // how much extrusion (how thick / deep are the letters)
+        curveSegments: 1,
+        bevelThickness: 0,
+        bevelSize: 0,
+        bevelEnabled: true
+    });
+		textGeo.computeBoundingBox();
+
+	var textMaterial = new THREE.MeshBasicMaterial( { color: colors.text} );
+
+	var textMesh = new THREE.Mesh(textGeo,textMaterial)
+
+	var bounds = textMesh.geometry.boundingBox
+	//console.log(bounds)
+	var size = new THREE.Vector3(0, 0, 0) 
+	size.copy(bounds.max)
+	size.sub(bounds.min)
+
+	textMesh.translateX(max.mid.x - (venue.maps[this.currentMap].width / 2))
+	textMesh.translateY(-max.mid.y + (venue.maps[this.currentMap].height / 2))
+	textMesh.translateZ(polygon.geometry.scale.z * 6.5)
+
+	console.log(text)
+	//console.log(max.angle)
+
+	if (max.angle > Math.PI / 2 && max.angle < Math.PI * 1.25 || max.angle < - Math.PI / 2 && max.angle > -Math.PI * 1.25) {
+		textMesh.rotation.z = max.angle + (Math.PI)
+		textMesh.translateX(-size.x - 20)
+		textMesh.translateY(-size.y / 2)
+	} else {
+		textMesh.rotation.z = max.angle
+		textMesh.translateY(-size.y / 2)
+		textMesh.translateX(20)
+	}
+
+	textMesh.updateMatrix()
+	var material = new THREE.LineBasicMaterial({
+	 	color: 0x0000ff,
+	 	linewidth: 10
+	});
+
+	var materialBad = new THREE.MeshBasicMaterial( { color: 0xff0000} ); 
+
+
+	this.scene.add(textMesh)
+
+	//console.log(textMesh.rotation)
+	var rayDirection = new THREE.Vector3(1, 0, 0)
+	var rayPosition = new THREE.Vector3(0, 0, 0)
+	textMesh.localToWorld(rayPosition.copy(textMesh.position))
+	rayPosition.z = 5
+
+	rayDirection.applyQuaternion(textMesh.quaternion)
+	var raycaster = new THREE.Raycaster(rayPosition, rayDirection, textMesh.rotation)
+	var intersects = raycaster.intersectObject(this.maps[this.currentMap].objectsDictionary[polygon.id])
+
+	var distance = size.x + 40
+
+	if (intersects.length > 0) {
+		distance = intersects[0].distance
+		//console.log("Hit: " + intersects[0].distance)
+	} else {
+		this.scene.remove(textMesh)
+		//console.log("No intersection")
+	}
+
+	if (distance < size.x) {
+		//console.log(distance + " too small for " + text + " (" + size.x + ")")
+		textMesh.material = materialBad
+		this.scene.remove(textMesh)
+	}
+
+}
+
+MappedIn.MapView.prototype.findLongestSide = function (polygon) {
+	var max = {
+		length: -1, 
+		a: Matter.Vector.create(0, 0), 
+		b: Matter.Vector.create(0, 0),
+		angle: 0
+	}
+
+	for (var i = 0; i < polygon.vertexes.length; i++) {
+		var vertex1 = polygon.vertexes[i]
+		var vertex2 = polygon.vertexes[(i + 1) %  polygon.vertexes.length]
+
+		var vector1 = Matter.Vector.create(vertex1.x, vertex1.y)
+		var vector2 = Matter.Vector.create(vertex2.x, vertex2.y)
+
+		var length = Matter.Vector.magnitude(Matter.Vector.sub(vector2, vector1))
+		if (length > max.length) {
+			max.length = length
+			max.a = Matter.Vector.clone(vector1)
+			max.b = Matter.Vector.clone(vector2)
+			max.angle = Matter.Vector.angle(vector2, vector1)
+		}
+	}
+
+	return max
+}
+var twoPi = Math.PI * 2
+MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
+	var min = {
+		length: 1000000, 
+		a: new THREE.Vector2(0, 0), 
+		b: new THREE.Vector2(0, 0),
+		mid: new THREE.Vector2(0, 0),
+		node: new THREE.Vector2(0,0),
+		face: new THREE.Vector2(0, 0),
+		angle: 0,
+		nodeAngle: 0,
+		geometry: new THREE.Geometry()
+	}
+	//console.log(polygon)
+	//console.log(this.venue.nodes[polygon.entrances[0].id])
+
+	var polyName = "Nil"
+	// try {
+	// 	 polyName = this.venue.locations[polygon.locations[0]].name
+	// } catch (e) {
+
+	// }
+
+	if (!polygon.entrances) {
+		console.log("MAP ERROR: No entrances on " + polygon.id + " (" + polyName + ")")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0xff5000, true) // Orange
+		return min
+	}
+
+	if (!this.venue.nodes[polygon.entrances[0].id]) {
+		console.log("MAP ERROR: Entrance node " + polygon.entrances[0].id + " on polygon " + polygon.id + " (" + polyName + ") does not exist")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0xffdd00, true) // Yellow
+		return min
+	}
+
+	if (!this.venue.nodes[polygon.entrances[0].id].paths[0]) {
+		console.log("MAP ERROR: No nodes in path for entrance node " + this.venue.nodes[polygon.entrances[0].id].id + " on polygon " + polygon.id + " (" + polyName + ")")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0xff28a5, true) // Pink
+		return min
+	}
+
+	var node = this.venue.nodes[this.venue.nodes[polygon.entrances[0].id].paths[0].node]
+
+	//console.log(node)
+
+	if (!node) {
+		this.setPolygonColor(this.getNodeById(polygon.id), 0x00fb7a, true) // Green
+		//console.log("MAP ERROR: Entrance " + polygon.entrances[0].id + " links to invalid node " + this.venue.nodes[polygon.entrances[0].id].paths[0].node + " on " + polygon.id + " (" + polyName + ")")
+		return min
+	}
+	var vectorNode = new THREE.Vector2(node.x, node.y)
+	var vectorMid = new THREE.Vector2(0, 0)
+	var delta = new THREE.Vector2(0, 0)
+	//var face = new THREE.Vector2(0, 0)
+
+	var testVector = new THREE.Vector2(0, 0)
+
+	for (var i = 0; i < polygon.vertexes.length; i++) {
+		var vertex1 = polygon.vertexes[i]
+		var vertex2 = polygon.vertexes[(i + 1) %  polygon.vertexes.length]
+
+		var vector1 = new THREE.Vector2(vertex1.x, vertex1.y)
+		var vector2 = new THREE.Vector2(vertex2.x, vertex2.y)
+
+		min.geometry.vertices.push(new THREE.Vector3(vector1.x, vector1.y, polygon.geometry.scale.z * 6))
+		
+		vectorMid.copy(vector1).add(vector2).divideScalar(2)
+		//console.log(vectorMid.divideScalar(2))
+		delta.subVectors(vectorMid, vectorNode)
+		var length = delta.length(delta)
+
+		if (length < min.length) {
+			min.length = length
+			min.a.copy(vector1)
+			min.b.copy(vector2)
+			min.mid.copy(vectorMid)
+			min.node.copy(vectorNode)
+			//min.nodeAngle = face.subVectors(vectorNode, vectorMid).angle()
+			min.face.subVectors(vector2, vector1) // - (Math.PI / 2)
+			min.angle = Math.atan2(min.face.x, min.face.y)
+
+			testVector.subVectors(vectorNode, vector1)
+			min.nodeAngle = Math.atan2(testVector.x, testVector.y)
+
+
+		}
+	}
+
+	if ((min.angle < min.nodeAngle && (min.angle - min.nodeAngle > -(Math.PI))) || (min.nodeAngle - min.angle < -(Math.PI)  && min.angle > min.nodeAngle )) {	
+		min.angle = min.angle - Math.PI	
+	} 
+
+	return min
 }
 
 MappedIn.MapView.prototype.render = function() {
