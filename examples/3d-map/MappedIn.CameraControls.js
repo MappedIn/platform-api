@@ -150,7 +150,12 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		panDelta.subVectors( panEnd, panStart );
 
-		pan(-panDelta.x, panDelta.y)
+		var angle = scope.orbit.rotation.z
+		var x = panDelta.y * Math.sin( angle ) - panDelta.x * Math.cos(angle)
+		var y = panDelta.y * Math.cos( angle ) - panDelta.x * Math.sin(angle)
+
+
+		pan(x, y)
 
 		panStart.copy( panEnd );
 
