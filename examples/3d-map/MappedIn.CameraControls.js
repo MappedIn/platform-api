@@ -46,6 +46,9 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 	var rotateAxis = new THREE.Vector3();
 
+	var panYScale = 1
+	var panXScale = 1
+
 
 	// Public camera manipulation functions
 	var pan = function(right, down) {
@@ -99,6 +102,8 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		panStart.set( event.clientX, event.clientY );
 
+		calculatePanScale()
+
 	}
 
 	function handleMouseMoveRotate( event ) {
@@ -151,11 +156,11 @@ MappedIn.CameraControls = function (camera, canvas) {
 		panDelta.subVectors( panEnd, panStart );
 
 		var angle = scope.orbit.rotation.z
-		var x = panDelta.y * Math.sin( angle ) - panDelta.x * Math.cos(angle)
+		var x = -panDelta.y * Math.sin( angle ) - panDelta.x * Math.cos(angle)
 		var y = panDelta.y * Math.cos( angle ) - panDelta.x * Math.sin(angle)
 
 
-		pan(x, y)
+		pan(x / panXScale, y / panYScale)
 
 		panStart.copy( panEnd );
 
@@ -182,8 +187,8 @@ MappedIn.CameraControls = function (camera, canvas) {
 			delta = - event.detail;
 
 		}
-		console.log("Delta: " + delta)
-		console.log("Zooming to: " + (scope.camera.position.z - (delta * scope.zoomSpeed)))
+		//console.log("Delta: " + delta)
+		//console.log("Zooming to: " + (scope.camera.position.z - (delta * scope.zoomSpeed)))
 		zoom(scope.camera.position.z - (delta * scope.zoomSpeed))
 		//scope.update();
 
@@ -400,6 +405,43 @@ MappedIn.CameraControls = function (camera, canvas) {
 	function onContextMenu( event ) {
 		event.preventDefault();
 
+	}
+
+	function calculatePanScale() {
+
+		var sliderScale = 1000
+		var originPoint = scope.orbit.position.clone()
+		var xPoint = originPoint.clone()
+		xPoint.x += sliderScale
+
+		var yPoint = originPoint.clone()
+		yPoint.y += sliderScale
+		
+		console.log(originPoint)
+		//console.log(xPoint)
+		//originPoint.project(scope.camera)
+		//xPoint.project(scope.camera)
+		//yPoint.project(scope.camera)
+
+		vectorToScreen(originPoint)
+		vectorToScreen(xPoint)
+		vectorToScreen(yPoint)
+
+		console.log(originPoint)
+		//console.log(xPoint)
+		
+		panXScale = xPoint.distanceTo(originPoint) / (sliderScale)
+		panYScale = yPoint.distanceTo(originPoint) / (sliderScale)
+
+		console.log("Scale: " + panXScale + ", " + panYScale)
+	}
+
+	function vectorToScreen(vector) {
+		vector.project(scope.camera)
+
+		vector.x = (vector.x + 1 ) * scope.canvas.offsetWidth / 2;
+		vector.y = (-vector.y + 1 ) * scope.canvas.offsetHeight / 2;
+		vector.z = 0;
 	}
 
 	this.canvas.addEventListener( 'contextmenu', onContextMenu, false );
