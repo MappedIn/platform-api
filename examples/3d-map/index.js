@@ -5,6 +5,15 @@ var colors = {
 	text: 0x00000
 }
 
+var fields = {
+	venue: "slug,name",
+	node: "map,x,y,paths",
+	polygon: "map,vertices,entrances",
+	location: "name,type,description,icon,logo,nodes,polygons,categories",
+	category: "name",
+	map: "name,elevation,height,width,shortName,scene"
+}
+
 // Set Three.js scene
 var venue
 
@@ -17,11 +26,20 @@ var cavas
 // This doesn't handle errors at all right now
 function init(venueId) {
 
-	venue = new MappedIn.Venue(venueId, initPostVenueLoaded)
+	//venue = new MappedIn.Venue(venueId, initPostVenueLoaded)
+	MappedIn.loadVenue(venueId, fields).then(initPostVenueLoaded)
 }
 
-function initPostVenueLoaded() {
+function initPostVenueLoaded(error, result) {
 
+	// If you get an error, the venue didn't load. Up to you to handle this gracefully.
+	if (error) {
+		console.log(error)
+		return
+	} else {
+		console.log("Venue " + venueId + " loaded.")
+	}
+	venue = result
 	canvas = document.getElementById( 'mapView' );
 	mapView = new MappedIn.MapView(canvas, venue, initPostMapLoaded)
 
