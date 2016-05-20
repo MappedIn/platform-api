@@ -1,6 +1,6 @@
 var colors = {
-	hover: 0xb2d7fe, //0xcccccc,
-	select: 0x4ca1fc,
+	hover: 0xcccccc, //0xFFCCFF, //0xcc95cc, //0xb2d7fe, //0xcccccc,
+	select: 0x4ca1fc, //0x8C0047, //
 	backgroundColor: 0xffffff,
 	text: 0x00000
 }
@@ -8,7 +8,7 @@ var colors = {
 var fields = {
 	venue: "slug,name",
 	node: "map,x,y,paths",
-	polygon: "map,vertices,entrances",
+	polygon: "map,vertexes,entrances,geometry",
 	location: "name,type,description,icon,logo,nodes,polygons,categories",
 	category: "name",
 	map: "name,elevation,height,width,shortName,scene"
@@ -36,9 +36,7 @@ function initPostVenueLoaded(error, result) {
 	if (error) {
 		console.log(error)
 		return
-	} else {
-		console.log("Venue " + venueId + " loaded.")
-	}
+	} 
 	venue = result
 	canvas = document.getElementById( 'mapView' );
 	mapView = new MappedIn.MapView(canvas, venue, initPostMapLoaded)
@@ -47,17 +45,17 @@ function initPostVenueLoaded(error, result) {
 
 function initPostMapLoaded() {
 
-	mapView.onPolygonClick = function (polygon) {
-		for (locationId of Object.keys(venue.locations)) {
-			var location = venue.locations[locationId]
-			for (polygonId of location.polygons) {
-				if (polygonId.id == polygon.name) {
-					console.log(location.name)
-				}
-			}
-		} 
-	}
-	var drawLabels = true
+	// mapView.onPolygonClick = function (polygon) {
+	// 	for (locationId of Object.keys(venue.locations)) {
+	// 		var location = venue.locations[locationId]
+	// 		for (polygonId of location.polygons) {
+	// 			if (polygonId.id == polygon.name) {
+	// 				console.log(location.name)
+	// 			}
+	// 		}
+	// 	} 
+	// }
+	var drawLabels = false
 
 	var testLocations = []
 
