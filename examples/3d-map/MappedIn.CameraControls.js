@@ -49,35 +49,88 @@ MappedIn.CameraControls = function (camera, canvas) {
 	var panYScale = 1
 	var panXScale = 1
 
+	var changeEvent = { type: 'change' };
+	
+	//var panning = false
+	var panStartEvent = { type: 'panStart' };
+	var panEndEvent = { type: 'panEnd' };
+
+	//var rotating = false
+	var rotateStartEvent = { type: 'rotateStart' };
+	var rotateEndEvent = { type: 'rotateEnd' };
+
+	//var zooming = false
+	var zoomStartEvent = { type: 'zoomStart' };
+	var zoomEndEvent = { type: 'zoomEnd' };
 
 	// Public camera manipulation functions
 	var pan = function(right, down) {
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(panStartEvent)
+		}
+
 		scope.orbit.position.x += right
 		scope.orbit.position.y += down
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(panEndEvent)
+		}
+	}
+
+	var setPosition = function(x, y) {
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(panStartEvent)
+		}
+
+		scope.orbit.position.x = x
+		scope.orbit.position.y = y
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(panEndEvent)
+		}
 	}
 
 	var rotate = function (radians) {
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(rotateStartEvent)
+		}
 
 		scope.orbit.rotation.z += radians
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(rotateEndEvent)
+		}
 	}
 
 	var tilt = function(radians) {
-		
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(rotateStartEvent)
+		}
+
 		scope.elevation.rotation.x += radians
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(rotateEndEvent)
+		}
 	}
 
 	var zoom = function (zoom) {
-		console.log(zoom)
-		// var newZoom = scope.camera.position.z + zoomIncrease
-		// if ((newZoom > 0 && newZoom < this.maxZoom) || (newZoom < 0 && newZoom > this.minZoom)) {
-		// 	scope.camera.position.z += zoomIncrease
-		// } else {
-		// 	console.log("Exceeded zoom limits: " + newZoom)
-		// }
+		//console.log(zoom)
+
 		if (isNaN(zoom)) {
 			return
 		}
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(zoomStartEvent)
+		}
+
 		scope.camera.position.z = Math.min(Math.max(zoom, scope.minZoom), scope.maxZoom)
+
+		if (scope.state != STATE.NONE) {
+			scope.dispatchEvent(zoomEndEvent)
+		}
 	}
 
 	function handleMouseDownRotate( event ) {
@@ -85,6 +138,9 @@ MappedIn.CameraControls = function (camera, canvas) {
 		//console.log( 'handleMouseDownRotate' );
 
 		rotateStart.set( event.clientX, event.clientY );
+
+		//scope.rotating = true
+		scope.dispatchEvent(rotateStartEvent)
 
 	}
 
@@ -94,13 +150,20 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		dollyStart.set( event.clientX, event.clientY );
 
+		//scope.zooming = true
+		scope.dispatchEvent(zoomStartEvent)
+
 	}
 
 	function handleMouseDownPan( event ) {
 
 		//console.log( 'handleMouseDownPan' );
+		var mouse = mouseToScene(event)
 
-		panStart.set( event.clientX, event.clientY );
+		panStart.set( mouse.x, mouse.y );
+
+		//scope.panning = true
+		scope.dispatchEvent(panStartEvent)
 
 		calculatePanScale()
 
@@ -129,6 +192,8 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		//scope.update();
 
+		scope.dispatchEvent(changeEvent)
+
 	}
 
 	function handleMouseMoveDolly( event ) {
@@ -145,26 +210,32 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 		//scope.update();
 
+		scope.dispatchEvent(changeEvent)
+
 	}
 
 	function handleMouseMovePan( event ) {
 
 		//console.log( 'handleMouseMovePan' );
-
-		panEnd.set( event.clientX, event.clientY );
+		var mouse = mouseToScene(event)
+		panEnd.set( mouse.x, mouse.y );
 
 		panDelta.subVectors( panEnd, panStart );
 
 		var angle = scope.orbit.rotation.z
-		var x = -panDelta.y * Math.sin( angle ) - panDelta.x * Math.cos(angle)
-		var y = panDelta.y * Math.cos( angle ) - panDelta.x * Math.sin(angle)
+		var x = -panDelta.x * Math.cos(angle) - panDelta.y * Math.sin( angle )
+		var y = -panDelta.x * Math.sin(angle) + panDelta.y * Math.cos( angle )
 
 
 		pan(x / panXScale, y / panYScale)
+		//pan(-panDelta.x / panXScale, panDelta.y / panYScale)
+		//setPosition(-panDelta.x / panXScale, panDelta.y / panYScale)
 
 		panStart.copy( panEnd );
 
 		//scope.update();
+
+		scope.dispatchEvent(changeEvent)
 
 	}
 
@@ -191,6 +262,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		//console.log("Zooming to: " + (scope.camera.position.z - (delta * scope.zoomSpeed)))
 		zoom(scope.camera.position.z - (delta * scope.zoomSpeed))
 		//scope.update();
+		scope.dispatchEvent(changeEvent)
 
 	}
 
@@ -417,7 +489,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		var yPoint = originPoint.clone()
 		yPoint.y += sliderScale
 		
-		console.log(originPoint)
+		//console.log(originPoint)
 		//console.log(xPoint)
 		//originPoint.project(scope.camera)
 		//xPoint.project(scope.camera)
@@ -427,22 +499,58 @@ MappedIn.CameraControls = function (camera, canvas) {
 		vectorToScreen(xPoint)
 		vectorToScreen(yPoint)
 
-		console.log(originPoint)
+		//console.log(originPoint)
 		//console.log(xPoint)
 		
 		panXScale = xPoint.distanceTo(originPoint) / (sliderScale)
 		panYScale = yPoint.distanceTo(originPoint) / (sliderScale)
 
-		console.log("Scale: " + panXScale + ", " + panYScale)
+		//panXScale = 1
+		//panYScale = 1
+
+		//console.log("Scale: " + panXScale + ", " + panYScale)
 	}
 
 	function vectorToScreen(vector) {
 		vector.project(scope.camera)
+		//console.log(vector)
 
-		vector.x = (vector.x + 1 ) * scope.canvas.offsetWidth / 2;
-		vector.y = (-vector.y + 1 ) * scope.canvas.offsetHeight / 2;
+		vector.x =  vector.x * scope.canvas.offsetWidth / 2 - 1;
+		vector.y = -vector.y * scope.canvas.offsetHeight / 2 + 1;
 		vector.z = 0;
 	}
+
+	// This doesn't really do anything anymore
+	function mouseToScene(event) {
+		var mouse = {}
+		//mouse.x = ( event.clientX / scope.canvas.offsetWidth ) * 2 - 1;
+		//mouse.y = - ( event.clientY / scope.canvas.offsetHeight ) * 2 + 1;
+
+		mouse.x = event.clientX
+		mouse.y = event.clientY
+		return mouse
+	}
+
+	this.dispose = function() {
+
+		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );
+		scope.domElement.removeEventListener( 'mousedown', onMouseDown, false );
+		scope.domElement.removeEventListener( 'mousewheel', onMouseWheel, false );
+		scope.domElement.removeEventListener( 'MozMousePixelScroll', onMouseWheel, false ); // firefox
+
+		scope.domElement.removeEventListener( 'touchstart', onTouchStart, false );
+		scope.domElement.removeEventListener( 'touchend', onTouchEnd, false );
+		scope.domElement.removeEventListener( 'touchmove', onTouchMove, false );
+
+		document.removeEventListener( 'mousemove', onMouseMove, false );
+		document.removeEventListener( 'mouseup', onMouseUp, false );
+		document.removeEventListener( 'mouseout', onMouseUp, false );
+
+		//window.removeEventListener( 'keydown', onKeyDown, false );
+
+		//scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
+
+	};
 
 	this.canvas.addEventListener( 'contextmenu', onContextMenu, false );
 
@@ -454,3 +562,5 @@ MappedIn.CameraControls = function (camera, canvas) {
 	this.canvas.addEventListener( 'touchend', onTouchEnd, false );
 	this.canvas.addEventListener( 'touchmove', onTouchMove, false );
 }
+MappedIn.CameraControls.prototype = Object.create( THREE.EventDispatcher.prototype );
+MappedIn.CameraControls.prototype.constructor = MappedIn.CameraControls;
