@@ -62,12 +62,14 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.scene.add(this.hemisphericalLight)
 
 	this.camera.position.z = 1000;
+	this.rendering = false
 
 	//this.raycaster.near = 0
 	//this.raycaster.far = 10000
 
 	this.controls = new MappedIn.CameraControls(this.camera, this.canvas)
-	//controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
+	this.controls.addEventListener( 'change', this.tryRendering.bind(this) );
+
 	this.controls.enableDamping = true;
  	this.controls.dampingFactor = 0.25;
 	this.controls.enableZoom = true;
@@ -169,7 +171,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	// run the engine
 	Matter.Engine.run(this.engine);
 
-	this.render()
+	this.tryRendering();
 }
 
 MappedIn.MapView.prototype.onMakerCollisionStart = function(event) {
@@ -218,6 +220,7 @@ MappedIn.MapView.prototype.objLoaded = function (object) {
 	}
 
 	this.maps[this.currentMap].map = object
+	this.tryRendering();
 	this._mapLoadedCallback()
 }
 
@@ -229,6 +232,7 @@ MappedIn.MapView.prototype.calculateMouseCoordinates = function() {
 MappedIn.MapView.prototype.onMouseMove = function( event ) {
 	event.preventDefault();
 	this.calculateMouseCoordinates()
+	this.tryRendering();
 }
 
 MappedIn.MapView.prototype.onMouseClick = function(event) { 
@@ -240,7 +244,7 @@ MappedIn.MapView.prototype.onMouseClick = function(event) {
 	this.clearAllPolygonColors()
 	if (polygon) {
 		this.onPolygonClick(polygon)
-		console.log(polygon)
+		//console.log(polygon)
 	}
 
 }
@@ -252,6 +256,7 @@ MappedIn.MapView.prototype.setPolygonColor = function(polygon, color, keepUntilC
 
 	polygon._MIKeepColorUntilCleared = keepUntilCleared
 	polygon.material.color.set(color)
+	this.tryRendering();
 }
 
 MappedIn.MapView.prototype.clearPolygonColor = function(polygon) {
@@ -260,6 +265,7 @@ MappedIn.MapView.prototype.clearPolygonColor = function(polygon) {
 	if (polygon._MIOriginalMaterial) {
 		polygon.material = polygon._MIOriginalMaterial.clone()
 	}
+	this.tryRendering();
 }
 
 MappedIn.MapView.prototype.clearAllPolygonColors = function() {
@@ -267,6 +273,7 @@ MappedIn.MapView.prototype.clearAllPolygonColors = function() {
 		this.clearPolygonColor(this.highlightedPolygons[id])
 	}
 	this.highlightedPolygons = {}
+	this.tryRendering();
 }
 
 MappedIn.MapView.prototype.detectPolygonUnderMouse = function() {
@@ -581,8 +588,8 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 	//console.log(node)
 
 	if (!node) {
-		this.setPolygonColor(this.getNodeById(polygon.id), 0x00fb7a, true) // Green
-		//console.log("MAP ERROR: Entrance " + polygon.entrances[0].id + " links to invalid node " + this.venue.nodes[polygon.entrances[0].id].paths[0].node + " on " + polygon.id + " (" + polyName + ")")
+		//this.setPolygonColor(this.getNodeById(polygon.id), 0x00fb7a, true) // Green
+		console.log("MAP ERROR: Entrance " + polygon.entrances[0].id + " links to invalid node " + this.venue.nodes[polygon.entrances[0].id].paths[0].node + " on " + polygon.id + " (" + polyName + ")")
 		return min
 	}
 	var vectorNode = new THREE.Vector2(node.x, node.y)
@@ -631,7 +638,8 @@ MappedIn.MapView.prototype.findNodeEntrance = function (polygon) {
 }
 
 MappedIn.MapView.prototype.render = function() {
-	requestAnimationFrame( this.render.bind(this) );
+	//console.log("render")
+	//requestAnimationFrame( this.render.bind(this) );
 
 	// Check if we are hovering over a polygon
 	var polygon = this.detectPolygonUnderMouse()
@@ -655,5 +663,15 @@ MappedIn.MapView.prototype.render = function() {
 	//Matter.Engine.update(this.engine, this._clock.getDelta())
 
 	this.renderer.render( this.scene, this.camera );
+	//requestAnimationFrame(this.doRender.bind(this));
+	this.rendering = false
+}
 
+MappedIn.MapView.prototype.tryRendering = function () {
+	if (this.rendering) {
+		return
+	}
+	this.rendering = true
+	requestAnimationFrame(this.render.bind(this))
+	
 }
