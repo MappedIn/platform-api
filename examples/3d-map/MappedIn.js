@@ -124,7 +124,7 @@ MappedIn.loadVenue = function(slug, fields) {
 			var result = results[i]
 			var apiCall = apiCalls[i]
 			if (result[0]) {
-				scope.p.done(result[0], venue)
+				p.done(new Error("Could not download venue. Make sure your keys have access."), venue)
 			
 				return p
 			}
@@ -142,12 +142,12 @@ MappedIn.loadVenue = function(slug, fields) {
 	}
 
 	var apiCalls = [
-		new ApiCall('venue', {slug: venueId}, loadVenue),
-		new ApiCall('node', {venue: venueId}, loadNodes),
-		new ApiCall('polygon', {venue: venueId}, loadPolygons),
-		new ApiCall('location', {venue: venueId}, loadLocations),
-		new ApiCall('category', {venue: venueId}, loadCategories),
-		new ApiCall('map', {venue: venueId}, loadMaps)
+		new ApiCall('venue', {slug: venueId, fields: fields['venue']}, loadVenue),
+		new ApiCall('node', {venue: venueId, fields: fields['node']}, loadNodes),
+		new ApiCall('polygon', {venue: venueId, fields: fields['polygon']}, loadPolygons),
+		new ApiCall('location', {venue: venueId, fields: fields['location']}, loadLocations),
+		new ApiCall('category', {venue: venueId, fields: fields['category']}, loadCategories),
+		new ApiCall('map', {venue: venueId, fields: fields['map']}, loadMaps)
 	]
 
 	promise.join(apiCalls.map(function (obj) {
