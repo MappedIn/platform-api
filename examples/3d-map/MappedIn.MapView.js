@@ -222,8 +222,59 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		})
 		constraints[shadowElement.id] = constraint
 		Matter.World.add(physics.world, [constraint])
-		updateMarkerPosition(element)
-		Matter.Body.translate(element._mShadowElement, Matter.Vector.sub(element._mAnchor.position, Matter.Vector.create(1,1)))
+		this.showMarker(element)
+	}
+
+	this.showMarker = function(marker) {
+
+		Matter.World.add(physics.world, marker._mShadowElement)
+		updateMarkerPosition(marker)
+		Matter.Body.translate(marker._mShadowElement, Matter.Vector.sub(marker._mAnchor.position, marker._mShadowElement.position))
+		marker.style.opacity = 0.8 //marker._oldOpacity
+		marker.hidden = false
+	}
+
+	this.hideMarker = function (marker) {
+		if (marker.hidden != true) {
+			marker.hidden = true
+			Matter.World.remove(physics.world, marker._mShadowElement)
+			marker._oldOpacity = marker.style.opacity
+			marker.style.opacity = 0
+		}
+	}
+
+	this.showAllMarkers = function() {
+		console.log("Showing all markers")
+		for (marker of markers) {
+			scope.showMarker(marker)
+		}
+	}
+
+	this.hideAllMarkers = function () {
+		console.log("Hiding all markers")
+		for (marker of markers) {
+			scope.hideMarker(marker)
+		}
+	}
+
+	var constraintsFrozen = false
+	// Make the contstraints attaching a marker to it's anchor very ridged for tight panning
+	var freezeMarkers = function () {
+		constraintsFrozen = true
+		for (key of Object.keys(constraints)) {
+			constraints[key]._oldStiffness = constraints[key].stiffness
+			constraints[key].stiffness = 1.0
+
+		}
+	}
+
+	// Reset the constraint rigidity
+	var thawMarkers = function () {
+		constraintsFrozen = false
+		for (key of Object.keys(constraints)) {
+			constraints[key].stiffness = constraints[key]._oldStiffness
+
+		}
 	}
 
 	this.getPositionPolygon = function (polygonId) {
@@ -256,24 +307,30 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 		if (left < -scope.canvas.offsetWidth * .20 || left > scope.canvas.offsetWidth * 1.2 || top < -scope.canvas.offsetHeight * .20 || top > scope.canvas.offsetHeight * 1.2) {
 			//marker.style.visibility = "hidden"
-			if (!marker._oldOpacity) {
-				marker._oldOpacity = marker.style.opacity
-				marker.style.opacity = 0
+			if (!marker._offScreen) {
+				// marker._oldOpacity = marker.style.opacity
+				// marker.style.opacity = 0
+				marker._offScreen = true
+				scope.hideMarker(marker)
 			}
 			return
-		} else if (marker.style.opacity == 0) {
+		} else if (marker._offScreen) {
 			//marker.style.visibility = "visible"
-			marker.style.opacity = marker._oldOpacity
-			marker._oldOpacity = null
+			// marker.style.opacity = marker._oldOpacity
+			// marker._oldOpacity = null
+			marker._offScreen = false
+			scope.showMarker(marker)
 
 		}
 
 		var target = Matter.Vector.create(left, top)
-		if (constraints[marker._mShadowElement.id].length > 1) {
-			constraints[marker._mShadowElement.id].length *= .9
-		}
-		if (constraints[marker._mShadowElement.id].stiffness < .7) {
-			constraints[marker._mShadowElement.id].stiffness *= 1.5
+		if (constraintsFrozen == false) {
+			if (constraints[marker._mShadowElement.id].length > 1) {
+				constraints[marker._mShadowElement.id].length *= .9
+			}
+			if (constraints[marker._mShadowElement.id].stiffness < .7) {
+				constraints[marker._mShadowElement.id].stiffness *= 1.5
+			}
 		}
 		
 
@@ -503,8 +560,11 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	}
 
 	var render = function() {
+		//console.log("Runner: " + runner.enabled)
 		console.log("render")
 		//requestAnimationFrame( this.render.bind(this) );
+
+		scope.controls.update()
 
 		// Check if we are hovering over a polygon
 		var polygon = detectPolygonUnderMouse()
@@ -530,16 +590,19 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		renderer.render( scope.scene, scope.camera );
 		//requestAnimationFrame(this.doRender.bind(this));
 		renderFrames--
-		scope.tryRendering()
+		if (renderFrames > 0) {
+			requestAnimationFrame(render)
+		}
 	}
 
+	var bonusFrames = 60 // Render this many frames after the last tryRender call to account for physics
 	this.tryRendering = function () {
-		if (renderFrames < 0) {
-			return
-		} else if (renderFrames < 120){
-			renderFrames = 120
-		} else {
+		if (renderFrames <= 0) {
+			renderFrames = bonusFrames
 			requestAnimationFrame(render)
+			return
+		} else if (renderFrames < bonusFrames){
+			renderFrames = bonusFrames
 		}
 		
 	}
@@ -598,7 +661,6 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	//this.raycaster.far = 10000
 
 	this.controls = new MappedIn.CameraControls(this.camera, this.canvas)
-	this.controls.addEventListener( 'change', scope.tryRendering );
 
 	this.controls.enableDamping = true;
 	this.controls.dampingFactor = 0.25;
@@ -615,6 +677,19 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.controls.minAzimuthAngle = .2 - Math.PI / 2
 	this.controls.minDistance = 100
 	this.controls.maxDistance = 15000
+
+	this.controls.addEventListener( this.controls.CAMERA_EVENTS.CHANGE_EVENT.type, scope.tryRendering );
+
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_START_EVENT.type, this.hideAllMarkers)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_START_EVENT.type, this.hideAllMarkers)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, this.hideAllMarkers)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_END_EVENT.type, this.showAllMarkers)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_END_EVENT.type, this.showAllMarkers)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, this.showAllMarkers)
+
+	//this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, freezeMarkers)
+	//this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, thawMarkers)
+
 
 	//Need to handle multi-maps
 	this.currentMap = Object.keys(this.venue.maps)[0]
@@ -683,8 +758,10 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 	Matter.Events.on(physics, "collisionActive", onCollisionActive)
 	//Matter.Events.on(physics, "afterTick", scope.tryRendering)
+	
 	// run the engine
-	Matter.Engine.run(physics);
+	// Tie this into the render loop someday, if we can
+	var runner = Matter.Engine.run(physics);
 
 	this.tryRendering();
 }

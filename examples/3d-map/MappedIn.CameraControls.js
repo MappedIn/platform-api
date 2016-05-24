@@ -49,68 +49,80 @@ MappedIn.CameraControls = function (camera, canvas) {
 	var panYScale = 1
 	var panXScale = 1
 
-	var changeEvent = { type: 'change' };
+	var clock = new THREE.Clock(true)
+	var lastWheelTime = 0
+
+	this.CAMERA_EVENTS = {}
+	this.CAMERA_EVENTS.CHANGE_EVENT = { type: 'change' };
 	
 	//var panning = false
-	var panStartEvent = { type: 'panStart' };
-	var panEndEvent = { type: 'panEnd' };
+	this.CAMERA_EVENTS.PAN_START_EVENT = { type: 'panStart' };
+	this.CAMERA_EVENTS.PAN_END_EVENT = { type: 'panEnd' };
 
 	//var rotating = false
-	var rotateStartEvent = { type: 'rotateStart' };
-	var rotateEndEvent = { type: 'rotateEnd' };
+	this.CAMERA_EVENTS.ROTATE_START_EVENT = { type: 'rotateStart' };
+	this.CAMERA_EVENTS.ROTATE_END_EVENT = { type: 'rotateEnd' };
 
 	//var zooming = false
-	var zoomStartEvent = { type: 'zoomStart' };
-	var zoomEndEvent = { type: 'zoomEnd' };
+	this.CAMERA_EVENTS.ZOOM_START_EVENT = { type: 'zoomStart' };
+	this.CAMERA_EVENTS.ZOOM_END_EVENT = { type: 'zoomEnd' };
+
+	var changeEvent = this.CAMERA_EVENTS.CHANGE_EVENT
+	var panStartEvent = this.CAMERA_EVENTS.PAN_START_EVENT
+	var panEndEvent = this.CAMERA_EVENTS.PAN_END_EVENT
+	var rotateStartEvent = this.CAMERA_EVENTS.ROTATE_START_EVENT
+	var rotateEndEvent = this.CAMERA_EVENTS.ROTATE_END_EVENT
+	var zoomStartEvent = this.CAMERA_EVENTS.ZOOM_START_EVENT
+	var zoomEndEvent = this.CAMERA_EVENTS.ZOOM_END_EVENT
 
 	// Public camera manipulation functions
 	var pan = function(right, down) {
-		if (scope.state != STATE.NONE) {
+		if (state ==  STATE.NONE) {
 			scope.dispatchEvent(panStartEvent)
 		}
 
 		scope.orbit.position.x += right
 		scope.orbit.position.y += down
 
-		if (scope.state != STATE.NONE) {
+		if (state == STATE.NONE) {
 			scope.dispatchEvent(panEndEvent)
 		}
 	}
 
 	var setPosition = function(x, y) {
-		if (scope.state != STATE.NONE) {
+		if (state ==  STATE.NONE) {
 			scope.dispatchEvent(panStartEvent)
 		}
 
 		scope.orbit.position.x = x
 		scope.orbit.position.y = y
 
-		if (scope.state != STATE.NONE) {
+		if (state ==  STATE.NONE) {
 			scope.dispatchEvent(panEndEvent)
 		}
 	}
 
 	var rotate = function (radians) {
-		if (scope.state != STATE.NONE) {
+		if (state == STATE.NONE) {
 			scope.dispatchEvent(rotateStartEvent)
 		}
 
 		scope.orbit.rotation.z += radians
 
-		if (scope.state != STATE.NONE) {
+		if (state == STATE.NONE) {
 			scope.dispatchEvent(rotateEndEvent)
 		}
 	}
 
 	var tilt = function(radians) {
 
-		if (scope.state != STATE.NONE) {
+		if (state ==  STATE.NONE) {
 			scope.dispatchEvent(rotateStartEvent)
 		}
 
 		scope.elevation.rotation.x += radians
 
-		if (scope.state != STATE.NONE) {
+		if (state == STATE.NONE) {
 			scope.dispatchEvent(rotateEndEvent)
 		}
 	}
@@ -122,13 +134,13 @@ MappedIn.CameraControls = function (camera, canvas) {
 			return
 		}
 
-		if (scope.state != STATE.NONE) {
+		if (state ==  STATE.NONE) {
 			scope.dispatchEvent(zoomStartEvent)
 		}
 
 		scope.camera.position.z = Math.min(Math.max(zoom, scope.minZoom), scope.maxZoom)
 
-		if (scope.state != STATE.NONE) {
+		if (state == STATE.NONE) {
 			scope.dispatchEvent(zoomEndEvent)
 		}
 	}
@@ -140,6 +152,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		rotateStart.set( event.clientX, event.clientY );
 
 		//scope.rotating = true
+		//scope.state = STATE.ROTATE
 		scope.dispatchEvent(rotateStartEvent)
 
 	}
@@ -151,6 +164,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		dollyStart.set( event.clientX, event.clientY );
 
 		//scope.zooming = true
+		//scope.state = STATE.ZOOM
 		scope.dispatchEvent(zoomStartEvent)
 
 	}
@@ -163,6 +177,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		panStart.set( mouse.x, mouse.y );
 
 		//scope.panning = true
+		//scope.state = STATE.PAN
 		scope.dispatchEvent(panStartEvent)
 
 		calculatePanScale()
@@ -241,7 +256,6 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 	function handleMouseWheel( event ) {
 
-		//console.log( 'handleMouseWheel' );
 
 		var delta = 0;
 
@@ -272,6 +286,11 @@ MappedIn.CameraControls = function (camera, canvas) {
 		if ( scope.enabled === false ) return;
 
 		event.preventDefault();
+
+		if (state == STATE.ZOOM) {
+			lastWheel = 0
+			scope.dispatchEvent(zoomEndEvent)
+		}
 
 		if ( event.button === scope.mouseButtons.ORBIT ) {
 
@@ -350,6 +369,17 @@ MappedIn.CameraControls = function (camera, canvas) {
 		document.removeEventListener( 'mouseout', onMouseUp, false );
 
 		//scope.dispatchEvent( endEvent );
+		switch (state) {
+			case STATE.PAN:
+				scope.dispatchEvent(scope.CAMERA_EVENTS.PAN_END_EVENT)
+				break
+			case STATE.ZOOM:
+				scope.dispatchEvent(scope.CAMERA_EVENTS.ZOOM_END_EVENT)
+				break
+			case STATE.ROTATE:
+				scope.dispatchEvent(scope.CAMERA_EVENTS.ROTATE_END_EVENT)
+				break
+		}
 
 		state = STATE.NONE;
 
@@ -357,11 +387,18 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 	function onMouseWheel( event ) {
 
-		if ( scope.enabled === false || scope.enableZoom === false || state !== STATE.NONE ) return;
+		if ( scope.enabled === false || scope.enableZoom === false || (state !== STATE.NONE && state !== STATE.ZOOM)) return;
 
 		event.preventDefault();
 		event.stopPropagation();
-
+		
+		lastWheelTime = clock.startTime
+		//console.log( 'handleMouseWheel' );
+		if (state != STATE.ZOOM) {
+			state = STATE.ZOOM
+			scope.dispatchEvent(zoomStartEvent)
+		}
+		
 		handleMouseWheel( event );
 
 	}
@@ -529,6 +566,16 @@ MappedIn.CameraControls = function (camera, canvas) {
 		mouse.x = event.clientX
 		mouse.y = event.clientY
 		return mouse
+	}
+
+	// Anything we need to do on scene render
+	this.update = function() {
+
+		if (lastWheelTime > 0 && state == STATE.ZOOM && clock.startTime - lastWheelTime > 300) {
+			lastWheelTime = 0
+			state = STATE.NONE
+			scope.dispatchEvent(zoomEndEvent)
+		}
 	}
 
 	this.dispose = function() {
