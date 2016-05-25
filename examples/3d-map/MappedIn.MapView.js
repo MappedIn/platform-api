@@ -192,7 +192,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 			friction: 1.0,
 			frictionStatic: 1,
 			frictionAir: 1,
-			density: 1000,
+			density: 10000,
 			//
 			collisionFilter: {
 				group: -1,
@@ -212,7 +212,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		})
 
 		element._mShadowElement = shadowElement
-		Matter.World.add(physics.world, [anchor, shadowElement])
+		Matter.World.add(physics.world, anchor)
 		var constraint = Matter.Constraint.create({
 			bodyA: anchor,
 			bodyB: shadowElement,
@@ -220,16 +220,21 @@ MappedIn.MapView = function(canvas, venue, callback) {
 			length: 1
 
 		})
+		element._mConstraint = constraint
 		constraints[shadowElement.id] = constraint
-		Matter.World.add(physics.world, [constraint])
+		//Matter.World.add(physics.world, [constraint])
 		this.showMarker(element)
 	}
 
 	this.showMarker = function(marker) {
 
 		Matter.World.add(physics.world, marker._mShadowElement)
+		Matter.World.add(physics.world, marker._mConstraint)
+
 		updateMarkerPosition(marker)
-		Matter.Body.translate(marker._mShadowElement, Matter.Vector.sub(marker._mAnchor.position, marker._mShadowElement.position))
+		Matter.Body.update(marker._mShadowElement, 1.0, 1.0, 0.0)
+		//Matter.Body.translate(marker._mShadowElement, Matter.Vector.sub(marker._mAnchor.position, marker._mShadowElement.position))
+		//Matter.Body.applyForce(marker._mShadowElement, marker._mShadowElement.position, 10000.0)
 		marker.style.opacity = 0.8 //marker._oldOpacity
 		marker.hidden = false
 	}
@@ -237,6 +242,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	this.hideMarker = function (marker) {
 		if (marker.hidden != true) {
 			marker.hidden = true
+			Matter.World.remove(physics.world, marker._mConstraint)
 			Matter.World.remove(physics.world, marker._mShadowElement)
 			marker._oldOpacity = marker.style.opacity
 			marker.style.opacity = 0
@@ -628,7 +634,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 				//this.constraints[pair.bodyA.id].length *= 1.1	
 			}
 		}
-		scope.tryRendering()
+		//scope.tryRendering()
 	}
 
 
