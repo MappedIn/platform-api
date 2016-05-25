@@ -392,7 +392,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 		event.preventDefault();
 		event.stopPropagation();
 		
-		lastWheelTime = clock.startTime
+		lastWheelTime = clock.getElapsedTime()
 		//console.log( 'handleMouseWheel' );
 		if (state != STATE.ZOOM) {
 			state = STATE.ZOOM
@@ -570,8 +570,8 @@ MappedIn.CameraControls = function (camera, canvas) {
 
 	// Anything we need to do on scene render
 	this.update = function() {
-
-		if (lastWheelTime > 0 && state == STATE.ZOOM && clock.startTime - lastWheelTime > 300) {
+		//console.log("update: " + clock.getElapsedTime())
+		if (lastWheelTime > 0 && state == STATE.ZOOM && clock.getElapsedTime() - lastWheelTime > .08) {
 			lastWheelTime = 0
 			state = STATE.NONE
 			scope.dispatchEvent(zoomEndEvent)
