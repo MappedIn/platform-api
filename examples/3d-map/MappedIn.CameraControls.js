@@ -571,7 +571,7 @@ MappedIn.CameraControls = function (camera, canvas) {
 	// Anything we need to do on scene render
 	this.update = function() {
 		//console.log("update: " + clock.getElapsedTime())
-		if (lastWheelTime > 0 && state == STATE.ZOOM && clock.getElapsedTime() - lastWheelTime > .08) {
+		if (lastWheelTime > 0 && state == STATE.ZOOM && clock.getElapsedTime() - lastWheelTime > .06) {
 			lastWheelTime = 0
 			state = STATE.NONE
 			scope.dispatchEvent(zoomEndEvent)

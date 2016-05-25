@@ -223,25 +223,31 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		element._mConstraint = constraint
 		constraints[shadowElement.id] = constraint
 		//Matter.World.add(physics.world, [constraint])
-		this.showMarker(element)
+		element._mHidden = true
+		showMarker(element)
 	}
 
-	this.showMarker = function(marker) {
+	var showMarker = function(marker) {
 
-		Matter.World.add(physics.world, marker._mShadowElement)
-		Matter.World.add(physics.world, marker._mConstraint)
+		if (marker._mCameraHidden != true && marker._mOffScreen != true && marker._mHidden) {
+			marker._mHidden = false
+			Matter.World.add(physics.world, marker._mShadowElement)
+			Matter.World.add(physics.world, marker._mConstraint)
+			//Matter.Body.translate(marker._mShadowElement, Matter.Vector.sub(marker._mAnchor.position, marker._mShadowElement.position))
+			updateMarkerPosition(marker)
 
-		updateMarkerPosition(marker)
-		Matter.Body.update(marker._mShadowElement, 1.0, 1.0, 0.0)
-		//Matter.Body.translate(marker._mShadowElement, Matter.Vector.sub(marker._mAnchor.position, marker._mShadowElement.position))
-		//Matter.Body.applyForce(marker._mShadowElement, marker._mShadowElement.position, 10000.0)
-		marker.style.opacity = 0.8 //marker._oldOpacity
-		marker.hidden = false
+			Matter.Body.update(marker._mShadowElement, 2.0, 1.0, 0.0)
+			
+			//Matter.Body.applyForce(marker._mShadowElement, marker._mShadowElement.position, 10000.0)
+			marker.style.opacity = 0.8 //marker._oldOpacity
+		}
 	}
 
-	this.hideMarker = function (marker) {
-		if (marker.hidden != true) {
-			marker.hidden = true
+	var hideMarker = function (marker) {
+		//console.log(physics.world.bodies)
+		if (marker._mHidden != true) {
+			marker._mHidden = true
+			console.log("Hiding " + marker)
 			Matter.World.remove(physics.world, marker._mConstraint)
 			Matter.World.remove(physics.world, marker._mShadowElement)
 			marker._oldOpacity = marker.style.opacity
@@ -249,17 +255,19 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		}
 	}
 
-	this.showAllMarkers = function() {
+	var onCameraMovementEnd = function() {
 		console.log("Showing all markers")
 		for (marker of markers) {
-			scope.showMarker(marker)
+			marker._mCameraHidden = false
+			showMarker(marker)
 		}
 	}
 
-	this.hideAllMarkers = function () {
+	var onCameraMovementStart = function () {
 		console.log("Hiding all markers")
 		for (marker of markers) {
-			scope.hideMarker(marker)
+			marker._mCameraHidden = true
+			hideMarker(marker)
 		}
 	}
 
@@ -313,19 +321,19 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 		if (left < -scope.canvas.offsetWidth * .20 || left > scope.canvas.offsetWidth * 1.2 || top < -scope.canvas.offsetHeight * .20 || top > scope.canvas.offsetHeight * 1.2) {
 			//marker.style.visibility = "hidden"
-			if (!marker._offScreen) {
+			if (!marker._mOffScreen) {
 				// marker._oldOpacity = marker.style.opacity
 				// marker.style.opacity = 0
-				marker._offScreen = true
-				scope.hideMarker(marker)
+				marker._mOffScreen = true
+				hideMarker(marker)
 			}
 			return
-		} else if (marker._offScreen) {
+		} else if (marker._mOffScreen) {
 			//marker.style.visibility = "visible"
 			// marker.style.opacity = marker._oldOpacity
 			// marker._oldOpacity = null
-			marker._offScreen = false
-			scope.showMarker(marker)
+			marker._mOffScreen = false
+			showMarker(marker)
 
 		}
 
@@ -601,7 +609,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		}
 	}
 
-	var bonusFrames = 60 // Render this many frames after the last tryRender call to account for physics
+	var bonusFrames = 300 // Render this many frames after the last tryRender call to account for physics
 	this.tryRendering = function () {
 		if (renderFrames <= 0) {
 			renderFrames = bonusFrames
@@ -686,12 +694,12 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 	this.controls.addEventListener( this.controls.CAMERA_EVENTS.CHANGE_EVENT.type, scope.tryRendering );
 
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_START_EVENT.type, this.hideAllMarkers)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_START_EVENT.type, this.hideAllMarkers)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, this.hideAllMarkers)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_END_EVENT.type, this.showAllMarkers)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_END_EVENT.type, this.showAllMarkers)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, this.showAllMarkers)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_START_EVENT.type, onCameraMovementStart)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_START_EVENT.type, onCameraMovementStart)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, onCameraMovementStart)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_END_EVENT.type, onCameraMovementEnd)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_END_EVENT.type, onCameraMovementEnd)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, onCameraMovementEnd)
 
 	//this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, freezeMarkers)
 	//this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, thawMarkers)
@@ -751,6 +759,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 	var wallWidth = 100
 
+	// Need to make this responsive
 	var walls = [
 		Matter.Bodies.rectangle(this.canvas.offsetWidth / 2, -wallWidth, this.canvas.offsetWidth, wallWidth * 2, wallOptions),
 		Matter.Bodies.rectangle(-wallWidth, this.canvas.offsetHeight / 2, wallWidth * 2, this.canvas.offsetHeight, wallOptions),
