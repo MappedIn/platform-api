@@ -175,33 +175,38 @@ MappedIn.MapView = function(canvas, venue, callback) {
 	}
 
 	this.createMarker = function(text, position, className) {
-		var element = document.createElement('div')
-		element.className = className
-		element.innerHTML = text
-		element.style.position = 'absolute'
+		var marker = document.createElement('div')
+		marker.className = className
+		marker.innerHTML = text
+		marker.style.position = 'absolute'
 
-		element._mPosition = position
-		element.style.top = "0px"
-		element.style.left = "0px"
+		marker._mHidden = true
+		//marker._mOffScreen = true
+		marker._oldOpacity = marker.style.opacity
+		marker.style.opacity = 0
+
+		marker._mPosition = position
+		marker.style.top = "0px"
+		marker.style.left = "0px"
 		//
 
-		scope.canvas.appendChild(element)
-		markers.push(element)
+		scope.canvas.appendChild(marker)
+		markers.push(marker)
 
 		var anchor = Matter.Bodies.rectangle(0, 0, 10, 10, {
 			friction: 1.0,
-			frictionStatic: 1,
+			frictionStatic: 100,
 			frictionAir: 1,
 			density: 10000,
-			//
+			isStatic: true,
 			collisionFilter: {
 				group: -1,
 				mask: 0
 			}
 		})
-		element._mAnchor = anchor
+		marker._mAnchor = anchor
 
-		var shadowElement = Matter.Bodies.rectangle(0, 0, element.offsetWidth + (markerBuffer * 2), element.offsetHeight + (markerBuffer * 2) , {
+		var shadowElement = Matter.Bodies.rectangle(0, 0, marker.offsetWidth + (markerBuffer * 2), marker.offsetHeight + (markerBuffer * 2) , {
 			density: 0.1,
 			slop: markerSlop,
 			//restitution: .1,
@@ -211,7 +216,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 			frictionStatic: 0.1
 		})
 
-		element._mShadowElement = shadowElement
+		marker._mShadowElement = shadowElement
 		Matter.World.add(physics.world, anchor)
 		var constraint = Matter.Constraint.create({
 			bodyA: anchor,
@@ -220,11 +225,11 @@ MappedIn.MapView = function(canvas, venue, callback) {
 			length: 1
 
 		})
-		element._mConstraint = constraint
+		marker._mConstraint = constraint
 		constraints[shadowElement.id] = constraint
 		//Matter.World.add(physics.world, [constraint])
-		element._mHidden = true
-		showMarker(element)
+
+		showMarker(marker)
 	}
 
 	var showMarker = function(marker) {
@@ -233,13 +238,14 @@ MappedIn.MapView = function(canvas, venue, callback) {
 			marker._mHidden = false
 			Matter.World.add(physics.world, marker._mShadowElement)
 			Matter.World.add(physics.world, marker._mConstraint)
+			marker.style.opacity = marker._oldOpacity
 			//Matter.Body.translate(marker._mShadowElement, Matter.Vector.sub(marker._mAnchor.position, marker._mShadowElement.position))
 			updateMarkerPosition(marker)
 
 			Matter.Body.update(marker._mShadowElement, 2.0, 1.0, 0.0)
 			
 			//Matter.Body.applyForce(marker._mShadowElement, marker._mShadowElement.position, 10000.0)
-			marker.style.opacity = 0.8 //marker._oldOpacity
+			
 		}
 	}
 
@@ -247,15 +253,16 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		//console.log(physics.world.bodies)
 		if (marker._mHidden != true) {
 			marker._mHidden = true
-			console.log("Hiding " + marker)
-			Matter.World.remove(physics.world, marker._mConstraint)
-			Matter.World.remove(physics.world, marker._mShadowElement)
+			console.log("Hiding " + marker.innerHTML)
 			marker._oldOpacity = marker.style.opacity
 			marker.style.opacity = 0
+			Matter.World.remove(physics.world, marker._mConstraint)
+			Matter.World.remove(physics.world, marker._mShadowElement)
+
 		}
 	}
 
-	var onCameraMovementEnd = function() {
+	this.showMarkersForCamera = function() {
 		console.log("Showing all markers")
 		for (marker of markers) {
 			marker._mCameraHidden = false
@@ -263,7 +270,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		}
 	}
 
-	var onCameraMovementStart = function () {
+	this.hideMarkersForCamera = function () {
 		console.log("Hiding all markers")
 		for (marker of markers) {
 			marker._mCameraHidden = true
@@ -318,10 +325,27 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 		var left = (projection.x + 1)  / 2 * scope.canvas.offsetWidth// - width
 		var top = (-projection.y + 1) / 2 * scope.canvas.offsetHeight// - height
+		
+
+		//Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
+		//Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
+
+		var target = Matter.Vector.create(left, top)
+		//Matter.Body.setStatic(marker._mAnchor, false)
+		Matter.Body.translate(marker._mAnchor, Matter.Vector.sub(target, marker._mAnchor.bounds.min))
+		Matter.Body.setAngularVelocity(marker._mShadowElement, 0)
+		
+		
+		//marker._mAnchorP.left = left
+
+		//if (marker._lastPosition)
+		marker.style.transform = "translate(" + (marker._mShadowElement.position.x - (marker.offsetWidth / 2)) + "px, " + (marker._mShadowElement.position.y - (marker.offsetHeight /2)) + "px)"
 
 		if (left < -scope.canvas.offsetWidth * .20 || left > scope.canvas.offsetWidth * 1.2 || top < -scope.canvas.offsetHeight * .20 || top > scope.canvas.offsetHeight * 1.2) {
+			
 			//marker.style.visibility = "hidden"
 			if (!marker._mOffScreen) {
+				console.log("Should be hiding " + marker.innerHTML)
 				// marker._oldOpacity = marker.style.opacity
 				// marker.style.opacity = 0
 				marker._mOffScreen = true
@@ -337,7 +361,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 		}
 
-		var target = Matter.Vector.create(left, top)
+		
 		if (constraintsFrozen == false) {
 			if (constraints[marker._mShadowElement.id].length > 1) {
 				constraints[marker._mShadowElement.id].length *= .9
@@ -346,16 +370,6 @@ MappedIn.MapView = function(canvas, venue, callback) {
 				constraints[marker._mShadowElement.id].stiffness *= 1.5
 			}
 		}
-		
-
-		//Matter.Body.setPosition(marker._mAnchor, {x: left, y: top})
-		//Matter.Body.setVelocity(marker._mAnchor, {x: 0, y: 0})
-		Matter.Body.translate(marker._mAnchor, Matter.Vector.sub(target, marker._mAnchor.bounds.min))
-		Matter.Body.setAngularVelocity(marker._mShadowElement, 0)
-		//marker._mAnchorP.left = left
-
-		//if (marker._lastPosition)
-		marker.style.transform = "translate(" + (marker._mShadowElement.position.x - (marker.offsetWidth / 2)) + "px, " + (marker._mShadowElement.position.y - (marker.offsetHeight /2)) + "px)"
 	}
 
 	this.displayTitle = function (location) {
@@ -694,12 +708,13 @@ MappedIn.MapView = function(canvas, venue, callback) {
 
 	this.controls.addEventListener( this.controls.CAMERA_EVENTS.CHANGE_EVENT.type, scope.tryRendering );
 
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_START_EVENT.type, onCameraMovementStart)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_START_EVENT.type, onCameraMovementStart)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, onCameraMovementStart)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_END_EVENT.type, onCameraMovementEnd)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_END_EVENT.type, onCameraMovementEnd)
-	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, onCameraMovementEnd)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_START_EVENT.type, this.hideMarkersForCamera)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_START_EVENT.type, this.hideMarkersForCamera)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, this.hideMarkersForCamera)
+
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ZOOM_END_EVENT.type, this.showMarkersForCamera)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.ROTATE_END_EVENT.type, this.showMarkersForCamera)
+	this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, this.showMarkersForCamera)
 
 	//this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_START_EVENT.type, freezeMarkers)
 	//this.controls.addEventListener(this.controls.CAMERA_EVENTS.PAN_END_EVENT.type, thawMarkers)
