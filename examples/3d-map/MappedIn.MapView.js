@@ -193,11 +193,7 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		scope.canvas.appendChild(marker)
 		markers.push(marker)
 
-		var anchor = Matter.Bodies.rectangle(0, 0, 10, 10, {
-			friction: 1.0,
-			frictionStatic: 100,
-			frictionAir: 1,
-			density: 10000,
+		var anchor = Matter.Bodies.rectangle(0, 0, 1, 1, {
 			isStatic: true,
 			collisionFilter: {
 				group: -1,
@@ -207,13 +203,10 @@ MappedIn.MapView = function(canvas, venue, callback) {
 		marker._mAnchor = anchor
 
 		var shadowElement = Matter.Bodies.rectangle(0, 0, marker.offsetWidth + (markerBuffer * 2), marker.offsetHeight + (markerBuffer * 2) , {
-			density: 0.1,
 			slop: markerSlop,
-			//restitution: .1,
-			inertia: Infinity,
 			sleepThreshold: 1,
-			frictionAir: 0.2,
-			frictionStatic: 0.1
+			//frictionAir: 0.2,
+			//frictionStatic: 0.1
 		})
 
 		marker._mShadowElement = shadowElement
