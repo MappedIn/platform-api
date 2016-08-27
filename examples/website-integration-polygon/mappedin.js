@@ -30,6 +30,16 @@
     });
   }
 
+  function defineRelation(proto, name, enumerator) {
+    defineGetter(proto, name, function getter() {
+      var cache = this._cache[name];
+      if (cache === undefined) {
+        cache = this._cache[name] = enumerator.call(this);
+      }
+      return cache;
+    });
+  }
+
   function filterUndefined(array) {
     var filtered = [];
     for (var i = 0, iLen = array.length; i < iLen; ++i) {
@@ -48,7 +58,7 @@
   function MappedinCategory(mappedin, data) {
     this._mappedin = mappedin;
     this._data = data;
-    this._locations = undefined;
+    this._cache = {};
     assignMissing(this, data);
   }
 
@@ -66,16 +76,9 @@
     });
   };
 
-  defineGetter(MappedinCategory, 'locations', function () {
-    var cache = this._locations;
-    if (cache !== undefined) {
-      return cache;
-    }
-    var locations = this._mappedin._data.locations;
-    if (locations === undefined) {
-      throw new Error('locations were not fetched');
-    }
-    cache = [];
+  defineRelation(MappedinCategory, 'locations', function () {
+    var related = [];
+    var locations = this._mappedin.locations;
     var id = this._data.id;
     for (var i = 0, iLen = locations.length; i < iLen; ++i) {
       var location = locations[i];
@@ -83,19 +86,18 @@
       if (through) {
         for (var j = 0, jLen = through.length; j < jLen; ++j) {
           if (through[j] === id) {
-            cache.push(location);
+            related.push(location);
           }
         }
       }
     }
-    this._locations = cache;
-    return cache;
+    return related;
   });
 
   function MappedinLocation(mappedin, data) {
     this._mappedin = mappedin;
     this._data = data;
-    this._polygons = undefined;
+    this._cache = {};
     assignMissing(this, data);
   }
 
@@ -123,39 +125,31 @@
     });
   };
 
-  defineGetter(MappedinLocation, 'polygons', function () {
-    var cache = this._polygons;
-    if (cache !== undefined) {
-      return cache;
-    }
-    var polygons = this._mappedin._data.polygons;
-    if (polygons === undefined) {
-      throw new Error('polygons were not fetched');
-    }
-    cache = [];
+  defineRelation(MappedinLocation, 'polygons', function () {
+    var related = [];
     var through = this._data.polygons;
+    var polygons = this._mappedin.polygons;
     if (through) {
       var i, iLen;
-      var hashset = Object.create(null);
+      var hash = {};
       for (i = 0, iLen = through.length; i < iLen; ++i) {
-        hashset[through[i].id] = true;
+        hash[through[i].id] = true;
       }
       for (i = 0, iLen = polygons.length; i < iLen; ++i) {
         var polygon = polygons[i];
-        if (hashset[polygon.id] === true) {
-          cache.push(polygon);
-          hashset[polygon.id] = false;
+        if (hash[polygon.id] === true) {
+          related.push(polygon);
+          hash[polygon.id] = false;
         }
       }
     }
-    this._polygons = cache;
-    return cache;
+    return related;
   });
 
   function MappedinMap(mappedin, data) {
     this._mappedin = mappedin;
     this._data = data;
-    this._polygons = undefined;
+    this._cache = {};
     assignMissing(this, data);
   }
 
@@ -198,30 +192,23 @@
     });
   };
 
-  defineGetter(MappedinMap, 'polygons', function () {
-    var cache = this._polygons;
-    if (cache !== undefined) {
-      return cache;
-    }
-    var polygons = this._mappedin._data.polygons;
-    if (polygons === undefined) {
-      throw new Error('polygons were not fetched');
-    }
-    cache = [];
+  defineRelation(MappedinMap, 'polygons', function () {
+    var related = [];
+    var polygons = this._mappedin.polygons;
     var id = this._data.id;
     for (var i = 0, iLen = polygons.length; i < iLen; ++i) {
       var polygon = polygons[i];
       if (polygon.map === id) {
-        cache.push(polygon);
+        related.push(polygon);
       }
     }
-    this._polygons = cache;
-    return cache;
+    return related;
   });
 
   function MappedinNode(mappedin, data) {
     this._mappedin = mappedin;
     this._data = data;
+    this._cache = {};
     assignMissing(this, data);
   }
 
@@ -247,7 +234,7 @@
   function MappedinPolygon(mappedin, data) {
     this._mappedin = mappedin;
     this._data = data;
-    this._locations = undefined;
+    this._cache = {};
     assignMissing(this, data);
   }
 
@@ -303,16 +290,9 @@
     });
   };
 
-  defineGetter(MappedinPolygon, 'locations', function () {
-    var cache = this._locations;
-    if (cache !== undefined) {
-      return cache;
-    }
-    var locations = this._mappedin._data.locations;
-    if (locations === undefined) {
-      throw new Error('locations were not fetched');
-    }
-    cache = [];
+  defineRelation(MappedinPolygon, 'locations', function () {
+    var related = [];
+    var locations = this._mappedin.locations;
     var id = this._data.id;
     for (var i = 0, iLen = locations.length; i < iLen; ++i) {
       var location = locations[i];
@@ -321,13 +301,12 @@
         for (var j = 0, jLen = through.length; j < jLen; ++j) {
           var tuple = through[j];
           if (tuple.id === id) {
-            cache.push(location);
+            related.push(location);
           }
         }
       }
     }
-    this._locations = cache;
-    return cache;
+    return related;
   });
 
   var THINGS = {
@@ -426,23 +405,6 @@
     return queryString;
   }
 
-  Mappedin.prototype._getObject = function (pathname, query, cb) {
-    var url = this._baseUrl + pathname + stringifyQuery(query);
-    this._getJSON(url, function (err, res) {
-      if (err) return cb(err);
-      var data = res.data;
-      if (Array.isArray(data)) {
-        if (data.length > 0) {
-          data = data[0];
-        } else {
-          cb(new Error('not found'));
-          return;
-        }
-      }
-      cb(null, data);
-    });
-  };
-
   function parseNextLink(linkHeader) {
     if (!linkHeader) {
       return null;
@@ -502,11 +464,11 @@
 
   Object.keys(THINGS).forEach(function (name) {
     defineGetter(Mappedin, name, function () {
-      var result = this._data[name];
-      if (result !== undefined) {
-        return result;
+      var array = this._data[name];
+      if (array === undefined) {
+        throw new Error(name + ' were not fetched');
       }
-      throw new Error(name + ' were not fetched');
+      return array;
     });
   });
 
@@ -514,8 +476,8 @@
     var things = this._things;
     var didInvokeCallback = false;
     var names = Object.keys(things);
-    var progress = 0;
     var total = names.length;
+    var progress = 0;
     function onfetched(name, err, data) {
       if (didInvokeCallback) {
         return;
