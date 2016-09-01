@@ -1,27 +1,24 @@
-MappedIn Website Integration Example
+Mappedin Website Integration Example
 ========
 
-This example illustrates how to invoke MappedIn REST API and use Leaflet to display a map.  It also demonstrates map interactions through a dropdown that lists all locations by categories.  The sample uses twitter bootstrap to simplify layout and css styles.
+This example illustrates how to invoke Mappedin JSON API and use Leaflet to display a map. It also demonstrates map interactions through a dropdown that lists all locations by categories. The sample uses Twitter Bootstrap to simplify layout and styles.
 
 ## Getting Started
 
-Before you can make REST calls to MappedIn API, you need to retrieve a token by authenticating with your client key and secret. For testing purposes, you can use `token fetcher/token.html`, but in a production application you will need to implement a call to your servers to retrieve the current token.
+Before you can make HTTP calls to Mappedin API, you need to get an OAuth `client_id` and `client_secret`. You can either use these directly with HTTP Basic Authentication, or you can request an OAuth Bearer Token. If you elect to request an OAuth Bearer Token, you should do so on your back-end server.
 
-For now, open 'token.html' and enter your set of key and secret and hit submit. Copy and paste the result into the `token` property of `sample.html` (not `sample.js`). Also, change the venueId to the venue you are accessing.  Set the perspective name as well.  If you don't know what perspective name to use, contact us and we'll let you know.
+For now, copy your OAuth `client_id` and `client_secret` into the appropriate variables in inline `<script>` element. You will also want to set the `venue` slug and `perspective` name.
 
 ```javascript
-    var perspectiveName = "Main Kiosk";
-    var venueId = 'mappedin-mall';
-    // Authenticate with the API keys with the MappedIn server
-    var grant = { 
-      grant_type: "client_credentials", 
-      // You will need to request your own API client and secret keys by contacting support@mappedin.ca, and use token.html to retrieve your token
-     token: {paste your token here}
-    };
+    var ACCESS_TOKEN = 'your OAuth Bearer token would go here';
+    var CLIENT_ID = 'your client_id goes here';
+    var CLIENT_SECRET = 'your client_secret goes here';
+    var PERSPECTIVE = "your perspective name goes here";
+    var VENUE = 'your venue slug goes here';
 ```
 
 Start the demo by opening the `sample.html` file in your browser.
 
 ## API v1 Documentation
-
-[Get V1 documentation here](../../v1.md)    	   
+<!-- TODO: write docs that dont suck -->
+[Get V1 documentation here](../../v1.md)
