@@ -110,7 +110,7 @@ function drawRandomPath() {
 }
 
 // This is your main function. It talks to the mappedin API and sets everything up for you
-Mappedin.initialize(options, canvas).then(function (data) {
+Mappedin.initialize(options, div).then(function (data) {
 	mapView = data.mapview
 	venue = data.venue
 	search = data.search
