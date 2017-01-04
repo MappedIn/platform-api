@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Easing - The Mappedin Web SDK</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+            <a href="http://www.mappedin.com">The Mappedin Web SDK</a>
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.8.2</b>
+                </p>
+            </li>
+        </div>
+        <form id="options-form" class="form-inline pull-right dk-options">
+            <label for="api-show-protected" class="checkbox">
+                <input type="checkbox" id="api-show-protected">
+                Protected
+            </label>
+        
+            <label for="api-show-private" class="checkbox">
+                <input type="checkbox" id="api-show-private">
+                Private
+            </label>
+            <label for="api-show-deprecated" class="checkbox">
+                <input type="checkbox" id="api-show-deprecated">
+                Deprecated
+            </label>
+        </form>
+        
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	      <div id="sidebar">
+	        <h2>Table of Contents</h2>
+	        <ul>
+	        <li>
+	          <strong>Methods</strong>
+	          <ul class="ul--nested">
+	              <li><a href="#method-MappedinLocation#directionsTo"><span class="im">MappedinLocation#directionsTo</span>(<span class="ia">destination</span><span class="ia">options</span><span class="ia">callback</span>)</a></li>
+	              <li><a href="#method-MappedinNode#directionsTo"><span class="im">MappedinNode#directionsTo</span>(<span class="ia">destination</span><span class="ia">options</span><span class="ia">callback</span>)</a></li>
+	          </ul>
+	        </li>
+	    
+	        <li>
+	          <strong>Properties</strong>
+	          <ul class="ul--nested">
+	            <li><a href="#prop-{Array.&lt;MappedinPathNode&gt;} path Path."><span class="ip">{Array.&lt;MappedinPathNode&gt;} path Path.</span></a></li>
+	            <li><a href="#prop-{number} y Y coordinate."><span class="ip">{number} y Y coordinate.</span></a></li>
+	            <li><a href="#prop-{string} instruction Instruction."><span class="ip">{string} instruction Instruction.</span></a></li>
+	          </ul>
+	        </li>
+	    
+	    
+	      </ul>
+	    </div>
+        </div>
+        <div class="span9">
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>Easing</h1>
+                        </div>
+                        
+                        
+                        
+                        	<div class="well well-small">
+                                    Module: <a href="../modules/Mappedin.html">Mappedin</a>
+                            </div>
+                        
+                        
+                        
+                        <div class="yuidoc-class-description">
+                        <p>The easing curves you can use for any animation (path drawing, camera movement, etc.)
+                        See <a href="http://tweenjs.github.io/tween.js/examples/03_graphs.html">tween.js</a> for your options.</p>
+                        
+                        </div>
+                        
+                        <!-- details -->
+                        
+                        
+                            <div id="methods" class="page-section">
+                                <h2 class="off-left">Methods</h2>
+                                <div class="item-list">
+                                    <div id="method-MappedinLocation#directionsTo" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>MappedinLocation#directionsTo</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>destination</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>options</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Gets directions from this location to the target node or location.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">destination</code>
+                                    						<span class="type">MappedinLocation  |  MappedinNode</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Destination.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">options</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Options.</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name">accessible</code>
+                                    									<span class="type">Boolean=</span>
+                                    
+                                    								<div class="param-description"><p>True if directions should be
+                                    wheelchair accessible.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type">DirectionsToCallback</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Callback.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-MappedinNode#directionsTo" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>MappedinNode#directionsTo</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>destination</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>options</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Gets directions from this node to the target node or location.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">destination</code>
+                                    						<span class="type">MappedinLocation  |  MappedinNode</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Destination.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">options</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Options.</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name">accessible</code>
+                                    									<span class="type">Boolean=</span>
+                                    
+                                    								<div class="param-description"><p>True if directions should be
+                                    wheelchair accessible.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type">DirectionsToCallback</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Callback.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div id="properties" class="page-section">
+                                <h2 class="off-left" id="list_of_properties">Properties</h2>
+                        
+                                <div class="item-list">
+                                    <div id="prop-{Array.&lt;MappedinPathNode&gt;} path Path." class="property item">
+                                        <h3 class="name"><code>{Array.&lt;MappedinPathNode&gt;} path Path.</code></h3>
+                                        <span class="type">Array.<MappedinDirective></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            
+                                        </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-{number} y Y coordinate." class="property item">
+                                        <h3 class="name"><code>{number} y Y coordinate.</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            
+                                        </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-{string} instruction Instruction." class="property item">
+                                        <h3 class="name"><code>{string} instruction Instruction.</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            
+                                        </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

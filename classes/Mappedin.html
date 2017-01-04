@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mappedin - The Mappedin Web SDK</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+            <a href="http://www.mappedin.com">The Mappedin Web SDK</a>
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.8.2</b>
+                </p>
+            </li>
+        </div>
+        <form id="options-form" class="form-inline pull-right dk-options">
+            <label for="api-show-protected" class="checkbox">
+                <input type="checkbox" id="api-show-protected">
+                Protected
+            </label>
+        
+            <label for="api-show-private" class="checkbox">
+                <input type="checkbox" id="api-show-private">
+                Private
+            </label>
+            <label for="api-show-deprecated" class="checkbox">
+                <input type="checkbox" id="api-show-deprecated">
+                Deprecated
+            </label>
+        </form>
+        
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	      <div id="sidebar">
+	        <h2>Table of Contents</h2>
+	        <ul>
+	        <li>
+	          <strong>Methods</strong>
+	          <ul class="ul--nested">
+	              <li><a href="#method-force2D"><span class="im">force2D</span>(<span class="ia">callback</span>)</a></li>
+	              <li><a href="#method-force3D"><span class="im">force3D</span>(<span class="ia">callback</span>)</a></li>
+	              <li><a href="#method-forceTest"><span class="im">forceTest</span>(<span class="ia">container</span><span class="ia">callback</span>)</a></li>
+	              <li><a href="#method-getVenue"><span class="im">getVenue</span>(<span class="ia">options</span><span class="ia">clientId</span><span class="ia">clientSecret</span><span class="ia">perspective</span><span class="ia">perspective2D</span><span class="ia">perspective3D</span><span class="ia">venue</span><span class="ia">things</span><span class="ia">callback</span>)</a></li>
+	              <li><a href="#method-initialize"><span class="im">initialize</span>(<span class="ia">options</span><span class="ia">container</span>)</a></li>
+	              <li><a href="#method-test3D"><span class="im">test3D</span>(<span class="ia">container</span><span class="ia">callback</span>)</a></li>
+	          </ul>
+	        </li>
+	    
+	        <li>
+	          <strong>Properties</strong>
+	          <ul class="ul--nested">
+	            <li><a href="#prop-modes"><span class="ip">modes</span></a></li>
+	          </ul>
+	        </li>
+	    
+	    
+	      </ul>
+	    </div>
+        </div>
+        <div class="span9">
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>Mappedin</h1>
+                        </div>
+                        
+                        
+                        
+                        	<div class="well well-small">
+                                    Module: <a href="../modules/Mappedin.html">Mappedin</a>
+                            </div>
+                        
+                        
+                        
+                        <div class="yuidoc-class-description">
+                        <p>Contains the functions you need to start the MapView. Typically you will just use <code>Mappedin.initialize</code>, which does all this for you, but for special cases your flow should look like this:</p>
+                        <ol>
+                        <li>One of Mappedin.test3D (typcial), .forceTest, .force3D, or .force2D to put the MapView into either 2D or 3D mode.</li>
+                        <li>Mappedin.init to download all of the data you need from the Mappedin API</li>
+                        <li>new Mappedin.MapView, which will create the MapView and display the default map.</li>
+                        </ol>
+                        <p>Each of those functions has a callback which you should use to trigger the next step. Once you get the final callback from the MapView
+                        constructor, you can hide any loading screen UI and do whatever you want.</p>
+                        
+                        </div>
+                        
+                        <!-- details -->
+                        
+                        
+                            <div id="methods" class="page-section">
+                                <h2 class="off-left">Methods</h2>
+                                <div class="item-list">
+                                    <div id="method-force2D" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>force2D</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Forces Mapview into 2D mode.
+                                    This could make a network call, so the callback will fire when that's complete and you can create a MapView.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The function to call when the Mapview is finished loading.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-force3D" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>force3D</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Forces Mapview into 3D mode.
+                                    This could make a network call, so the callback will fire when that's complete and you can create a MapView.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The function to call when 3D mode is ready.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-forceTest" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>forceTest</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>container</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Forces the Mapview to perform it's 3D test. It attempts to save the result the test is not run again on subsequent loads. This lets you override that behaviour.
+                                    The callback will be executed when the test is complete and either the 2D or 3D Mapview is loaded.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">container</code>
+                                    						<span class="type">Div</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The div to run the test in. Works best if it's the same as where the MapView will go, as the number of pixels being rendered is a factor.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The function to call when the test is complete and either 2D or 3D mode is ready. The callback will be fired with a <code>result</code> key, a boolean that will be true if you are in 3D mode, and the result of the benchmark.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-getVenue" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>getVenue</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>options</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>clientId</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>clientSecret</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>perspective</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">perspective2D</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">perspective3D</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>venue</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>things</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a Venue object populated with all your data.
+                                    The <code>options</code> object can have the following properties:</p>
+                                    <pre class="code prettyprint"><code>options = {
+                                        clientId: &lt;The client ID provided to you by Mappedin. Contact your Mappedin representative if you do not have one&gt;,
+                                        clientSecret: &lt;The secret that goes along with your ID&gt;,
+                                        perspective: &lt;The name of specific perspective to use for 2D/3D&gt;,
+                                        perspective2D: &lt;Use if you have a different perspective to use in 2D mode&gt;,
+                                        perspective3D: &lt;Use if you have a different perspective to use in 3D mode&gt;,
+                                        venue: &lt;The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is&gt;,
+                                        // The things object is where you specifiy what fields you want to download for each object in the Mappedin API
+                                        // This SDK will ensure it has the 2D or 3D files it needs, but it won't download anything extra (like the names of locations)
+                                        // unless you specify it here.
+                                        // This is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.
+                                        things: {
+                                            venue: ['slug', 'name'],
+                                            locations: ['name', 'type', 'description', 'icon', 'logo'],
+                                            categories: ['name'],
+                                            maps: ['name', 'elevation', 'shortName']
+                                        }
+                                    }
+                                    </code></pre>
+                                    <p>If you would like to force the test to run again, use the forceTest method instead. Or, if you want to force the user into a specific mode, use force2D or force3D respectively.
+                                    Note while 2D should work for basically anyone, if the user's device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">options</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Any options you need to specify to talk to the Mappedin API</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">clientId</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">clientSecret</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The secret/password that goes along with your ID</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">perspective</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The name of the perspective you are using for 2D and 3D. Probably "Website". This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[perspective2D]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Use if you have a different perspective to use in 2D mode</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[perspective3D]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Use if you have a different perspective to use in 3D mode</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">venue</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is. Developer accounts often start with "api-demo1"</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">things</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The things object is where you specifiy what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name">venue</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    
+                                    								<div class="param-description"><p>The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name">locations</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    
+                                    								<div class="param-description"><p>The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name">categories</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    
+                                    								<div class="param-description"><p>The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name">maps</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    
+                                    								<div class="param-description"><p>The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[polygons]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>The Polygon fields you want. The default is probably sufficient.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[nodes]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>The Node fields you want. The default is probably sufficient.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>This function is called when the Venue data is loaded, or there is a problem.</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name">error</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    								<div class="param-description"><p>If there is an error, you will get it here. Typically this will only be useful for developers when building/testing. It's not usually something a user can deal with.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name">result</code>
+                                    									<span class="type"><a href="../classes/Mappedin.html" class="crosslink">Mappedin</a></span>
+                                    
+                                    								<div class="param-description"><p>A Mappedin data object with all the data you asked for. It will have a venue property with a Venue object, and locations, categories, nodes, maps, and polygons arrays</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-initialize" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>initialize</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>options</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>container</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>This function will take a single options object combining all options for Mappedin.init and the MapView constructor, and the div the MapView should live in.
+                                    It returns a Promise that will resolve with the MapView once the 3D test has been performed, the right MapView was loaded, the data has been retrieved from the Mappedin API, and
+                                    the MapView has been created. It could also fail (mostly if the options you set for the Mappedin API are incorrect).</p>
+                                    <p>This is a convenience function that lets you avoid chaining a bunch of callbacks, calling test3D/force2D/force3D then Mappedin.init then the MapView constructor.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">options</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Takes an object combining all options from Mappedin.init, the MapView constructor, and the Search constructor. If you explictly want to set the 3D mode rather than run the test, it also accepts a <code>mode</code> property that can be any of Mappedin.mode</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name">venue</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    								<div class="param-description"><p>Any options from Mappedin.getVenue</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name">mapview</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    								<div class="param-description"><p>Any options from the Mappedin.MapView constructor</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name">search</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    								<div class="param-description"><p>Any options from the Mappedin.Seach constructor.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">container</code>
+                                    						<span class="type">Div</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The HTML element the Mapview will live in.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-test3D" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>test3D</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>container</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>This is the typical function to call before instatiating a MapView. It will either perform a test to determine if the current device is capable of running in 3D mode,
+                                    and store the results, or if prior results are available, just use those. Then, it will set Mappedin.MapView to be the constructor for the proper mode. This lets
+                                    the developer write their website without having to know or care whether the user is experiencing it in 2D or 3D. The callback you pass into the function will give you
+                                    the results, however, if you care, and you can also determine it from the <code>type</code> property on the MapView you create.</p>
+                                    <p>If you would like to force the test to run again, use the forceTest method instead. Or, if you want to force the user into a specific mode, use force2D or force3D respectively.
+                                    Note while 2D should work for basically anyone, if the user's device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">container</code>
+                                    						<span class="type">Div</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The div to run the test in. Works best if it's the same as where the MapView will go, as the number of pixels being rendered is a factor.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">callback</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The function to call when the test is complete and either 2D or 3D mode is ready. The callback will be fired with a <code>result</code> key, a boolean that will be true if you are in 3D mode, and the result of the benchmark.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div id="properties" class="page-section">
+                                <h2 class="off-left" id="list_of_properties">Properties</h2>
+                        
+                                <div class="item-list">
+                                    <div id="prop-modes" class="property item">
+                                        <h3 class="name"><code>modes</code></h3>
+                                        <span class="type">TEST, 3D, 2D, FORCE_TEST</span>
+                                    
+                                    
+                                    
+                                            <span class="flag final">const</span>
+                                    
+                                            <span class="flag static">static</span>
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>The possible modes Mapview can be in. Typically you will use TEST, which will run a 3D compatibility test the user loads the page and then load load either the 2D or 3D version of MapView. On subsequent loads, it will use the saved result to avoid running a new test.
+                                    FORCE_TEST will make sure a new test is run and the results are saved, whereas 3D and 2D will force the MapView directly into 2D or 3D mode without checking for compatibility. 2D should always work but some browsers/devices do not have the WebGL support needed for 3D, so be careful.</p>
+                                    
+                                        </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

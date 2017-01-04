@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Search - The Mappedin Web SDK</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+            <a href="http://www.mappedin.com">The Mappedin Web SDK</a>
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.8.2</b>
+                </p>
+            </li>
+        </div>
+        <form id="options-form" class="form-inline pull-right dk-options">
+            <label for="api-show-protected" class="checkbox">
+                <input type="checkbox" id="api-show-protected">
+                Protected
+            </label>
+        
+            <label for="api-show-private" class="checkbox">
+                <input type="checkbox" id="api-show-private">
+                Private
+            </label>
+            <label for="api-show-deprecated" class="checkbox">
+                <input type="checkbox" id="api-show-deprecated">
+                Deprecated
+            </label>
+        </form>
+        
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	      <div id="sidebar">
+	        <h2>Table of Contents</h2>
+	        <ul>
+	        <li>
+	          <strong>Methods</strong>
+	          <ul class="ul--nested">
+	              <li><a href="#method-search"><span class="im">search</span>(<span class="ia">query</span><span class="ia">options</span>)</a></li>
+	              <li><a href="#method-suggest"><span class="im">suggest</span>(<span class="ia">query</span>)</a></li>
+	          </ul>
+	        </li>
+	    
+	        <li>
+	          <strong>Properties</strong>
+	          <ul class="ul--nested">
+	            <li><a href="#prop-ASSET_TYPES"><span class="ip">ASSET_TYPES</span></a></li>
+	          </ul>
+	        </li>
+	    
+	    
+	      </ul>
+	    </div>
+        </div>
+        <div class="span9">
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>Search</h1>
+                        </div>
+                        
+                        
+                        
+                        	<div class="well well-small">
+                                    Module: <a href="../modules/Mappedin.html">Mappedin</a>
+                            </div>
+                        
+                        
+                        
+                        <div class="yuidoc-class-description">
+                        <p>A class to access the Mappedin Smart Search API. This will be created for you as part of Mappedin.initialize, but you can also create one manually.</p>
+                        
+                        </div>
+                        
+                        <!-- details -->
+                        
+                        
+                            <div id="methods" class="page-section">
+                                <h2 class="off-left">Methods</h2>
+                                <div class="item-list">
+                                    <div id="method-search" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>search</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>query</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">options</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Makes a call to the Mappedin Smart Search API with the provided query, retuning a Promise that will fulfill with a
+                                    SearchResults object. This will contain a list of <code>hits</code>, which can currently be SearchItems (either SearchLocations or SearchEvents).</p>
+                                    <p>These are currently different from the objects you get directly from the Mappedin API,
+                                    containing a subset of their data, but you can match on their IDs.</p>
+                                    <p>The data is broken down into pages. You can specify the size (defaults to 10).</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">query</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The string to search for</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[options]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Any optional parameters you need to pass to the search API</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name optional">[ps]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>Number of search results to return. Defaults to 10. You can get the next page from SearchResults.next</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[type]</code>
+                                    									<span class="type">ASSET_TYPE</span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>If you want to limit your results to a specific type of SearcItem, specify it here. Currently either ASSET_TYPES.LOCATION or ASSET_TYPES.EVENT</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>:
+                                    					<p>The promise will resolve with either a SearchResults object if successful, or an error with a <code>message</code> and <code>status</code> if it fails</p>
+                                    <pre><code>    SearchResults has the following propertyies and methods:
+                                            query: The search query that triggered this search
+                                            total: The total number of results.
+                                            hits: The array of SearchItems in the current page.
+                                    
+                                            nextPage() -&gt; A promise that will resolve with the next page of SearchResults</code></pre>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-suggest" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>suggest</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>query</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Makes a call to the Mappedin Smart Search Suggestions API with the provided query, retuning a Promise that will fulfill with a
+                                    Suggestions object. This will contain a list of <code>hits</code>, which are words that match full search results. This should be used
+                                    to aid in autocoplete for a search bar. It's ordered for you by most relevant.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">query</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The string to get autocomplete suggestions for</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>:
+                                    					<p>The promise will resolve with either a Suggestions object if successful, or an error with a <code>message</code> and <code>status</code> if it fails</p>
+                                    <pre><code>    Suggestions has the following propertyies and methods:
+                                            query: The suggestion query that triggered this list of suggestions (to make sure it's still what's in the text bar)
+                                            total: The total number of suggestions.
+                                            hits: The array of Strings matching the query</code></pre>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div id="properties" class="page-section">
+                                <h2 class="off-left" id="list_of_properties">Properties</h2>
+                        
+                                <div class="item-list">
+                                    <div id="prop-ASSET_TYPES" class="property item">
+                                        <h3 class="name"><code>ASSET_TYPES</code></h3>
+                                        <span class="type">LOCATION, EVENT</span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>The types of assets available for this venue.</p>
+                                    
+                                        </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

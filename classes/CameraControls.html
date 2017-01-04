@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CameraControls - The Mappedin Web SDK</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/lucid.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+</head>
+<body class="yui3-skin-sam">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
+            <a href="http://www.mappedin.com">The Mappedin Web SDK</a>
+        </h1>
+	<div class="nav">
+            <li class="divider-vertical"></li>
+            <li>
+                <p class="navbar-text">
+                    API Docs for Version: <b>1.8.2</b>
+                </p>
+            </li>
+        </div>
+        <form id="options-form" class="form-inline pull-right dk-options">
+            <label for="api-show-protected" class="checkbox">
+                <input type="checkbox" id="api-show-protected">
+                Protected
+            </label>
+        
+            <label for="api-show-private" class="checkbox">
+                <input type="checkbox" id="api-show-private">
+                Private
+            </label>
+            <label for="api-show-deprecated" class="checkbox">
+                <input type="checkbox" id="api-show-deprecated">
+                Deprecated
+            </label>
+        </form>
+        
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="span3">
+	      <div id="sidebar">
+	        <h2>Table of Contents</h2>
+	        <ul>
+	        <li>
+	          <strong>Methods</strong>
+	          <ul class="ul--nested">
+	              <li><a href="#method-animateCamera"><span class="im">animateCamera</span>(<span class="ia">target</span><span class="ia">duration</span><span class="ia">curve</span><span class="ia">callback</span>)</a></li>
+	              <li><a href="#method-dispose"><span class="im">dispose</span>()</a></li>
+	              <li><a href="#method-getPosition"><span class="im">getPosition</span>()</a></li>
+	              <li><a href="#method-getRotation"><span class="im">getRotation</span>()</a></li>
+	              <li><a href="#method-getTilt"><span class="im">getTilt</span>()</a></li>
+	              <li><a href="#method-getZoom"><span class="im">getZoom</span>()</a></li>
+	              <li><a href="#method-isCameraMoving"><span class="im">isCameraMoving</span>()</a></li>
+	              <li><a href="#method-pan"><span class="im">pan</span>(<span class="ia">right</span><span class="ia">down</span>)</a></li>
+	              <li><a href="#method-postRender"><span class="im">postRender</span>()</a></li>
+	              <li><a href="#method-rotate"><span class="im">rotate</span>(<span class="ia">radians</span>)</a></li>
+	              <li><a href="#method-setMulti"><span class="im">setMulti</span>(<span class="ia">position</span><span class="ia">zoom</span><span class="ia">rotation</span><span class="ia">tilt</span>)</a></li>
+	              <li><a href="#method-setPosition"><span class="im">setPosition</span>(<span class="ia">x</span><span class="ia">y</span>)</a></li>
+	              <li><a href="#method-setRotation"><span class="im">setRotation</span>(<span class="ia">radians</span>)</a></li>
+	              <li><a href="#method-setTilt"><span class="im">setTilt</span>(<span class="ia">radians</span>)</a></li>
+	              <li><a href="#method-setZoom"><span class="im">setZoom</span>(<span class="ia">zoom</span>)</a></li>
+	              <li><a href="#method-tilt"><span class="im">tilt</span>(<span class="ia">radians</span>)</a></li>
+	              <li><a href="#method-update"><span class="im">update</span>()</a></li>
+	              <li><a href="#method-zoom"><span class="im">zoom</span>(<span class="ia">zoom</span>)</a></li>
+	          </ul>
+	        </li>
+	    
+	        <li>
+	          <strong>Properties</strong>
+	          <ul class="ul--nested">
+	            <li><a href="#prop-CAMERA_EVENTS"><span class="ip">CAMERA_EVENTS</span></a></li>
+	            <li><a href="#prop-enabled"><span class="ip">enabled</span></a></li>
+	            <li><a href="#prop-enablePan"><span class="ip">enablePan</span></a></li>
+	            <li><a href="#prop-enableRotate"><span class="ip">enableRotate</span></a></li>
+	            <li><a href="#prop-enableZoom"><span class="ip">enableZoom</span></a></li>
+	            <li><a href="#prop-maxTilt"><span class="ip">maxTilt</span></a></li>
+	            <li><a href="#prop-maxZoom"><span class="ip">maxZoom</span></a></li>
+	            <li><a href="#prop-minTilt"><span class="ip">minTilt</span></a></li>
+	            <li><a href="#prop-minZoom"><span class="ip">minZoom</span></a></li>
+	            <li><a href="#prop-mouseButtons"><span class="ip">mouseButtons</span></a></li>
+	            <li><a href="#prop-panBounds"><span class="ip">panBounds</span></a></li>
+	            <li><a href="#prop-rotateSpeed"><span class="ip">rotateSpeed</span></a></li>
+	            <li><a href="#prop-zoomSpeed"><span class="ip">zoomSpeed</span></a></li>
+	          </ul>
+	        </li>
+	    
+	    
+	      </ul>
+	    </div>
+        </div>
+        <div class="span9">
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <div class="page-header">
+                            <h1>CameraControls</h1>
+                        </div>
+                        
+                        
+                        
+                        	<div class="well well-small">
+                                    Module: <a href="../modules/Mappedin.html">Mappedin</a>
+                            </div>
+                        
+                        
+                        
+                        <div class="yuidoc-class-description">
+                        <p>The advanced, manual camera controls for MapView. You probably don't need to use this at all, instead relying on the MapView's focusOn*, resetCamera and built in touch/mouse controls.
+                        This class will let you do things like change the min/max zoom, tilt, and pan, attach to camera events, and move/animate the camera to specifc points.</p>
+                        <p>The camera works by setting an anchor point on the scene at ground level and pointing the camera at it. Zoom controls how far the camera is from the anchor, and tilt/rotate controls the angle the camera is rotated about it.
+                        The camera will always be pointed directly at the anchor point. Pan or setPosition will move that anchor around on the 2D ground plane.</p>
+                        <p>Created for you automatically with a MapView, don't re-create yourself.</p>
+                        
+                        </div>
+                        
+                        <!-- details -->
+                        
+                            <div class="constructor yuidoc-class-constructor page-section">
+                                <h2>Constructor</h2>
+                                <div class="item-list">
+                                <div id="method-CameraControls" class="method item">
+                                	<div class="method-signature">
+                                	<span class="name"><code>CameraControls</code></span>
+                                
+                                		<span class="paren">()</span>
+                                	</div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                	<div class="meta">
+                                				<p>
+                                		</p>
+                                
+                                
+                                
+                                	</div>
+                                
+                                
+                                
+                                
+                                </div>
+                                </div>
+                            </div>
+                        
+                            <div id="methods" class="page-section">
+                                <h2 class="off-left">Methods</h2>
+                                <div class="item-list">
+                                    <div id="method-animateCamera" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>animateCamera</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>target</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">duration</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">curve</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">callback</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    		<span class="returns-inline">
+                                    			<span class="type">Mappedin.Tween</span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Animates the camera from it's current position to the state specified in target. You only
+                                    need to specify the properties you actually want to change.</p>
+                                    <p>You can also specify a duration, animation curve, and a callback for when it's done.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">target</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>A list of optional parameters you can set that represent the camera state</p>
+                                    </div>
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name optional">[position]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>An {x, y} object representing the position to move to</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[zoom]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>The zoom level to end at</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[tilt]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>The tilt to end at, in radians</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[rotation]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>The rotation to end at, in radians</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[doNotAutoStart=false]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>Set this to true if you want to start the tween yourself</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[duration]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The duration to animate the camera for, in ms</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[curve]</code>
+                                    						<span class="type">Mappedin.Easing</span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The animation curve to use for the animation</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[callback]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>A callback that will be executed when the animation is done</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type">Mappedin.Tween</span>:
+                                    					<p>The tween being used, if you want to do anything to control it manually. Do not overide it's events.</p>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-dispose" class="method item private">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>dispose</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    	</div>
+                                    
+                                    
+                                    		<span class="flag private">private</span>
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Disposes of the camera and all of it's events.</p>
+                                    </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                    <div id="method-getPosition" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>getPosition</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Returns the current camera position</p>
+                                    </div>
+                                    
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
+                                    					<p>An {x, y} object of the current camera postion</p>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-getRotation" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>getRotation</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Returns the current camera rotation</p>
+                                    </div>
+                                    
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                                    					<p>The current rotation of the camera, in radians</p>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-getTilt" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>getTilt</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Returns the current camera tilt</p>
+                                    </div>
+                                    
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                                    					<p>The current tilt of the camera, in radians</p>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-getZoom" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>getZoom</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Returns the current camera zoom</p>
+                                    </div>
+                                    
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
+                                    					<p>The distance of the camera from the anchor</p>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-isCameraMoving" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>isCameraMoving</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    		<span class="returns-inline">
+                                    			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    		</span>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Returns true if the camera is currently moving (it's animating, the user is manipulating it)</p>
+                                    </div>
+                                    
+                                    
+                                    		<div class="returns">
+                                    			<h4>Returns:</h4>
+                                    
+                                    			<div class="returns-description">
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+                                    					<p>True if the camera is moving, false otherwise.</p>
+                                    
+                                    			</div>
+                                    		</div>
+                                    
+                                    </div>
+                                    <div id="method-pan" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>pan</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>right</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>down</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Pans the camera right and down from the current position</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">right</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The units to move right. Negative will pan left. This is in relation to the global coordinate system, not the current camera rotation.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">down</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The units to move down. Negative will pan up. This is in relation to the global coordinate system, not the current camera rotation.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-postRender" class="method item private">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>postRender</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    	</div>
+                                    
+                                    
+                                    		<span class="flag private">private</span>
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Anything we need to do after we render the camera, like update anchors for the mouse/touch controls.</p>
+                                    </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                    <div id="method-rotate" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>rotate</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>radians</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Rotates the camera a set number of radians relative to the current rotation. Useful for an idle rotation animation.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">radians</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Number of radians to rotate the camera</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-setMulti" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>setMulti</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code class="optional">position</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">zoom</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">rotation</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">tilt</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Allows you to set any of the Camera's position, zoom, rotation and tilt at once, with one function.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name optional">[position]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>an {x, y} object representing the new position</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[zoom]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The new zoom distance</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[rotation]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The new rotation, in radians.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[tilt]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The new tilt, in radians.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-setPosition" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>setPosition</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>x</code>
+                                    				</li>
+                                    				<li class="arg">
+                                    						<code>y</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Sets the camera anchor to a specifc x/y positon, in the global reference frame. 0,0 will be roughly the middle of the map, and panBounds holds the min/max points.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">x</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The x position to move the camera to. +x will take you right, from the default camera rotation of 0.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name">y</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The y position to move the camera to. +y will take you down (towards the viewer) in the default camera rotation of 0.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-setRotation" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>setRotation</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>radians</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Sets the rotation to a specific orientation, in radians. Mostly useful to orient the map a certain way for a physical directory.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">radians</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Absolute rotation to set the camera to, in radians. 0 in the starting point</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-setTilt" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>setTilt</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>radians</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Sets the tilt to a specific level, in radians. 0 is top down. Bounded by minTilt and maxTilt</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">radians</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Tilt to set the camera to, in radians</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-setZoom" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>setZoom</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>zoom</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Sets the camera to be a certain distance from the anchor point, along it's tilt and rotation.
+                                    Keeps it inside minZoom and maxZoom.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">zoom</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The distance to set the camera to</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-tilt" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>tilt</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>radians</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Tilts the camera up or down by some number of radians. Bounded by minTilt and maxTilt</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">radians</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Number of radians to increase or decrease the current tilt by.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-update" class="method item private">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>update</code></span>
+                                    
+                                    		<span class="paren">()</span>
+                                    	</div>
+                                    
+                                    
+                                    		<span class="flag private">private</span>
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Should probably be "pre-render". Anything we need to do before rendering the scene.</p>
+                                    </div>
+                                    
+                                    
+                                    
+                                    </div>
+                                    <div id="method-zoom" class="method item">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>zoom</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>zoom</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Moves the camera towards or away from the camera by a set amount. Positive will zoom in (bringing the distance closer to 0)</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">zoom</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>The distance to increase or decrease the zoom</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div id="properties" class="page-section">
+                                <h2 class="off-left" id="list_of_properties">Properties</h2>
+                        
+                                <div class="item-list">
+                                    <div id="prop-CAMERA_EVENTS" class="property item">
+                                        <h3 class="name"><code>CAMERA_EVENTS</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    
+                                            <span class="flag final">const</span>
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Camera events you can attach a listener to (with <code>controls.addListener(event, function)</code>), if you want to do certain things. They'll be fired both by touch events and by functions you can call yourself like pan() and tilt()/</p>
+                                    
+                                        </div>
+                                    
+                                    
+                                    
+                                            <h4>Sub-properties:</h4>
+                                    
+                                            <ul class="params-list">
+                                                <li class="param">
+                                                        <code class="param-name">CHANGE_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired whenever the camera changes</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">PAN_START_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera starts panning</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">PAN_END_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera finishes panning</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">ROTATE_START_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera starts rotating</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">ROTATE_END_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera stops rotating</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">ZOOM_START_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera starts zooming</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">ZOOM_END_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera finishes zooming</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">MULTI_START_EVENT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera starts animating or you called setMulti. It means any one or more of pan, tilt, rotate and zoom could be changing. The individual pan/tilt/rotate/zoom events will NOT be fired.</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">MULTI_END_EVNT</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>Fired when the camera stops animating, or has finished the setMulti call.</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                            </ul>
+                                    </div>
+                                    <div id="prop-enabled" class="property item">
+                                        <h3 class="name"><code>enabled</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Disable or re-enable user input.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> true</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-enablePan" class="property item">
+                                        <h3 class="name"><code>enablePan</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Disable or re-enable user pan.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> true</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-enableRotate" class="property item">
+                                        <h3 class="name"><code>enableRotate</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Disable or re-enable user tilt/rotation.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> true</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-enableZoom" class="property item">
+                                        <h3 class="name"><code>enableZoom</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Disable or re-enable user zoom.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> true</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-maxTilt" class="property item">
+                                        <h3 class="name"><code>maxTilt</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Minium camera tilt, in radians. If you set it too high, the camera will be able to tilt down through the geometery of the scene, which will produce clipping issues.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> 1.2</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-maxZoom" class="property item">
+                                        <h3 class="name"><code>maxZoom</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Maximum distance the camera can get from it's anchor on the ground. Setting this too high will result in parts of the map falling out of the camera's clipping plane and disappearing.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> 10000</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-minTilt" class="property item">
+                                        <h3 class="name"><code>minTilt</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Minium camera tilt, in radians. If it's anything other than 0, you won't be able to look at the venue from the top down perspective.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> 0.0</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-minZoom" class="property item">
+                                        <h3 class="name"><code>minZoom</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>This is actually the minium distance the camera can get from it's anchor on the ground. May be worth changing if your map has very tall buildings to avoid the camera clipping through them.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> 750</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-mouseButtons" class="property item">
+                                        <h3 class="name"><code>mouseButtons</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>If you would really prefer to pan with the right mouse button and tilt/rotate with the left, you can swap the values here to achieve that.</p>
+                                    
+                                        </div>
+                                    
+                                    
+                                    
+                                            <h4>Sub-properties:</h4>
+                                    
+                                            <ul class="params-list">
+                                                <li class="param">
+                                                        <code class="param-name">ORBIT=THREE.MOUSE.RIGHT</code>
+                                                        <span class="type">THREE.MOUSE</span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>The button to use for tilt/rotation. Defaults to <code>THREE.MOUSE.RIGHT</code></p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">ZOOM=THREE.MOUSE.MIDDLE</code>
+                                                        <span class="type">THREE.MOUSE</span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>The button to use for zoom behaviour. Don't change this.</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">PAN=THREE.MOUSE.LEFT</code>
+                                                        <span class="type">THREE.MOUSE</span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>The button to use for panning the camera. Defaults to <code>THREE.MOUSE.LEFT</code></p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                            </ul>
+                                    </div>
+                                    <div id="prop-panBounds" class="property item">
+                                        <h3 class="name"><code>panBounds</code></h3>
+                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Constrains the camera from panning to far away from the scene. It's set automatically based on the size of the map.
+                                    If you want to change anything, you probably want to change the margin property, which is the factor the min and max in
+                                    each dimension are multiplied by to give the true bounds. For example, on a truely huge venue a 1.25 margin could get you
+                                    way out into space when zoomed in.</p>
+                                    
+                                        </div>
+                                    
+                                    
+                                    
+                                            <h4>Sub-properties:</h4>
+                                    
+                                            <ul class="params-list">
+                                                <li class="param">
+                                                        <code class="param-name">margin</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>The factor the multiply the size of the geometery by to give the true camera bounds</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">min</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>An x, y pair representing the bounds of one corner of the map.</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                                <li class="param">
+                                                        <code class="param-name">max</code>
+                                                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                                    <div class="param-description">
+                                                        <p>An x, y pair representing the bounds of the other corner of the map.</p>
+                                    
+                                                    </div>
+                                    
+                                                </li>
+                                            </ul>
+                                    </div>
+                                    <div id="prop-rotateSpeed" class="property item">
+                                        <h3 class="name"><code>rotateSpeed</code></h3>
+                                        <span class="type">Float</span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Factor to multiple mouse movement by to get tilt/rotation.</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> 100</p>
+                                    
+                                    
+                                    </div>
+                                    <div id="prop-zoomSpeed" class="property item">
+                                        <h3 class="name"><code>zoomSpeed</code></h3>
+                                        <span class="type">Float</span>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        <div class="meta">
+                                                    <p>
+                                            </p>
+                                    
+                                    
+                                        </div>
+                                    
+                                        <div class="description">
+                                            <p>Factor that controls how fast zooming in and out happens in response to mouse wheel events</p>
+                                    
+                                        </div>
+                                    
+                                            <p><strong>Default:</strong> 5.0</p>
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
+<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script src="../assets/js/yuidoc-bootstrap.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
