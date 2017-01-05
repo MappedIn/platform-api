@@ -155,7 +155,9 @@ function onDataLoaded() {
 	// drawRandomPath()
 	// window.setInterval(drawRandomPath, 9000)
 
-	mapView.labelAllLocations()
+	mapView.labelAllLocations({
+		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
+	})
 }
 
 mapList.addEventListener("change", changeMap)
