@@ -266,8 +266,8 @@ var marker = mapView.createMarker(markerString, mapView.getPositionNode(node.id)
 
  In a future beta release, there will be a more advanced Marker class that will let you do things like turn the collision avoidance off, or lock the marker to rotate with the camera, and have full control over when the marker is added to the MapView.
 
- ### Compass Rose
- It's possible to attach the rotation of an arbitrary HTML element to that of the map (with some offset). This lets you add a compass rose (ie, a little arrow pointing north) to the scene. This is done with the `mapView.lockNorth(element, offset)`. For example:
+### Compass Rose
+It's possible to attach the rotation of an arbitrary HTML element to that of the map (with some offset). This lets you add a compass rose (ie, a little arrow pointing north) to the scene. This is done with the `mapView.lockNorth(element, offset)`. For example:
 
 ```
  var compass = document.getElementById("compass")
