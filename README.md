@@ -14,10 +14,13 @@ The current version of the Mappedin Web SDK is v1.8.2, and can be included in yo
 ## Getting Started
 
 The Mappedin Web SDK provides a simple way to use all of the data stored in the Mappedin CMS. It consists of four main components:
-	1) **Venue**: The Mappedin.Venue object contains all of the data for a given Venue. All the communication with the Mappedin backend is handled for you, resulting in a single Venue object with all the data (locations, maps, categories, etc) ready and linked together.
-	1) **MapView:** This gives you a single, prebuilt component that handles displaying a fully 3D map (with an automatic 2D fallback) of your Venue. It features things like selectable polygons, wayfinding, 2D markers with auto layout, hover labels, and 3D text labels.
-	1) **Search**: Mappedin.Search gives you easy access to the powerful Mappedin Smart Search API. It provides a fast Suggestion API designed to provide real time autocomplete, and a powerful Search API for more detailed results.
-	1) **Analytics**: Mappedin.Analytics provides a few simple analytics calls that will improve the Search experience and provide Venue owners with data and key insights. You should call locationSelected when a user selects a location.
+
+
+1. **Venue**: The Mappedin.Venue object contains all of the data for a given Venue. All the communication with the Mappedin backend is handled for you, resulting in a single Venue object with all the data (locations, maps, categories, etc) ready and linked together.
+1. **MapView:** This gives you a single, prebuilt component that handles displaying a fully 3D map (with an automatic 2D fallback) of your Venue. It features things like selectable polygons, wayfinding, 2D markers with auto layout, hover labels, and 3D text labels.
+1. **Search**: Mappedin.Search gives you easy access to the powerful Mappedin Smart Search API. It provides a fast Suggestion API designed to provide real time autocomplete, and a powerful Search API for more detailed results.
+1. **Analytics**: Mappedin.Analytics provides a few simple analytics calls that will improve the Search experience and provide Venue owners with data and key insights. You should call locationSelected when a user selects a location.
+
 
 To get started, you need to add the latest version of mappedin.js to your project:
 
@@ -57,7 +60,7 @@ This will be the most complicated set of options. It is here you specify your AP
 
 You will also specify which fields you are interested in downloading for each Mappedin object. The Mappedin CMS is very flexible, and objects like Locations can have a lot of information stored on them, some of which is custom for your Venue, and not all of which needs to be downloaded by the user when they visit your web page. The Mappedin Web SDK will ensure it downloads the information it needs for itself (like the 3D or 2D files for your Map), and it's recommended to you only add the data you will actually use yourself to keep things snappy.
 
-You can find out about what types of properties will be available from your Mappedin representative, or inspect the data yourself through our [JSON API](blob/v1.md) (this should only be used for testing purposes, as the API is not guaranteed to remain stable).
+You can find out about what types of properties will be available from your Mappedin representative, or inspect the data yourself through our [JSON API](https://github.com/MappedIn/platform-api/blob/master/v1.md) (this should only be used for testing purposes, as the API is not guaranteed to remain stable).
 
 A typical venueOptions might look like this:
 ```
