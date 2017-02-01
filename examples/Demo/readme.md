@@ -15,3 +15,5 @@ If you would like to see wayfinding in action, uncomment these lines in `onDataL
 ```
 
 This will draw a path between two random locations every few seconds.
+
+There is also an option for offline mode via a Service Worker. Uncomment the lines near ```// Start up the mapview```

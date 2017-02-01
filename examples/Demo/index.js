@@ -6,7 +6,7 @@ var search
 var polygonedLocations = []
 
 var mapList = document.getElementById("mapList")
-var canvas = document.getElementById( 'mapView' );
+var div = document.getElementById( 'mapView' );
 
 // options for Mappedin.getVenue
 // You will need to customize this with the data provided by Mappedin. Ask your representative if you don't have a key, secret, and slug.
@@ -110,14 +110,17 @@ function drawRandomPath() {
 }
 
 // This is your main function. It talks to the mappedin API and sets everything up for you
-Mappedin.initialize(options, div).then(function (data) {
-	mapView = data.mapview
-	venue = data.venue
-	search = data.search
+function init() {
 
-},function (error) {
-	window.alert("Mappedin " + error)
-})
+	Mappedin.initialize(options, div).then(function (data) {
+		mapView = data.mapview
+		venue = data.venue
+		search = data.search
+
+	},function (error) {
+		window.alert("Mappedin " + error)
+	})
+}
 
 function onDataLoaded() {
 
@@ -158,6 +161,31 @@ function onDataLoaded() {
 	mapView.labelAllLocations({
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
 	})
+}
+
+// Start up the mapview
+
+// Uncomment the service worker stuff for an offline fallback. Only works on very modern browsers, but it should fail gracefully.
+// This uses the Service Workers API, and relies on the fact that the MapView downloads everything it needs ahead of time.
+// Directions, search, and analytics will not function offline, and any images from the Mappedin platform (logos, etc)
+// that aren't baked into the map will not be downloaded automatically, you should make sure you do that in init.
+// This is really for a kiosk type application.
+
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', function() {
+		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+			// Registration was successful
+    	  	console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      		init();
+		}).catch(function(err) {
+			// registration failed :(
+			console.log('ServiceWorker registration failed: ', err);
+			init();
+		});
+	})
+} else {
+	// Otherwise, just init
+	init();
 }
 
 mapList.addEventListener("change", changeMap)

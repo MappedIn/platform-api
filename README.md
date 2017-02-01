@@ -5,10 +5,10 @@ Welcome to the Mappedin Web SDK Beta. The SDK is pretty stable (and is being use
 A comprehensive tutorial will be available soon, but you can see a working demo [here](examples/Demo), and read the [API docs](http://mappedin.github.io/platform-api/).
 
 ### Current Version
-The current version of the Mappedin Web SDK is v1.8.2, and can be included in your application via script tag, like so:
+The current version of the Mappedin Web SDK is v1.9.3, and can be included in your application via script tag, like so:
 
 ```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.8.2/mappedin.js"></script>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.9.3/mappedin.js"></script>
 ```
 
 ## Getting Started
@@ -25,7 +25,7 @@ The Mappedin Web SDK provides a simple way to use all of the data stored in the 
 To get started, you need to add the latest version of mappedin.js to your project:
 
 ```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.8.2/mappedin.js"></script>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.9.3/mappedin.js"></script>
 ```
 
 Then, when you are ready to show the map, call `Mappedin.initialize(options, container)`.
@@ -276,4 +276,14 @@ It's possible to attach the rotation of an arbitrary HTML element to that of the
  var compass = document.getElementById("compass")
  mapView.lockNorth(compass)
  ```
- 
+
+### Offline Mode
+The Mappedin Web SDK does not have offline support built in, but it can be enabled via a [Service Worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers). Service Workers are a relatively new part of the web, and are not well supported on many browsers. However, modern versions of Chrome and Firefox do have support, making this an excellent tool when you are building your own standalone directory type application.
+
+Check out the Mozilla docs for more information, but in brief Service Workers let you run your own JavaScript code to handle any network request from your page, and lets you provide your own response. There is an [example implementation in the demo](https://github.com/MappedIn/platform-api/blob/master/examples/Demo/service-worker.js) that should cover most use cases. It applies a cache fallback strategy: Any network requests are executed as they come in, and the results are saved in the cache and then returned to the app. If a network request fails (because of no internet access), the cached result is returned instead. This ensures you always have fresh data when you can access the network, but have a fallback option if you cannot.
+
+This works because the Mappedin Web SDK (at least in 3D mode) downloads everything it needs ahead of time. When you call Mappedin.init, it starts the process, and when you get onDataLoaded, all the data the Web SDK needs has been downloaded and cached.
+
+This strategy is designed to for the "mostly online" situation, where you generally have network access when needed, but there may be the occasional special case where, say, the power goes out and the kiosk application boots up before the network is back online. It is not designed to handle environments where the network is unreliable and going up and down during an update. For that situation, you could implement a strategy where you at each initialization you save to a new cache and if a network failure occurs before onDataLoaded is fired, you swap back to the old cache and re-init.
+
+As touched on above, offline mode only works with 3D mode. The 2D fallback downloads tiles on the fly. We recommend simply using 3D mode, as it's quite able to run even on low end hardware, but you could also download the tiles ahead of time too. A bigger issue is that it will not automatically download any images attached to Mappedin objects (for example, icons and logos on Locations). This is because there are a number of possible sizes and you may or may not want to download any of them for your use case. If you do want them, just make sure you download them up front, and they will automatically be cached through the Service Worker. Smart Search and Analytics will not work while offline.
