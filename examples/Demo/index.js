@@ -171,21 +171,21 @@ function onDataLoaded() {
 // that aren't baked into the map will not be downloaded automatically, you should make sure you do that in init.
 // This is really for a kiosk type application.
 
-if ('serviceWorker' in navigator) {
-	window.addEventListener('load', function() {
-		navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-			// Registration was successful
-    	  	console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      		init();
-		}).catch(function(err) {
-			// registration failed :(
-			console.log('ServiceWorker registration failed: ', err);
-			init();
-		});
-	})
-} else {
+// if ('serviceWorker' in navigator) {
+// 	window.addEventListener('load', function() {
+// 		navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+// 			// Registration was successful
+//     	  	console.log('ServiceWorker registration successful with scope: ', registration.scope);
+//       		init();
+// 		}).catch(function(err) {
+// 			// registration failed :(
+// 			console.log('ServiceWorker registration failed: ', err);
+// 			init();
+// 		});
+// 	})
+// } else {
 	// Otherwise, just init
 	init();
-}
+// }
 
 mapList.addEventListener("change", changeMap)
