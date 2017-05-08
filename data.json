@@ -2,7 +2,7 @@
     "project": {
         "name": "The Mappedin Web SDK",
         "description": "An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin",
-        "version": "1.8.2",
+        "version": "1.14.0",
         "url": "http://wwww.mappedin.com"
     },
     "files": {
