@@ -5,10 +5,10 @@ Welcome to the Mappedin Web SDK Beta. The SDK is pretty stable (and is being use
 A comprehensive tutorial will be available soon, but you can see a working demo [here](examples/Demo), and read the [API docs](http://mappedin.github.io/platform-api/).
 
 ### Current Version
-The current version of the Mappedin Web SDK is v1.12.4, and can be included in your application via script tag, like so:
+The current version of the Mappedin Web SDK is v1.14.0, and can be included in your application via script tag, like so:
 
 ```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.12.4/mappedin.js"></script>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.14.0/mappedin.js"></script>
 ```
 
 ## Getting Started
@@ -25,7 +25,7 @@ The Mappedin Web SDK provides a simple way to use all of the data stored in the 
 To get started, you need to add the latest version of mappedin.js to your project:
 
 ```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.12.4/mappedin.js"></script>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.14.0/mappedin.js"></script>
 ```
 
 Then, when you are ready to show the map, call `Mappedin.initialize(options, container)`.
