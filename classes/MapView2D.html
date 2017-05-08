@@ -53,6 +53,7 @@
 	          <strong>Methods</strong>
 	          <ul class="ul--nested">
 	              <li><a href="#method-addInteractivePolygon"><span class="im">addInteractivePolygon</span>(<span class="ia">polygon</span>)</a></li>
+	              <li><a href="#method-addMap"><span class="im">addMap</span>(<span class="ia">map</span>)</a></li>
 	              <li><a href="#method-addMarker"><span class="im">addMarker</span>(<span class="ia">marker</span>)</a></li>
 	              <li><a href="#method-clearAllPolygonColors"><span class="im">clearAllPolygonColors</span>()</a></li>
 	              <li><a href="#method-clearPolygonColor"><span class="im">clearPolygonColor</span>(<span class="ia">polygon</span>)</a></li>
@@ -60,6 +61,8 @@
 	              <li><a href="#method-createFont"><span class="im">createFont</span>(<span class="ia">facetypeJson</span>)</a></li>
 	              <li><a href="#method-createMarker"><span class="im">createMarker</span>(<span class="ia">html</span><span class="ia">positing</span><span class="ia">className</span><span class="ia">map</span>)</a></li>
 	              <li><a href="#method-drawPath"><span class="im">drawPath</span>(<span class="ia">path</span><span class="ia">options</span>)</a></li>
+	              <li><a href="#method-enableImageFlippingForAllLocations"><span class="im">enableImageFlippingForAllLocations</span>(<span class="ia">options</span>)</a></li>
+	              <li><a href="#method-enableImageFlippingForPolygon"><span class="im">enableImageFlippingForPolygon</span>(<span class="ia">options</span>)</a></li>
 	              <li><a href="#method-focusOn"><span class="im">focusOn</span>(<span class="ia">options</span><span class="ia">option.changeZoom</span>)</a></li>
 	              <li><a href="#method-focusOnPath"><span class="im">focusOnPath</span>(<span class="ia">path</span><span class="ia">polygonIds</span><span class="ia">changeZoom</span><span class="ia">duration</span><span class="ia">curve</span>)</a></li>
 	              <li><a href="#method-focusOnPolygon"><span class="im">focusOnPolygon</span>(<span class="ia">polygon</span><span class="ia">changeZoom</span><span class="ia">duration</span><span class="ia">curve</span>)</a></li>
@@ -77,10 +80,11 @@
 	              <li><a href="#method-removeAllLabels"><span class="im">removeAllLabels</span>()</a></li>
 	              <li><a href="#method-removeAllMarkers"><span class="im">removeAllMarkers</span>()</a></li>
 	              <li><a href="#method-removeAllPaths"><span class="im">removeAllPaths</span>()</a></li>
+	              <li><a href="#method-removeMap"><span class="im">removeMap</span>(<span class="ia">map</span>)</a></li>
 	              <li><a href="#method-removeMarker"><span class="im">removeMarker</span>(<span class="ia">marker</span>)</a></li>
 	              <li><a href="#method-removePathSegment"><span class="im">removePathSegment</span>(<span class="ia">pathSegment</span>)</a></li>
 	              <li><a href="#method-resetCamera"><span class="im">resetCamera</span>()</a></li>
-	              <li><a href="#method-setBackgroundColor"><span class="im">setBackgroundColor</span>(<span class="ia">color</span>)</a></li>
+	              <li><a href="#method-setBackgroundColor"><span class="im">setBackgroundColor</span>(<span class="ia">color</span><span class="ia">alpha</span>)</a></li>
 	              <li><a href="#method-setMap"><span class="im">setMap</span>(<span class="ia">map</span>)</a></li>
 	              <li><a href="#method-setPolygonColor"><span class="im">setPolygonColor</span>(<span class="ia">polygon</span><span class="ia">color</span><span class="ia">textColor</span>)</a></li>
 	              <li><a href="#method-tryRendering"><span class="im">tryRendering</span>()</a></li>
@@ -218,6 +222,15 @@
                                 </div>
                                 
                                 							</li>
+                                							<li class="param">
+                                									<code class="param-name optional">[firstMap]</code>
+                                									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+                                									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                
+                                								<div class="param-description"><p>If you don't want to load the default map first, set the map you want to load first here. Useful for deep linking to a certain floor/locaiton. Since you won't have the Map object/ID until you get the Mappedin Venue data, there is a callback you can set on Mappedin.initalize to fill this in.</p>
+                                </div>
+                                
+                                							</li>
                                 						</ul>
                                 				</li>
                                 			</ul>
@@ -273,6 +286,54 @@
                                     
                                     
                                     					<div class="param-description"><p>The Polygon/Polygon ID to make interactive.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-addMap" class="method item inherited">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>addMap</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>map</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>Inherited from
+                                    				<a href="../classes/MapView.html#method_addMap">MapView</a>:
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>adds a map</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">map</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>map to add</p>
                                     </div>
                                     
                                     				</li>
@@ -704,6 +765,137 @@
                                     
                                     			</div>
                                     		</div>
+                                    
+                                    </div>
+                                    <div id="method-enableImageFlippingForAllLocations" class="method item inherited">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>enableImageFlippingForAllLocations</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>options</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>Inherited from
+                                    				<a href="../classes/MapView.html#method_enableImageFlippingForAllLocations">MapView</a>:
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Let any image attached to a polygon attached to a location flip 180 degrees with the camera so it's always upright.</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">options</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name optional">[excludeTypes=[]]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>A list of Location types to skip, if for some reason there are locations that have logos that shouldn't flip</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[locations]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="crosslink external" target="_blank">Location[][]</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>An array of Location objects, or location IDs. If excludeTypes is not sufficient you can explicitly set the locations you are marking to flip. You can also call enableImageFlippingForPolygon manually for every polygon you care about instead.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
+                                    <div id="method-enableImageFlippingForPolygon" class="method item inherited">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>enableImageFlippingForPolygon</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>options</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>Inherited from
+                                    				<a href="../classes/MapView.html#method_enableImageFlippingForPolygon">MapView</a>:
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>Mark a specific polygon so, if it has an image, it rotates with the camera</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">options</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    
+                                    
+                                    
+                                    						<ul class="params-list">
+                                    							<li class="param">
+                                    									<code class="param-name">polygonId</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    
+                                    								<div class="param-description"><p>The ID of the polygon who's image (if any) should rotate</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    							<li class="param">
+                                    									<code class="param-name optional">[rotation]</code>
+                                    									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    									<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    								<div class="param-description"><p>The how much the image has been rotated so that it's "up". Determined from the Polygon object itself typically, but can be set manually if needed.</p>
+                                    </div>
+                                    
+                                    							</li>
+                                    						</ul>
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
                                     
                                     </div>
                                     <div id="method-focusOn" class="method item inherited">
@@ -1850,6 +2042,54 @@
                                     
                                     
                                     </div>
+                                    <div id="method-removeMap" class="method item inherited">
+                                    	<div class="method-signature">
+                                    	<span class="name"><code>removeMap</code></span>
+                                    
+                                    		<div class="args">
+                                    			<span class="paren">(</span><ul class="args-list inline commas">
+                                    				<li class="arg">
+                                    						<code>map</code>
+                                    				</li>
+                                    			</ul><span class="paren">)</span>
+                                    		</div>
+                                    	</div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    	<div class="meta">
+                                    				<p>Inherited from
+                                    				<a href="../classes/MapView.html#method_removeMap">MapView</a>:
+                                    		</p>
+                                    
+                                    
+                                    
+                                    	</div>
+                                    
+                                    	<div class="description"><p>removes a map</p>
+                                    </div>
+                                    
+                                    		<div class="params">
+                                    			<h4>Parameters:</h4>
+                                    
+                                    			<ul class="params-list">
+                                    				<li class="param">
+                                    						<code class="param-name">map</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+                                    
+                                    
+                                    					<div class="param-description"><p>map to remove</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    			</ul>
+                                    		</div>
+                                    
+                                    
+                                    </div>
                                     <div id="method-removeMarker" class="method item inherited">
                                     	<div class="method-signature">
                                     	<span class="name"><code>removeMarker</code></span>
@@ -1982,6 +2222,9 @@
                                     				<li class="arg">
                                     						<code>color</code>
                                     				</li>
+                                    				<li class="arg">
+                                    						<code class="optional">alpha=1</code>
+                                    				</li>
                                     			</ul><span class="paren">)</span>
                                     		</div>
                                     	</div>
@@ -2013,6 +2256,16 @@
                                     
                                     
                                     					<div class="param-description"><p>The color to use. Not an HTML color name.</p>
+                                    </div>
+                                    
+                                    				</li>
+                                    				<li class="param">
+                                    						<code class="param-name optional">[alpha=1]</code>
+                                    						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    						<span class="flag optional" title="This parameter is optional.">optional</span>
+                                    
+                                    
+                                    					<div class="param-description"><p>Opacity between 0 and 1.</p>
                                     </div>
                                     
                                     				</li>
