@@ -1,14 +1,14 @@
 # Mappedin Web SDK
 
-Welcome to the Mappedin Web SDK Beta. The SDK is pretty stable (and is being used in production environments), but it's possible there will be breaking changes before official launch based on partner feedback, and there will definitely be new features, bug fixes and improvements added. Please report any issues you find directly to your Mappedin technical contact.
+Welcome to the Mappedin Web SDK. Please report any issues you find directly to your Mappedin technical contact.
 
-A comprehensive tutorial will be available soon, but you can see a working demo [here](examples/Demo), and read the [API docs](http://mappedin.github.io/platform-api/).
+Check out the [demo](examples/Demo), and the full [API docs](http://mappedin.github.io/platform-api/).
 
 ### Current Version
-The current version of the Mappedin Web SDK is v1.14.0, and can be included in your application via script tag, like so:
+The current version of the Mappedin Web SDK is v1.14.2, and can be included in your application via script tag, like so:
 
 ```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.14.0/mappedin.js"></script>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.14.2/mappedin.js"></script>
 ```
 
 ## Getting Started
@@ -22,11 +22,7 @@ The Mappedin Web SDK provides a simple way to use all of the data stored in the 
 1. **Analytics**: Mappedin.Analytics provides a few simple analytics calls that will improve the Search experience and provide Venue owners with data and key insights. You should call locationSelected when a user selects a location.
 
 
-To get started, you need to add the latest version of mappedin.js to your project:
-
-```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.14.0/mappedin.js"></script>
-```
+To get started, you need to add the latest version of mappedin.js to your project, which you can find above.
 
 Then, when you are ready to show the map, call `Mappedin.initialize(options, container)`.
 
