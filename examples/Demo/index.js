@@ -1,9 +1,13 @@
 var mapView
 var venue
 var search
+var analytics
 
 // For the demo animation
 var polygonedLocations = []
+
+// Track which polygon belongs to which location
+var locationsByPolygon = {}
 
 var mapList = document.getElementById("mapList")
 var div = document.getElementById( 'mapView' );
@@ -16,7 +20,7 @@ var venueOptions = {
 	perspective: "Website",
 	things: {
 		venue: ['slug', 'name'],
-		locations: ['name', 'type', 'description', 'icon', 'logo'],
+		locations: ['name', 'type', 'description', 'icon', 'logo', 'sortOrder'],
 		categories: ['name'],
 		maps: ['name', 'elevation', 'shortName']
 	},
@@ -54,6 +58,11 @@ function onPolygonClicked (polygonId) {
 	mapView.setPolygonColor(polygonId, mapView.colors.select)
 	mapView.focusOnPolygon(polygonId, true)
 	console.log(polygonId + " clicked")
+	var location = locationsByPolygon[polygonId]
+	if (location != null) {
+		console.log(location.name + " was selected.")
+		analytics.locationSelected(location)
+	}
 	return false
 }
 
@@ -116,6 +125,7 @@ function init() {
 		mapView = data.mapview
 		venue = data.venue
 		search = data.search
+		analytics = data.analytics
 
 	},function (error) {
 		window.alert("Mappedin " + error)
@@ -138,6 +148,13 @@ function onDataLoaded() {
 		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
 			var polygon = locationPolygons[k];
 			mapView.addInteractivePolygon(polygon.id)
+			
+			// A polygon may be attached to more than one location. If that is the case for your venue,
+			// you will need some way of determinng which is the "primary" location when it's clicked on.
+			var oldLocation = locationsByPolygon[polygon.id]
+			if (oldLocation == null || oldLocation.sortOrder > location.sortOrder) {
+				locationsByPolygon[polygon.id] = location
+			}
 		}
 	}
 	var maps = venue.maps;
