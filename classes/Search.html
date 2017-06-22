@@ -191,6 +191,8 @@
                                             total: The total number of results.
                                             hits: The array of SearchItems in the current page.
                                     
+                                            A SearchItem is an object that contains an id property that could match the id of a Location or Event on your Venue object. This is NOT GUARANTEED, however, as the data could have changed since the getVenue call was performed.
+                                    
                                             nextPage() -&gt; A promise that will resolve with the next page of SearchResults</code></pre>
                                     
                                     			</div>
@@ -269,11 +271,12 @@
                                 <h2 class="off-left" id="list_of_properties">Properties</h2>
                         
                                 <div class="item-list">
-                                    <div id="prop-ASSET_TYPES" class="property item">
+                                    <div id="prop-ASSET_TYPES" class="property item private">
                                         <h3 class="name"><code>ASSET_TYPES</code></h3>
                                         <span class="type">LOCATION, EVENT</span>
                                     
                                     
+                                            <span class="flag private">private</span>
                                     
                                     
                                     

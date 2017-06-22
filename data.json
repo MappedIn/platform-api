@@ -237,6 +237,12 @@
                             "description": "A callback executed when the first map is fully loaded. This means onDataLoaded has already been fired (if specified) and then all the textures and other resources have finished popping in.",
                             "type": "Function",
                             "optional": true
+                        },
+                        {
+                            "name": "firstMap",
+                            "description": "If you don't want to load the default map first, set the map you want to load first here. Useful for deep linking to a certain floor/locaiton. Since you won't have the Map object/ID until you get the Mappedin Venue data, there is a callback you can set on Mappedin.initalize to fill this in.",
+                            "type": "Map",
+                            "optional": true
                         }
                     ]
                 }
@@ -529,6 +535,8 @@
             "file": "source/Mappedin.Analytics.js",
             "line": 55,
             "description": "Whenever a location is selected, you should fire this event. What \"selected\" means can vary by venue,\nbut a good rule of thumb is that you fire the event whenever you would show the location's details.\nTypically this is when the user taps it's polygon on the map, picks it from search results or a category list.\nor deep links directly into the map.",
+            "itemtype": "method",
+            "name": "locationSelected",
             "params": [
                 {
                     "name": "location",
@@ -1073,7 +1081,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 17,
+            "line": 18,
             "description": "This property identifies which mode you are in, incase you have special functionailty in your app when in 2D vs 3D mode.\nIt will be one of MapView, MapView3D, or MapView2D",
             "itemtype": "property",
             "name": "type",
@@ -1083,7 +1091,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 26,
+            "line": 27,
             "description": "Manual camera controls for Mapview. Generally you should be using the functions on MapView like focusOn*,\nbut if you have some cool animations in mind, you can do it with the CameraControls.\nSome of the functions don't do anything in 2D.",
             "itemtype": "property",
             "name": "controls",
@@ -1093,7 +1101,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 36,
+            "line": 37,
             "description": "These are the default colours used by the Mapview to control things like path and selection. You can override these here\nto quickly style your app, but most of them can also be set (especially for special cases) in their respective functions.\nThe only value that MUST be set here is `hover`.",
             "itemtype": "property",
             "name": "colors",
@@ -1129,7 +1137,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 58,
+            "line": 59,
             "description": "The Venue data this MapView is using.",
             "itemtype": "property",
             "name": "venue",
@@ -1139,7 +1147,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 66,
+            "line": 67,
             "description": "The div MapView is using.",
             "itemtype": "property",
             "name": "container",
@@ -1149,7 +1157,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 74,
+            "line": 75,
             "description": "**READ ONLY** The ID of the Map currently being displayed.",
             "itemtype": "property",
             "name": "currentMap",
@@ -1159,7 +1167,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 82,
+            "line": 83,
             "description": "Change this factor to influence how much the camera zooms in on a focusOn call",
             "itemtype": "property",
             "name": "focusZoomFactor",
@@ -1169,7 +1177,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 90,
+            "line": 91,
             "description": "Change the currently displayed map to a new one.",
             "itemtype": "method",
             "name": "setMap",
@@ -1184,7 +1192,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 99,
+            "line": 100,
             "description": "adds a map",
             "itemtype": "method",
             "name": "addMap",
@@ -1199,7 +1207,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 106,
+            "line": 107,
             "description": "removes a map",
             "itemtype": "method",
             "name": "removeMap",
@@ -1214,7 +1222,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 118,
+            "line": 119,
             "description": "Moves the camera to focus in on a specific polygon",
             "itemtype": "method",
             "name": "focusOnPolygon",
@@ -1250,7 +1258,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 130,
+            "line": 131,
             "description": "Moves the camera to focus on an entire path and optionally it's starting and ending polygon.",
             "itemtype": "method",
             "name": "focusOnPath",
@@ -1291,7 +1299,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 143,
+            "line": 144,
             "description": "A flexible function that will let you focus on collections of nodes and/or polygons.\nThis will move the camera to the center of all items passed in, and by default\nzoom the camera in or out to fit everything in view, scaled by mapView.focusZoomFactor",
             "itemtype": "method",
             "name": "focusOn",
@@ -1357,7 +1365,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 162,
+            "line": 163,
             "description": "Returns the value you should call setZoom on to fit the polygon exactly.",
             "itemtype": "method",
             "name": "getZoomLevelForPolygon",
@@ -1376,7 +1384,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 172,
+            "line": 173,
             "description": "Returns the value you should call setZoom on to fit the current map exactly.",
             "itemtype": "method",
             "name": "getZoomLevelForCurrentMap",
@@ -1388,7 +1396,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 181,
+            "line": 182,
             "description": "Resets the pan, tilt and rotation of the camera and sets the zoom to fit the current map.",
             "itemtype": "method",
             "name": "resetCamera",
@@ -1396,7 +1404,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 189,
+            "line": 190,
             "description": "Returns the angle that points to north, in radians, from the default orientation.",
             "itemtype": "method",
             "name": "getNorth",
@@ -1408,7 +1416,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 199,
+            "line": 200,
             "description": "Takes an element on the DOM and rotates it such that the top is pointing north. It will rotate with the camera, staying locked\non north. If you would like to align it do a different direction, or a different side of the element, pass in an offset. This\nis how you would do a compass rose.\n\nThis will modify your element's transform.",
             "itemtype": "method",
             "name": "lockNorth",
@@ -1428,7 +1436,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 213,
+            "line": 214,
             "description": "Stops the MapView from trying to rotate your element with the camera. Do this if you remove the element, or want to stop it from rotating.",
             "itemtype": "method",
             "name": "unlockNorth",
@@ -1443,7 +1451,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 222,
+            "line": 223,
             "description": "Given a polygon/polygon id, set it to a specific color, and set any text label associated with that polygon to another color.",
             "itemtype": "method",
             "name": "setPolygonColor",
@@ -1472,7 +1480,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 233,
+            "line": 234,
             "description": "Resets a polygon back to it's original color\nIf the user is hovering over a polygon, it will still have the hover effect.",
             "itemtype": "method",
             "name": "clearPolygonColor",
@@ -1487,7 +1495,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 243,
+            "line": 244,
             "description": "Resets ALL polygons you have changed with setPolygonColor back to their original color.\nThe hover effect will still be present if the user is currently hovering over a polygon.",
             "itemtype": "method",
             "name": "clearAllPolygonColors",
@@ -1495,7 +1503,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 252,
+            "line": 253,
             "description": "Makes a polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.",
             "itemtype": "method",
             "name": "addInteractivePolygon",
@@ -1510,7 +1518,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 261,
+            "line": 262,
             "description": "Makes a polygon no longer hoverable/clickable",
             "itemtype": "method",
             "name": "addInteractivePolygon",
@@ -1525,7 +1533,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 270,
+            "line": 271,
             "description": "This is called when an interactive polygon is clicked on.\nYou will almost certainly want to replace this with your own function in your client app.\nReturn \"false\" if you have consumed the event and it shouldn't bubble down to other polygons beneath this one.",
             "itemtype": "method",
             "name": "onPolygonClicked",
@@ -1544,7 +1552,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 282,
+            "line": 283,
             "description": "This is fired when the user taps/clicks on the mapview without hitting an interactive polygon.\nYou will almost certainly want to replace this with your own function in your client app.\nYou would probably use this to clear any polygon highlighting, in certain situations.",
             "itemtype": "method",
             "name": "onNothingClicked",
@@ -1552,7 +1560,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 292,
+            "line": 293,
             "description": "This creates a div with whatever HTML you provide, anchors it to `position` in 3D space, and optionally applies a css class you provide.\n`position` should be something you got from getPositionPolygon or getPositionNode\nThe marker is added for you, on to the current map (or the one you specify)",
             "itemtype": "method",
             "name": "createMarker",
@@ -1588,7 +1596,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 307,
+            "line": 308,
             "description": "Adds an already created Mappedin.Marker to the scene. The Marker constructor is more powerful than the createMarker convenience function.",
             "itemtype": "method",
             "name": "addMarker",
@@ -1603,7 +1611,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 316,
+            "line": 317,
             "description": "Removes a maker you have added previously.",
             "itemtype": "method",
             "name": "removeMarker",
@@ -1618,7 +1626,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 325,
+            "line": 326,
             "description": "Removes all markers (from all maps, not just the current one)",
             "itemtype": "method",
             "name": "removeAllMarkers",
@@ -1626,7 +1634,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 333,
+            "line": 334,
             "description": "Takes an x/y pair in Mappedin coordinate space and gives you an object suitable to use as a Marker's position.\n**Be careful about using this:** The coordinate system could change arbitrarily and without notice. You are better off\nusing a specific node or polygon as an anchor. If you need to use this for some reason, talk to your Mappedin representative.",
             "itemtype": "method",
             "name": "convertTo3DMapPosition",
@@ -1647,7 +1655,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 346,
+            "line": 347,
             "description": "Gives you the top center of a polygon in 3d scene space. Suitable for use as a Marker's position.",
             "itemtype": "method",
             "name": "getPositionPolygon",
@@ -1666,7 +1674,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 356,
+            "line": 357,
             "description": "Gives you the position of a Mappedin node in the 3D scene. Suitable for use as a Marker's position.",
             "itemtype": "method",
             "name": "getPositionNode",
@@ -1685,7 +1693,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 366,
+            "line": 367,
             "description": "Labels a specific polygon (or area of 3D space) with a text label that lives in 3D space. That means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.\nThe text will flip 180 degress when the camera rotates so it's never totally upside-down.\n\nIt also sets the hover label (in 2D and 3D).\nMany of these options do nothing in 2D, as TextLabels are not supported, but it won't break anything.\n\nYou must provide text, and either a Polygon, or a canvasBounds and height",
             "itemtype": "method",
             "name": "labelPolygon",
@@ -1801,7 +1809,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 399,
+            "line": 400,
             "description": "Labels all locations, in order of distance from the center of the map. See labelPolygon for available label options.\nThe options are all optional, as the text and polygon properties will be set for each location.",
             "itemtype": "method",
             "name": "labelAllLocations",
@@ -1836,7 +1844,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 412,
+            "line": 413,
             "description": "Removes all labels from all maps",
             "itemtype": "method",
             "name": "removeAllLabels",
@@ -1844,7 +1852,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 420,
+            "line": 421,
             "description": "Let any image attached to a polygon attached to a location flip 180 degrees with the camera so it's always upright.",
             "itemtype": "method",
             "name": "enableImageFlippingForAllLocations",
@@ -1873,7 +1881,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 430,
+            "line": 431,
             "description": "Mark a specific polygon so, if it has an image, it rotates with the camera",
             "itemtype": "method",
             "name": "enableImageFlippingForPolygon",
@@ -1900,7 +1908,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 440,
+            "line": 441,
             "description": "Create a font for use in 3D by passing in a JSON object generated from https://gero3.github.io/facetype.js/\nIgnored in 2D, retuning null",
             "itemtype": "method",
             "name": "createFont",
@@ -1919,7 +1927,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 451,
+            "line": 452,
             "description": "Calculates the length of the connected path in list of Mappedin Nodes. Breaks in the path (to go to other floors) count as 0 distance. The Z value is also ignored.",
             "itemtype": "method",
             "name": "getPathLength",
@@ -1938,7 +1946,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 473,
+            "line": 474,
             "description": "Draws an entire path. It takes a list of nodes and will break them into separate path segments on every man change, putting the resultant segment on the right map.\n\nIf you have a special use case (like off graph nodes, or venues with same map vortexes) use the drawPathSegment function.\n\nReturns an array of path segments if you want to customize the animation triggers. The path segements are added to the scene, chained together, and start animating automatically.",
             "itemtype": "method",
             "name": "drawPath",
@@ -1963,7 +1971,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 488,
+            "line": 489,
             "description": "Takes a list of {x, y} pairs in Mappedin coordinate space and draws a connected path on the specified map. Use this function for special cases not handled by the drawPath convenience function.\nReturns a path segment. You will need to call it's tween.start() function to begin animation and make the path segment visible.\nYou can customize the Tween.js tween if you like, but make sure tryRendering is always called in onUpdate or the path may stop.",
             "itemtype": "method",
             "name": "drawPath",
@@ -2023,7 +2031,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 506,
+            "line": 507,
             "description": "Removes a specific path segement from the map it's on.",
             "itemtype": "method",
             "name": "removePathSegment",
@@ -2038,7 +2046,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 515,
+            "line": 516,
             "description": "Removes all path segments from all maps",
             "itemtype": "method",
             "name": "removeAllPaths",
@@ -2046,7 +2054,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 523,
+            "line": 524,
             "description": "Sets the clear color of the map something else, it you want it to fit it more with your website. Otherwise the div will be white where there is no map visible.",
             "itemtype": "method",
             "name": "setBackgroundColor",
@@ -2068,7 +2076,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 533,
+            "line": 534,
             "description": "The scene only renders when something has changed. This should be something a 3rd party developer doesn't need to worry about,\nbut if you are doing something weird, or have your own special tween for something, you will want to call this function.\nYou can call it as often as you want, it just sets a flag that we need to render again, and renders a few frames if we weren't already doing that.\nIgnored in 2D.",
             "itemtype": "method",
             "name": "tryRendering",
@@ -2076,7 +2084,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 543,
+            "line": 544,
             "description": "Resets the MapView to the default state.",
             "class": "MapView"
         },
@@ -2106,7 +2114,7 @@
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 2120,
+            "line": 2133,
             "description": "True if the canvas should be measured every frame. This is ideal to handle the user resizing the browser window on occasion, but\nmay not be optimal if you are trying to resize the MapView dynamically all the time.",
             "itemtype": "property",
             "name": "shouldMeasureCanvas",
@@ -2117,6 +2125,8 @@
             "file": "source/Mappedin.Search.js",
             "line": 14,
             "description": "The types of assets available for this venue.",
+            "access": "private",
+            "tagname": "",
             "itemtype": "property",
             "name": "ASSET_TYPES",
             "type": "LOCATION, EVENT",
@@ -2124,7 +2134,7 @@
         },
         {
             "file": "source/Mappedin.Search.js",
-            "line": 103,
+            "line": 104,
             "description": "Makes a call to the Mappedin Smart Search API with the provided query, retuning a Promise that will fulfill with a\nSearchResults object. This will contain a list of `hits`, which can currently be SearchItems (either SearchLocations or SearchEvents).\n\nThese are currently different from the objects you get directly from the Mappedin API,\ncontaining a subset of their data, but you can match on their IDs.\n\nThe data is broken down into pages. You can specify the size (defaults to 10).",
             "itemtype": "method",
             "name": "search",
@@ -2156,14 +2166,14 @@
                 }
             ],
             "return": {
-                "description": "The promise will resolve with either a SearchResults object if successful, or an error with a `message` and `status` if it fails\n\n\t\tSearchResults has the following propertyies and methods:\n\t\t\tquery: The search query that triggered this search\n\t\t\ttotal: The total number of results.\n\t\t\thits: The array of SearchItems in the current page.\n\n\t\t\tnextPage() -> A promise that will resolve with the next page of SearchResults",
+                "description": "The promise will resolve with either a SearchResults object if successful, or an error with a `message` and `status` if it fails\n\n\t\tSearchResults has the following propertyies and methods:\n\t\t\tquery: The search query that triggered this search\n\t\t\ttotal: The total number of results.\n\t\t\thits: The array of SearchItems in the current page.\n\n\t\t\tA SearchItem is an object that contains an id property that could match the id of a Location or Event on your Venue object. This is NOT GUARANTEED, however, as the data could have changed since the getVenue call was performed.\n\n\t\t\tnextPage() -> A promise that will resolve with the next page of SearchResults",
                 "type": "Promise"
             },
             "class": "Search"
         },
         {
             "file": "source/Mappedin.Search.js",
-            "line": 155,
+            "line": 158,
             "description": "Makes a call to the Mappedin Smart Search Suggestions API with the provided query, retuning a Promise that will fulfill with a\nSuggestions object. This will contain a list of `hits`, which are words that match full search results. This should be used\nto aid in autocoplete for a search bar. It's ordered for you by most relevant.",
             "itemtype": "method",
             "name": "suggest",
@@ -2768,11 +2778,11 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Search.js:103"
+            "line": " source/Mappedin.Search.js:104"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Search.js:155"
+            "line": " source/Mappedin.Search.js:158"
         },
         {
             "message": "unknown tag: name",
@@ -2955,12 +2965,8 @@
             "line": " source/externals/promise.js:197"
         },
         {
-            "message": "Missing item type\nWhenever a location is selected, you should fire this event. What \"selected\" means can vary by venue,\nbut a good rule of thumb is that you fire the event whenever you would show the location's details.\nTypically this is when the user taps it's polygon on the map, picks it from search results or a category list.\nor deep links directly into the map.",
-            "line": " source/Mappedin.Analytics.js:55"
-        },
-        {
             "message": "Missing item type\nResets the MapView to the default state.",
-            "line": " source/Mappedin.MapView.js:543"
+            "line": " source/Mappedin.MapView.js:544"
         },
         {
             "message": "Missing item type\nSimple utility function to calculate the maximum scroll bounds for our map so Leaflet\ndoes not scroll outside the map bounds",
