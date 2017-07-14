@@ -56,8 +56,6 @@ This will be the most complicated set of options. It is here you specify your AP
 
 You will also specify which fields you are interested in downloading for each Mappedin object. The Mappedin CMS is very flexible, and objects like Locations can have a lot of information stored on them, some of which is custom for your Venue, and not all of which needs to be downloaded by the user when they visit your web page. The Mappedin Web SDK will ensure it downloads the information it needs for itself (like the 3D or 2D files for your Map), and it's recommended to you only add the data you will actually use yourself to keep things snappy.
 
-You can find out about what types of properties will be available from your Mappedin representative, or inspect the data yourself through our [JSON API](https://github.com/MappedIn/platform-api/blob/master/v1.md) (this should only be used for testing purposes, as the API is not guaranteed to remain stable).
-
 A typical venueOptions might look like this:
 ```
 var venueOptions = {
