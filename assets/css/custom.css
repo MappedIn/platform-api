@@ -3,13 +3,7 @@
  * Authors: kevinlacotaco
  *          tonybaroneee
  */
-body {
-	    font: 13px/1.4 'Roboto';
-}
 
-code, pre {
-	font-family:'Roboto Mono'!important;
-}
 /* -- Navigation Bar -------------------------------------------------------- */
 
 .navbar .navbar-inner .brand {
@@ -30,72 +24,10 @@ code, pre {
 }
 
 #options-form {
-    padding-right: 20px;
-    line-height: 37px;
-    margin-bottom: 0;
-}
-
-p code {
-    font-size: 12px;
+    margin-top: 20px;
 }
 
 /* -- Sidebar --------------------------------------------------------------- */
-#sidebar {
-	border:1px solid #444;
-	border-top-width:2px;
-	border-radius:3px;
-	padding:0px;
-	background:#333;
-	color:#ddd;
-	box-shadow:2px 2px 3px rgba(0,0,0,0.2);
-}
-
-#sidebar h2 {
-	color:#86b7ef!important;
-	text-transform:uppercase;
-	font-weight: bold!important;
-	font-size:12px!important;
-	text-align: center;
-}
-
-#sidebar a:hover,
-#sidebar a:active {
-	color:#86b7ef!important;
-	text-decoration: none;
-}
-
-#sidebar > ul {
-	list-style-type: none;
-	margin:0;
-	padding:0;
-}
-
-#sidebar > ul > li {
-	font-size:12px;
-	border-top:1px solid #444;
-	padding:10px 0 0 0;
-	text-indent: 7px;
-	text-transform: uppercase;
-}
-
-#sidebar > ul ul {
-	list-style-type: none;
-	margin:10px 0 0 0;
-	padding:0;
-}
-
-#sidebar > ul ul li {
-	margin:0;
-	padding:7px;
-	font-size:13px;
-	border-top:1px solid #444;
-	text-indent: 0px;
-	text-transform: none;
-}
-
-#sidebar > ul ul li:hover {
-	background:#444;
-}
 
 #sidebar .tab-content {
     border: 1px solid #DFDFDF;
@@ -128,10 +60,6 @@ p code {
 
 /* -- Content --------------------------------------------------------------- */
 
-#docs-main {
-    margin-top: 65px;
-}
-
 .content {
     padding-bottom: 50px;
 }
@@ -142,29 +70,4 @@ p code {
 
 .content .well:not(.moduledesc) p {
     margin: 9px 0;
-}
-
-
-.dk-options label{
-    margin-right: 8px;
-}
-.ul--nested {
-    margin-bottom: 10px;
-}
-
-.arg code {
-    font-size: 13px !important;
-}
-
-.description {
-    margin-bottom: 16px;
-}
-
-.description p{
-    font-size: 15px;
-    line-height: 20px;
-}
-
-pre code {
-    white-space: pre-line !important;
 }

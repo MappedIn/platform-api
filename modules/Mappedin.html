@@ -3,146 +3,243 @@
 <head>
     <meta charset="utf-8">
     <title>Mappedin - The Mappedin Web SDK</title>
-    <link rel="stylesheet" href="">
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
     <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/lucid.css">
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
 </head>
-<body class="yui3-skin-sam">
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <h1 class="brand" style="padding: 10px 16px 10px; height: 20px; line-height: 20px; margin-left: 0;">
-            <a href="http://www.mappedin.com">The Mappedin Web SDK</a>
-        </h1>
-	<div class="nav">
-            <li class="divider-vertical"></li>
-            <li>
-                <p class="navbar-text">
-                    API Docs for Version: <b>1.14.0</b>
-                </p>
-            </li>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
         </div>
-        <form id="options-form" class="form-inline pull-right dk-options">
-            <label for="api-show-protected" class="checkbox">
-                <input type="checkbox" id="api-show-protected">
-                Protected
-            </label>
-        
-            <label for="api-show-private" class="checkbox">
-                <input type="checkbox" id="api-show-private">
-                Private
-            </label>
-            <label for="api-show-deprecated" class="checkbox">
-                <input type="checkbox" id="api-show-deprecated">
-                Deprecated
-            </label>
-        </form>
-        
-    </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.21.1
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> Mappedin Module
+    </h1>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="span3">
-	      <div id="sidebar">
-	        <h2>Table of Contents</h2>
-	        <ul>
-	    
-	    
-	    
-	      </ul>
-	    </div>
-        </div>
-        <div class="span9">
-            <div class="apidocs">
-                <div id="docs-main">
-                    <div class="content">
-                        <div class="page-header">
-                            <h1>Mappedin <small>Module</small></h1>
-                        </div>
-                        
-                        <div class="clearfix well well-small">
-                        
-                        
-                        
-                        </div>
-                        
-                        
-                        <div class="moduledesc well well-small">
-                            <p>The base Mappedin module, that has references to all the other Mappedin objects you need.</p>
-                        <p>Start with Mappedin.initalize, which will get the data for a Venue from the Mappedin API, and set up a MapView, Search, and Analytics object for you.</p>
-                        
-                        </div>
-                        
-                        
-                        <div class="yui3-g">
-                            <div class="yui3-u-1-2">
-                                    <p>This module provides the following classes:</p>
-                        
-                                    <ul class="module-classes">
-                                        <li class="module-class">
-                                            <a href="../classes/Analytics.html">
-                                                Analytics
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/CameraControls.html">
-                                                CameraControls
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/Easing.html">
-                                                Easing
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/Mappedin.html">
-                                                Mappedin
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/MapView.html">
-                                                MapView
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/MapView2D.html">
-                                                MapView2D
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/MapView3D.html">
-                                                MapView3D
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/Search.html">
-                                                Search
-                                            </a>
-                                        </li>
-                                        <li class="module-class">
-                                            <a href="../classes/Tween.html">
-                                                Tween
-                                            </a>
-                                        </li>
-                                    </ul>
-                            </div>
-                        
-                            <div class="yui3-u-1-2">
-                            </div>
+
+<div class="content-meta">
+
+
+
+</div>
+
+
+<div class="module-description page-section">
+    <p>The base Mappedin module, that has references to all the other Mappedin objects you need.</p>
+<p>Start with Mappedin.initalize, which will get the data for a Venue from the Mappedin API, and set up a MapView, Search, and Analytics object for you.</p>
+
+</div>
+
+
+    <div class="yui3-g footer">
+            <div class="yui3-u-1-2">
+                    <h3>Classes</h3>
+
+                    <ul class="module-classes">
+                        <li class="module-class">
+                            <a href="../classes/Analytics.html">
+                                Analytics
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/CameraControls.html">
+                                CameraControls
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/Easing.html">
+                                Easing
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/Mappedin.html">
+                                Mappedin
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/MapView.html">
+                                MapView
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/MapView2D.html">
+                                MapView2D
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/MapView3D.html">
+                                MapView3D
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/Search.html">
+                                Search
+                            </a>
+                        </li>
+                        <li class="module-class">
+                            <a href="../classes/Tween.html">
+                                Tween
+                            </a>
+                        </li>
+                    </ul>
+            </div>
+
+
+    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="../assets/vendor/jquery/jquery-1.8.2.min.js"></script>
-<script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/vendor/prettify/prettify-min.js"></script>
-<script src="../assets/js/yuidoc-bootstrap.js"></script>
-<script>prettyPrint();</script>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
 </body>
 </html>

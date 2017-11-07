@@ -272,6 +272,15 @@ th {
     text-align: right;
 }
 
+.navbar-header {
+    margin-top: 10px;
+}
+
+.navbar-header img {
+    max-height: 30px;
+    margin-right: 10px;
+    margin-top: -2px;
+}
 
 #classdocs .item {
     border-bottom: 1px solid #466899;
@@ -310,13 +319,13 @@ abbr {
     cursor: help;
 }
 
-.prettyprint li.L0, 
-.prettyprint li.L1, 
-.prettyprint li.L2, 
-.prettyprint li.L3, 
-.prettyprint li.L5, 
-.prettyprint li.L6, 
-.prettyprint li.L7, 
+.prettyprint li.L0,
+.prettyprint li.L1,
+.prettyprint li.L2,
+.prettyprint li.L3,
+.prettyprint li.L5,
+.prettyprint li.L6,
+.prettyprint li.L7,
 .prettyprint li.L8 {
     list-style: decimal;
 }
@@ -423,7 +432,7 @@ h2, h3, h4, h5, h6 {
 }
 
 /* Class/module metadata such as "Uses", "Extends", "Defined in", etc. */
-.apidocs .meta {
+/*.apidocs .meta {
     background: #f9f9f9;
     border-color: #efefef;
     color: #555;
@@ -431,7 +440,7 @@ h2, h3, h4, h5, h6 {
     padding: 3px 6px;
 }
 
-.apidocs .meta p { margin: 0; }
+.apidocs .meta p { margin: 0; }*/
 
 /* Deprecation warning. */
 .apidocs .box.deprecated,
