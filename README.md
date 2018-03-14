@@ -5,10 +5,10 @@ Welcome to the Mappedin Web SDK. Please report any issues you find directly to y
 Check out the [demo](examples/Demo), and the full [API docs](http://mappedin.github.io/platform-api/).
 
 ### Current Version
-The current version of the Mappedin Web SDK is v1.21.1, and can be included in your application via script tag, like so:
+The current version of the Mappedin Web SDK is v1.34.0, and can be included in your application via script tag, like so:
 
 ```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.21.1/mappedin.js"></script>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.34.0/mappedin.js"></script>
 ```
 
 ## Getting Started
