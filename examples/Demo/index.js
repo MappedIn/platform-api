@@ -10,13 +10,14 @@ var polygonedLocations = []
 var locationsByPolygon = {}
 
 var mapList = document.getElementById("mapList")
-var div = document.getElementById( 'mapView' );
+var div = document.getElementById( 'mapView' )
+var mapExpanded = false
 
 // options for Mappedin.getVenue
 // You will need to customize this with the data provided by Mappedin. Ask your representative if you don't have a key, secret, and slug.
 var venueOptions = {
-	clientId: "<Your API Key Here>",
-	clientSecret: "<Your API Secret Here>",
+	clientId: "ja1ush3ohm4na6fop8im5fi3naisheeV",
+	clientSecret: "phee3aishai2ahB7",
 	perspective: "Website",
 	things: {
 		venue: ['slug', 'name'],
@@ -24,7 +25,7 @@ var venueOptions = {
 		categories: ['name'],
 		maps: ['name', 'elevation', 'shortName']
 	},
-	venue: "<Your venue slug here>"
+	venue: "metropolis"
 };
 
 // Options for the MapView constructor
@@ -89,6 +90,41 @@ function getRandomInArray(array) {
 	return array[Math.floor(Math.random() * array.length)]
 }
 
+// Expands map to show multiple floors and draws path, then draws a new path in 9000 miliseconds
+function drawMultiFloorPath(directions, startPolygon, endPolygon) {
+	mapView.expandMaps([startPolygon.map, endPolygon.map], { focus: true, debug: false, rotation: 0, duration: 600 })
+		.then(() => {
+			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+			mapView.drawPath(directions.path, {
+				drawConnectionSegments: true,
+				connectionPathOptions: {
+					color: mapView.colors.path
+				}})
+			mapExpanded = true
+		})
+		.then(() => new Promise((resolve) => setTimeout(resolve, 9000)))
+		.then(() => {
+			drawRandomPath()
+		})
+}
+
+// Draws path on single floor and then draws a new path in 9000 miliseconds
+function drawSingleFloorPath(directions, startPolygon, endPolygon) {
+	setMap(startPolygon.map)
+
+	mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+	mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+
+	mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
+
+	mapView.drawPath(directions.path)
+	new Promise((resolve) => setTimeout(resolve, 9000))
+		.then(() => {
+			drawRandomPath()
+		})
+}
+
 // Draws a random path, highlighting the locations and focusing on the path and polygons
 function drawRandomPath() {
 	var startLocation = getRandomInArray(polygonedLocations)
@@ -106,15 +142,27 @@ function drawRandomPath() {
 		}
 
 		mapView.clearAllPolygonColors()
-		setMap(startPolygon.map)
-
-		mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
-		mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
-
-		mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
-
 		mapView.removeAllPaths()
-		mapView.drawPath(directions.path)
+
+		if (startPolygon.map != endPolygon.map) {
+			if (mapExpanded) {
+				mapView.contractMaps({ focus: true, duration: 50 })
+				.then(() => {
+					drawMultiFloorPath(directions, startPolygon, endPolygon)
+				})
+			} else {
+				drawMultiFloorPath(directions, startPolygon, endPolygon)
+			}
+		} else {
+			if (mapExpanded) {
+				mapView.contractMaps({ focus: true, duration: 50 })
+				.then(() => {
+					mapExpanded = false
+					drawSingleFloorPath(directions, startPolygon, endPolygon)
+			} else {
+				drawSingleFloorPath(directions, startPolygon, endPolygon)
+			}
+		}
 	})
 }
 
@@ -148,7 +196,7 @@ function onDataLoaded() {
 		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
 			var polygon = locationPolygons[k];
 			mapView.addInteractivePolygon(polygon.id)
-			
+
 			// A polygon may be attached to more than one location. If that is the case for your venue,
 			// you will need some way of determinng which is the "primary" location when it's clicked on.
 			var oldLocation = locationsByPolygon[polygon.id]
@@ -172,8 +220,7 @@ function onDataLoaded() {
 	}
 
 	// Shows off the pathing
-	// drawRandomPath()
-	// window.setInterval(drawRandomPath, 9000)
+	drawRandomPath()
 
 	mapView.labelAllLocations({
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
