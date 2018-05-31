@@ -94,8 +94,8 @@ function getRandomInArray(array) {
 // Returns list of maps used in directions, sorted by elevation
 function getMapsInJourney(directions) {
 	var uniqueMapHash = {}
-	directions.directions.filter(function(item) {
-	  return uniqueMapHash.hasOwnProperty(item.node.map) ? false : (uniqueMapHash[item.node.map] = true)
+	directions.directions.forEach((direction) => {
+		uniqueMapHash[direction.node.map] = true
 	})
 	var mapIds = new Array();
 	for (var key in uniqueMapHash) {
