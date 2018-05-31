@@ -17,8 +17,8 @@ var mapExpanded = false
 // options for Mappedin.getVenue
 // You will need to customize this with the data provided by Mappedin. Ask your representative if you don't have a key, secret, and slug.
 var venueOptions = {
-	clientId: "ja1ush3ohm4na6fop8im5fi3naisheeV",
-	clientSecret: "phee3aishai2ahB7",
+	clientId: "<Your API Key Here>",
+	clientSecret: "<Your API Secret Here>",
 	perspective: "Website",
 	things: {
 		venue: ['slug', 'name'],
@@ -26,7 +26,7 @@ var venueOptions = {
 		categories: ['name'],
 		maps: ['name', 'elevation', 'shortName']
 	},
-	venue: "metropolis"
+	venue: "<Your venue slug here>"
 };
 
 // Options for the MapView constructor
@@ -239,7 +239,7 @@ function onDataLoaded() {
 	mapsSortedByElevation = venue.maps.sort((a, b) => b.elevation - a.elevation);
 
 	// Shows off the pathing
-	drawRandomPath()
+	//drawRandomPath()
 
 	mapView.labelAllLocations({
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
