@@ -10,6 +10,7 @@ var polygonedLocations = []
 var locationsByPolygon = {}
 
 var mapList = document.getElementById("mapList")
+var mapsSortedByElevation = []
 var div = document.getElementById( 'mapView' )
 var mapExpanded = false
 
@@ -90,9 +91,25 @@ function getRandomInArray(array) {
 	return array[Math.floor(Math.random() * array.length)]
 }
 
+// Returns list of maps used in directions, sorted by elevation
+function getMapsInJourney(directions) {
+	var uniqueMapHash = {}
+	directions.directions.filter(function(item) {
+	  return uniqueMapHash.hasOwnProperty(item.node.map) ? false : (uniqueMapHash[item.node.map] = true)
+	})
+	var mapIds = new Array();
+	for (var key in uniqueMapHash) {
+	  mapIds.push(key);
+	}
+	var sortedMapIds = mapsSortedByElevation.filter(map => mapIds.indexOf(map.id) !== -1)
+	return sortedMapIds
+}
+
 // Expands map to show multiple floors and draws path, then draws a new path in 9000 miliseconds
 function drawMultiFloorPath(directions, startPolygon, endPolygon) {
-	mapView.expandMaps([startPolygon.map, endPolygon.map], { focus: true, debug: false, rotation: 0, duration: 600 })
+	var mapsInJourney = getMapsInJourney(directions)
+
+	mapView.expandMaps(mapsInJourney.map(map => map.id), { focus: true, debug: false, rotation: 0, duration: 600 })
 		.then(() => {
 			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
 			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
@@ -159,6 +176,7 @@ function drawRandomPath() {
 				.then(() => {
 					mapExpanded = false
 					drawSingleFloorPath(directions, startPolygon, endPolygon)
+				})
 			} else {
 				drawSingleFloorPath(directions, startPolygon, endPolygon)
 			}
@@ -218,6 +236,7 @@ function onDataLoaded() {
 		}
 		mapList.add(item)
 	}
+	mapsSortedByElevation = venue.maps.sort((a, b) => b.elevation - a.elevation);
 
 	// Shows off the pathing
 	drawRandomPath()
