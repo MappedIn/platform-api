@@ -124,6 +124,7 @@ function drawMultiFloorPath(directions, startPolygon, endPolygon) {
 		.then(() => {
 			drawRandomPath()
 		})
+		.catch(e => {console.log(e)})
 }
 
 // Draws path on single floor and then draws a new path in 9000 miliseconds
@@ -140,6 +141,7 @@ function drawSingleFloorPath(directions, startPolygon, endPolygon) {
 		.then(() => {
 			drawRandomPath()
 		})
+		.catch(e => {console.log(e)})
 }
 
 // Draws a random path, highlighting the locations and focusing on the path and polygons
