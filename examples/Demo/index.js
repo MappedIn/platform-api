@@ -10,7 +10,9 @@ var polygonedLocations = []
 var locationsByPolygon = {}
 
 var mapList = document.getElementById("mapList")
-var div = document.getElementById( 'mapView' );
+var mapsSortedByElevation = []
+var div = document.getElementById( 'mapView' )
+var mapExpanded = false
 
 // options for Mappedin.getVenue
 // You will need to customize this with the data provided by Mappedin. Ask your representative if you don't have a key, secret, and slug.
@@ -89,6 +91,59 @@ function getRandomInArray(array) {
 	return array[Math.floor(Math.random() * array.length)]
 }
 
+// Returns list of maps used in directions, sorted by elevation
+function getMapsInJourney(directions) {
+	var uniqueMapHash = {}
+	directions.directions.forEach((direction) => {
+		uniqueMapHash[direction.node.map] = true
+	})
+	var mapIds = new Array();
+	for (var key in uniqueMapHash) {
+	  mapIds.push(key);
+	}
+	var sortedMapIds = mapsSortedByElevation.filter(map => mapIds.indexOf(map.id) !== -1)
+	return sortedMapIds
+}
+
+// Expands map to show multiple floors and draws path, then draws a new path in 9000 miliseconds
+function drawMultiFloorPath(directions, startPolygon, endPolygon) {
+	var mapsInJourney = getMapsInJourney(directions)
+
+	mapView.expandMaps(mapsInJourney.map(map => map.id), { focus: true, debug: false, rotation: 0, duration: 600 })
+		.then(() => {
+			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+			mapView.drawPath(directions.path, {
+				drawConnectionSegments: true,
+				connectionPathOptions: {
+					color: mapView.colors.path
+				}})
+			mapExpanded = true
+		})
+		.then(() => new Promise((resolve) => setTimeout(resolve, 9000)))
+		.then(() => {
+			drawRandomPath()
+		})
+		.catch(e => {console.log(e)})
+}
+
+// Draws path on single floor and then draws a new path in 9000 miliseconds
+function drawSingleFloorPath(directions, startPolygon, endPolygon) {
+	setMap(startPolygon.map)
+
+	mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+	mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+
+	mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
+
+	mapView.drawPath(directions.path)
+	new Promise((resolve) => setTimeout(resolve, 9000))
+		.then(() => {
+			drawRandomPath()
+		})
+		.catch(e => {console.log(e)})
+}
+
 // Draws a random path, highlighting the locations and focusing on the path and polygons
 function drawRandomPath() {
 	var startLocation = getRandomInArray(polygonedLocations)
@@ -99,23 +154,42 @@ function drawRandomPath() {
 	var endPolygon = getRandomInArray(endLocation.polygons)
 	var endNode = getRandomInArray(endPolygon.entrances)
 
-	startNode.directionsTo(endNode, null, function(error, directions) {
-		if (error || directions.path.length == 0) {
-			drawRandomPath()
-			return
-		}
+	// Some polygons don't have entrance nodes, need to check before getting directions
+	if (startNode != null && endNode != null) {
+		startNode.directionsTo(endNode, null, function(error, directions) {
+			if (error || directions.path.length == 0) {
+				drawRandomPath()
+				return
+			}
 
-		mapView.clearAllPolygonColors()
-		setMap(startPolygon.map)
+			mapView.clearAllPolygonColors()
+			mapView.removeAllPaths()
 
-		mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
-		mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
-
-		mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
-
-		mapView.removeAllPaths()
-		mapView.drawPath(directions.path)
-	})
+			// If start and end are on different levels
+			if (startPolygon.map != endPolygon.map) {
+				if (mapExpanded) {
+					mapView.contractMaps({ focus: true, duration: 50 })
+					.then(() => {
+						drawMultiFloorPath(directions, startPolygon, endPolygon)
+					})
+				} else {
+					drawMultiFloorPath(directions, startPolygon, endPolygon)
+				}
+			} else {
+				if (mapExpanded) {
+					mapView.contractMaps({ focus: true, duration: 50 })
+					.then(() => {
+						mapExpanded = false
+						drawSingleFloorPath(directions, startPolygon, endPolygon)
+					})
+				} else {
+					drawSingleFloorPath(directions, startPolygon, endPolygon)
+				}
+			}
+		})
+	} else {
+		drawRandomPath()
+	}
 }
 
 // This is your main function. It talks to the mappedin API and sets everything up for you
@@ -148,7 +222,7 @@ function onDataLoaded() {
 		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
 			var polygon = locationPolygons[k];
 			mapView.addInteractivePolygon(polygon.id)
-			
+
 			// A polygon may be attached to more than one location. If that is the case for your venue,
 			// you will need some way of determinng which is the "primary" location when it's clicked on.
 			var oldLocation = locationsByPolygon[polygon.id]
@@ -170,10 +244,10 @@ function onDataLoaded() {
 		}
 		mapList.add(item)
 	}
+	mapsSortedByElevation = venue.maps.sort((a, b) => b.elevation - a.elevation);
 
 	// Shows off the pathing
-	// drawRandomPath()
-	// window.setInterval(drawRandomPath, 9000)
+	//drawRandomPath()
 
 	mapView.labelAllLocations({
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
