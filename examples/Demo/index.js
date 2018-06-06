@@ -208,24 +208,19 @@ function onDataLoaded() {
 	var locationsWithNoEntrancesMap = {};
 	var locationsMap = {};
 	var locations = venue.locations;
-	for (var j = 0, jLen = locations.length; j < jLen; j++) {
+	for (var j = 0, jLen = locations.length; j < jLen; ++j) {
 		var location = locations[j];
 
 		if (location.polygons.length > 0) {
 			locationsMap[location.id] = location;
 		}
 			var locationPolygons = location.polygons;
-
-
 			for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
 				var polygon = locationPolygons[k];
-				
-				
 				//Find the locations which have atleast one polygon with no entrances
 				if (polygon.entrances.length === 0){
 					locationsWithNoEntrancesMap[location.id] = location;
 				}
-				
 				mapView.addInteractivePolygon(polygon.id)
 				// A polygon may be attached to more than one location. If that is the case for your venue,
 				// you will need some way of determinng which is the "primary" location when it's clicked on.
@@ -234,7 +229,6 @@ function onDataLoaded() {
 					locationsByPolygon[polygon.id] = location
 				}
 			}
-		
 	}
 	//Comparison between locationMap and locationWithNoEntrancesMap to delete the locations which 
 	//contain atleast one polygon with no entrances
