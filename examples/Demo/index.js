@@ -145,7 +145,6 @@ function drawSingleFloorPath(directions, startPolygon, endPolygon) {
 
 // Draws a random path, highlighting the locations and focusing on the path and polygons
 function drawRandomPath() {
-	console.log(polygonedLocations);
 	var startLocation = getRandomInArray(polygonedLocations)
 	var startPolygon = getRandomInArray(startLocation.polygons)
 	var startNode = getRandomInArray(startPolygon.entrances);
@@ -153,8 +152,6 @@ function drawRandomPath() {
 	var endLocation = getRandomInArray(polygonedLocations)
 	var endPolygon = getRandomInArray(endLocation.polygons)
 	var endNode = getRandomInArray(endPolygon.entrances);
-
-
 
 	startNode.directionsTo(endNode, null, function(error, directions) {
 		if (error || directions.path.length == 0) {
