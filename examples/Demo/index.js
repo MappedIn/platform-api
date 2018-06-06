@@ -154,6 +154,7 @@ function drawRandomPath() {
 	var endPolygon = getRandomInArray(endLocation.polygons)
 	var endNode = getRandomInArray(endPolygon.entrances)
 
+	// Some polygons don't have entrance nodes, need to check before getting directions
 	if (startNode != null && endNode != null) {
 		startNode.directionsTo(endNode, null, function(error, directions) {
 			if (error || directions.path.length == 0) {
@@ -164,6 +165,7 @@ function drawRandomPath() {
 			mapView.clearAllPolygonColors()
 			mapView.removeAllPaths()
 
+			// If start and end are on different levels
 			if (startPolygon.map != endPolygon.map) {
 				if (mapExpanded) {
 					mapView.contractMaps({ focus: true, duration: 50 })
