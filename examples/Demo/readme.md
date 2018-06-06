@@ -7,11 +7,10 @@ Before you load it the first time, you will need to edit index.js and input your
 
 The demo shows you how to set up the MapView object with the data from your Venue. It also sets up some typical behaviour like adding text labels to all locations, and making their polygons clickable/hoverable.
 
-If you would like to see wayfinding in action, uncomment these lines in `onDataLoaded`:
+If you would like to see wayfinding in action, uncomment this line in `onDataLoaded`:
 ```
 	// Shows off the pathing
 	// drawRandomPath()
-	// window.setInterval(drawRandomPath, 9000)
 ```
 
 This will draw a path between two random locations every few seconds.
