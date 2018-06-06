@@ -154,36 +154,40 @@ function drawRandomPath() {
 	var endPolygon = getRandomInArray(endLocation.polygons)
 	var endNode = getRandomInArray(endPolygon.entrances)
 
-	startNode.directionsTo(endNode, null, function(error, directions) {
-		if (error || directions.path.length == 0) {
-			drawRandomPath()
-			return
-		}
+	if (startNode != null && endNode != null) {
+		startNode.directionsTo(endNode, null, function(error, directions) {
+			if (error || directions.path.length == 0) {
+				drawRandomPath()
+				return
+			}
 
-		mapView.clearAllPolygonColors()
-		mapView.removeAllPaths()
+			mapView.clearAllPolygonColors()
+			mapView.removeAllPaths()
 
-		if (startPolygon.map != endPolygon.map) {
-			if (mapExpanded) {
-				mapView.contractMaps({ focus: true, duration: 50 })
-				.then(() => {
+			if (startPolygon.map != endPolygon.map) {
+				if (mapExpanded) {
+					mapView.contractMaps({ focus: true, duration: 50 })
+					.then(() => {
+						drawMultiFloorPath(directions, startPolygon, endPolygon)
+					})
+				} else {
 					drawMultiFloorPath(directions, startPolygon, endPolygon)
-				})
+				}
 			} else {
-				drawMultiFloorPath(directions, startPolygon, endPolygon)
-			}
-		} else {
-			if (mapExpanded) {
-				mapView.contractMaps({ focus: true, duration: 50 })
-				.then(() => {
-					mapExpanded = false
+				if (mapExpanded) {
+					mapView.contractMaps({ focus: true, duration: 50 })
+					.then(() => {
+						mapExpanded = false
+						drawSingleFloorPath(directions, startPolygon, endPolygon)
+					})
+				} else {
 					drawSingleFloorPath(directions, startPolygon, endPolygon)
-				})
-			} else {
-				drawSingleFloorPath(directions, startPolygon, endPolygon)
+				}
 			}
-		}
-	})
+		})
+	} else {
+		drawRandomPath()
+	}
 }
 
 // This is your main function. It talks to the mappedin API and sets everything up for you
