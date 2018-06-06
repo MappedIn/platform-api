@@ -119,7 +119,7 @@ function drawMultiFloorPath(directions, startPolygon, endPolygon) {
 				}})
 			mapExpanded = true
 		})
-		.then(() => new Promise((resolve) => setTimeout(resolve, 100)))
+		.then(() => new Promise((resolve) => setTimeout(resolve, 9000)))
 		.then(() => {
 			drawRandomPath()
 		})
@@ -136,7 +136,7 @@ function drawSingleFloorPath(directions, startPolygon, endPolygon) {
 	mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
 
 	mapView.drawPath(directions.path)
-	new Promise((resolve) => setTimeout(resolve, 100))
+	new Promise((resolve) => setTimeout(resolve, 9000))
 		.then(() => {
 			drawRandomPath()
 		})
