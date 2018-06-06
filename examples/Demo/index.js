@@ -108,7 +108,6 @@ function getMapsInJourney(directions) {
 // Expands map to show multiple floors and draws path, then draws a new path in 9000 miliseconds
 function drawMultiFloorPath(directions, startPolygon, endPolygon) {
 	var mapsInJourney = getMapsInJourney(directions)
-
 	mapView.expandMaps(mapsInJourney.map(map => map.id), { focus: true, debug: false, rotation: 0, duration: 600 })
 		.then(() => {
 			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
@@ -120,7 +119,7 @@ function drawMultiFloorPath(directions, startPolygon, endPolygon) {
 				}})
 			mapExpanded = true
 		})
-		.then(() => new Promise((resolve) => setTimeout(resolve, 9000)))
+		.then(() => new Promise((resolve) => setTimeout(resolve, 100)))
 		.then(() => {
 			drawRandomPath()
 		})
@@ -137,7 +136,7 @@ function drawSingleFloorPath(directions, startPolygon, endPolygon) {
 	mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
 
 	mapView.drawPath(directions.path)
-	new Promise((resolve) => setTimeout(resolve, 9000))
+	new Promise((resolve) => setTimeout(resolve, 100))
 		.then(() => {
 			drawRandomPath()
 		})
@@ -146,13 +145,16 @@ function drawSingleFloorPath(directions, startPolygon, endPolygon) {
 
 // Draws a random path, highlighting the locations and focusing on the path and polygons
 function drawRandomPath() {
+	console.log(polygonedLocations);
 	var startLocation = getRandomInArray(polygonedLocations)
 	var startPolygon = getRandomInArray(startLocation.polygons)
-	var startNode = getRandomInArray(startPolygon.entrances)
+	var startNode = getRandomInArray(startPolygon.entrances);
 
 	var endLocation = getRandomInArray(polygonedLocations)
 	var endPolygon = getRandomInArray(endLocation.polygons)
-	var endNode = getRandomInArray(endPolygon.entrances)
+	var endNode = getRandomInArray(endPolygon.entrances);
+
+
 
 	startNode.directionsTo(endNode, null, function(error, directions) {
 		if (error || directions.path.length == 0) {
@@ -183,7 +185,7 @@ function drawRandomPath() {
 				drawSingleFloorPath(directions, startPolygon, endPolygon)
 			}
 		}
-	})
+	});
 }
 
 // This is your main function. It talks to the mappedin API and sets everything up for you
@@ -201,30 +203,48 @@ function init() {
 }
 
 function onDataLoaded() {
-
 	mapView.onPolygonClicked = onPolygonClicked
 	mapView.onNothingClicked = onNothingClicked
+	var locationsWithNoEntrancesMap = {};
+	var locationsMap = {};
 	var locations = venue.locations;
-	for (var j = 0, jLen = locations.length; j < jLen; ++j) {
+	for (var j = 0, jLen = locations.length; j < jLen; j++) {
 		var location = locations[j];
 
 		if (location.polygons.length > 0) {
-			polygonedLocations.push(location)
+			locationsMap[location.id] = location;
 		}
+			var locationPolygons = location.polygons;
 
-		var locationPolygons = location.polygons;
-		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
-			var polygon = locationPolygons[k];
-			mapView.addInteractivePolygon(polygon.id)
 
-			// A polygon may be attached to more than one location. If that is the case for your venue,
-			// you will need some way of determinng which is the "primary" location when it's clicked on.
-			var oldLocation = locationsByPolygon[polygon.id]
-			if (oldLocation == null || oldLocation.sortOrder > location.sortOrder) {
-				locationsByPolygon[polygon.id] = location
+			for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
+				var polygon = locationPolygons[k];
+				
+				
+				//Find the locations which have atleast one polygon with no entrances
+				if (polygon.entrances.length === 0){
+					locationsWithNoEntrancesMap[location.id] = location;
+				}
+				
+				mapView.addInteractivePolygon(polygon.id)
+				// A polygon may be attached to more than one location. If that is the case for your venue,
+				// you will need some way of determinng which is the "primary" location when it's clicked on.
+				var oldLocation = locationsByPolygon[polygon.id]
+				if (oldLocation == null || oldLocation.sortOrder > location.sortOrder) {
+					locationsByPolygon[polygon.id] = location
+				}
 			}
-		}
+		
 	}
+	//Comparison between locationMap and locationWithNoEntrancesMap to delete the locations which 
+	//contain atleast one polygon with no entrances
+	for (let locationId in locationsWithNoEntrancesMap){
+		delete locationsMap[locationId];
+	}
+	//Convert the Object that contains the locations with entrances to an array of location objects
+	polygonedLocations = Object.keys(locationsMap)
+								  	.map(locationId=>locationsMap[locationId]);
+
 	var maps = venue.maps;
 	for (var m = 0, mLen = maps.length; m < mLen; ++m) {
 		var map = maps[m];
@@ -241,7 +261,7 @@ function onDataLoaded() {
 	mapsSortedByElevation = venue.maps.sort((a, b) => b.elevation - a.elevation);
 
 	// Shows off the pathing
-	//drawRandomPath()
+	drawRandomPath()
 
 	mapView.labelAllLocations({
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
