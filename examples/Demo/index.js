@@ -255,7 +255,7 @@ function onDataLoaded() {
 	mapsSortedByElevation = venue.maps.sort((a, b) => b.elevation - a.elevation);
 
 	// Shows off the pathing
-	drawRandomPath()
+	//drawRandomPath()
 
 	mapView.labelAllLocations({
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
