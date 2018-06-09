@@ -7,8 +7,8 @@ Check out the [demo](examples/Demo), and the full [API docs](http://mappedin.git
 ### Current Version
 The current version of the Mappedin Web SDK is v1.34.0, and can be included in your application via script tag, like so:
 
-```
-  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.34.0/mappedin.js"></script>
+```xml
+<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.34.0/mappedin.js"></script>
 ```
 
 ## Getting Started
@@ -30,26 +30,26 @@ This takes a options object with all the configuration data the Mappedin SDK nee
 
 You'll probably do something like this:
 
-```
+```js
 Mappedin.initialize(options, div).then(function (data) {
-	mapView = data.mapview
-	venue = data.venue
-	search = data.search
+  mapView = data.mapview;
+  venue = data.venue;
+  search = data.search;
 
 },function (error) {
-	window.alert("Mappedin " + error)
-})
+  window.alert("Mappedin " + error);
+});
 ```
 
 There are a number of options you can specify for initialize. We'll break down each of the high level groups next:
 
+```js
+var options = {
+  venue: venueOptions,
+  mapview: mapviewOptions,
+  search: searchOptions
+}
 ```
-  var options = {
-    venue: venueOptions,
-    mapview: mapviewOptions,
-    search: searchOptions
-  }
- ```
 
 ### Venue options
 This will be the most complicated set of options. It is here you specify your API key, secret, perspective, and "slug" for the Venue you want to download. If you don't know what those mean, ask your Mappedin representative.
@@ -57,18 +57,18 @@ This will be the most complicated set of options. It is here you specify your AP
 You will also specify which fields you are interested in downloading for each Mappedin object. The Mappedin CMS is very flexible, and objects like Locations can have a lot of information stored on them, some of which is custom for your Venue, and not all of which needs to be downloaded by the user when they visit your web page. The Mappedin Web SDK will ensure it downloads the information it needs for itself (like the 3D or 2D files for your Map), and it's recommended to you only add the data you will actually use yourself to keep things snappy.
 
 A typical venueOptions might look like this:
-```
+```js
 var venueOptions = {
-	clientId: "<Your API Key Here>",
-	clientSecret: "<Your API Secret Here>",
-	perspective: "Website",
-	things: {
-		venue: ['slug', 'name'],
-		locations: ['name', 'type', 'description', 'icon', 'logo'],
-		categories: ['name'],
-		maps: ['name', 'elevation', 'shortName']
-	},
-	venue: "<Your venue slug here>"
+  clientId: "<Your API Key Here>",
+  clientSecret: "<Your API Secret Here>",
+  perspective: "Website",
+  things: {
+    venue: ['slug', 'name'],
+    locations: ['name', 'type', 'description', 'icon', 'logo'],
+    categories: ['name'],
+    maps: ['name', 'elevation', 'shortName']
+  },
+  venue: "<Your venue slug here>"
 };
 ```
 
@@ -76,17 +76,17 @@ var venueOptions = {
 These are options used by the MapView during construction. All of these are optional, though you almost certainly want at least one of `onFirstMapLoaded` and `onDataLoaded`.
 
 Yours might look something like this:
-```
+```js
 var mapviewOptions = {
-	antialias: "AUTO",
-	mode: Mappedin.modes.TEST,
-	onFirstMapLoaded: function () {
-		console.log("First map fully loaded. No more pop in.");
-	},
-	onDataLoaded: function() {
-		console.log("3D data loaded, map usable. Could hide loading screen here, but things will be popping in. Now you can do things that interact with the 3D scene")
-		onDataLoaded()
-	}
+  antialias: "AUTO",
+  mode: Mappedin.modes.TEST,
+  onFirstMapLoaded: function () {
+    console.log("First map fully loaded. No more pop in.");
+  },
+  onDataLoaded: function() {
+    console.log("3D data loaded, map usable. Could hide loading screen here, but things will be popping in. Now you can do things that interact with the 3D scene");
+    onDataLoaded();
+  };
 };
 ```
 Antialias is on AUTO by default, which means it's on unless you are running a High DPI display (like a 4K screen). Antialiasing gets very expensive as resolution gets higher.
@@ -116,15 +116,15 @@ The MapView will use a nice selection of colors by default, but you probably hav
 
 Here are the defaults for your reference:
 
-```
-	mapView.colors = {
-		hover: 0xcccccc,
-		select: 0x4ca1fc,
-		text: 0x000000,
-		path: 0xff834c,
-		pathPulse: 0xffffff,
-		textSelect: 0xffffff
-	}
+```js
+mapView.colors = {
+  hover: 0xcccccc,
+  select: 0x4ca1fc,
+  text: 0x000000,
+  path: 0xff834c,
+  pathPulse: 0xffffff,
+  textSelect: 0xffffff
+};
 ```
 
 #### Add Interactive Polygons
@@ -132,21 +132,21 @@ Both the 2D and 3D maps are made out of polygons. Some of them, like those repre
 
 There will probably be a convenience function to do this for you (similar to labelAllLocations, discussed below), but for now you will likely want to do something like this:
 
-```
-	var locations = venue.locations;
-	for (var j = 0, jLen = locations.length; j < jLen; ++j) {
-		var location = locations[j];
+```js
+var locations = venue.locations;
+for (var j = 0, jLen = locations.length; j < jLen; ++j) {
+  var location = locations[j];
 
-		if (location.polygons.length > 0) {
-			polygonedLocations.push(location)
-		}
+  if (location.polygons.length > 0) {
+    polygonedLocations.push(location);
+  }
 
-		var locationPolygons = location.polygons;
-		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
-			var polygon = locationPolygons[k];
-			mapView.addInteractivePolygon(polygon.id)
-		}
-	}
+  var locationPolygons = location.polygons;
+  for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
+    var polygon = locationPolygons[k];
+    mapView.addInteractivePolygon(polygon.id);
+  };
+};
 ```
 
 This makes all polygons attached to a location clickable/hoverable. Without this, the map will not be very interactive.
@@ -163,24 +163,23 @@ The user can hover over Interactive Polygons to get the hover effect, but nothin
 
 This function will likely get more complicated once you have a UI for wayfinding, but by default you probably just want to clear any existing polygon highlighting, highlight this one, and perhaps focus in on it like so:
 
-```
+```js
 function onPolygonClicked (polygonId) {
-	mapView.clearAllPolygonColors()
-	mapView.setPolygonColor(polygonId, mapView.colors.select)
-	mapView.focusOnPolygon(polygonId, true)
-	console.log(polygonId + " clicked")
-	return false
-}
+  mapView.clearAllPolygonColors();
+  mapView.setPolygonColor(polygonId, mapView.colors.select);
+  mapView.focusOnPolygon(polygonId, true);
+  console.log(polygonId + " clicked");
+  return false;
+};
 ```
 
 There is also an onNothingClicked event that is fired if nothing interactive is clicked on, or if your onPolygonClicked event returned true and there was nothing underneath it. This is a good opportunity to clear the UI up a bit:
 
-```
+```js
 function onNothingClicked() {
-	console.log("onNothingClicked")
-	mapView.clearAllPolygonColors()
-}
-
+  console.log("onNothingClicked");
+  mapView.clearAllPolygonColors();
+};
 ```
 
 ### Changing Maps
@@ -188,20 +187,20 @@ Most Venues will have more than one map, representing the different floors of a 
 
 Typically, maps in a multi-floor Venue will have an `elevation` property set. 0 or 1 will be the ground floor (depending on the Venue's convention) and the other maps can be sorted above and below using the elevation property. You probably want to construct some sort of map selector widget to let the user pick the map they are interested in. A simple dropdown might look something like this:
 
-```
-	var maps = venue.maps;
-	for (var m = 0, mLen = maps.length; m < mLen; ++m) {
-		var map = maps[m];
-		var mapId = map.id;
-		var item = document.createElement("option")
-		item.text = map.shortName
-		item.value = map.id
-		item.id = map.id
-		if (mapId == mapView.currentMap) {
-			item.selected = true
-		}
-		mapList.add(item)
-	}
+```js
+var maps = venue.maps;
+for (var m = 0, mLen = maps.length; m < mLen; ++m) {
+  var map = maps[m];
+  var mapId = map.id;
+  var item = document.createElement("option");
+  item.text = map.shortName;
+  item.value = map.id;
+  item.id = map.id;
+  if (mapId == mapView.currentMap) {
+    item.selected = true;
+  };
+  mapList.add(item);
+};
 ```
 
 As you can see, Maps tend to have a short name and a long name. Which you display to the user will depend on context, the Venue, and screen real estate.
@@ -219,24 +218,24 @@ In your callback, if successful you will get a directions object with a path pro
 
 The directions engine doesn't work directly with Polygons, but you will typically have access to them, and want to highlight them.
 
-```
+```js
 startNode.directionsTo(endNode, null, function(error, directions) {
   if (error || directions.path.length == 0) {
     // Some kind of network error, or those two points aren't connected, or are invalid
-    return
-  }
+    return;
+  };
 
-  mapView.clearAllPolygonColors()
-  setMap(startPolygon.map)
+  mapView.clearAllPolygonColors();
+  setMap(startPolygon.map);
 
-  mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
-  mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+  mapView.setPolygonColor(startPolygon.id, mapView.colors.path);
+  mapView.setPolygonColor(endPolygon.id, mapView.colors.select);
 
-  mapView.focusOn(directions.path, [startPolygon, endPolygon], true, 2000)
+  mapView.focusOn(directions.path, [startPolygon, endPolygon], true, 2000);
 
-  mapView.removeAllPaths()
-  mapView.drawPath(directions.path)
-})
+  mapView.removeAllPaths();
+  mapView.drawPath(directions.path);
+});
 ```
 
 When you call drawPath it will attempt to automatically handle breaking the path into multiple path segments and placing them on the correct map, animating them in sequence. You are responsible for placing any Markers to denote map transitions.
@@ -255,8 +254,8 @@ The Mappedin SDK comes with a powerful set of 2D marker controls. You can create
 
 To create a marker, use the simple `mapView.createMarker` function.
 
-```
-var marker = mapView.createMarker(markerString, mapView.getPositionNode(node.id), "", node.map)
+```js
+var marker = mapView.createMarker(markerString, mapView.getPositionNode(node.id), "", node.map);
 ```
 
  It will create a marker at the position use specified, with the HTML you supplied, and add it to the scene on map you specify. The position should be something you got from `mapView.getPositionNode` or `mapView.getPositionPolygon`. Trying to position something at arbitrary coordinates is not recommended at this time, as the underlying coordinate system is set to change.
@@ -266,10 +265,10 @@ var marker = mapView.createMarker(markerString, mapView.getPositionNode(node.id)
 ### Compass Rose
 It's possible to attach the rotation of an arbitrary HTML element to that of the map (with some offset). This lets you add a compass rose (ie, a little arrow pointing north) to the scene. This is done with the `mapView.lockNorth(element, offset)`. For example:
 
+```js
+var compass = document.getElementById("compass");
+mapView.lockNorth(compass);
 ```
- var compass = document.getElementById("compass")
- mapView.lockNorth(compass)
- ```
 
 ### Offline Mode
 The Mappedin Web SDK does not have offline support built in, but it can be enabled via a [Service Worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers). Service Workers are a relatively new part of the web, and are not well supported on many browsers. However, modern versions of Chrome and Firefox do have support, making this an excellent tool when you are building your own standalone directory type application.
