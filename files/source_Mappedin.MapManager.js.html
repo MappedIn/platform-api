@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.MapManager.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.21.1
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import MapObject from &#x27;./Mappedin.MapObject&#x27;;
+import PubSub from &#x27;./Mappedin.PubSub&#x27;;
+import { getObjectId, getBoundingBox, getBiggestBoundingBox, unpackBoundingBox } from &#x27;./utils&#x27;;
+import { Box3, Object3D, Vector3 } from &#x27;three&#x27;;
+
+// The map scale at which the camera&#x27;s zoom ratio doesn&#x27;t need to be adjusted.
+var defaultZoomMultiplier = 7.9;
+
+// gap in vertical space between maps when expanding maps
+const Z_MAP_GAP = 1000;
+const MAP_TILT = -30;
+
+const getNewPanBounds = (panBounds, mapObject) =&gt; {
+	const { min, max, margin } = panBounds;
+
+	var box = mapObject.boundingBox;
+
+	if (!box) {
+		var box3 = new Box3();
+		box = box3.setFromObject(mapObject.object);
+		mapObject.boundingBox = box;
+	}
+
+	let newPanBounds = { min: {}, max: {}, margin };
+
+	newPanBounds.min.x = Math.min(min.x, box.min.x * margin);
+	newPanBounds.max.x = Math.max(max.x, box.max.x * margin);
+	newPanBounds.min.y = Math.min(min.y, box.min.y * margin);
+	newPanBounds.max.y = Math.max(max.y, box.max.y * margin);
+
+	let newCenter = {
+		x: (newPanBounds.max.x + newPanBounds.min.x) / 2,
+		y: (newPanBounds.max.y + newPanBounds.min.y) / 2
+	};
+
+	const newRadius = Math.sqrt(
+		(newPanBounds.max.x - newCenter.x) ** 2 +
+		(newPanBounds.max.y - newCenter.y) ** 2);
+
+	newPanBounds.radius = newRadius;
+	newPanBounds.center = panBounds.center;
+	return newPanBounds;
+};
+
+class MapManager {
+	mapObjects = new Map();
+	currentMap = undefined;
+	object = new Object3D();
+	_showCount = 0;
+	_mapObjectsSortedByElevationDirty = false;
+	expanded = false;
+
+	constructor(polygonMeshesById, markerWorld, renderer, mapView) {
+		Object.assign(this, PubSub.prototype);
+		this.polygonMeshesById = polygonMeshesById;
+		this.markerWorld = markerWorld;
+		this.mapView = mapView;
+		this.renderer = renderer;
+		this.addMap = this.addMap.bind(this);
+		this.setMap = this.setMap.bind(this);
+		this.removeMap = this.removeMap.bind(this);
+		this.removeAllMaps = this.removeAllMaps.bind(this);
+		this.loadMaps = this.loadMaps.bind(this);
+		this.expandMaps = this.expandMaps.bind(this);
+		this.contractMaps = this.contractMaps.bind(this);
+		this.expandPanBounds = this.expandPanBounds.bind(this);
+	}
+
+	expandPanBounds(bounds) {
+		this.mapView.controls.panBounds = getNewPanBounds(bounds, this.currentMap);
+	}
+
+	addMap(mapClass, callback = () =&gt; {}) {
+		this._mapObjectsSortedByElevationDirty = true;
+		const mapObject = new MapObject(mapClass, this.polygonMeshesById, this.markerWorld, this._showCount, this.mapView);
+		mapObject.on(&#x27;flippablesNeedUpdating&#x27;, value =&gt; this.publish(&#x27;flippablesNeedUpdating&#x27;, value));
+		mapObject.on(&#x27;render&#x27;, value =&gt; this.publish(&#x27;render&#x27;, value));
+		mapObject.on(&#x27;updateMarkerPosition&#x27;, marker =&gt; this.publish(&#x27;updateMarkerPosition&#x27;, marker));
+		this.mapObjects.set(mapClass.id, mapObject);
+
+		if (this.currentMap == null) {
+			this.setMap(mapClass);
+			return mapObject.load()
+				.then(callback);
+		}
+		return Promise.resolve().then(callback);
+	}
+
+	setMap(mapClassOrId, callback = () =&gt; {}) {
+		return new Promise((resolve, reject) =&gt; {
+			const mapId = getObjectId(mapClassOrId);
+			// check if map we are switching to even exists
+			if (this.mapObjects.has(mapId)) {
+				// remove current map @TODO: should we check if we&#x27;re setting to the map already set to?
+				if (this.currentMap != null) {
+					this.currentMap.removeMarkers();
+					this.object.remove(this.currentMap.object);
+				}
+
+				this.currentMap = this.mapObjects.get(mapId);
+
+				// wire up callbacks to come from the render loop
+				this.currentMap.mapLoaded = () =&gt; {
+					resolve();
+					callback();
+				};
+
+				let loadingId = this.currentMap.mapClass.id;
+				this.mapView.controls.zoomFactor = this.mapView.getMapScale() / defaultZoomMultiplier;
+
+				this.currentMap.load()
+					.then((mapObject) =&gt; {
+						if (this.currentMap &amp;&amp; this.currentMap.mapClass.id !== mapObject.mapClass.id) {
+							return;
+						}
+						if (!mapObject.seenByCamera) {
+							mapObject.seenByCamera = true;
+							mapObject._popinChildObjects();
+						}
+						const newPanBounds = getNewPanBounds(this.mapView.controls.panBounds, this.currentMap);
+						this.mapView.controls.panBounds = newPanBounds;
+						const zoom = this.mapView.getZoomLevelForCurrentMap();
+
+						this.mapView.controls.expandZoomLimits(zoom);
+						this.object.add(this.currentMap.object);
+						this.currentMap.addMarkers();
+						this.publish(&#x27;flippablesNeedUpdating&#x27;, true);
+						this.publish(&#x27;render&#x27;);
+					})
+					.catch((e) =&gt; {
+						console.error(&#x27;Error loading map &#x27;, loadingId, e);
+					});
+			} else {
+				const e = { error: &#x27;Map does not exist&#x27; };
+				console.error(e.error);
+				callback(e);
+				reject(e);
+			}
+		});
+	}
+
+	get mapObjectsSortedByElevation() {
+		if (!this._mapObjectsSortedByElevationDirty &amp;&amp; Array.isArray(this._mapObjectsSortedByElevation)) {
+			return this._mapObjectsSortedByElevation;
+		} else {
+			this._mapObjectsSortedByElevation = Array.from(this.mapObjects.values())
+				.sort((mapObjectA, mapObjectB) =&gt; mapObjectB.mapClass.elevation - mapObjectA.mapClass.elevation);
+			this._mapObjectsSortedByElevationDirty = false;
+			return this._mapObjectsSortedByElevation;
+		}
+	}
+
+	loadMaps(maps, startingMap, onFirstMapLoaded = () =&gt; {}, onDataLoaded = () =&gt; {}, onError = () =&gt; {}) {
+		const startingMapId = getObjectId(startingMap);
+		for (let idx = 0; idx &lt; maps.length; idx++) {
+			const mapClass = maps[idx];
+			const mapObject = new MapObject(mapClass, this.polygonMeshesById, this.markerWorld, this._showCount, this.mapView);
+			mapObject.on(&#x27;flippablesNeedUpdating&#x27;, value =&gt; this.publish(&#x27;flippablesNeedUpdating&#x27;, value));
+			mapObject.on(&#x27;render&#x27;, value =&gt; this.publish(&#x27;render&#x27;, value));
+			mapObject.on(&#x27;updateMarkerPosition&#x27;, marker =&gt; this.publish(&#x27;updateMarkerPosition&#x27;, marker));
+			this.mapObjects.set(mapClass.id, mapObject);
+
+			// load the starting map and trigger onDataLoaded
+			if (mapClass.id === startingMapId) {
+				mapObject.load()
+					.then(() =&gt; {
+						this.mapView.resetCamera();
+						onDataLoaded();
+					})
+					.catch(onError);
+				this.setMap(mapClass, onFirstMapLoaded);
+			}
+		}
+	}
+
+	removeMap(mapClassOrId) {
+		this._mapObjectsSortedByElevationDirty = true;
+		const mapId = getObjectId(mapClassOrId);
+		if (this.mapObjects.has(mapId)) {
+			const mapObject = this.mapObjects.get(mapId);
+			if (this.currentMap === mapObject) {
+				this.currentMap = null;
+			}
+			mapObject.off(&#x27;flippablesNeedUpdating&#x27;);
+			mapObject.off(&#x27;render&#x27;);
+			mapObject.destroy();
+			this.mapObjects.delete(mapId);
+			// @TODO: evaluate if we still need this?
+			//delete this.objectsDictionary[mapObject.object.name];
+		}
+		//https://github.com/mrdoob/three.js/issues/12447
+		this.renderer.renderLists.dispose();
+	}
+
+	removeAllMaps() {
+		this._mapObjectsSortedByElevationDirty = true;
+		for (let mapObject of this.mapObjects.values()) {
+			mapObject.destroy();
+			mapObject = null;
+		}
+		this.mapObjects.clear();
+	}
+
+	get visibleMaps() {
+		return this.mapObjectsSortedByElevation
+			.filter(mapObject =&gt; mapObject.object.parent != null);
+	}
+
+	get twoDProjection() {
+		// iterate through each map, and find center,
+		return this.visibleMaps.map((mapObject) =&gt; {
+			const boundingBox = getBoundingBox(mapObject.object);
+
+			const width = this.mapView.container.clientWidth;
+			const height = this.mapView.container.clientHeight;
+
+			let minX = Infinity;
+			let minY = Infinity;
+			let maxX = -Infinity;
+			let maxY = -Infinity;
+
+			const points = unpackBoundingBox(boundingBox);
+
+			for (let i = 0; i &lt; points.length; i++) {
+				let point = points[i];
+				point = point.project(this.mapView.controls.camera);
+				const twoDPoint = {
+					x: (point.x + 1) / 2 * width,
+					y: (-point.y + 1) / 2 * height
+				};
+				minX = Math.min(twoDPoint.x, minX);
+				minY = Math.min(twoDPoint.y, minY);
+				maxX = Math.max(twoDPoint.x, maxX);
+				maxY = Math.max(twoDPoint.y, maxY);
+			}
+
+			const topLeft = {
+				x: minX,
+				y: minY
+			};
+
+			const bottomRight = {
+				x: maxX,
+				y: maxY
+			};
+
+			return { min: topLeft, max: bottomRight };
+		});
+	}
+
+	getCompoundBoundingBoxPoints(objects) {
+		this.mapView.controls.orbit.updateMatrixWorld();
+
+		// we need to rotate the points opposite to the camera, to calculate min/max
+		const camMatrixInverse = this.mapView.controls.camera.matrixWorld;
+		const camMatrix = this.mapView.controls.camera.matrixWorldInverse;
+
+		const newMin = new Vector3(Infinity, Infinity, Infinity);
+		const newMax = new Vector3(-Infinity, -Infinity, -Infinity);
+
+		objects.forEach((object) =&gt; {
+			object.applyMatrix(camMatrix);
+			const boundingBox = getBoundingBox(object);
+			const points = unpackBoundingBox(boundingBox);
+			points.forEach((pt) =&gt; {
+				newMin.min(pt);
+				newMax.max(pt);
+			});
+			object.applyMatrix(camMatrixInverse);
+		});
+
+		const newPoints = unpackBoundingBox({ min: newMin, max: newMax });
+		newPoints.forEach(pt =&gt; pt.applyMatrix4(camMatrixInverse));
+
+		return newPoints;
+	}
+
+	/**
+	* Expand maps to display within view
+	*
+	* @method expandMaps
+	* @param mapIds [Array] Array of mapIds to display while expanded
+	* @param  options {Object} Options object @optional
+	 	@param [options.focus=false] {Boolean} Focus the camera onto expanded maps
+	 	@param [options.debug=false] {Boolean} Display cubes around focus bounding box for debug info
+	 	@param [options.rotation=0] {Number} Rotation of scene relative to zero (degrees)
+	 	@param [options.duration=300] {Number} Duration of focus animation in ms
+	 	@returns
+	*/
+	expandMaps(mapIds, options = { focus: false, debug: false, rotation: 0, duration: 300 }) {
+		if (this.expanded || !Array.isArray(mapIds)) {
+			return Promise.reject();
+		}
+
+		const matches = mapIds.filter((mapId) =&gt; {
+			if (this.mapObjects.has(mapId)) {
+				return true;
+			}
+			console.error(&#x60;Expand maps: Map ${mapId} does not exist&#x60;);
+			return false;
+		});
+		if (matches.length !== mapIds.length) {
+			return Promise.reject();
+		}
+
+		const maps = this.mapObjectsSortedByElevation
+			.filter(mapObject =&gt; mapIds.indexOf(mapObject.id) !== -1);
+
+		const loadedMaps = maps.map(mapObject =&gt; mapObject.load());
+
+		return Promise.all(loadedMaps)
+			.then(() =&gt; new Promise((resolve) =&gt; {
+				const boundingBox = getBiggestBoundingBox(maps.map(mapObject =&gt; mapObject.object));
+
+				const newMin = new Vector3(Infinity, Infinity, Infinity);
+				const newMax = new Vector3(-Infinity, -Infinity, -Infinity);
+
+				const points = unpackBoundingBox(boundingBox);
+
+				this.mapView.controls.orbit.updateMatrixWorld();
+				var camMatrix = this.mapView.controls.camera.matrixWorldInverse;
+
+				var point;
+				for (let i = 0; i &lt; points.length; i++) {
+					point = points[i];
+					point.applyMatrix4(camMatrix);
+					newMin.min(point);
+					newMax.max(point);
+				}
+
+				const height = newMax.y - newMin.y;
+
+				this.expanded = true;
+				this.object.children.forEach(child =&gt; child.parent.remove(child));
+
+				const translationAxisAngle = (options.rotation + 90) * Math.PI / 180;
+
+				const rotationAxisAngle = options.rotation * Math.PI / 180;
+
+				const headingTranslationVector = new Vector3(Math.cos(translationAxisAngle), Math.sin(translationAxisAngle), 0);
+				const headingRotationVector = new Vector3(Math.cos(rotationAxisAngle), Math.sin(rotationAxisAngle), 0);
+
+				maps.forEach((mapObject, idx) =&gt; {
+					this.object.add(mapObject.object);
+					mapObject.object.translateOnAxis(headingTranslationVector, idx * -height);
+					mapObject.object.rotateOnAxis(headingRotationVector, MAP_TILT * Math.PI / 180);
+					mapObject.object.updateMatrixWorld();
+					mapObject.object.position.z = idx * -Z_MAP_GAP;
+				});
+
+				const newPanBounds = getNewPanBounds(this.mapView.controls.panBounds, this);
+				this.mapView.controls.panBounds = newPanBounds;
+				const zoom = this.mapView.getZoomLevelForObject(this.object);
+
+				this.mapView.controls.expandZoomLimits(zoom);
+				this.publish(&#x27;render&#x27;);
+
+				if (options.focus) {
+					const points = this.getCompoundBoundingBoxPoints(this.visibleMaps.map(map =&gt; map.object));
+					this.mapView.focusOn({
+						points,
+						padding: this.mapView.cachedPadding,
+						duration: options.duration,
+						debug: options.debug,
+						focusZoomFactor: 1,
+						rotation: options.rotation,
+						callback: () =&gt; {
+							setTimeout(() =&gt; {
+								resolve({ projections: this.twoDProjection });
+							});
+						}
+					});
+				} else {
+					resolve({ projections: this.twoDProjection });
+				}
+			}));
+	}
+
+	/**
+	* Contract maps and display the current map
+	*
+	* @method contractMaps
+	* @param  options {Object} Options object @optional
+	 	@param [options.focus] {Boolean} Focus the camera onto current map
+	 	@param [options.debug] {Boolean} Display cubes around focus bounding box for debug info
+	 	@param [options.duration=300] {Number} Duration of focus animation in ms
+	*/
+	contractMaps(options = { focus: false, debug: false, duration: 300 }) {
+		if (!this.expanded) {
+			return Promise.resolve();
+		}
+
+		this.expanded = false;
+
+		this.mapObjectsSortedByElevation
+			.forEach((mapObject) =&gt; {
+				mapObject.object.position.set(0, 0, 0);
+				mapObject.object.rotation.set(0, 0, 0);
+				if (this.currentMap !== mapObject) {
+					this.object.remove(mapObject.object);
+				}
+			});
+		this.object.add(this.currentMap.object);
+		this.publish(&#x27;render&#x27;);
+		const newPanBounds = getNewPanBounds(this.mapView.controls.panBounds, this);
+		this.mapView.controls.panBounds = newPanBounds;
+
+		const zoom = this.mapView.getZoomLevelForObject(this.object);
+
+		this.mapView.controls.expandZoomLimits(zoom);
+
+		return new Promise((resolve) =&gt; {
+			if (options.focus) {
+				this.mapView.focusOn({
+					boundingBox: getBoundingBox(this.object),
+					padding: this.mapView.cachedPadding,
+					debug: options.debug,
+					duration: options.duration,
+					focusZoomFactor: 1,
+					callback: resolve
+				});
+			} else {
+				resolve();
+			}
+		});
+	}
+
+	destroy() {
+		this.removeAllMaps();
+		this.object.destroy();
+	}
+}
+
+export default MapManager;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

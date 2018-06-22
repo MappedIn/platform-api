@@ -129,6 +129,39 @@
                                         <a href="../classes/Mappedin.html">Mappedin</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/MapView.html">MapView</a>
                                     </li>
                                     <li>
@@ -138,7 +171,13 @@
                                         <a href="../classes/MapView3D.html">MapView3D</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -156,6 +195,8 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> Mappedin Class
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
     </h1>
 </div>
 
@@ -166,16 +207,176 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
+        <div class="foundat">
+            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-web.es.js#L47">Mappedin-web.es.js:47</a>
+        </div>
 </div>
 
 
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_Mappedin" class="method item">
+	<span class="method-signature">
+	<span class="name anchorable-toc">
+		<a class="fa fa-link toc-anchor" href="#method_Mappedin"></a>
+		.Mappedin
+	</span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>options</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</span>
+
+
+		<span class="flag static">static</span>
+
+
+
+
+
+	<div class="meta">
+				<p>
+				Defined in
+		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-web.es.js#L47">Mappedin-web.es.js:47</a>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">options</code>
+						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+					<div class="param-description"><p>Initialization options.</p>
+</div>
+
+						<ul class="params-list">
+							<li class="param">
+									<code class="param-name optional">[clientId]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one.</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[clientSecret]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>The secret/password that goes along with your ID.</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[accessToken]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>OAuth access token.</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name">perspective</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+								<div class="param-description"><p>The name of the perspective you are using for 2D and 3D. Probably "Website". This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[language]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>Language name (e.g. en-US).</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name">things</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+								<div class="param-description"><p>The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
+</div>
+
+									<ul class="params-list">
+										<li class="param">
+												<code class="param-name">venue</code>
+												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+
+											<div class="param-description">The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</div>
+										</li>
+										<li class="param">
+												<code class="param-name">locations</code>
+												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+
+											<div class="param-description">The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</div>
+										</li>
+										<li class="param">
+												<code class="param-name">categories</code>
+												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+
+											<div class="param-description">The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</div>
+										</li>
+										<li class="param">
+												<code class="param-name">maps</code>
+												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+
+											<div class="param-description">The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</div>
+										</li>
+										<li class="param">
+												<code class="param-name optional">[polygons]</code>
+												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+												<span class="flag optional" title="This parameter is optional.">optional</span>
+
+											<div class="param-description">The Polygon fields you want. The default is probably sufficient.</div>
+										</li>
+										<li class="param">
+												<code class="param-name optional">[nodes]</code>
+												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+												<span class="flag optional" title="This parameter is optional.">optional</span>
+
+											<div class="param-description">The Node fields you want. The default is probably sufficient.</div>
+										</li>
+									</ul>
+							</li>
+							<li class="param">
+									<code class="param-name">venue</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+								<div class="param-description"><p>Venue ID.</p>
+</div>
+
+							</li>
+						</ul>
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+    </div>
 
   <div class="class-description">
-  <p>Contains the functions you need to start the MapView. Typically you will just use <code>Mappedin.initialize</code>, which does all this for you, but for special cases your flow should look like this:</p>
+  <p>Contains the functions you need to start the <a href="../classes/MapView.html" class="crosslink">MapView</a>. Typically you will just use <code>Mappedin.<a href="../classes/Mappedin.html#method_initialize" class="crosslink">initialize</a></code>, which does all this for you, but for special cases your flow should look like this:</p>
 <ol>
-<li>One of Mappedin.test3D (typcial), .forceTest, .force3D, or .force2D to put the MapView into either 2D or 3D mode.</li>
-<li>Mappedin.init to download all of the data you need from the Mappedin API</li>
-<li>new Mappedin.MapView, which will create the MapView and display the default map.</li>
+<li>One of Mappedin.<a href="../classes/Mappedin.html#method_test3D" class="crosslink">test3D</a> (typical), .<a href="../classes/Mappedin.html#method_forceTest" class="crosslink">forceTest</a>, .<a href="../classes/Mappedin.html#method_force3D" class="crosslink">force3D</a>, or .<a href="../classes/Mappedin.html#method_force2D" class="crosslink">force2D</a> to put the MapView into either 2D or 3D mode.</li>
+<li>Mappedin.init to download all of the data you need from the Mappedin API.</li>
+<li>new Mappedin.MapView, which will create the MapView and display the default <a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a>.</li>
 </ol>
 <p>Each of those functions has a callback which you should use to trigger the next step. Once you get the final callback from the MapView
 constructor, you can hide any loading screen UI and do whatever you want.</p>
@@ -228,6 +429,14 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
 
                               </li>
                               <li class="index-item method">
+                                  <a href="#method_getCollectionItemById">getCollectionItemById</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getVenue">getVenue</a>
+
+                              </li>
+                              <li class="index-item method">
                                   <a href="#method_getVenue">getVenue</a>
 
                               </li>
@@ -241,14 +450,6 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
                               </li>
                               <li class="index-item method">
                                   <a href="#method_initialize">initialize</a>
-
-                              </li>
-                              <li class="index-item method">
-                                  <a href="#method_MappedinLocation#directionsTo">MappedinLocation#directionsTo</a>
-
-                              </li>
-                              <li class="index-item method">
-                                  <a href="#method_MappedinNode#directionsTo">MappedinNode#directionsTo</a>
 
                               </li>
                               <li class="index-item method">
@@ -263,20 +464,45 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
 
                       <ul class="index-list properties">
                               <li class="index-item property">
+                                  <a href="#property_categories">categories</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collectionType">collectionType</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_events">events</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_locations">locations</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mapGroups">mapGroups</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_maps">maps</a>
+
+                              </li>
+                              <li class="index-item property">
                                   <a href="#property_modes">modes</a>
 
                                       <span class="flag static">static</span>
                               </li>
                               <li class="index-item property">
-                                  <a href="#property_{Array.&lt;MappedinPathNode&gt;} path Path.">{Array.&lt;MappedinPathNode&gt;} path Path.</a>
+                                  <a href="#property_nodes">nodes</a>
 
                               </li>
                               <li class="index-item property">
-                                  <a href="#property_{number} y Y coordinate.">{number} y Y coordinate.</a>
+                                  <a href="#property_polygons">polygons</a>
 
                               </li>
                               <li class="index-item property">
-                                  <a href="#property_{string} instruction Instruction.">{string} instruction Instruction.</a>
+                                  <a href="#property_vortexes">vortexes</a>
 
                               </li>
                       </ul>
@@ -311,14 +537,15 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-web.es.js#L63">Mappedin-web.es.js:63</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Forces Mapview into 2D mode.
-  This could make a network call, so the callback will fire when that's complete and you can create a MapView.</p>
+  	<div class="description"><p>Forces Mapview into 2D mode.</p>
   </div>
   
   		<div class="params">
@@ -363,14 +590,15 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-web.es.js#L76">Mappedin-web.es.js:76</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Forces Mapview into 3D mode.
-  This could make a network call, so the callback will fire when that's complete and you can create a MapView.</p>
+  	<div class="description"><p>Forces Mapview into 3D mode.</p>
   </div>
   
   		<div class="params">
@@ -406,6 +634,9 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   				<li class="arg">
   						<code>callback</code>
   				</li>
+  				<li class="arg">
+  						<code>loadMapViewByMode</code>
+  				</li>
   			</ul><span class="paren">)</span>
   		</div>
   	</span>
@@ -418,6 +649,8 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-common.es.js#L48">Mappedin-common.es.js:48</a>
   		</p>
   
   
@@ -450,9 +683,259 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   </div>
   
   				</li>
+  				<li class="param">
+  						<code class="param-name">loadMapViewByMode</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  					<div class="param-description"><p>Function to call with test results, typically used to switch map <a href="../classes/Mappedin.html#property_modes" class="crosslink">modes</a>.</p>
+  </div>
+  
+  				</li>
   			</ul>
   		</div>
   
+  
+  </div>
+  <div id="method_getCollectionItemById" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getCollectionItemById"></a>
+  		getCollectionItemById
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>name</code>
+  				</li>
+  				<li class="arg">
+  						<code>id</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1279">source/Mappedin.getVenue.js:1279</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Gets an object (Node, Polygon, etc.) if it exists within the Venue by looking up its Mappedin ID or External ID.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">name</code>
+  						<span class="type">CollectionType</span>
+  
+  
+  					<div class="param-description"><p><a href="../classes/Mappedin.html#property_collectionType" class="crosslink">collectionType</a> to look up the ID from that collection.</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">id</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>Either Mappedin ID or External ID.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_getVenue" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getVenue"></a>
+  		getVenue
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>options</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="../classes/Mappedin.html" class="crosslink">Mappedin</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1353">source/Mappedin.getVenue.js:1353</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>A one stop function to download all of the information you need for a given <a href="../classes/MappedinVenue.html" class="crosslink">MappedinVenue</a>.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">options</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  					<div class="param-description"><p>Initialization options.</p>
+  </div>
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name optional">[clientId]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>OAuth client ID.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[clientSecret]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>OAuth client secret.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[accessToken]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>OAuth access token.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[perspective]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Perspective name.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[language]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Language name (e.g. en-US).</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">things</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  								<div class="param-description"><p>The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
+  </div>
+  
+  									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name">venue</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  
+  											<div class="param-description">The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">locations</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  
+  											<div class="param-description">The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">categories</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  
+  											<div class="param-description">The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">maps</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  
+  											<div class="param-description">The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[polygons]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">The Polygon fields you want. The default is probably sufficient.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[nodes]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">The Node fields you want. The default is probably sufficient.</div>
+  										</li>
+  									</ul>
+  							</li>
+  							<li class="param">
+  									<code class="param-name">venue</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>Venue ID.</p>
+  </div>
+  
+  							</li>
+  						</ul>
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="../classes/Mappedin.html" class="crosslink">Mappedin</a></span>
+  			</div>
+  		</div>
   
   </div>
   <div id="method_getVenue" class="method item">
@@ -468,25 +951,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   						<code>options</code>
   				</li>
   				<li class="arg">
-  						<code>clientId</code>
-  				</li>
-  				<li class="arg">
-  						<code>clientSecret</code>
-  				</li>
-  				<li class="arg">
-  						<code>perspective</code>
-  				</li>
-  				<li class="arg">
-  						<code class="optional">perspective2D</code>
-  				</li>
-  				<li class="arg">
-  						<code class="optional">perspective3D</code>
-  				</li>
-  				<li class="arg">
-  						<code>venue</code>
-  				</li>
-  				<li class="arg">
-  						<code>things</code>
+  						<code>mode</code>
   				</li>
   				<li class="arg">
   						<code>callback</code>
@@ -503,34 +968,26 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-common.es.js#L75">Mappedin-common.es.js:75</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a Venue object populated with all your data.
-  The <code>options</code> object can have the following properties:</p>
-  <pre class="code prettyprint"><code>options = {
-      clientId: &lt;The client ID provided to you by Mappedin. Contact your Mappedin representative if you do not have one&gt;,
-      clientSecret: &lt;The secret that goes along with your ID&gt;,
-      perspective: &lt;The name of specific perspective to use for 2D/3D&gt;,
-      perspective2D: &lt;Use if you have a different perspective to use in 2D mode&gt;,
-      perspective3D: &lt;Use if you have a different perspective to use in 3D mode&gt;,
-      venue: &lt;The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is&gt;,
-      // The things object is where you specifiy what fields you want to download for each object in the Mappedin API
-      // This SDK will ensure it has the 2D or 3D files it needs, but it won't download anything extra (like the names of locations)
-      // unless you specify it here.
-      // This is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.
-      things: {
-          venue: ['slug', 'name'],
-          locations: ['name', 'type', 'description', 'icon', 'logo'],
-          categories: ['name'],
-          maps: ['name', 'elevation', 'shortName']
-      }
+  	<div class="description"><p>Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a <a href="../classes/MappedinVenue.html" class="crosslink">MappedinVenue</a> populated with all your data.</p>
+  <p>The things object parameter is where you specify what fields you want to download for each object in the Mappedin API.
+  This SDK will ensure it has the 2D or 3D files it needs, but it won't download anything extra (like the names of locations) unless you specify it here.
+  This is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.</p>
+  <pre class="code prettyprint"><code>things: {
+      venue: ['slug', 'name'],
+      locations: ['name', 'type', 'description', 'icon', 'logo'],
+      categories: ['name'],
+      maps: ['name', 'elevation', 'shortName']
   }
   </code></pre>
-  <p>If you would like to force the test to run again, use the forceTest method instead. Or, if you want to force the user into a specific mode, use force2D or force3D respectively.
+  <p>If you would like to force the test to run again, use the <a href="../classes/Mappedin.html#method_forceTest" class="crosslink">forceTest</a> method instead. Or, if you want to force the user into a specific mode, use <a href="../classes/Mappedin.html#method_force2D" class="crosslink">force2D</a> or <a href="../classes/Mappedin.html#method_force3D" class="crosslink">force3D</a> respectively.
   Note while 2D should work for basically anyone, if the user's device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.</p>
   </div>
   
@@ -543,126 +1000,116 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>Any options you need to specify to talk to the Mappedin API</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">clientId</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">clientSecret</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The secret/password that goes along with your ID</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">perspective</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The name of the perspective you are using for 2D and 3D. Probably "Website". This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name optional">[perspective2D]</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  						<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  
-  					<div class="param-description"><p>Use if you have a different perspective to use in 2D mode</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name optional">[perspective3D]</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  						<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  
-  					<div class="param-description"><p>Use if you have a different perspective to use in 3D mode</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">venue</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is. Developer accounts often start with "api-demo1"</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">things</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  
-  
-  					<div class="param-description"><p>The things object is where you specifiy what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
+  					<div class="param-description"><p>Any options you need to specify to talk to the Mappedin API.</p>
   </div>
   
   						<ul class="params-list">
   							<li class="param">
+  									<code class="param-name">clientId</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">clientSecret</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>The secret/password that goes along with your ID.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">perspective</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>The name of the perspective you are using for 2D and 3D. Probably "Website". This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.</p>
+  </div>
+  
+  									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name optional">[perspective2D]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">Use if you have a different perspective to use in 2D mode.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[perspective3D]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">Use if you have a different perspective to use in 3D mode.</div>
+  										</li>
+  									</ul>
+  							</li>
+  							<li class="param">
   									<code class="param-name">venue</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
-  								<div class="param-description"><p>The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</p>
+  								<div class="param-description"><p>The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is. Developer accounts often start with "api-demo1".</p>
   </div>
   
   							</li>
   							<li class="param">
-  									<code class="param-name">locations</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  									<code class="param-name">things</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
-  								<div class="param-description"><p>The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</p>
+  								<div class="param-description"><p>The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
   </div>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name">categories</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name">venue</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  								<div class="param-description"><p>The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</p>
-  </div>
+  											<div class="param-description">The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">locations</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name">maps</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  											<div class="param-description">The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">categories</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  								<div class="param-description"><p>The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</p>
-  </div>
+  											<div class="param-description">The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">maps</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[polygons]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  											<div class="param-description">The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[polygons]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The Polygon fields you want. The default is probably sufficient.</p>
-  </div>
+  											<div class="param-description">The Polygon fields you want. The default is probably sufficient.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[nodes]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[nodes]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>The Node fields you want. The default is probably sufficient.</p>
-  </div>
-  
+  											<div class="param-description">The Node fields you want. The default is probably sufficient.</div>
+  										</li>
+  									</ul>
   							</li>
   						</ul>
+  				</li>
+  				<li class="param">
+  						<code class="param-name">mode</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>one of Mappedin.<a href="../classes/Mappedin.html#property_modes" class="crosslink">modes</a>.</p>
+  </div>
+  
   				</li>
   				<li class="param">
   						<code class="param-name">callback</code>
@@ -685,7 +1132,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   									<code class="param-name">result</code>
   									<span class="type"><a href="../classes/Mappedin.html" class="crosslink">Mappedin</a></span>
   
-  								<div class="param-description"><p>A Mappedin data object with all the data you asked for. It will have a venue property with a Venue object, and locations, categories, nodes, maps, and polygons arrays</p>
+  								<div class="param-description"><p>A Mappedin data object with all the data you asked for. It will have a Venue property with a Venue object, and Locations, Categories, Nodes, Maps, and Polygons arrays.</p>
   </div>
   
   							</li>
@@ -709,25 +1156,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   						<code>options</code>
   				</li>
   				<li class="arg">
-  						<code>clientId</code>
-  				</li>
-  				<li class="arg">
-  						<code>clientSecret</code>
-  				</li>
-  				<li class="arg">
-  						<code>perspective</code>
-  				</li>
-  				<li class="arg">
-  						<code class="optional">perspective2D</code>
-  				</li>
-  				<li class="arg">
-  						<code class="optional">perspective3D</code>
-  				</li>
-  				<li class="arg">
-  						<code>venue</code>
-  				</li>
-  				<li class="arg">
-  						<code>things</code>
+  						<code>mode</code>
   				</li>
   				<li class="arg">
   						<code>callback</code>
@@ -744,31 +1173,23 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-node.es.js#L34">Mappedin-node.es.js:34</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a Venue object populated with all your data.
-  The <code>options</code> object can have the following properties:</p>
-  <pre class="code prettyprint"><code>options = {
-      clientId: &lt;The client ID provided to you by Mappedin. Contact your Mappedin representative if you do not have one&gt;,
-      clientSecret: &lt;The secret that goes along with your ID&gt;,
-      perspective: &lt;The name of specific perspective to use for 2D/3D&gt;,
-      perspective2D: &lt;Use if you have a different perspective to use in 2D mode&gt;,
-      perspective3D: &lt;Use if you have a different perspective to use in 3D mode&gt;,
-      venue: &lt;The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is&gt;,
-      // The things object is where you specifiy what fields you want to download for each object in the Mappedin API
-      // This SDK will ensure it has the 2D or 3D files it needs, but it won't download anything extra (like the names of locations)
-      // unless you specify it here.
-      // This is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.
-      things: {
-          venue: ['slug', 'name'],
-          locations: ['name', 'type', 'description', 'icon', 'logo'],
-          categories: ['name'],
-          maps: ['name', 'elevation', 'shortName']
-      }
+  	<div class="description"><p>Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a Venue object populated with all your data.</p>
+  <p>The things object parameter is where you specify what fields you want to download for each object in the Mappedin API.
+  This SDK will ensure it has the 2D or 3D files it needs, but it won't download anything extra (like the names of locations) unless you specify it here.
+  This is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.</p>
+  <pre class="code prettyprint"><code>things: {
+      venue: ['slug', 'name'],
+      locations: ['name', 'type', 'description', 'icon', 'logo'],
+      categories: ['name'],
+      maps: ['name', 'elevation', 'shortName']
   }
   </code></pre>
   <p>If you would like to force the test to run again, use the forceTest method instead. Or, if you want to force the user into a specific mode, use force2D or force3D respectively.
@@ -787,123 +1208,113 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   					<div class="param-description"><p>Any options you need to specify to talk to the Mappedin API</p>
   </div>
   
-  				</li>
-  				<li class="param">
-  						<code class="param-name">clientId</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">clientSecret</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The secret/password that goes along with your ID</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">perspective</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The name of the perspective you are using for 2D and 3D. Probably "Website". This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name optional">[perspective2D]</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  						<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  
-  					<div class="param-description"><p>Use if you have a different perspective to use in 2D mode</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name optional">[perspective3D]</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  						<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  
-  					<div class="param-description"><p>Use if you have a different perspective to use in 3D mode</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">venue</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  
-  
-  					<div class="param-description"><p>The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is. Developer accounts often start with "api-demo1"</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">things</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  
-  
-  					<div class="param-description"><p>The things object is where you specifiy what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
-  </div>
-  
   						<ul class="params-list">
   							<li class="param">
+  									<code class="param-name">clientId</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">clientSecret</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>The secret/password that goes along with your ID</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">perspective</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>The name of the perspective you are using for 2D and 3D. Probably "Website". This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.</p>
+  </div>
+  
+  									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name optional">[perspective2D]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">Use if you have a different perspective to use in 2D mode</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[perspective3D]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">Use if you have a different perspective to use in 3D mode</div>
+  										</li>
+  									</ul>
+  							</li>
+  							<li class="param">
   									<code class="param-name">venue</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
-  								<div class="param-description"><p>The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</p>
+  								<div class="param-description"><p>The "slug" that identifies the specific Venue you are interested in. Mappedin can tell you what it is. Developer accounts often start with "api-demo1"</p>
   </div>
   
   							</li>
   							<li class="param">
-  									<code class="param-name">locations</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  									<code class="param-name">things</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
-  								<div class="param-description"><p>The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</p>
+  								<div class="param-description"><p>The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and <code>id</code> is always included, but it won't download anything extra (like the names of locations) unless you specify it here.</p>
   </div>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name">categories</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name">venue</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  								<div class="param-description"><p>The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</p>
-  </div>
+  											<div class="param-description">The Venue information you want. 'slug' and 'name' are typical, but you may also want others. Speak to Mappedin to see what is available.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">locations</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name">maps</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  											<div class="param-description">The fields you will be using for any Locations. You probably want at least 'name' and 'type'. You will also probably want 'description' and 'logo', but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">categories</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  								<div class="param-description"><p>The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</p>
-  </div>
+  											<div class="param-description">The fields you will use for each Category. Typically 'name' at a minimum, but other common fields are 'description', 'picture', 'sortOrder' or 'parents' (for hierarchical categories) as well.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">maps</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[polygons]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  											<div class="param-description">The fields on each Map you are interested in. You'll probably want one or both of 'name' or 'shortName', and 'elevation' to sort.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[polygons]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The Polygon fields you want. The default is probably sufficient.</p>
-  </div>
+  											<div class="param-description">The Polygon fields you want. The default is probably sufficient.</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name optional">[nodes]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[nodes]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>The Node fields you want. The default is probably sufficient.</p>
-  </div>
-  
+  											<div class="param-description">The Node fields you want. The default is probably sufficient.</div>
+  										</li>
+  									</ul>
   							</li>
   						</ul>
+  				</li>
+  				<li class="param">
+  						<code class="param-name">mode</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>One of Mappedin.<a href="../classes/Mappedin.html#property_modes" class="crosslink">modes</a>.</p>
+  </div>
+  
   				</li>
   				<li class="param">
   						<code class="param-name">callback</code>
@@ -964,6 +1375,8 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-node.es.js#L78">Mappedin-node.es.js:78</a>
   		</p>
   
   
@@ -1064,6 +1477,8 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-web.es.js#L105">Mappedin-web.es.js:105</a>
   		</p>
   
   
@@ -1085,7 +1500,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>Takes an object combining all options from Mappedin.init, the MapView constructor, and the Search constructor. If you explictly want to set the 3D mode rather than run the test, it also accepts a <code>mode</code> property that can be any of Mappedin.mode</p>
+  					<div class="param-description"><p>Takes an object combining all options from Mappedin.init, the MapView constructor, and the Search constructor. If you explictly want to set the 3D mode rather than run the test, it also accepts a <code>mode</code> property that can be any of Mappedin.<a href="../classes/Mappedin.html#property_modes" class="crosslink">modes</a>.</p>
   </div>
   
   						<ul class="params-list">
@@ -1093,7 +1508,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   									<code class="param-name">venue</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
-  								<div class="param-description"><p>Any options from Mappedin.getVenue</p>
+  								<div class="param-description"><p>Any options from Mappedin.<a href="../classes/Mappedin.html#method_getVenue" class="crosslink">getVenue</a>.</p>
   </div>
   
   							</li>
@@ -1101,7 +1516,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   									<code class="param-name">mapview</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
-  								<div class="param-description"><p>Any options from the Mappedin.MapView constructor</p>
+  								<div class="param-description"><p>Any options from the <a href="../classes/MapView.html" class="crosslink">MapView</a> constructor.</p>
   </div>
   
   							</li>
@@ -1109,7 +1524,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   									<code class="param-name">search</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
-  								<div class="param-description"><p>Any options from the Mappedin.Seach constructor.</p>
+  								<div class="param-description"><p>Any options from the <a href="../classes/Search.html" class="crosslink">Search</a> constructor.</p>
   </div>
   
   							</li>
@@ -1117,7 +1532,7 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   									<code class="param-name">firstMapSelector</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
   
-  								<div class="param-description"><p>If you would like to pick the first map loaded, set this function. It gives you a Venue object, and expects a Mappedin Map or Map Id to be returned. Return venue.defaultMap for the default behaviour. If you return an invalid map, an error will be logged to the console and an arbitrary map will be loaded.</p>
+  								<div class="param-description"><p>If you would like to pick the first Map loaded, set this function. It gives you a <a href="../classes/MappedinVenue.html" class="crosslink">MappedinVenue</a> object, and expects a <a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a> or Map Id to be returned. Return venue.defaultMap for the default behaviour. If you return an invalid Map, an error will be logged to the console and an arbitrary Map will be loaded.</p>
   </div>
   
   							</li>
@@ -1129,178 +1544,6 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   
   					<div class="param-description"><p>The HTML element the Mapview will live in.</p>
-  </div>
-  
-  				</li>
-  			</ul>
-  		</div>
-  
-  
-  </div>
-  <div id="method_MappedinLocation#directionsTo" class="method item">
-  	<span class="method-signature">
-  	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_MappedinLocation#directionsTo"></a>
-  		MappedinLocation#directionsTo
-  	</span>
-  
-  		<div class="args">
-  			<span class="paren">(</span><ul class="args-list inline commas">
-  				<li class="arg">
-  						<code>destination</code>
-  				</li>
-  				<li class="arg">
-  						<code>options</code>
-  				</li>
-  				<li class="arg">
-  						<code>callback</code>
-  				</li>
-  			</ul><span class="paren">)</span>
-  		</div>
-  	</span>
-  
-  
-  
-  
-  
-  
-  
-  	<div class="meta">
-  				<p>
-  		</p>
-  
-  
-  
-  	</div>
-  
-  	<div class="description"><p>Gets directions from this location to the target node or location.</p>
-  </div>
-  
-  		<div class="params">
-  			<h4>Parameters:</h4>
-  
-  			<ul class="params-list">
-  				<li class="param">
-  						<code class="param-name">destination</code>
-  						<span class="type">MappedinLocation  |  MappedinNode</span>
-  
-  
-  					<div class="param-description"><p>Destination.</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">options</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  
-  
-  					<div class="param-description"><p>Options.</p>
-  </div>
-  
-  						<ul class="params-list">
-  							<li class="param">
-  									<code class="param-name">accessible</code>
-  									<span class="type">Boolean=</span>
-  
-  								<div class="param-description"><p>True if directions should be
-  wheelchair accessible.</p>
-  </div>
-  
-  							</li>
-  						</ul>
-  				</li>
-  				<li class="param">
-  						<code class="param-name">callback</code>
-  						<span class="type">DirectionsToCallback</span>
-  
-  
-  					<div class="param-description"><p>Callback.</p>
-  </div>
-  
-  				</li>
-  			</ul>
-  		</div>
-  
-  
-  </div>
-  <div id="method_MappedinNode#directionsTo" class="method item">
-  	<span class="method-signature">
-  	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_MappedinNode#directionsTo"></a>
-  		MappedinNode#directionsTo
-  	</span>
-  
-  		<div class="args">
-  			<span class="paren">(</span><ul class="args-list inline commas">
-  				<li class="arg">
-  						<code>destination</code>
-  				</li>
-  				<li class="arg">
-  						<code>options</code>
-  				</li>
-  				<li class="arg">
-  						<code>callback</code>
-  				</li>
-  			</ul><span class="paren">)</span>
-  		</div>
-  	</span>
-  
-  
-  
-  
-  
-  
-  
-  	<div class="meta">
-  				<p>
-  		</p>
-  
-  
-  
-  	</div>
-  
-  	<div class="description"><p>Gets directions from this node to the target node or location.</p>
-  </div>
-  
-  		<div class="params">
-  			<h4>Parameters:</h4>
-  
-  			<ul class="params-list">
-  				<li class="param">
-  						<code class="param-name">destination</code>
-  						<span class="type">MappedinLocation  |  MappedinNode</span>
-  
-  
-  					<div class="param-description"><p>Destination.</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">options</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  
-  
-  					<div class="param-description"><p>Options.</p>
-  </div>
-  
-  						<ul class="params-list">
-  							<li class="param">
-  									<code class="param-name">accessible</code>
-  									<span class="type">Boolean=</span>
-  
-  								<div class="param-description"><p>True if directions should be
-  wheelchair accessible.</p>
-  </div>
-  
-  							</li>
-  						</ul>
-  				</li>
-  				<li class="param">
-  						<code class="param-name">callback</code>
-  						<span class="type">DirectionsToCallback</span>
-  
-  
-  					<div class="param-description"><p>Callback.</p>
   </div>
   
   				</li>
@@ -1324,6 +1567,9 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   				<li class="arg">
   						<code>callback</code>
   				</li>
+  				<li class="arg">
+  						<code>loadMapViewByMode</code>
+  				</li>
   			</ul><span class="paren">)</span>
   		</div>
   	</span>
@@ -1336,17 +1582,19 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-common.es.js#L17">Mappedin-common.es.js:17</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>This is the typical function to call before instatiating a MapView. It will either perform a test to determine if the current device is capable of running in 3D mode,
-  and store the results, or if prior results are available, just use those. Then, it will set Mappedin.MapView to be the constructor for the proper mode. This lets
+  	<div class="description"><p>This is the typical function to call before instatiating a <a href="../classes/MapView.html" class="crosslink">MapView</a>. It will either perform a test to determine if the current device is capable of running in 3D mode,
+  and store the results, or if prior results are available, just use those. Then, it will setMapView to be the constructor for the proper mode. This lets
   the developer write their website without having to know or care whether the user is experiencing it in 2D or 3D. The callback you pass into the function will give you
   the results, however, if you care, and you can also determine it from the <code>type</code> property on the MapView you create.</p>
-  <p>If you would like to force the test to run again, use the forceTest method instead. Or, if you want to force the user into a specific mode, use force2D or force3D respectively.
+  <p>If you would like to force the test to run again, use the <a href="../classes/Mappedin.html#method_forceTest" class="crosslink">forceTest</a> method instead. Or, if you want to force the user into a specific mode, use <a href="../classes/Mappedin.html#method_force2D" class="crosslink">force2D</a> or <a href="../classes/Mappedin.html#method_force3D" class="crosslink">force3D</a> respectively.
   Note while 2D should work for basically anyone, if the user's device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.</p>
   </div>
   
@@ -1372,6 +1620,15 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   </div>
   
   				</li>
+  				<li class="param">
+  						<code class="param-name">loadMapViewByMode</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  					<div class="param-description"><p>Function to call with test results, typically used to switch map <a href="../classes/Mappedin.html#property_modes" class="crosslink">modes</a>.</p>
+  </div>
+  
+  				</li>
   			</ul>
   		</div>
   
@@ -1382,6 +1639,176 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
 
               <div id="tab_properties" role="tabpanel" class="tab-pane">
                   <div class="item-list">
+  <div id="property_categories" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_categories"></a>
+          categories
+      </h3>
+      <span class="type"><a href="../classes/MappedinCategory.html" class="crosslink">[MappedinCategory]</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1111">source/Mappedin.getVenue.js:1111</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Collection of all Categories within the Venue.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_collectionType" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collectionType"></a>
+          collectionType
+      </h3>
+      <span class="type">CATEGORY, EVENT, LOCATION, MAPGROUP, MAP, NODE, POLYGON, VENUE, VORTEX</span>
+  
+  
+  
+          <span class="flag final">const</span>
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1259">source/Mappedin.getVenue.js:1259</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The possible types of collections of objects you can get from the Venue. To be used to look up items using <a href="../classes/Mappedin.html#method_getCollectionItemById" class="crosslink">getCollectionItemById</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_events" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_events"></a>
+          events
+      </h3>
+      <span class="type"><a href="../classes/MappedinEvent.html" class="crosslink">[MappedinEvent]</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1146">source/Mappedin.getVenue.js:1146</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Collection of all Events within the Venue.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_locations" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_locations"></a>
+          locations
+      </h3>
+      <span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">[MappedinLocation]</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1118">source/Mappedin.getVenue.js:1118</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Collection of all Locations within the Venue.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mapGroups" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mapGroups"></a>
+          mapGroups
+      </h3>
+      <span class="type"><a href="../classes/MappedinMapGroup.html" class="crosslink">[MappedinMapGroup]</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1153">source/Mappedin.getVenue.js:1153</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Collection of all MapGroups within the Venue.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_maps" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_maps"></a>
+          maps
+      </h3>
+      <span class="type"><a href="../classes/MappedinMap.html" class="crosslink">[MappedinMap]</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1125">source/Mappedin.getVenue.js:1125</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Collection of all Maps within the Venue.</p>
+  
+      </div>
+  
+  
+  
+  </div>
   <div id="property_modes" class="property item">
       <h3 class="name anchorable-toc">
           <a class="fa fa-link toc-anchor" href="#property_modes"></a>
@@ -1397,13 +1824,15 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/Mappedin-common.es.js#L7">Mappedin-common.es.js:7</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>The possible modes Mapview can be in. Typically you will use TEST, which will run a 3D compatibility test the user loads the page and then load load either the 2D or 3D version of MapView. On subsequent loads, it will use the saved result to avoid running a new test.
+          <p>The possible modes <a href="../classes/MapView.html" class="crosslink">MapView</a> can be in. Typically you will use TEST, which will run a 3D compatibility test the user loads the page and then load load either the 2D or 3D version of MapView. On subsequent loads, it will use the saved result to avoid running a new test.
   FORCE_TEST will make sure a new test is run and the results are saved, whereas 3D and 2D will force the MapView directly into 2D or 3D mode without checking for compatibility. 2D should always work but some browsers/devices do not have the WebGL support needed for 3D, so be careful.</p>
   
       </div>
@@ -1411,12 +1840,12 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   
   </div>
-  <div id="property_{Array.&lt;MappedinPathNode&gt;} path Path." class="property item">
+  <div id="property_nodes" class="property item">
       <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_{Array.&lt;MappedinPathNode&gt;} path Path."></a>
-          {Array.&lt;MappedinPathNode&gt;} path Path.
+          <a class="fa fa-link toc-anchor" href="#property_nodes"></a>
+          nodes
       </h3>
-      <span class="type">Array.<MappedinDirective></span>
+      <span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
   
   
   
@@ -1424,24 +1853,27 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1132">source/Mappedin.getVenue.js:1132</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          
+          <p>Collection of all Nodes within the Venue.</p>
+  
       </div>
   
   
   
   </div>
-  <div id="property_{number} y Y coordinate." class="property item">
+  <div id="property_polygons" class="property item">
       <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_{number} y Y coordinate."></a>
-          {number} y Y coordinate.
+          <a class="fa fa-link toc-anchor" href="#property_polygons"></a>
+          polygons
       </h3>
-      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+      <span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">[MappedinPolygon]</a></span>
   
   
   
@@ -1449,24 +1881,27 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1139">source/Mappedin.getVenue.js:1139</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          
+          <p>Collection of all Polygons within the Venue.</p>
+  
       </div>
   
   
   
   </div>
-  <div id="property_{string} instruction Instruction." class="property item">
+  <div id="property_vortexes" class="property item">
       <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_{string} instruction Instruction."></a>
-          {string} instruction Instruction.
+          <a class="fa fa-link toc-anchor" href="#property_vortexes"></a>
+          vortexes
       </h3>
-      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+      <span class="type"><a href="../classes/MappedinVortex.html" class="crosslink">[MappedinVortex]</a></span>
   
   
   
@@ -1474,13 +1909,16 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L1160">source/Mappedin.getVenue.js:1160</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          
+          <p>Collection of all Vortexes within the Venue.</p>
+  
       </div>
   
   

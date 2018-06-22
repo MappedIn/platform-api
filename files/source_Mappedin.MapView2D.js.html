@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.MapView2D.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.21.1
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+// Mappedin.MapView
+// We need some modules for this to work
+import TWEEN from &#x27;@tweenjs/tween.js&#x27;;
+import L from &#x27;leaflet&#x27;;
+import { LatLonSpherical as LatLon } from &#x27;geodesy&#x27;;
+import MapView from &#x27;./Mappedin.MapView.js&#x27;;
+import HoverLabel from &#x27;./Mappedin.HoverLabel.js&#x27;;
+import Marker from &#x27;./Mappedin.MapView2D.Marker.js&#x27;;
+import PubSub from &#x27;./Mappedin.PubSub.js&#x27;;
+
+var Mappedin = {};
+Mappedin.MapView = MapView;
+Mappedin.HoverLabel = HoverLabel;
+
+import &#x27;leaflet/dist/leaflet.css&#x27;; // Is there a better way to refer to this?
+
+/**
+* The MapView class, but in 2D. A number of these functions don&#x27;t actually do anything in 2D at the moment.
+*
+* @class MapView2D
+* @extends MapView
+* @constructor
+* @param container {Div} The div to place the MapView in.
+* @param venue {Venue} The results from the Mappedin API that powers this MapView.
+* @param options {Object} Some options the MapView can use.
+ 	@param [options.onDataLoaded] {Function} A callback executed with the 3D files have been downloaded for the first Map, and are starting to load into memory. The MapView is fully functional at this point, but some things will still be popping in.
+ 	@param [options.onFirstMapLoaded] {Function} A callback executed when the first Map is fully loaded. This means onDataLoaded has already been fired (if specified) and then all the textures and other resources have finished popping in.
+	@param [options.firstMap] {MappedinMap} If you don&#x27;t want to load the default Map first, set the Map you want to load first here. Useful for deep linking to a certain floor/location. Since you won&#x27;t have the Map object/ID until you get the {{#crossLink &quot;MappedinVenue&quot;}}{{/crossLink}}, there is a callback you can set on Mappedin{{#crossLink &quot;Mappedin/initailize:property&quot;}}{{/crossLink}} to fill this in.
+*/
+var MapView2D = function(container, venue, options) {
+	var scope = this;
+	Object.assign(this, PubSub.prototype);
+	Mappedin.MapView.call(this, container, venue, options);
+
+	var mapBounds;
+
+	this.type = &quot;MapView2D&quot;;
+
+	this.polygonStyles = {
+		invisible: {
+			fillOpacity: 0.0,
+			stroke: false
+		},
+		hover: {
+			fillOpacity: 0.5,
+			fillColor: &quot;white&quot;,
+			stroke: true,
+			color: &quot;white&quot;,
+			opacity: 1.0,
+			lineJoin: &quot;miter&quot;,
+			weight: 0
+		},
+		highlight: {
+			fillOpacity: 0.5,
+			//fillColor: &quot;blue&quot;,
+			stroke: true,
+			color: &quot;white&quot;,
+			opacity: 1.0,
+			lineJoin: &quot;miter&quot;,
+			weight: 0
+		}
+	};
+
+	container.style.transform = &quot;translateZ(0px)&quot;; // Keep the leaflet control from rendering over your other controls?
+
+	var HIGHLIGHT_STATES = {&quot;INVISIBLE&quot;: 0, &quot;HOVER&quot;: 1, &quot;COLOURED&quot;: 2};
+
+	var leafletMap = {};
+	var currentZoom = 3;
+	var currentPosition = [0, 0];
+
+	var rotateWithCamera = [];
+
+	var firstLoad = true; // To recenter the map on mobile the first time some tiles are loaded.
+
+	// A list of polygons that are &quot;interactive&quot;, meaning they can be tapped/hovered.
+	// The client needs to figure this out using it&#x27;s own logic, but you can use all polygons owned by a location.
+	// You could also do all polygons that have entrance nodes, which would let you interact with &quot;empty&quot; polygons.
+	var interactivePolygons = {};
+
+	var pathSegments = [];
+	//var markers = {}
+
+	// A list of things assocaited with a given map
+	var mapObjects = {};
+
+	// A table of TextLabel objects by their associated PolygonId
+	var textLabelsByPolygonId = {};
+
+	// The label that hovers by the mouse cursor over labeled polygons
+	var hoverLabel = new Mappedin.HoverLabel(container);
+	hoverLabel.setZIndex(1000); // For leaflet!
+
+	this.userMightPan = true;
+
+	var MapObject = function (mapClass) {
+		var id = mapClass.id;
+		this.mapClass = mapClass;
+		this.id = id;
+		this.polygons = {};
+		this.markers = {};
+
+		var north = null;
+
+		var tiles = mapClass.tiles;
+		this.url = tiles + ((tiles.substr(tiles.length - 1, 1) !== &#x27;/&#x27;) ? &#x27;/&#x27; : &#x27;&#x27;) + &quot;{z}/{x}_{y}.png&quot;;
+
+		this.getNorth = function () {
+			if (north == null) {
+				try {
+					// Could get the max/min and use that, to spread out any error
+					var anchor1 = mapClass._data.georeference[0];
+					var anchor2 = mapClass._data.georeference[1];
+
+					var ll1 = new LatLon(anchor1.target.x, anchor1.target.y);
+					var ll2 = new LatLon(anchor2.target.x, anchor2.target.y);
+
+					var bearing = ((ll1.bearingTo(ll2)) + 360 % 360) * Math.PI / 180;
+					var angle = Math.atan2(anchor2.control.y - anchor1.control.y, anchor2.control.x - anchor1.control.x);
+
+					north = -(bearing - angle - (Math.PI / 2));
+				}
+				catch (e) {
+					north = 0;
+					console.warn(e);
+					console.warn(&quot;Couldn&#x27;t georeference &quot; + (mapClass.name || mapClass.shortName || mapClass.id) + &quot;. Probably not enough geocoordinates.&quot;);
+				}
+			}
+			return north;
+		};
+	};
+
+	var CameraControls2D = function() {
+		// This problably won&#x27;t work exactly the same as in 3D
+		this.pan = function(right, down) {
+			hoverLabel.hide();
+			leafletMap.pan([right, down]);
+		};
+
+		// This problably won&#x27;t work exactly the same as in 3D
+		this.setPosition = function(x, y) {
+			hoverLabel.hide();
+			leafletMap.panTo(leafletMap.unproject([x, y]));
+		};
+
+		this.setRotation = function (radians) {
+			//no-op in 2D
+			return;
+		};
+
+		this.setTilt = function(radians) {
+			//no-op in 2D
+			return;
+		};
+
+		this.setZoom = function (zoom) {
+			ignoreMapEvents();
+			leafletMap.setZoom(zoom);
+		};
+
+		this.zoom = function (zoomStep) {
+			if (zoomStep &gt; 0) {
+				leafletMap.zoomIn();
+				ignoreMapEvents();
+			} else if (zoomStep &lt; 0) {
+				leafletMap.zoomOut();
+				ignoreMapEvents();
+			}
+		};
+
+		this.zoomIn = function(duration, curve, callback) {
+			ignoreMapEvents();
+			leafletMap.zoomIn();
+			callback &amp;&amp; (typeof callback === typeof Function) &amp;&amp; callback();
+		};
+
+		this.zoomOut = function(duration, curve, callback) {
+			ignoreMapEvents();
+			leafletMap.zoomOut();
+			callback &amp;&amp; (typeof callback === typeof Function) &amp;&amp; callback();
+		};
+
+		this.getPosition = function () {
+			return leafletMap.getCenter();
+		};
+
+		this.getRotation = function () {
+			return 0;
+		};
+
+		this.getTilt = function () {
+			return 0;
+		};
+
+		this.getZoom = function() {
+			return leafletMap.getZoom();
+		};
+
+		this.isCameraMoving = function() {
+			return false;
+		};
+
+		/*
+
+		Optional target Properties: {
+				position: { x, y}
+				zoom: z,
+				tilt: t,
+				rotation: r,
+				doNotAutoStart: false
+			}
+
+		Duration in ms
+
+		Curve is any one of the Tween.js curves. If you don&#x27;t set doNotAutoStart to true, the animation will start for you automatically.
+		*/
+		this.animateCamera = function (target, duration, curve, callback) {
+			// No-op in 2D
+			// We could makes parts of this work, but the numbers would all be different.
+			hoverLabel.hide();
+			window.setTimeout(callback, 1);
+			return new TWEEN.Tween();
+		};
+
+		this.setMulti = function(position, zoom, rotation, tilt) {
+			// No-op in 2D
+			// We could make parts of this work, but the numbers would all be different.
+			return;
+		};
+	};
+
+	this.controls = new CameraControls2D();
+
+	function debounce(func, wait, immediate) {
+		var timeout;
+		return function() {
+			var context = this, args = arguments;
+			var later = function() {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			var callNow = immediate &amp;&amp; !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (callNow) func.apply(context, args);
+		};
+	}
+
+	// On a user-initiated zoom, multiple calls are made- both zoom and pan.
+	// Only fire one event.
+	var debounceZoomEnd = debounce(function() {
+		scope.userMightPan = true;
+		scope.publish(&#x27;user-zoom&#x27;);
+	}, 750);
+
+	// Makes the MapView display the map that has the corrisponding mapId
+	this.setMap = function(map, callback) {
+		var mapId = getObjectId(map);
+		var mapData = getMap(map);
+		var mapObject = mapObjects[mapId];
+
+		if (mapId == scope.currentMap) {
+			return;
+		}
+
+		if (mapObject) {
+			if (scope.currentMap) {
+				currentZoom = leafletMap.getZoom();
+				currentPosition = leafletMap.getCenter();
+				// clear out current map
+				leafletMap.eachLayer(function (layer) { leafletMap.removeLayer(layer); });
+				leafletMap.remove();
+			}
+			scope.currentMap = mapId;
+			var maxZoom = Math.ceil(Math.log((Math.max(mapData.height, mapData.width))) / Math.log(2)) - 8;
+
+			leafletMap = L.map(this.container.id, {
+				crs: L.CRS.Simple,
+				zoom: currentZoom,
+				minZoom: 0,
+				maxZoom: maxZoom,
+				center: currentPosition,
+				attributionControl: false,
+				zoomSnap: 0.1,
+				zoomControl: false
+			});
+
+			leafletMap.on(&#x27;click&#x27;, onNothingClick);
+			leafletMap.on(&#x27;mousemove&#x27;, onMouseMove);
+
+			leafletMap.on(&#x27;zoomstart&#x27;, function() {
+				if (scope.userMightInteract) {
+					scope.userMightPan = false;
+				}
+			});
+			leafletMap.on(&#x27;movestart&#x27;, function() {
+				if (scope.userMightInteract &amp;&amp; scope.userMightPan) {
+					ignoreMapEvents();
+				}
+			});
+			leafletMap.on(&#x27;zoomend&#x27;, function() {
+				if (scope.userMightInteract) {
+					debounceZoomEnd();
+				}
+			});
+
+			leafletMap.on(&#x27;moveend&#x27;, function() {
+				if (scope.userMightInteract &amp;&amp; scope.userMightPan) {
+					scope.publish(&#x27;user-pan&#x27;);
+					ignoreMapEvents();
+				}
+			});
+
+			// Setting up the max bounds for the map since our venue is not as big as
+			// the world
+			var maxBounds = getMaxBounds(mapData);
+			leafletMap.setMaxBounds(maxBounds);
+
+
+			var tileLayer = new L.tileLayer(mapObject.url, {
+				zoomOffset: 8,
+				zoom: currentZoom,
+				minZoom: 0,
+				maxZoom: maxZoom,
+				noWrap: true,
+				continuousWorld: true,
+				bounds: maxBounds
+			});
+
+			mapBounds = maxBounds;
+			if (firstLoad) {
+				scope.resetCamera();
+				firstLoad = false;
+			}
+
+			leafletMap.addLayer(tileLayer);
+
+			var keys = Object.keys(mapObject.polygons);
+			for (var i = 0, iLen = keys.length; i &lt; iLen; i++) {
+				var leafletPolygon = mapObject.polygons[keys[i]];
+				unHover(leafletPolygon);
+				leafletMap.addLayer(leafletPolygon);
+			}
+
+			pathSegments.map(function(segment) {
+				if (segment._mMap == scope.currentMap) {
+					leafletMap.addLayer(segment);
+				}
+			});
+
+			keys = Object.keys(mapObject.markers);
+			keys.map(function (key) {
+				var element = mapObject.markers[key]._mLeafletMarker;
+				if (element) {
+					leafletMap.addLayer(element);
+					if (mapObject.markers[key].events) {
+						mapObject.markers[key].events.map(function(ev) {
+							element.addEventListener(ev[0], ev[1]);
+						});
+					}
+				}
+			});
+
+			var north = scope.getNorth() + scope.controls.getRotation();
+			for (i = 0, iLen = rotateWithCamera.length; i &lt; iLen; ++i) {
+				rotateNode(rotateWithCamera[i], north);
+			}
+
+			if (callback &amp;&amp; typeof callback == typeof Function) {
+				callback();
+			}
+		} else {
+			console.error(&quot;No map object for &quot; + mapId);
+		}
+	};
+
+	/**
+	* Simple utility function to calculate the maximum scroll bounds for our map so Leaflet
+	* does not scroll outside the map bounds
+	**/
+	function getMaxBounds(map) {
+		var southWest = leafletMap.unproject([1, map.height - 1], leafletMap.getMaxZoom());
+		var northEast = leafletMap.unproject([map.width - 1, 1], leafletMap.getMaxZoom());
+		return new L.LatLngBounds(southWest, northEast);
+	}
+
+
+	//** Convenience functions to let our public methods handle either Mappedinjs objects or IDs **//
+
+	// Takes a Mappedin object or ID and the array to look in and retuns the Object, so our functions can take both
+	var getObject = function(obj, array) {
+		if (typeof obj == &quot;string&quot;) {
+			return array.find(function (o) {
+				return o.id == obj;
+			});
+		}
+		return obj;
+	};
+
+	// Takes a Mappedin Object or id and returns the ID, so our functions can take both
+	var getObjectId = function(obj) {
+		return obj.id || obj;
+	};
+
+	// Turns a polygon or id into a polygon, so our functions can take either
+	var getPolygon = function (polygon) {
+		return getObject(polygon, venue.polygons);
+	};
+	// Turns a node or id into a node, so our functions can take either
+	var getNode = function (node) {
+		return getObject(node, venue.nodes);
+	};
+
+	// Turns a map or id into a map, so our functions can take either
+	var getMap = function (map) {
+		return getObject(map, venue.maps);
+	};
+
+
+
+
+	/**
+	* Takes Mappedin Polygon data creates the corrisponding Leaflet polygon in the
+	* map&#x27;s frame of reference. Each Mappedin polygon should only have one Leaflet
+	* polygon. Use highlightPolygon to change the styles.
+	*/
+	function createPolygon(polyData) {
+		var vertexes = polyData.vertexes.map(function (vertex) {
+			return leafletMap.unproject([vertex.x, vertex.y], leafletMap.getMaxZoom());
+		});
+
+		var polygon = L.polygon(vertexes, scope.polygonStyles.invisible);
+		mapObjects[polyData.map].polygons[polyData.id] = polygon;
+		polygon[&quot;_mId&quot;] = polyData.id;
+		polygon[&quot;_mHighlightState&quot;] = HIGHLIGHT_STATES.INVISIBLE;
+
+		polygon.on(&quot;mouseover&quot;, onPolygonHoverOver);
+		polygon.on(&quot;mouseout&quot;, onPolygonHoverOut);
+		polygon.on(&quot;click&quot;, onPolygonClick);
+		return polygon;
+	}
+
+	var hover = function (leafletPolygon) {
+		if (leafletPolygon._mHighlightState == HIGHLIGHT_STATES.INVISIBLE) {
+			// Maybe find a way to do this only if the color changes
+			scope.polygonStyles.hover.fillColor = &quot;#&quot; + scope.colors.hover.toString(16);
+			scope.polygonStyles.hover.color = scope.polygonStyles.hover.fillColor;
+			leafletPolygon.setStyle(scope.polygonStyles.hover);
+			leafletPolygon._mHighlightState = HIGHLIGHT_STATES.HOVER;
+		}
+		var textLabel = textLabelsByPolygonId[leafletPolygon._mId];
+		if (textLabel) {
+			hoverLabel.show(textLabel);
+		}
+	};
+
+	var unHover = function(leafletPolygon) {
+		if (leafletPolygon._mHighlightState == HIGHLIGHT_STATES.HOVER) {
+			leafletPolygon.setStyle(scope.polygonStyles.invisible);
+			leafletPolygon._mHighlightState = HIGHLIGHT_STATES.INVISIBLE;
+		}
+		var textLabel = textLabelsByPolygonId[leafletPolygon._mId];
+		if (textLabel) {
+			hoverLabel.hide();
+		}
+	};
+
+
+	/// Mouse events ///
+	var onPolygonHoverOver = function (event) {
+		var leafletPolygon = event.target;
+		hover(leafletPolygon);
+	};
+
+	var onPolygonHoverOut = function (event) {
+		var leafletPolygon = event.target;
+		unHover(leafletPolygon);
+	};
+
+	// You can&#x27;t seem to actually prevent the leaflet click events from bubbling, so we do it like this.
+	var nothingClicked = true;
+	var onPolygonClick = function (event) {
+		nothingClicked = scope.onPolygonClicked(event.target._mId);
+	};
+
+	var onNothingClick = function (event) {
+		if (nothingClicked) {
+			scope.onNothingClicked();
+		}
+		nothingClicked = true;
+	};
+
+	function getMousePos(event) {
+		var rect = container.getBoundingClientRect();
+		return {
+			x: event.clientX - rect.left,
+			y: event.clientY - rect.top
+		};
+	}
+
+	var onMouseMove = function (event) {
+		var mouse = getMousePos(event.originalEvent);
+		hoverLabel.setPosition(mouse.x, mouse.y);
+	};
+
+	// Moves the camera to focus in on a specific polygon
+	this.focusOnPolygon = function (polygon, changeZoom, duration, curve) {
+		return scope.focusOn({
+			polygons: [polygon],
+			changeZoom: changeZoom,
+			durtaion: duration,
+			curve: curve
+		});
+	};
+
+	// Moves the camera to focus on an entire path and optionally it&#x27;s starting and ending polygon
+	this.focusOnPath = function (path, polygons, changeZoom, duration, curve) {
+		return scope.focusOn({
+			nodes: path,
+			polygons: polygons,
+			changeZoom: changeZoom,
+			duration: duration,
+			curve: curve
+		});
+	};
+
+	this.focusOn = function(options) {
+		var fitBounds = null;
+
+		if (options.nodes) {
+			var nodes = options.nodes;
+			for (var i = 0; i &lt; nodes.length; ++i) {
+				var node = nodes[i];
+				var shouldFocus = node.map === undefined ||
+					node.map === scope.currentMap;
+				if (shouldFocus) {
+					var nodePoint = leafletMap.unproject(
+						[node.x, node.y],
+						leafletMap.getMaxZoom()
+					);
+					if (fitBounds == null) {
+						fitBounds = L.latLngBounds(nodePoint, nodePoint);
+					} else {
+						fitBounds.extend(nodePoint);
+					}
+				}
+			}
+		}
+
+		if (options.polygons) {
+			var polygons = options.polygons;
+			for (i = 0; i &lt; polygons.length; ++i) {
+				var polygonId = getObjectId(polygons[i]);
+				var leafletPolygon = interactivePolygons[polygonId];
+				if (leafletPolygon != null) {
+					var polygonBounds = leafletPolygon.getBounds();
+					if (fitBounds == null) {
+						fitBounds = L.latLngBounds(
+							polygonBounds.getSouthWest(),
+							polygonBounds.getNorthEast()
+						);
+					} else {
+						fitBounds.extend(polygonBounds);
+					}
+				}
+			}
+		}
+
+		if (fitBounds != null) {
+			hoverLabel.hide();
+			var horizontalStretch = (1 / options.horizontalFovFactor) || 1;
+			var verticalStretch = (1 / options.verticalFovFactor) || 1;
+			var center = fitBounds.getCenter();
+			var northWest = fitBounds.getNorthWest();
+			var southEast = fitBounds.getSouthEast();
+			var newNorthWest = new L.LatLng(center.lat - (center.lat - northWest.lat) * verticalStretch, center.lng - (center.lng - northWest.lng) * horizontalStretch);
+			var newSouthEast = new L.LatLng(center.lat - (center.lat - southEast.lat) * verticalStretch, center.lng - (center.lng - southEast.lng) * horizontalStretch);
+			var newBounds = new L.LatLngBounds(newSouthEast, newNorthWest);
+			ignoreMapEvents();
+			leafletMap.fitBounds(newBounds, { animate: false });
+		}
+	};
+
+	this.showEntireMap = function(options) {
+		var polygonIds = Object.keys(interactivePolygons);
+		this.focusOn({
+			polygons: polygonIds,
+			changeZoom: true
+		});
+	};
+
+	// On a non-user-initiated event, ignore events that would be fired
+	function ignoreMapEvents() {
+		scope.userMightInteract = false;
+		setTimeout(function() {
+			scope.userMightInteract = true;
+		}, 300);
+	}
+
+	// Returns the value you should call setZoom on to fit the polygon exactly.
+	this.getZoomLevelForPolygon = function(polygon) {
+		// No-op in 2D
+		return leafletMap.getZoom();
+	};
+
+	// Returns the zoom level that will encompass the entire map
+	this.getZoomLevelForCurrentMap = function() {
+		// No-op in 2D
+		return leafletMap.getZoom();
+	};
+
+	// Returns the camera to it&#x27;s default settings
+	this.resetCamera = function() {
+		hoverLabel.hide();
+		leafletMap.setView(mapBounds.getCenter(), currentZoom);
+		leafletMap.fitBounds(mapBounds);
+	};
+
+	this.getNorth = function() {
+		return mapObjects[scope.currentMap].getNorth();
+	};
+
+	var rotateNode = function(element, rotation) {
+		element.style.transform = &quot;rotate(&quot; + (rotation + element._mRotationOffset) + &quot;rad)&quot;;
+	};
+
+	this.lockNorth = function(element, offset) {
+		rotateWithCamera.push(element);
+		element._mRotationOffset = offset || 0;
+		rotateNode(element, scope.getNorth() + scope.controls.getRotation());
+	};
+
+	this.unlockNorth = function(element) {
+		delete element._mRotationOffset;
+		rotateWithCamera = rotateWithCamera.filter(function (item) {
+			return item != element;
+		});
+	};
+
+	// Given a polygon Id, set it to a specific color.
+	this.setPolygonColor = function(polygon, color) {
+		var polygonId = getObjectId(polygon);
+
+		var leafletPolygon = interactivePolygons[polygonId];
+
+		var style = {};
+		Object.assign(style, scope.polygonStyles.highlight);
+		style.color = &quot;#&quot; + color.toString(16);
+		style.fillColor = style.color;
+
+		leafletPolygon.setStyle(style);
+		leafletPolygon._mHighlightState = HIGHLIGHT_STATES.COLOURED;
+	};
+
+	// Resets a polygon back to it&#x27;s original color
+	// If the user is hovering over a polygon, it will still have the hover effect.
+	this.clearPolygonColor = function(polygon) {
+		var polygonId = getObjectId(polygon);
+
+		var leafletPolygon = interactivePolygons[polygonId];
+
+		leafletPolygon.setStyle(scope.polygonStyles.invisible);
+		leafletPolygon._mHighlightState = HIGHLIGHT_STATES.INVISIBLE;
+	};
+
+	// Resets all polygons back to their original colors
+	this.clearAllPolygonColors = function() {
+		var ids = Object.keys(interactivePolygons);
+		for (var i = 0, iLen = ids.length; i &lt; iLen; ++i) {
+			var id = ids[i];
+			scope.clearPolygonColor(id);
+		}
+	};
+
+	// Makes a polygon hoverable/clickable
+	this.addInteractivePolygon = function (polygon) {
+		var polyData = getPolygon(polygon);
+		var polygonId = polyData.id;
+		var leafletPolygon = createPolygon(polyData);
+		interactivePolygons[polygonId] = leafletPolygon;
+		if (polyData.map == scope.currentMap) {
+			leafletMap.addLayer(leafletPolygon);
+		}
+	};
+
+	// Makes a polygon no longer hoverable/clickable
+	this.removeInteractivePolygon = function (polygon) {
+		var polyData = getPolygon(polygon);
+		var polygonId = polyData.id;
+		leafletMap.removeLayer(interactivePolygons[polygonId]);
+		delete mapObjects[polyData.map][polygonId];
+		delete interactivePolygons[polygonId];
+	};
+
+	// This creates a div with whatever HTML you provide, anchors it to position in 3D space, and optionally applies a css class you provide.
+	// Position should be something you got from getPositionPolygon, getPositionNode, or convertTo3DMapPosition.
+	// The marker is added for you. You will need to manage map changes yourself.
+	this.createMarker = function(html, position, className, map) {
+		var mapId = getObjectId(map || scope.currentMap);
+
+		var marker = new MapView2D.Marker(scope, {
+			html: html,
+			position: position,
+			className: className,
+			map: mapId
+		});
+
+		scope.addMarker(marker);
+
+		return marker;
+	};
+
+	this.addMarker = function(marker) {
+		mapObjects[marker._mMapId].markers[marker._mId] = marker;
+		if (marker._mMapId == scope.currentMap) {
+			if (marker._mLeafletMarker) {
+				leafletMap.addLayer(marker._mLeafletMarker);
+			} else {
+				marker.div.style.transform = &quot;rotate(&quot; + marker._mIntitialRotation + &quot;rad)&quot;;
+				container.appendChild(marker.div);
+			}
+		}
+	};
+
+	// Removes a maker you have added previously.
+	this.removeMarker = function(marker) {
+		delete mapObjects[marker._mMapId].markers[marker._mId];
+		if (marker._mMapId == scope.currentMap) {
+			leafletMap.removeLayer(marker._mLeafletMarker);
+		}
+	};
+
+	// Removes all markers
+	this.removeAllMarkers = function () {
+		var keys = Object.keys(mapObjects[scope.currentMap].markers);
+		keys.map(function (key) {
+			leafletMap.removeLayer(mapObjects[scope.currentMap].markers[key]._mLeafletMarker);
+		});
+		var mapIds = Object.keys(mapObjects);
+		for (var i = 0, iLen = mapIds.length; i &lt; iLen; i++) {
+			mapObjects[mapIds[i]].markers = {};
+		}
+	};
+
+	// Takes an x/y pair in Mappedin coordinate space and gives you a THREE.Vector3 in scene space
+	this.convertTo3DMapPosition = function (point) {
+		return leafletMap.unproject([point.x, point.y], leafletMap.getMaxZoom());
+	};
+
+	// Gives you the top center of a polygon in 3d scene space.
+	this.getPositionPolygon = function (polygon) {
+		var polygonId = getObjectId(polygon);
+
+		// Doesn&#x27;t have to be interactive
+		var leafletPolygon = interactivePolygons[polygonId] || createPolygon(getPolygon(polygon));
+
+		return leafletPolygon.getCenter();
+	};
+
+	// Gives you the position of a Mappedin node in the 3D scene
+	this.getPositionNode = function (node) {
+		var nodeData = getNode(node);
+		return scope.convertTo3DMapPosition(nodeData);
+	};
+
+	/* An internal representaion of a 3D text label. Make your own with labelPolygon.
+
+		All of the options are optional except text and either polygon or canvasBounds and height.
+
+		options = {
+			polygon - The polygon to make a label for
+			canvasBounds - Optional, to do this without a real Mappedin Polygon
+			height - If you don&#x27;t have a real polygon, you will need to set a height
+			text - The text to make the label
+			margin - The amount of space to leave before starting the text
+			color - A optional special color if you don&#x27;t want to use mapView.colors.text
+			fontSize - How big to make the font. Defaults to 12
+			font - A Mappedin.Font object, if you have your own font you want to use.
+			scaleMin - What percentage we can shrink the label to if it won&#x27;t fit at 100%
+			scaleStep - How much to decrement the scale each time it doesn&#x27;t fit, so we don&#x27;t end up with too many different font sizes
+		}
+	*/
+	var TextLabel = function(options) {
+		var text = options.text;
+		var color = options.color || scope.colors.text || 0x0;
+		//var fontSize = options.fontSize || 12
+		//var font = options.font || DEFAULT_FONT
+		//var scaleMin = options.scaleMin || .5
+		//var scaleStep = options.scaleStep &gt; 0 ? options.scaleStep : .25
+		this.hoverLabelClass = options.hoverLabel2D || options.hoverLabelClass || &quot;mMapviewHoverLabel&quot;;
+
+		this.invalid = false;
+		this.message = &quot;&quot;;
+
+		// This actually makes the geometery. Not that expensive, but it&#x27;s a bit better than creating and adding to the scene at the same time.
+		this.create = function() {
+			// We actually create everything in the constructor
+			return;
+		};
+
+		// Ensures the text label is always upright with respects to the camera.
+		this.flipIfNeeded = function (cameraAngle) {
+			// No flips in 2D
+			return;
+		};
+
+		// If bulk is set to true, you will need to modify the mapobject&#x27;s.textObject array yourself when you are done
+		this.removeSelf = function(bulk) {
+			if (!bulk) {
+				// Delete from textLabelsByPolygonId
+				Object.keys(textLabelsByPolygonId).forEach(function(key) {
+					if (textLabelsByPolygonId[key] == self) {
+						delete textLabelsByPolygonId[key];
+					}
+				});
+			}
+		};
+
+		this.setColor = function(textColor) {
+			// Could do, but probably wont in 2D
+		};
+
+
+		this.clearColor = function() {
+			this.setColor(color);
+		};
+
+		this.toString = function() {
+			return text;
+		};
+	};
+
+	/**
+		Labels a specific polygon (or area of 3D space) with a text label that lives in 3D space.
+		That means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.
+		The text will flip 180 degress when the camera rotates so it&#x27;s never totally upside-down.
+
+		Possible options = {
+			polygon - The polygon to make a label for
+			canvasBounds - Optional, to do this without a real Mappedin Polygon
+			height - If you don&#x27;t have a real polygon, you will need to set a height
+			text - The text to make the label
+			margin - The amount of space to leave before starting the text
+			color - A optional special color if you don&#x27;t want to use mapView.colors.text
+			fontSize - How big to make the font. Defaults to 12
+			font - A THREE.Font object, if you have your own font you want to use.
+			scaleMin - What percentage we can shrink the label to if it won&#x27;t fit at 100%
+			scaleStep - How much to decrement the scale each time it doesn&#x27;t fit, so we don&#x27;t end up with too many different font sizes
+		}
+
+		You must provide AT LEAST text and either polygon or canvasBounds + height.
+	*/
+
+	this.labelPolygon = function (options) {
+		var label = new TextLabel(options);
+		//var mapObject = mapObjects[options.polygon.map || options.map || scope.currentMap]
+		//mapObject.textObjects.push(label)
+		//mapObject.renderCommandQueue.low.push(label.create)
+		return label;
+	};
+
+	// Labels all locations, displaying in order of distance from the center of the map. See labelPolygon for available options for labels
+	// This function also allows you to specify a list of location Types to exlude, and your own sort order (so polygons with more than
+	// one location get labeled by the most i,portant one). By default it uses the sortOrder property.
+	// You can also specify your own list of locations, if you want.
+	this.labelAllLocations = function(options) {
+		if (!options) {
+			options = {};
+		}
+		var exclude = options.excludeTypes || [];
+		var locationList = options.locations || scope.venue.locations.slice();
+
+		var filteredList = locationList
+			.filter(function(l) {
+				var has = exclude.indexOf(l.type) === -1;
+				return has;
+			});
+
+		var polygons = {};
+
+		for (var i = 0, iLen = filteredList.length; i &lt; iLen; ++i) {
+			var locationObject = filteredList[i];
+			var polygonList = locationObject.polygons;
+			for (var j = 0, jLen = polygonList.length; j &lt; jLen; ++j) {
+				var polygon = polygonList[j];
+				if (polygons[polygon.id]) {
+					continue;
+				} else {
+					polygons[polygon.id] = locationObject.name;
+				}
+			}
+		}
+
+		var keys = Object.keys(polygons);
+		for (var k = 0, kLen = keys.length; k &lt; kLen; ++k) {
+			var polygonId = keys[k];
+			options.polygon = polygonId;
+			options.text = polygons[polygonId];
+			textLabelsByPolygonId[polygonId] = scope.labelPolygon(options);
+		}
+	};
+
+	// Removes all labels on the scene
+	this.removeAllLabels = function() {
+		// No-op in 2D
+		return;
+	};
+
+	// No-op in 2D
+	this.enableImageFlippingForAllLocations = function (options) {};
+
+	// No-op in 2D
+	this.enableImageFlippingForPolygon = function(options) {};
+
+	/*
+
+	 Draws an entire path. It takes a list of nodes and will break them into separate path segments on every man change, putting the resultant segment on the right map.
+
+	 If you have a special use case (like off graph nodes, or venues with same map vortexes) use the drawPathSegment function.
+
+	 Returns an array of path segments if you want to customize the animation triggers. The path segements are added to the scene, chained together, and start animating automatically.
+
+	 options = {
+	 	// Color of path
+		color: 0xff834c,
+		// Radius of path tube
+		radius: 10,
+		// Duration of fade in animation
+		drawDuration: 3000,
+		// Tween.js curve to use for fade in animation
+		curve: TWEEN.Easing.Circular.InOut
+	 }
+	 */
+	this.drawPath = function (path, options) {
+		var start = 0;
+		var map = path[start].map;
+
+		var segments = [];
+
+		for (var i = 0, iLen = path.length; i &lt; iLen; ++i) {
+			var node = path[i];
+
+			//TODO: I don&#x27;t think this works right?
+			var segment;
+			if (node.map != map) {
+				segment = scope.drawPathSegment(path.slice(start, i), map, options);
+				start = i;
+				map = node.map;
+
+				// if (currentSegment) {
+				// 	currentSegment.tween.chain(segment.tween)
+				// } else {
+				// 	segment.tween.start()
+				// }
+				segments.push(segment);
+			}
+		}
+		segment = scope.drawPathSegment(path.slice(start), map, options);
+		// if (currentSegment) {
+		// 	currentSegment.tween.chain(segment.tween)
+		// } else {
+		// 	segment.tween.start()
+		//}
+		segments.push(segment);
+		//segment.tween.chain(segments[0].tween)
+
+		return segments;
+	};
+
+	/*
+		Takes a list of {x, y} pairs in Mappedin coordinate space and draws a connected path on the specified map. Use this function for special cases not handled by the drawPath convenience function.
+
+		Returns a path segment. You will need to call it&#x27;s tween.start() function to begin animation and make the path segment visible.
+		You can customize the Tween.js tween if you like, but make sure tryRendering is always called in onUpdate or the path may stop.
+
+		options = {
+	 	// Color of path
+		color: 0xff834c,
+		// Radius of path tube
+		radius: 10,
+		// Duration of fade in animation
+		drawDuration: 3000,
+		// Tween.js curve to use for fade in animation
+		curve: TWEEN.Easing.Circular.InOut
+	 }
+	*/
+	this.drawPathSegment = function(path, map, options) {
+		options = options || {};
+		var color = &quot;#&quot; + (options.color || scope.colors.path || 0xff834c).toString(16);
+		var radius = (options.radius || 10) / 2;
+		//var drawDuration = options.drawDuration || 3000
+		//var curve = options.curve || TWEEN.Easing.Circular.InOut
+
+		var vertexes = path.map(function (vertex) {
+			return leafletMap.unproject([vertex.x, vertex.y], leafletMap.getMaxZoom());
+		});
+
+		var pathSegment = new L.polyline(vertexes, {color: color, weight: radius});
+
+		if (map == scope.currentMap) {
+			leafletMap.addLayer(pathSegment);
+		}
+		pathSegment._mMap = map;
+		pathSegments.push(pathSegment);
+		return pathSegment;
+	};
+
+	// Removes a specific path segement
+	this.removePathSegment = function (pathSegment) {
+		pathSegments.splice(pathSegments.indexOf(pathSegment), 1);
+		leafletMap.removeLayer(pathSegment);
+	};
+
+	// Removes all paths from the map
+	this.removeAllPaths = function() {
+		pathSegments.map(function (segment) {
+			leafletMap.removeLayer(segment);
+		});
+
+		pathSegments = [];
+	};
+
+	// Sets the clear color of the 3D scene to something else, it you want it to fit it more with your website.
+	this.setBackgroundColor = function(color, alpha) {
+		alpha = alpha !== undefined ? +alpha : 1;
+		alpha = alpha &gt;= 0 &amp;&amp; alpha &lt;= 1 ? alpha : 1;
+		if (alpha &lt; 1) {
+			var red = color &gt;&gt; 0x10 &amp; 0xff;
+			var green = color &gt;&gt; 0x08 &amp; 0xff;
+			var blue = color &gt;&gt; 0x00 &amp; 0xff;
+			container.style.background =
+				&#x27;rgba(&#x27; + red + &#x27;,&#x27; + green + &#x27;,&#x27; + blue + &#x27;,&#x27; + alpha + &#x27;)&#x27;;
+		} else {
+			container.style.background = &quot;#&quot; + (color).toString(16);
+		}
+	};
+
+	// The scene only renders when something has changed. This should be something a 3rd party developer doesn&#x27;t need to worry about,
+	// but if you are doing something weird, or have your own special tween for something, you will want to call this function.
+	// You can call it as often as you want, it just sets a flag that we need to render again, and renders a few frames if we weren&#x27;t already doing that.
+	this.tryRendering = function () {
+		// No-op in 2D
+		return;
+	};
+
+
+	if (options) {
+		this.setBackgroundColor(options.backgroundColor || 0xffffff, options.backgroundAlpha);
+	}
+
+	// Display map the developer said to load first, or the default map if it&#x27;s set, otherwise use just first one (which is in an undefined order)
+	var startingMap;
+	(function () {
+		var maps = venue.maps;
+		var targetMap = venue.venue.defaultMap;
+		if (options &amp;&amp; options.firstMap) {
+			targetMap = getObjectId(options.firstMap);
+		}
+
+		if (targetMap) {
+			for (var i = 0, iLen = maps.length; i &lt; iLen; ++i) {
+				if (maps[i].id === targetMap) {
+					startingMap = maps[i].id;
+					break;
+				}
+			}
+		}
+		if (!startingMap) {
+			startingMap = maps[0].id;
+		}
+	})();
+
+	var maps = this.venue.maps;
+	for (var i = 0, iLen = maps.length; i &lt; iLen; ++i) {
+		var mapClass = maps[i];
+		var map = mapClass.id;
+		var mapObj = new MapObject(mapClass);
+		mapObjects[map] = mapObj;
+		// if (map == startingMap) {
+		// 	scope.setMap(map)
+		// } else {
+		// 	// Maybe preloading is an option?
+		// 	// Is there a situation where you don&#x27;t want to do it?
+		// 	// This doesn&#x27;t actually totally preload, there is still a delay the first time the object is added to the scene.
+		// 	// Should either fix that, or put some wait animation when the map is switching, or add some sort of callback to the the developer do the same
+		// 	// Could also handle this as part of map transition animations
+		// 	//mapObj.load().then(function (error, result) {
+		// 		//console.log(&quot;Map &quot; +  result.id + &quot; preloaded&quot;)
+		// 	//})
+		// }
+	}
+	scope.setMap(startingMap, options.onFirstMapLoaded);
+
+	window.setTimeout(function () {
+		if (options.onDataLoaded &amp;&amp; typeof options.onDataLoaded === typeof Function) {
+			options.onDataLoaded();
+		}
+	});
+};
+
+MapView2D.Marker = Marker;
+
+export default MapView2D;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

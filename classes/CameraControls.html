@@ -129,6 +129,39 @@
                                         <a href="../classes/Mappedin.html">Mappedin</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/MapView.html">MapView</a>
                                     </li>
                                     <li>
@@ -138,7 +171,13 @@
                                         <a href="../classes/MapView3D.html">MapView3D</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -156,6 +195,8 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> CameraControls Class
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
     </h1>
 </div>
 
@@ -166,46 +207,18 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
+        <div class="foundat">
+            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L20">source/Mappedin.CameraControls.js:20</a>
+        </div>
 </div>
 
 
-    <div class="constructor">
-        <h2>Constructor</h2>
-<div id="method_CameraControls" class="method item">
-	<span class="method-signature">
-	<span class="name anchorable-toc">
-		<a class="fa fa-link toc-anchor" href="#method_CameraControls"></a>
-		CameraControls
-	</span>
-
-		<span class="paren">()</span>
-	</span>
-
-
-
-
-
-
-
-	<div class="meta">
-				<p>
-		</p>
-
-
-
-	</div>
-
-
-
-
-</div>
-    </div>
 
   <div class="class-description">
-  <p>The advanced, manual camera controls for MapView. You probably don't need to use this at all, instead relying on the MapView's focusOn*, resetCamera and built in touch/mouse controls.
+  <p>The advanced, manual camera controls for <a href="../classes/MapView.html" class="crosslink">MapView</a>. You probably don't need to use this at all, instead relying on the MapView's <a href="../classes/MapView.html#method_focusOn" class="crosslink">focusOn</a>, <a href="../classes/MapView.html#method_resetCamera" class="crosslink">resetCamera</a> and built in touch/mouse controls.
 This class will let you do things like change the min/max zoom, tilt, and pan, attach to camera events, and move/animate the camera to specifc points.</p>
-<p>The camera works by setting an anchor point on the scene at ground level and pointing the camera at it. Zoom controls how far the camera is from the anchor, and tilt/rotate controls the angle the camera is rotated about it.
-The camera will always be pointed directly at the anchor point. Pan or setPosition will move that anchor around on the 2D ground plane.</p>
+<p>The camera works by setting an anchor point on the scene at ground level and pointing the camera at it. <a href="../classes/CameraControls.html#method_zoom" class="crosslink">zoom</a> controls how far the camera is from the anchor, and <a href="../classes/CameraControls.html#method_tilt" class="crosslink">tilt</a>/<a href="../classes/CameraControls.html#method_rotate" class="crosslink">rotate</a> controls the angle the camera is rotated about it.
+The camera will always be pointed directly at the anchor point. <a href="../classes/CameraControls.html#method_pan" class="crosslink">pan</a> or <a href="../classes/CameraControls.html#method_setPosition" class="crosslink">setPosition</a> will move that anchor around on the 2D ground plane.</p>
 <p>Created for you automatically with a MapView, don't re-create yourself.</p>
 
   </div>
@@ -252,6 +265,10 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
 
                               </li>
                               <li class="index-item method">
+                                  <a href="#method_expandZoomLimits">expandZoomLimits</a>
+
+                              </li>
+                              <li class="index-item method">
                                   <a href="#method_getPosition">getPosition</a>
 
                               </li>
@@ -285,6 +302,10 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                               </li>
                               <li class="index-item method private">
                                   <a href="#method_postRender">postRender</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_restrictZoomLimits">restrictZoomLimits</a>
 
                               </li>
                               <li class="index-item method">
@@ -356,6 +377,14 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                               </li>
                               <li class="index-item property">
                                   <a href="#property_enableZoom">enableZoom</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_initialMaxZoom">initialMaxZoom</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_initialMinZoom">initialMinZoom</a>
 
                               </li>
                               <li class="index-item property">
@@ -438,6 +467,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L629">source/Mappedin.CameraControls.js:629</a>
   		</p>
   
   
@@ -458,7 +489,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>A list of optional parameters you can set that represent the camera state</p>
+  					<div class="param-description"><p>A list of optional parameters you can set that represent the camera state.</p>
   </div>
   
   						<ul class="params-list">
@@ -467,7 +498,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>An {x, y} object representing the position to move to</p>
+  								<div class="param-description"><p>An {x, y} object representing the position to move to.</p>
   </div>
   
   							</li>
@@ -476,7 +507,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The zoom level to end at</p>
+  								<div class="param-description"><p>The zoom level to end at.</p>
   </div>
   
   							</li>
@@ -485,7 +516,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The tilt to end at, in radians</p>
+  								<div class="param-description"><p>The tilt to end at, in radians.</p>
   </div>
   
   							</li>
@@ -494,7 +525,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The rotation to end at, in radians</p>
+  								<div class="param-description"><p>The rotation to end at, in radians.</p>
   </div>
   
   							</li>
@@ -503,7 +534,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>Set this to true if you want to start the tween yourself</p>
+  								<div class="param-description"><p>Set this to true if you want to start the tween yourself.</p>
   </div>
   
   							</li>
@@ -515,7 +546,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>The duration to animate the camera for, in ms</p>
+  					<div class="param-description"><p>The duration to animate the camera for, in ms.</p>
   </div>
   
   				</li>
@@ -525,7 +556,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>The animation curve to use for the animation</p>
+  					<div class="param-description"><p>The animation curve to use for the animation.</p>
   </div>
   
   				</li>
@@ -535,7 +566,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>A callback that will be executed when the animation is done</p>
+  					<div class="param-description"><p>A callback that will be executed when the animation is done.</p>
   </div>
   
   				</li>
@@ -572,6 +603,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L1381">source/Mappedin.CameraControls.js:1381</a>
   		</p>
   
   
@@ -581,6 +614,71 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   	<div class="description"><p>Disposes of the camera and all of it's events.</p>
   </div>
   
+  
+  
+  </div>
+  <div id="method_expandZoomLimits" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_expandZoomLimits"></a>
+  		expandZoomLimits
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>zoom</code>
+  				</li>
+  				<li class="arg">
+  						<code>buffer</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L516">source/Mappedin.CameraControls.js:516</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Expands the zoom limits to allow zooming to the specified distance.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">zoom</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>The distance to allow zooming to.</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">buffer</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>The factor by which the user should be able to zoom beyond the specified distance.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
   
   
   </div>
@@ -605,13 +703,15 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L552">source/Mappedin.CameraControls.js:552</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Returns the current camera position</p>
+  	<div class="description"><p>Returns the current camera position.</p>
   </div>
   
   
@@ -620,7 +720,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-  					<p>An {x, y} object of the current camera postion</p>
+  					<p>An {x, y} object of the current camera postion.</p>
   
   			</div>
   		</div>
@@ -647,13 +747,15 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L562">source/Mappedin.CameraControls.js:562</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Returns the current camera rotation</p>
+  	<div class="description"><p>Returns the current camera rotation.</p>
   </div>
   
   
@@ -662,7 +764,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-  					<p>The current rotation of the camera, in radians</p>
+  					<p>The current rotation of the camera, in radians.</p>
   
   			</div>
   		</div>
@@ -689,6 +791,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L572">source/Mappedin.CameraControls.js:572</a>
   		</p>
   
   
@@ -704,7 +808,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-  					<p>The current tilt of the camera, in radians</p>
+  					<p>The current tilt of the camera, in radians.</p>
   
   			</div>
   		</div>
@@ -731,6 +835,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L582">source/Mappedin.CameraControls.js:582</a>
   		</p>
   
   
@@ -746,7 +852,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-  					<p>The distance of the camera from the anchor</p>
+  					<p>The distance of the camera from the anchor.</p>
   
   			</div>
   		</div>
@@ -773,6 +879,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L612">source/Mappedin.CameraControls.js:612</a>
   		</p>
   
   
@@ -815,6 +923,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L602">source/Mappedin.CameraControls.js:602</a>
   		</p>
   
   
@@ -857,13 +967,15 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L592">source/Mappedin.CameraControls.js:592</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Returns true if the camera is currently moving (it's animating, the user is manipulating it)</p>
+  	<div class="description"><p>Returns true if the camera is currently moving (it's animating, the user is manipulating it).</p>
   </div>
   
   
@@ -905,6 +1017,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L300">source/Mappedin.CameraControls.js:300</a>
   		</p>
   
   
@@ -960,6 +1074,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L818">source/Mappedin.CameraControls.js:818</a>
   		</p>
   
   
@@ -969,6 +1085,71 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   	<div class="description"><p>Anything we need to do after we render the camera, like update anchors for the mouse/touch controls.</p>
   </div>
   
+  
+  
+  </div>
+  <div id="method_restrictZoomLimits" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_restrictZoomLimits"></a>
+  		restrictZoomLimits
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>zoom</code>
+  				</li>
+  				<li class="arg">
+  						<code>buffer</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L533">source/Mappedin.CameraControls.js:533</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Restricts the zoom limits, but will not restrict beyond the current zoom level.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">zoom</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>The number to limit zooming to.</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">buffer</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>The factor by which the user should be able to zoom beyond the specified distance.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
   
   
   </div>
@@ -996,6 +1177,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L371">source/Mappedin.CameraControls.js:371</a>
   		</p>
   
   
@@ -1014,7 +1197,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   
   
-  					<div class="param-description"><p>Number of radians to rotate the camera</p>
+  					<div class="param-description"><p>Number of radians to rotate the camera.</p>
   </div>
   
   				</li>
@@ -1056,6 +1239,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L720">source/Mappedin.CameraControls.js:720</a>
   		</p>
   
   
@@ -1075,7 +1260,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>an {x, y} object representing the new position</p>
+  					<div class="param-description"><p>an {x, y} object representing the new position.</p>
   </div>
   
   				</li>
@@ -1085,7 +1270,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>The new zoom distance</p>
+  					<div class="param-description"><p>The new zoom distance.</p>
   </div>
   
   				</li>
@@ -1141,6 +1326,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L313">source/Mappedin.CameraControls.js:313</a>
   		</p>
   
   
@@ -1201,6 +1388,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L350">source/Mappedin.CameraControls.js:350</a>
   		</p>
   
   
@@ -1219,7 +1408,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   
   
-  					<div class="param-description"><p>Absolute rotation to set the camera to, in radians. 0 in the starting point</p>
+  					<div class="param-description"><p>Absolute rotation to set the camera to, in radians. 0 in the starting point.</p>
   </div>
   
   				</li>
@@ -1252,13 +1441,15 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L392">source/Mappedin.CameraControls.js:392</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Sets the tilt to a specific level, in radians. 0 is top down. Bounded by minTilt and maxTilt</p>
+  	<div class="description"><p>Sets the tilt to a specific level, in radians. 0 is top down. Bounded by minTilt and maxTilt.</p>
   </div>
   
   		<div class="params">
@@ -1270,7 +1461,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   
   
-  					<div class="param-description"><p>Tilt to set the camera to, in radians</p>
+  					<div class="param-description"><p>Tilt to set the camera to, in radians.</p>
   </div>
   
   				</li>
@@ -1303,6 +1494,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L432">source/Mappedin.CameraControls.js:432</a>
   		</p>
   
   
@@ -1322,7 +1515,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   
   
-  					<div class="param-description"><p>The distance to set the camera to</p>
+  					<div class="param-description"><p>The distance to set the camera to.</p>
   </div>
   
   				</li>
@@ -1355,13 +1548,15 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L412">source/Mappedin.CameraControls.js:412</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Tilts the camera up or down by some number of radians. Bounded by minTilt and maxTilt</p>
+  	<div class="description"><p>Tilts the camera up or down by some number of radians. Bounded by minTilt and maxTilt.</p>
   </div>
   
   		<div class="params">
@@ -1401,6 +1596,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L1363">source/Mappedin.CameraControls.js:1363</a>
   		</p>
   
   
@@ -1437,13 +1634,15 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L461">source/Mappedin.CameraControls.js:461</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Moves the camera towards or away from the camera by a set amount. Positive will zoom in (bringing the distance closer to 0)</p>
+  	<div class="description"><p>Moves the camera towards or away from the camera by a set amount. Positive will zoom in (bringing the distance closer to 0).</p>
   </div>
   
   		<div class="params">
@@ -1455,7 +1654,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   
   
-  					<div class="param-description"><p>The distance to increase or decrease the zoom</p>
+  					<div class="param-description"><p>The distance to increase or decrease the zoom.</p>
   </div>
   
   				</li>
@@ -1494,6 +1693,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L484">source/Mappedin.CameraControls.js:484</a>
   		</p>
   
   
@@ -1563,6 +1764,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L500">source/Mappedin.CameraControls.js:500</a>
   		</p>
   
   
@@ -1621,6 +1824,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L247">source/Mappedin.CameraControls.js:247</a>
           </p>
   
   
@@ -1641,7 +1846,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired whenever the camera changes</p>
+                      <p>Fired whenever the camera changes.</p>
   
                   </div>
   
@@ -1651,7 +1856,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired when the camera starts panning</p>
+                      <p>Fired when the camera starts panning.</p>
   
                   </div>
   
@@ -1661,7 +1866,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired when the camera finishes panning</p>
+                      <p>Fired when the camera finishes panning.</p>
   
                   </div>
   
@@ -1671,7 +1876,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired when the camera starts rotating</p>
+                      <p>Fired when the camera starts rotating.</p>
   
                   </div>
   
@@ -1681,7 +1886,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired when the camera stops rotating</p>
+                      <p>Fired when the camera stops rotating.</p>
   
                   </div>
   
@@ -1691,7 +1896,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired when the camera starts zooming</p>
+                      <p>Fired when the camera starts zooming.</p>
   
                   </div>
   
@@ -1701,7 +1906,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
                   <div class="param-description">
-                      <p>Fired when the camera finishes zooming</p>
+                      <p>Fired when the camera finishes zooming.</p>
   
                   </div>
   
@@ -1741,6 +1946,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L60">source/Mappedin.CameraControls.js:60</a>
           </p>
   
   
@@ -1768,6 +1975,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L76">source/Mappedin.CameraControls.js:76</a>
           </p>
   
   
@@ -1795,6 +2004,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L84">source/Mappedin.CameraControls.js:84</a>
           </p>
   
   
@@ -1822,6 +2033,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L68">source/Mappedin.CameraControls.js:68</a>
           </p>
   
   
@@ -1833,6 +2046,64 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
       </div>
   
           <p><br><strong>Default:</strong> true</p>
+  
+  
+  </div>
+  <div id="property_initialMaxZoom" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_initialMaxZoom"></a>
+          initialMaxZoom
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L116">source/Mappedin.CameraControls.js:116</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Initial max zoom; zoom cannot be restricted beyond this.</p>
+  
+      </div>
+  
+          <p><br><strong>Default:</strong> 10000</p>
+  
+  
+  </div>
+  <div id="property_initialMinZoom" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_initialMinZoom"></a>
+          initialMinZoom
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L108">source/Mappedin.CameraControls.js:108</a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Initial min zoom; zoom cannot be restricted beyond this.</p>
+  
+      </div>
+  
+          <p><br><strong>Default:</strong> 375</p>
   
   
   </div>
@@ -1849,6 +2120,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L187">source/Mappedin.CameraControls.js:187</a>
           </p>
   
   
@@ -1876,6 +2149,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L100">source/Mappedin.CameraControls.js:100</a>
           </p>
   
   
@@ -1903,6 +2178,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L179">source/Mappedin.CameraControls.js:179</a>
           </p>
   
   
@@ -1930,6 +2207,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L92">source/Mappedin.CameraControls.js:92</a>
           </p>
   
   
@@ -1940,7 +2219,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       </div>
   
-          <p><br><strong>Default:</strong> 750</p>
+          <p><br><strong>Default:</strong> 375</p>
   
   
   </div>
@@ -1957,6 +2236,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L195">source/Mappedin.CameraControls.js:195</a>
           </p>
   
   
@@ -1973,18 +2254,18 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
           <ul class="params-list">
               <li class="param">
-                      <code class="param-name">ORBIT=THREE.MOUSE.RIGHT</code>
-                      <span class="type">THREE.MOUSE</span>
+                      <code class="param-name">ORBIT=MOUSE.RIGHT</code>
+                      <span class="type">MOUSE</span>
   
                   <div class="param-description">
-                      <p>The button to use for tilt/rotation. Defaults to <code>THREE.MOUSE.RIGHT</code></p>
+                      <p>The button to use for tilt/rotation. Defaults to <code>MOUSE.RIGHT</code>.</p>
   
                   </div>
   
               </li>
               <li class="param">
-                      <code class="param-name">ZOOM=THREE.MOUSE.MIDDLE</code>
-                      <span class="type">THREE.MOUSE</span>
+                      <code class="param-name">ZOOM=MOUSE.MIDDLE</code>
+                      <span class="type">MOUSE</span>
   
                   <div class="param-description">
                       <p>The button to use for zoom behaviour. Don't change this.</p>
@@ -1993,11 +2274,11 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
               </li>
               <li class="param">
-                      <code class="param-name">PAN=THREE.MOUSE.LEFT</code>
-                      <span class="type">THREE.MOUSE</span>
+                      <code class="param-name">PAN=MOUSE.LEFT</code>
+                      <span class="type">MOUSE</span>
   
                   <div class="param-description">
-                      <p>The button to use for panning the camera. Defaults to <code>THREE.MOUSE.LEFT</code></p>
+                      <p>The button to use for panning the camera. Defaults to <code>MOUSE.LEFT</code>.</p>
   
                   </div>
   
@@ -2017,6 +2298,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L151">source/Mappedin.CameraControls.js:151</a>
           </p>
   
   
@@ -2040,7 +2323,7 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
                       <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   
                   <div class="param-description">
-                      <p>The factor the multiply the size of the geometery by to give the true camera bounds</p>
+                      <p>The factor the multiply the size of the geometery by to give the true camera bounds.</p>
   
                   </div>
   
@@ -2080,6 +2363,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L52">source/Mappedin.CameraControls.js:52</a>
           </p>
   
   
@@ -2107,6 +2392,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L143">source/Mappedin.CameraControls.js:143</a>
           </p>
   
   
@@ -2134,6 +2421,8 @@ The camera will always be pointed directly at the anchor point. Pan or setPositi
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.CameraControls.js#L44">source/Mappedin.CameraControls.js:44</a>
           </p>
   
   
