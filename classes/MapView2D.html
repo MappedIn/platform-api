@@ -129,6 +129,39 @@
                                         <a href="../classes/Mappedin.html">Mappedin</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/MapView.html">MapView</a>
                                     </li>
                                     <li>
@@ -138,7 +171,13 @@
                                         <a href="../classes/MapView3D.html">MapView3D</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -156,6 +195,8 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MapView2D Class
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
     </h1>
 </div>
 
@@ -169,6 +210,9 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
+        <div class="foundat">
+            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView2D.js#L17">source/Mappedin.MapView2D.js:17</a>
+        </div>
 </div>
 
 
@@ -204,6 +248,8 @@
 
 	<div class="meta">
 				<p>
+				Defined in
+		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView2D.js#L17">source/Mappedin.MapView2D.js:17</a>
 		</p>
 
 
@@ -220,7 +266,7 @@
 						<span class="type">Div</span>
 
 
-					<div class="param-description"><p>The div to place the MapView in</p>
+					<div class="param-description"><p>The div to place the MapView in.</p>
 </div>
 
 				</li>
@@ -229,7 +275,7 @@
 						<span class="type">Venue</span>
 
 
-					<div class="param-description"><p>The results from the Mappedin API that powers this MapView</p>
+					<div class="param-description"><p>The results from the Mappedin API that powers this MapView.</p>
 </div>
 
 				</li>
@@ -247,7 +293,7 @@
 									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 									<span class="flag optional" title="This parameter is optional.">optional</span>
 
-								<div class="param-description"><p>A callback executed with the 3D files have been downloaded for the first map, and are starting to load into memory. The mapview is fully functional at this point, but some things will still be popping in.</p>
+								<div class="param-description"><p>A callback executed with the 3D files have been downloaded for the first Map, and are starting to load into memory. The MapView is fully functional at this point, but some things will still be popping in.</p>
 </div>
 
 							</li>
@@ -256,16 +302,16 @@
 									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 									<span class="flag optional" title="This parameter is optional.">optional</span>
 
-								<div class="param-description"><p>A callback executed when the first map is fully loaded. This means onDataLoaded has already been fired (if specified) and then all the textures and other resources have finished popping in.</p>
+								<div class="param-description"><p>A callback executed when the first Map is fully loaded. This means onDataLoaded has already been fired (if specified) and then all the textures and other resources have finished popping in.</p>
 </div>
 
 							</li>
 							<li class="param">
 									<code class="param-name optional">[firstMap]</code>
-									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+									<span class="type"><a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a></span>
 									<span class="flag optional" title="This parameter is optional.">optional</span>
 
-								<div class="param-description"><p>If you don't want to load the default map first, set the map you want to load first here. Useful for deep linking to a certain floor/locaiton. Since you won't have the Map object/ID until you get the Mappedin Venue data, there is a callback you can set on Mappedin.initalize to fill this in.</p>
+								<div class="param-description"><p>If you don't want to load the default Map first, set the Map you want to load first here. Useful for deep linking to a certain floor/location. Since you won't have the Map object/ID until you get the <a href="../classes/MappedinVenue.html" class="crosslink">MappedinVenue</a>, there is a callback you can set on MappedinMappedin/initailize:property to fill this in.</p>
 </div>
 
 							</li>
@@ -336,6 +382,10 @@
                                   <a href="#method_clearPolygonColor">clearPolygonColor</a>
 
                               </li>
+                              <li class="index-item method inherited">
+                                  <a href="#method_contractMaps">contractMaps</a>
+
+                              </li>
                               <li class="index-item method private inherited">
                                   <a href="#method_convertTo3DMapPosition">convertTo3DMapPosition</a>
 
@@ -359,6 +409,10 @@
                               </li>
                               <li class="index-item method inherited">
                                   <a href="#method_enableImageFlippingForPolygon">enableImageFlippingForPolygon</a>
+
+                              </li>
+                              <li class="index-item method inherited">
+                                  <a href="#method_expandMaps">expandMaps</a>
 
                               </li>
                               <li class="index-item method inherited">
@@ -539,13 +593,15 @@
   			<a href="../classes/MapView.html#method_addInteractivePolygon">
   				MapView
   			</a>
+  			but overwritten in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L265">source/Mappedin.MapView.js:265</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Makes a polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.</p>
+  	<div class="description"><p>Makes a Polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.</p>
   </div>
   
   		<div class="params">
@@ -554,7 +610,7 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type">Polygon  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
   					<div class="param-description"><p>The Polygon/Polygon ID to make interactive.</p>
@@ -591,13 +647,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_addMap">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L99">source/Mappedin.MapView.js:99</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>adds a map</p>
+  	<div class="description"><p>Adds a Map</p>
   </div>
   
   		<div class="params">
@@ -606,10 +663,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">map</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+  						<span class="type"><a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a></span>
   
   
-  					<div class="param-description"><p>map to add</p>
+  					<div class="param-description"><p>Map to add</p>
   </div>
   
   				</li>
@@ -643,13 +700,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_addMarker">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L320">source/Mappedin.MapView.js:320</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Adds an already created Mappedin.Marker to the scene. The Marker constructor is more powerful than the createMarker convenience function.</p>
+  	<div class="description"><p>Adds an already created <a href="../classes/Marker.html" class="crosslink">Marker</a> to the scene. The Marker constructor is more powerful than the <a href="../classes/MapView.html#method_createMarker" class="crosslink">createMarker</a> convenience function.</p>
   </div>
   
   		<div class="params">
@@ -658,10 +716,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">marker</code>
-  						<span class="type">Marker</span>
+  						<span class="type"><a href="../classes/Marker.html" class="crosslink">Marker</a></span>
   
   
-  					<div class="param-description"><p>The Marker to add</p>
+  					<div class="param-description"><p>The Marker to add.</p>
   </div>
   
   				</li>
@@ -689,14 +747,15 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_clearAllPolygonColors">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L256">source/Mappedin.MapView.js:256</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Resets ALL polygons you have changed with setPolygonColor back to their original color.
-  The hover effect will still be present if the user is currently hovering over a polygon.</p>
+  	<div class="description"><p>Resets ALL Polygons you have changed with <a href="../classes/MapView.html#method_setPolygonColor" class="crosslink">setPolygonColor</a> back to their original color.
+  The hover effect will still be present if the user is currently hovering over a Polygon.</p>
   </div>
   
   
@@ -727,13 +786,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_clearPolygonColor">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L246">source/Mappedin.MapView.js:246</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Resets a polygon back to it's original color
+  	<div class="description"><p>Resets a Polygon back to it's original color.
   If the user is hovering over a polygon, it will still have the hover effect.</p>
   </div>
   
@@ -743,12 +803,94 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type">Polygon  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
-  					<div class="param-description"><p>The polygon/polygon ID to reset</p>
+  					<div class="param-description"><p>The Polygon/Polygon ID to reset.</p>
   </div>
   
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_contractMaps" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_contractMaps"></a>
+  		contractMaps
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>options</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>Inherited from
+  				<a href="../classes/MapView.html#method_contractMaps">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapManager.js#L379">source/Mappedin.MapManager.js:379</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Contract maps and display the current map</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">options</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  					<div class="param-description"><p>Options object @optional</p>
+  </div>
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name optional">[focus]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Focus the camera onto current map</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[debug]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Display cubes around focus bounding box for debug info</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[duration=300]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Duration of focus animation in ms</p>
+  </div>
+  
+  							</li>
+  						</ul>
   				</li>
   			</ul>
   		</div>
@@ -784,6 +926,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_convertTo3DMapPosition">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L346">source/Mappedin.MapView.js:346</a>
   		</p>
   
   
@@ -792,7 +935,7 @@
   
   	<div class="description"><p>Takes an x/y pair in Mappedin coordinate space and gives you an object suitable to use as a Marker's position.
   <strong>Be careful about using this:</strong> The coordinate system could change arbitrarily and without notice. You are better off
-  using a specific node or polygon as an anchor. If you need to use this for some reason, talk to your Mappedin representative.</p>
+  using a specific Node or Polygon as an anchor. If you need to use this for some reason, talk to your Mappedin representative.</p>
   </div>
   
   		<div class="params">
@@ -804,7 +947,7 @@
   						<span class="type">X, y</span>
   
   
-  					<div class="param-description"><p>} A coordinate in Mappedin 2D space</p>
+  					<div class="param-description"><p>} A coordinate in Mappedin 2D space.</p>
   </div>
   
   				</li>
@@ -816,7 +959,7 @@
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-  					<p>The position to anchor a marker in 3D space</p>
+  					<p>The position to anchor a Marker in 3D space.</p>
   
   			</div>
   		</div>
@@ -841,7 +984,7 @@
   		</span>
   	</span>
   
-  		<span class="flag deprecated" title="Use static method MapView3D.createFont() instead">deprecated</span>
+  		<span class="flag deprecated" title="Use static method MapView3D.{{#crossLink &quot;MapView3D/createFont:method&quot;}}{{/crossLink}} instead">deprecated</span>
   
   
   
@@ -851,10 +994,11 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_createFont">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L453">source/Mappedin.MapView.js:453</a>
   		</p>
   
   
-  			<p>Deprecated: Use static method MapView3D.createFont() instead</p>
+  			<p>Deprecated: Use static method MapView3D.{{#crossLink &quot;MapView3D/createFont:method&quot;}}{{/crossLink}} instead</p>
   
   	</div>
   
@@ -913,7 +1057,7 @@
   			</ul><span class="paren">)</span>
   		</div>
   		<span class="returns-inline">
-  			<span class="type">Marker</span>
+  			<span class="type"><a href="../classes/Marker.html" class="crosslink">Marker</a></span>
   		</span>
   	</span>
   
@@ -926,6 +1070,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_createMarker">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L305">source/Mappedin.MapView.js:305</a>
   		</p>
   
   
@@ -933,8 +1078,8 @@
   	</div>
   
   	<div class="description"><p>This creates a div with whatever HTML you provide, anchors it to <code>position</code> in 3D space, and optionally applies a css class you provide.
-  <code>position</code> should be something you got from getPositionPolygon or getPositionNode
-  The marker is added for you, on to the current map (or the one you specify)</p>
+  <code>position</code> should be something you got from <a href="../classes/MapView.html#method_getPositionPolygon" class="crosslink">getPositionPolygon</a> or <a href="../classes/MapView.html#method_getPositionNode" class="crosslink">getPositionNode</a>.
+  The <a href="../classes/Marker.html" class="crosslink">Marker</a> is added for you, on to the <a href="../classes/MapView.html#property_currentMap" class="crosslink">currentMap</a>, (or the one you specify).</p>
   </div>
   
   		<div class="params">
@@ -946,7 +1091,7 @@
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
-  					<div class="param-description"><p>The HTML that the marker will be. Typically just some text or an image, but you can be more creative if you want.</p>
+  					<div class="param-description"><p>The HTML that the Marker will be. Typically just some text or an image, but you can be more creative if you want.</p>
   </div>
   
   				</li>
@@ -955,7 +1100,7 @@
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>The position in 3D space to anchor the marker to. Do not attempt to create it manually: use getPositionPolygon or getPositionNode.</p>
+  					<div class="param-description"><p>The position in 3D space to anchor the Marker to. Do not attempt to create it manually: use <a href="../classes/MapView.html#method_getPositionPolygon" class="crosslink">getPositionPolygon</a> or <a href="../classes/MapView.html#method_getPositionNode" class="crosslink">getPositionNode</a>.</p>
   </div>
   
   				</li>
@@ -964,17 +1109,17 @@
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
-  					<div class="param-description"><p>The name of the CSS class to apply to the marker</p>
+  					<div class="param-description"><p>The name of the CSS class to apply to the Marker.</p>
   </div>
   
   				</li>
   				<li class="param">
   						<code class="param-name optional">[map=this.currentMap]</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<span class="type"><a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>The map to add the marker on. Defaults to the current map.</p>
+  					<div class="param-description"><p>The map to add the Marker on. Defaults to the current map.</p>
   </div>
   
   				</li>
@@ -985,8 +1130,8 @@
   			<h4>Returns:</h4>
   
   			<div class="returns-description">
-  						<span class="type">Marker</span>:
-  					<p>The marker you created, which has already been added to the scene</p>
+  						<span class="type"><a href="../classes/Marker.html" class="crosslink">Marker</a></span>:
+  					<p>The Marker you created, which has already been added to the scene.</p>
   
   			</div>
   		</div>
@@ -1010,7 +1155,7 @@
   			</ul><span class="paren">)</span>
   		</div>
   		<span class="returns-inline">
-  			<span class="type">PathSegment[]</span>
+  			<span class="type">PathSegment</span>
   		</span>
   	</span>
   
@@ -1025,15 +1170,17 @@
   			<a href="../classes/MapView.html#method_drawPath">
   				MapView
   			</a>
+  			but overwritten in
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L487">source/Mappedin.MapView.js:487</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Draws an entire path. It takes a list of nodes and will break them into separate path segments on every man change, putting the resultant segment on the right map.</p>
-  <p>If you have a special use case (like off graph nodes, or venues with same map vortexes) use the drawPathSegment function.</p>
-  <p>Returns an array of path segments if you want to customize the animation triggers. The path segements are added to the scene, chained together, and start animating automatically.</p>
+  	<div class="description"><p>Draws an entire path. It takes a list of Nodes and will break them into separate pathSegments on every map change, putting the resultant segment on the right Map.</p>
+  <p>If you have a special use case (like off graph nodes, or Venues with same Vortexes) use the MapView/drawPathSegment:method function.</p>
+  <p>Returns an array of pathSegments if you want to customize the animation triggers. The pathSegements are added to the scene, chained together, and start animating automatically.</p>
   </div>
   
   		<div class="params">
@@ -1042,10 +1189,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">path</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node" class="crosslink external" target="_blank">Node[][]</a></span>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
   
   
-  					<div class="param-description"><p>An array of Nodes, probably from a Node's directionsTo or directionsFrom call.</p>
+  					<div class="param-description"><p>An array of Nodes, probably from a Node's <a href="../classes/MappedinNode.html#method_directionsTo" class="crosslink">directionsTo</a> call.</p>
   </div>
   
   				</li>
@@ -1066,8 +1213,8 @@
   			<h4>Returns:</h4>
   
   			<div class="returns-description">
-  						<span class="type">PathSegment[]</span>:
-  					<p>An array of path segments.</p>
+  						<span class="type">PathSegment</span>:
+  					<p>An array of pathSegments.</p>
   
   			</div>
   		</div>
@@ -1098,13 +1245,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_enableImageFlippingForAllLocations">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L433">source/Mappedin.MapView.js:433</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Let any image attached to a polygon attached to a location flip 180 degrees with the camera so it's always upright.</p>
+  	<div class="description"><p>Let any image attached to a Polygon attached to a Location flip 180 degrees with the camera so it's always upright.</p>
   </div>
   
   		<div class="params">
@@ -1120,19 +1268,19 @@
   						<ul class="params-list">
   							<li class="param">
   									<code class="param-name optional">[excludeTypes=[]]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a></span>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>A list of Location types to skip, if for some reason there are locations that have logos that shouldn't flip</p>
+  								<div class="param-description"><p>A list of Location types to skip, if for some reason there are Locations that have logos that shouldn't flip.</p>
   </div>
   
   							</li>
   							<li class="param">
   									<code class="param-name optional">[locations]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="crosslink external" target="_blank">Location[][]</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a></span>
+  									<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">[MappedinLocation]</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>An array of Location objects, or location IDs. If excludeTypes is not sufficient you can explicitly set the locations you are marking to flip. You can also call enableImageFlippingForPolygon manually for every polygon you care about instead.</p>
+  								<div class="param-description"><p>An array of Location objects, or Location IDs. If excludeTypes is not sufficient you can explicitly set the Locations you are marking to flip. You can also call <a href="../classes/MapView.html#method_enableImageFlippingForPolygon" class="crosslink">enableImageFlippingForPolygon</a> manually for every polygon you care about instead.</p>
   </div>
   
   							</li>
@@ -1168,13 +1316,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_enableImageFlippingForPolygon">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L443">source/Mappedin.MapView.js:443</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Mark a specific polygon so, if it has an image, it rotates with the camera</p>
+  	<div class="description"><p>Mark a specific Polygon so, if it has an image, it rotates with the camera.</p>
   </div>
   
   		<div class="params">
@@ -1192,7 +1341,7 @@
   									<code class="param-name">polygonId</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
-  								<div class="param-description"><p>The ID of the polygon who's image (if any) should rotate</p>
+  								<div class="param-description"><p>The ID of the Polygon who's image (if any) should rotate.</p>
   </div>
   
   							</li>
@@ -1210,6 +1359,118 @@
   			</ul>
   		</div>
   
+  
+  </div>
+  <div id="method_expandMaps" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_expandMaps"></a>
+  		expandMaps
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>mapIds</code>
+  				</li>
+  				<li class="arg">
+  						<code>options</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>Inherited from
+  				<a href="../classes/MapView.html#method_expandMaps">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapManager.js#L278">source/Mappedin.MapManager.js:278</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Expand maps to display within view</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">mapIds</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  					<div class="param-description"><p>[Array] Array of mapIds to display while expanded</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">options</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  					<div class="param-description"><p>Options object @optional</p>
+  </div>
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name optional">[focus=false]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Focus the camera onto expanded maps</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[debug=false]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Display cubes around focus bounding box for debug info</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[rotation=0]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Rotation of scene relative to zero (degrees)</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[duration=300]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Duration of focus animation in ms</p>
+  </div>
+  
+  							</li>
+  						</ul>
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  			</div>
+  		</div>
   
   </div>
   <div id="method_focusOn" class="method item inherited">
@@ -1243,15 +1504,16 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_focusOn">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L143">source/Mappedin.MapView.js:143</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>A flexible function that will let you focus on collections of nodes and/or polygons.
-  This will move the camera to the center of all items passed in, and by default
-  zoom the camera in or out to fit everything in view, scaled by mapView.focusZoomFactor</p>
+  	<div class="description"><p>A flexible function that will let you focus on collections of Nodes and/or Polygons.
+  This will move the camera to the center of all items passed in, and by default.
+  zoom the camera in or out to fit everything in view, scaled by <a href="../classes/MapView.html#property_focusZoomFactor" class="crosslink">focusZoomFactor</a>.</p>
   </div>
   
   		<div class="params">
@@ -1263,25 +1525,25 @@
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>You should provide at least one node or polygon, but everything else is @optional</p>
+  					<div class="param-description"><p>You should provide at least one Node or Polygon, but everything else is optional.</p>
   </div>
   
   						<ul class="params-list">
   							<li class="param">
-  									<code class="param-name optional">[nodes] Node[]</code>
-  									<span class="type"></span>
+  									<code class="param-name optional">[nodes]</code>
+  									<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>} An array of nodes to focus in on</p>
+  								<div class="param-description"><p>An array of Nodes to focus in on.</p>
   </div>
   
   							</li>
   							<li class="param">
   									<code class="param-name optional">[polygons]</code>
-  									<span class="type">Polygon[]</span>
+  									<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">[MappedinPolygon]</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>An array of polygons to focus on. It's the center of the bounds of all polygons, designed to fit everything into view</p>
+  								<div class="param-description"><p>An array of Polygons to focus on. It's the center of the bounds of all Polygons, designed to fit everything into view.</p>
   </div>
   
   							</li>
@@ -1290,16 +1552,16 @@
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The duration the focus animation should last for</p>
+  								<div class="param-description"><p>The duration the focus animation should last for.</p>
   </div>
   
   							</li>
   							<li class="param">
   									<code class="param-name optional">[curve]</code>
-  									<span class="type">Mappedin.Easing</span>
+  									<span class="type"><a href="../classes/Easing.html" class="crosslink">Easing</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The animation curve to use for zooming in. Uses the animateCamera one by default</p>
+  								<div class="param-description"><p>The animation curve to use for zooming in. Uses the animateCamera one by default.</p>
   </div>
   
   							</li>
@@ -1308,7 +1570,7 @@
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>You can overide the focusZoomFactor for a specific focusOn call, rather than globally, if you liek</p>
+  								<div class="param-description"><p>You can overide the <a href="../classes/MapView.html#property_focusZoomFactor" class="crosslink">focusZoomFactor</a> for a specific <a href="../classes/MapView.html#method_focusOn" class="crosslink">focusOn</a> call, rather than globally, if you like.</p>
   </div>
   
   							</li>
@@ -1329,7 +1591,7 @@
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>{Whether to zoom the camera in or out, or just pan it</p>
+  					<div class="param-description"><p>Whether to zoom the camera in or out, or just pan it.</p>
   </div>
   
   				</li>
@@ -1341,7 +1603,7 @@
   
   			<div class="returns-description">
   						<span class="type"><a href="../classes/Tween.html" class="crosslink">Tween</a></span>:
-  					<p>Returns the Tween for advanced usage. Can generally be ignored.</p>
+  					<p>Returns the <a href="../classes/Tween.html" class="crosslink">Tween</a> for advanced usage. Can generally be ignored.</p>
   
   			</div>
   		</div>
@@ -1384,13 +1646,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_focusOnPath">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L130">source/Mappedin.MapView.js:130</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Moves the camera to focus on an entire path and optionally it's starting and ending polygon.</p>
+  	<div class="description"><p>Moves the camera to focus on an entire path and optionally it's starting and ending Polygon.</p>
   </div>
   
   		<div class="params">
@@ -1399,19 +1662,19 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">path</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node" class="crosslink external" target="_blank">Node[][]</a></span>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode</a></span>
   
   
-  					<div class="param-description"><p>The nodes to fit the camera to</p>
+  					<div class="param-description"><p>The Nodes to fit the camera to.</p>
   </div>
   
   				</li>
   				<li class="param">
   						<code class="param-name">polygonIds</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a>  | Polygon[]</span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a>  |  <a href="../classes/MappedinPolygon.html" class="crosslink">[MappedinPolygon]</a></span>
   
   
-  					<div class="param-description"><p>The Polygon or polygon ID to focus on. The camera will move to the centroid of polygon</p>
+  					<div class="param-description"><p>The Polygon or Polygon ID to focus on. The camera will move to the centroid of Polygon.</p>
   </div>
   
   				</li>
@@ -1421,7 +1684,7 @@
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>Whether to zoom the camera in or out so it fits the polygon's bounds. Scaled by MapView.focusZoomFactor</p>
+  					<div class="param-description"><p>Whether to zoom the camera in or out so it fits the Polygon's bounds. Scaled by <a href="../classes/MapView.html#property_focusZoomFactor" class="crosslink">focusZoomFactor</a>.</p>
   </div>
   
   				</li>
@@ -1437,7 +1700,7 @@
   				</li>
   				<li class="param">
   						<code class="param-name optional">[curve=Mappedin.Easing.Quadratic.In]</code>
-  						<span class="type">Mappedin.Easing</span>
+  						<span class="type"><a href="../classes/Easing.html" class="crosslink">Easing</a></span>
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
@@ -1484,13 +1747,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_focusOnPolygon">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L118">source/Mappedin.MapView.js:118</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Moves the camera to focus in on a specific polygon</p>
+  	<div class="description"><p>Moves the camera to focus in on a specific Polygon</p>
   </div>
   
   		<div class="params">
@@ -1499,10 +1763,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  Polygon</span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a></span>
   
   
-  					<div class="param-description"><p>The Polygon or polygon ID to focus on. The camera will move to the centroid of polygon</p>
+  					<div class="param-description"><p>The Polygon or Polygon ID to focus on. The camera will move to the centroid of Polygon.</p>
   </div>
   
   				</li>
@@ -1512,7 +1776,7 @@
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>Whether to zoom the camera in or out so it fits the polygon's bounds. Scaled by MapView.focusZoomFactor</p>
+  					<div class="param-description"><p>Whether to zoom the camera in or out so it fits the Polygon's bounds. Scaled by <a href="../classes/MapView.html#property_focusZoomFactor" class="crosslink">focusZoomFactor</a>.</p>
   </div>
   
   				</li>
@@ -1528,7 +1792,7 @@
   				</li>
   				<li class="param">
   						<code class="param-name optional">[curve=Mappedin.Easing.Quadratic.In]</code>
-  						<span class="type">Mappedin.Easing</span>
+  						<span class="type"><a href="../classes/Easing.html" class="crosslink">Easing</a></span>
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
@@ -1563,6 +1827,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getNorth">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L202">source/Mappedin.MapView.js:202</a>
   		</p>
   
   
@@ -1578,7 +1843,7 @@
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-  					<p>The angle to north from the default orientation, in radians</p>
+  					<p>The angle to north from the default orientation, in radians.</p>
   
   			</div>
   		</div>
@@ -1612,13 +1877,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getPathLength">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L465">source/Mappedin.MapView.js:465</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Calculates the length of the connected path in list of Mappedin Nodes. Breaks in the path (to go to other floors) count as 0 distance. The Z value is also ignored.</p>
+  	<div class="description"><p>Calculates the length of the connected path in list of Nodes. Breaks in the path (to go to other floors) count as 0 distance. The Z value is also ignored.</p>
   </div>
   
   		<div class="params">
@@ -1627,10 +1893,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">path</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node" class="crosslink external" target="_blank">Node[][]</a></span>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
   
   
-  					<div class="param-description"><p>An array of nodes on a path, probably from a Node's directionsTo or directionsFrom call.</p>
+  					<div class="param-description"><p>An array of Nodes on a path, probably from a Node's <a href="../classes/MappedinNode.html#method_directionsTo" class="crosslink">directionsTo</a> call.</p>
   </div>
   
   				</li>
@@ -1676,13 +1942,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getPositionNode">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L369">source/Mappedin.MapView.js:369</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Gives you the position of a Mappedin node in the 3D scene. Suitable for use as a Marker's position.</p>
+  	<div class="description"><p>Gives you the position of a Mappedin node in the 3D scene. Suitable for use as a <a href="../classes/Marker.html" class="crosslink">Marker</a>'s position.</p>
   </div>
   
   		<div class="params">
@@ -1691,10 +1958,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">node</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node" class="crosslink external" target="_blank">Node</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
-  					<div class="param-description"><p>Either the Node or Node ID you want the center of</p>
+  					<div class="param-description"><p>Either the Node or Node ID you want the center of.</p>
   </div>
   
   				</li>
@@ -1706,7 +1973,7 @@
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-  					<p>The position to anchor a marker in 3D space</p>
+  					<p>The position to anchor a marker in 3D space.</p>
   
   			</div>
   		</div>
@@ -1740,13 +2007,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getPositionPolygon">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L359">source/Mappedin.MapView.js:359</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Gives you the top center of a polygon in 3d scene space. Suitable for use as a Marker's position.</p>
+  	<div class="description"><p>Gives you the top center of a Polygon in 3d scene space. Suitable for use as a <a href="../classes/Marker.html" class="crosslink">Marker</a>'s position.</p>
   </div>
   
   		<div class="params">
@@ -1755,10 +2023,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type">Polygon  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
-  					<div class="param-description"><p>Either the Polygon or Polygon ID you want the center of</p>
+  					<div class="param-description"><p>Either the Polygon or Polygon ID you want the center of.</p>
   </div>
   
   				</li>
@@ -1770,7 +2038,7 @@
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>:
-  					<p>The position to anchor a marker in 3D space</p>
+  					<p>The position to anchor a Marker in 3D space.</p>
   
   			</div>
   		</div>
@@ -1791,7 +2059,7 @@
   			</ul><span class="paren">)</span>
   		</div>
   		<span class="returns-inline">
-  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="crosslink external" target="_blank">Location</a></span>
+  			<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a></span>
   		</span>
   	</span>
   
@@ -1804,6 +2072,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getPrimaryLocationForPolygon">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L567">source/Mappedin.MapView.js:567</a>
   		</p>
   
   
@@ -1812,8 +2081,8 @@
   
   	<div class="description"><p>Finds the main Location associated with a Polygon. This means a Location
   attached to the Polygon that has no parents, or, if there are none of those,
-  a location nearest the top of some hierarchy that does have the polygon attached.</p>
-  <p>This means if there are multiple hierarchies of locations attached to the Polygon,
+  a Location nearest the top of some hierarchy that does have the Polygon attached.</p>
+  <p>This means if there are multiple hierarchies of Locations attached to the Polygon,
   the one that gets returned is not guaranteed to be what you want.</p>
   </div>
   
@@ -1823,10 +2092,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type">Polygon</span>
+  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a></span>
   
   
-  					<div class="param-description"><p>The Mappedin Polygon you want the primary location of.</p>
+  					<div class="param-description"><p>The Polygon you want the primary Location of.</p>
   </div>
   
   				</li>
@@ -1837,7 +2106,7 @@
   			<h4>Returns:</h4>
   
   			<div class="returns-description">
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="crosslink external" target="_blank">Location</a></span>
+  						<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a></span>
   			</div>
   		</div>
   
@@ -1864,13 +2133,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getZoomLevelForCurrentMap">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L185">source/Mappedin.MapView.js:185</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Returns the value you should call setZoom on to fit the current map exactly.</p>
+  	<div class="description"><p>Returns the value you should call <a href="../classes/CameraControls.html#method_setZoom" class="crosslink">setZoom</a> on to fit the <a href="../classes/MapView.html#property_currentMap" class="crosslink">currentMap</a> exactly.</p>
   </div>
   
   
@@ -1879,7 +2149,7 @@
   
   			<div class="returns-description">
   						<span class="type">Integer</span>:
-  					<p>The zoom level that will fit the current map</p>
+  					<p>The zoom level that will fit the <a href="../classes/MapView.html#property_currentMap" class="crosslink">currentMap</a>.</p>
   
   			</div>
   		</div>
@@ -1913,13 +2183,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_getZoomLevelForPolygon">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L175">source/Mappedin.MapView.js:175</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Returns the value you should call setZoom on to fit the polygon exactly.</p>
+  	<div class="description"><p>Returns the value you should call <a href="../classes/CameraControls.html#method_setZoom" class="crosslink">setZoom</a> on to fit the Polygon exactly.</p>
   </div>
   
   		<div class="params">
@@ -1928,10 +2199,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  Polygon</span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a></span>
   
   
-  					<div class="param-description"><p>The Polygon or polygon ID to get the zoom level for</p>
+  					<div class="param-description"><p>The Polygon or Polygon ID to get the zoom level for</p>
   </div>
   
   				</li>
@@ -1943,7 +2214,7 @@
   
   			<div class="returns-description">
   						<span class="type">Integer</span>:
-  					<p>The zoom level that will fit the polygon</p>
+  					<p>The zoom level that will fit the Polygon</p>
   
   			</div>
   		</div>
@@ -1974,14 +2245,15 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_labelAllLocations">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L412">source/Mappedin.MapView.js:412</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Labels all locations, in order of distance from the center of the map. See labelPolygon for available label options.
-  The options are all optional, as the text and polygon properties will be set for each location.</p>
+  	<div class="description"><p>Labels all Locations, in order of distance from the center of the Map. See <a href="../classes/MapView.html#method_labelPolygon" class="crosslink">labelPolygon</a> for available label options.
+  The options are all optional, as the text and Polygon properties will be set for each Location.</p>
   </div>
   
   		<div class="params">
@@ -1990,16 +2262,16 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">options</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  						<span class="type">#crossLink "MapView/labelPolygon:property"</span>
   
   
-  					<div class="param-description"><p>Any option from labelPolygon (except text, polygon, canvasBounds, height and map), plus:</p>
+  					<div class="param-description"><p>Any option from }{{/crossLink}} (except text, polygon, canvasBounds, height and map), plus:</p>
   </div>
   
   						<ul class="params-list">
   							<li class="param">
   									<code class="param-name optional">[excludeTypes=[]]  A list of Location types to skip labeling. [&quot;Amenities&quot;]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a></span>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
   								<div class="param-description"><p>is often used.</p>
@@ -2017,10 +2289,10 @@
   							</li>
   							<li class="param">
   									<code class="param-name optional">[locations]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="crosslink external" target="_blank">Location[][]</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String[][]</a></span>
+  									<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">[MappedinLocation]</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>An array of Location objects, or location IDs. If excludeTypes and the sort function are not sufficient, you can explicitly set the locations you are labeling. You can also call labelPolygon manually for every polygon you care about instead.</p>
+  								<div class="param-description"><p>An array of Location objects, or Location IDs. If excludeTypes and the sort function are not sufficient, you can explicitly set the Locations you are labeling. You can also call MapView/labelPolygon:property manually for every polygon you care about instead.</p>
   </div>
   
   							</li>
@@ -2046,7 +2318,7 @@
   			</ul><span class="paren">)</span>
   		</div>
   		<span class="returns-inline">
-  			<span class="type">TextLabel</span>
+  			<span class="type"><a href="../classes/TextLabel.html" class="crosslink">TextLabel</a></span>
   		</span>
   	</span>
   
@@ -2059,13 +2331,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_labelPolygon">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L379">source/Mappedin.MapView.js:379</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Labels a specific polygon (or area of 3D space) with a text label that lives in 3D space. That means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.
+  	<div class="description"><p>Labels a specific Polygon (or area of 3D space) with a <a href="../classes/TextLabel.html" class="crosslink">TextLabel</a> that lives in 3D space. That means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.
   The text will flip 180 degress when the camera rotates so it's never totally upside-down.</p>
   <p>It also sets the hover label (in 2D and 3D).
   Many of these options do nothing in 2D, as TextLabels are not supported, but it won't break anything.</p>
@@ -2081,7 +2354,7 @@
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>Most options are optional, but you do need text and either a Polygon, or a canvasBounds and height</p>
+  					<div class="param-description"><p>Most options are optional, but you do need text and either a Polygon, or a canvasBounds and height.</p>
   </div>
   
   						<ul class="params-list">
@@ -2089,15 +2362,15 @@
   									<code class="param-name">text</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
-  								<div class="param-description"><p>The text to use for the label</p>
+  								<div class="param-description"><p>The text to use for the label.</p>
   </div>
   
   							</li>
   							<li class="param">
   									<code class="param-name">polygon</code>
-  									<span class="type">Polygon  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
-  								<div class="param-description"><p>The Polygon or Polygon Id to make a label for. Only optional if you have set canvasBounds and height</p>
+  								<div class="param-description"><p>The Polygon or Polygon Id to make a label for. Only optional if you have set canvasBounds and height.</p>
   </div>
   
   							</li>
@@ -2106,7 +2379,7 @@
   									<span class="type">CanvasBounds</span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>Set this if you want to label an arbitrary part of the map. You will need to specify height as well.</p>
+  								<div class="param-description"><p>Set this if you want to label an arbitrary part of the Map. You will need to specify height as well.</p>
   </div>
   
   									<ul class="params-list">
@@ -2114,31 +2387,31 @@
   												<code class="param-name">x</code>
   												<span class="type">Integer</span>
   
-  											<div class="param-description">The x coordinate for the text label anchor</div>
+  											<div class="param-description">The x coordinate for the TextLabel anchor.</div>
   										</li>
   										<li class="param">
   												<code class="param-name">y</code>
   												<span class="type">Integer</span>
   
-  											<div class="param-description">The y coordinate for the text label anchor</div>
+  											<div class="param-description">The y coordinate for the TextLabel anchor.</div>
   										</li>
   										<li class="param">
   												<code class="param-name">width</code>
   												<span class="type">Integer</span>
   
-  											<div class="param-description">The horizontal space we have to fit the text label</div>
+  											<div class="param-description">The horizontal space we have to fit the TextLabel.</div>
   										</li>
   										<li class="param">
   												<code class="param-name">height</code>
   												<span class="type">Integer</span>
   
-  											<div class="param-description">The vertical space we have to fit the text label</div>
+  											<div class="param-description">The vertical space we have to fit the TextLabel.</div>
   										</li>
   										<li class="param">
   												<code class="param-name">align</code>
   												<span class="type">"left"  |  "right"  |  "center"</span>
   
-  											<div class="param-description">Whether the Text Label should be anchored against the (x,y), or the oposite (horizinal) side of the box, or in the middle. It is always vertically centered.</div>
+  											<div class="param-description">Whether the TextLabel should be anchored against the (x,y), or the opposite (horizinal) side of the box, or in the middle. It is always vertically centered.</div>
   										</li>
   									</ul>
   							</li>
@@ -2153,10 +2426,10 @@
   							</li>
   							<li class="param">
   									<code class="param-name optional">[map]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="type"><a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>If Polygon is not set, this will let you add a textLabel to another map. Otherwise, it will use the current map.</p>
+  								<div class="param-description"><p>If Polygon is not set, this will let you add a TextLabel to another Map. Otherwise, it will use the <a href="../classes/MapView.html#property_currentMap" class="crosslink">currentMap</a>.</p>
   </div>
   
   							</li>
@@ -2174,7 +2447,7 @@
   									<span class="type">Integer</span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>A optional special color if you don't want to use mapView.colors.text</p>
+  								<div class="param-description"><p>A optional special color if you don't want to use MapView.colors.text</p>
   </div>
   
   							</li>
@@ -2189,15 +2462,15 @@
   							</li>
   							<li class="param">
   									<code class="param-name optional">[font]</code>
-  									<span class="type"></span>
+  									<span class="type">#crossLink "MapView/createFont:method"</span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>A THREE.Font object, if you have your own font you want to use. Create it with createFont.</p>
+  								<div class="param-description"><p>A THREE.Font object, if you have your own font you want to use. Create it with }{{/crossLink}}.</p>
   </div>
   
   							</li>
   							<li class="param">
-  									<code class="param-name optional">[scaleMin=0.5]</code>
+  									<code class="param-name optional">[scaleMin=0.25]</code>
   									<span class="type">Float</span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
@@ -2210,7 +2483,7 @@
   									<span class="type">Float</span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>How much to decrement the scale each time it doesn't fit, so we don't end up with too many different font sizes on screen at once. If you are only labeling a few polygons rather than everything,
+  								<div class="param-description"><p>How much to decrement the scale each time it doesn't fit, so we don't end up with too many different font sizes on screen at once. If you are only labeling a few Polygons rather than everything,
   you can set this and and scaleMin to 0.1 to fit everything except really long names perfectly.</p>
   </div>
   
@@ -2224,8 +2497,8 @@
   			<h4>Returns:</h4>
   
   			<div class="returns-description">
-  						<span class="type">TextLabel</span>:
-  					<p>The TextLabel, added to the scene for the correct map.</p>
+  						<span class="type"><a href="../classes/TextLabel.html" class="crosslink">TextLabel</a></span>:
+  					<p>The TextLabel, added to the scene for the correct Map.</p>
   
   			</div>
   		</div>
@@ -2259,6 +2532,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_lockNorth">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L212">source/Mappedin.MapView.js:212</a>
   		</p>
   
   
@@ -2280,7 +2554,7 @@
   						<span class="type">DOM Node</span>
   
   
-  					<div class="param-description"><p>The element on the page to rotate</p>
+  					<div class="param-description"><p>The element on the page to rotate.</p>
   </div>
   
   				</li>
@@ -2317,15 +2591,16 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_onNothingClicked">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L295">source/Mappedin.MapView.js:295</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>This is fired when the user taps/clicks on the mapview without hitting an interactive polygon.
+  	<div class="description"><p>This is fired when the user taps/clicks on the MapView without hitting an interactive Polygon.
   You will almost certainly want to replace this with your own function in your client app.
-  You would probably use this to clear any polygon highlighting, in certain situations.</p>
+  You would probably use this to clear any Polygon highlighting, in certain situations.</p>
   </div>
   
   
@@ -2359,15 +2634,16 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_onPolygonClicked">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L283">source/Mappedin.MapView.js:283</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>This is called when an interactive polygon is clicked on.
+  	<div class="description"><p>This is called when an interactive Polygon is clicked on.
   You will almost certainly want to replace this with your own function in your client app.
-  Return "false" if you have consumed the event and it shouldn't bubble down to other polygons beneath this one.</p>
+  Return "false" if you have consumed the event and it shouldn't bubble down to other Polygons beneath this one.</p>
   </div>
   
   		<div class="params">
@@ -2376,7 +2652,7 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type">Polygon  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   
   					<div class="param-description"><p>The Polygon or Polygon ID that was clicked/tapped on.</p>
@@ -2391,7 +2667,7 @@
   
   			<div class="returns-description">
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
-  					<p>False if the event has been consumed and should not bubble down to other polygons beneath it.</p>
+  					<p>False if the event has been consumed and should not bubble down to other Polygons beneath it.</p>
   
   			</div>
   		</div>
@@ -2416,13 +2692,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_removeAllLabels">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L425">source/Mappedin.MapView.js:425</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Removes all labels from all maps</p>
+  	<div class="description"><p>Removes all labels from all Maps.</p>
   </div>
   
   
@@ -2447,13 +2724,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_removeAllMarkers">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L338">source/Mappedin.MapView.js:338</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Removes all markers (from all maps, not just the current one)</p>
+  	<div class="description"><p>Removes all Markers (from all Maps, not just the current one).</p>
   </div>
   
   
@@ -2478,13 +2756,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_removeAllPaths">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L529">source/Mappedin.MapView.js:529</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Removes all path segments from all maps</p>
+  	<div class="description"><p>Removes all pathSegments from all Maps.</p>
   </div>
   
   
@@ -2515,13 +2794,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_removeMap">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L106">source/Mappedin.MapView.js:106</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>removes a map</p>
+  	<div class="description"><p>Removes a Map</p>
   </div>
   
   		<div class="params">
@@ -2530,7 +2810,7 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">map</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a></span>
   
   
   					<div class="param-description"><p>map to remove</p>
@@ -2567,13 +2847,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_removeMarker">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L329">source/Mappedin.MapView.js:329</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Removes a maker you have added previously.</p>
+  	<div class="description"><p>Removes a <a href="../classes/Marker.html" class="crosslink">Marker</a> you have added previously.</p>
   </div>
   
   		<div class="params">
@@ -2582,10 +2863,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">marker</code>
-  						<span class="type">Marker</span>
+  						<span class="type"><a href="../classes/Marker.html" class="crosslink">Marker</a></span>
   
   
-  					<div class="param-description"><p>A Marker that has previously been returned from createMarker</p>
+  					<div class="param-description"><p>A Marker that has previously been returned from <a href="../classes/MapView.html#method_createMarker" class="crosslink">createMarker</a>.</p>
   </div>
   
   				</li>
@@ -2619,6 +2900,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_removePathSegment">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L520">source/Mappedin.MapView.js:520</a>
   		</p>
   
   
@@ -2637,7 +2919,7 @@
   						<span class="type">PathSegment</span>
   
   
-  					<div class="param-description"><p>A segment returned from drawPathSegment or drawPath</p>
+  					<div class="param-description"><p>A segment returned from MapView/drawPathSegment:method or <a href="../classes/MapView.html#method_drawPath" class="crosslink">drawPath</a></p>
   </div>
   
   				</li>
@@ -2665,13 +2947,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_resetCamera">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L194">source/Mappedin.MapView.js:194</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Resets the pan, tilt and rotation of the camera and sets the zoom to fit the current map.</p>
+  	<div class="description"><p>Resets the pan, tilt and rotation of the camera and sets the zoom to fit the <a href="../classes/MapView.html#property_currentMap" class="crosslink">currentMap</a>.</p>
   </div>
   
   
@@ -2705,13 +2988,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_setBackgroundColor">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L537">source/Mappedin.MapView.js:537</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Sets the clear color of the map something else, it you want it to fit it more with your website. Otherwise the div will be white where there is no map visible.</p>
+  	<div class="description"><p>Sets the clear color of the Map something else, it you want it to fit it more with your website. Otherwise the div will be white where there is no Map visible.</p>
   </div>
   
   		<div class="params">
@@ -2767,13 +3051,14 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_setMap">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L90">source/Mappedin.MapView.js:90</a>
   		</p>
   
   
   
   	</div>
   
-  	<div class="description"><p>Change the currently displayed map to a new one.</p>
+  	<div class="description"><p>Change the currently displayed Map to a new one.</p>
   </div>
   
   		<div class="params">
@@ -2782,10 +3067,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">map</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map" class="crosslink external" target="_blank">Map</a></span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="../classes/MappedinMap.html" class="crosslink">MappedinMap</a></span>
   
   
-  					<div class="param-description"><p>The map ID or Map Object to change the map to.</p>
+  					<div class="param-description"><p>The Map ID or Map Object to change the Map to.</p>
   </div>
   
   				</li>
@@ -2825,6 +3110,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_setPolygonColor">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L235">source/Mappedin.MapView.js:235</a>
   		</p>
   
   
@@ -2840,10 +3126,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">polygon</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  Polygon</span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a>  |  <a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a></span>
   
   
-  					<div class="param-description"><p>The polygon/polygon ID to change the color of</p>
+  					<div class="param-description"><p>The Polygon/Polygon ID to change the color of.</p>
   </div>
   
   				</li>
@@ -2853,7 +3139,7 @@
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>The color to use</p>
+  					<div class="param-description"><p>The color to use.</p>
   </div>
   
   				</li>
@@ -2863,7 +3149,7 @@
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>The color to use for any TextLabel</p>
+  					<div class="param-description"><p>The color to use for any <a href="../classes/TextLabel.html" class="crosslink">TextLabel</a>.</p>
   </div>
   
   				</li>
@@ -2891,6 +3177,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_tryRendering">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L547">source/Mappedin.MapView.js:547</a>
   		</p>
   
   
@@ -2931,6 +3218,7 @@
   	<div class="meta">
   				<p>Inherited from
   				<a href="../classes/MapView.html#method_unlockNorth">MapView</a>:
+  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L226">source/Mappedin.MapView.js:226</a>
   		</p>
   
   
@@ -2977,13 +3265,14 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_colors">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L36">source/Mappedin.MapView.js:36</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>These are the default colours used by the Mapview to control things like path and selection. You can override these here
+          <p>These are the default colours used by the MapView to control things like path and selection. You can override these here
   to quickly style your app, but most of them can also be set (especially for special cases) in their respective functions.
   The only value that MUST be set here is <code>hover</code>.</p>
   
@@ -3071,6 +3360,7 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_container">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L66">source/Mappedin.MapView.js:66</a>
           </p>
   
   
@@ -3099,14 +3389,15 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_controls">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L26">source/Mappedin.MapView.js:26</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>Manual camera controls for Mapview. Generally you should be using the functions on MapView like focusOn*,
-  but if you have some cool animations in mind, you can do it with the CameraControls.
+          <p>Manual camera controls for MapView. Generally you should be using the functions on MapView like <a href="../classes/MapView.html#method_focusOn" class="crosslink">focusOn</a>,
+  but if you have some cool animations in mind, you can do it with the <a href="../classes/CameraControls.html" class="crosslink">CameraControls</a>.
   Some of the functions don't do anything in 2D.</p>
   
       </div>
@@ -3128,6 +3419,7 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_currentMap">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L74">source/Mappedin.MapView.js:74</a>
           </p>
   
   
@@ -3155,13 +3447,14 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_focusZoomFactor">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L82">source/Mappedin.MapView.js:82</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>Change this factor to influence how much the camera zooms in on a focusOn call</p>
+          <p>Change this factor to influence how much the camera zooms in on a <a href="../classes/MapView.html#method_focusOn" class="crosslink">focusOn</a> call.</p>
   
       </div>
   
@@ -3184,14 +3477,15 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_type">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L17">source/Mappedin.MapView.js:17</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>This property identifies which mode you are in, incase you have special functionailty in your app when in 2D vs 3D mode.
-  It will be one of MapView, MapView3D, or MapView2D</p>
+          <p>This property identifies which of the Mappedin.<a href="../classes/Mappedin.html#property_modes" class="crosslink">modes</a> you are in, incase you have special functionailty in your app when in 2D vs 3D mode.
+  It will be one of "MapView", "MapView3D," or "MapView2D".</p>
   
       </div>
   
@@ -3203,7 +3497,7 @@
           <a class="fa fa-link toc-anchor" href="#property_venue"></a>
           venue
       </h3>
-      <span class="type">Venue</span>
+      <span class="type"><a href="../classes/MappedinVenue.html" class="crosslink">MappedinVenue</a></span>
   
   
   
@@ -3213,6 +3507,7 @@
       <div class="meta">
                   <p>Inherited from
                   <a href="../classes/MapView.html#property_venue">MapView</a>:
+          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.MapView.js#L58">source/Mappedin.MapView.js:58</a>
           </p>
   
   
