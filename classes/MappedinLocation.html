@@ -195,8 +195,6 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MappedinLocation Class
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
     </h1>
 </div>
 
@@ -207,9 +205,6 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
-        <div class="foundat">
-            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L130">source/Mappedin.getVenue.js:130</a>
-        </div>
 </div>
 
 
@@ -264,7 +259,7 @@ For example, all washroom at a given Venue could belong to one Location, or a de
 
                       <ul class="index-list methods">
                               <li class="index-item method">
-                                  <a href="#method_DirectionsTo">DirectionsTo</a>
+                                  <a href="#method_directionsTo">directionsTo</a>
 
                               </li>
                               <li class="index-item method">
@@ -302,11 +297,11 @@ For example, all washroom at a given Venue could belong to one Location, or a de
 
               <div id="tab_methods" role="tabpanel" class="tab-pane">
                   <div class="item-list">
-  <div id="method_DirectionsTo" class="method item">
+  <div id="method_directionsTo" class="method item">
   	<span class="method-signature">
   	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_DirectionsTo"></a>
-  		DirectionsTo
+  		<a class="fa fa-link toc-anchor" href="#method_directionsTo"></a>
+  		directionsTo
   	</span>
   
   		<div class="args">
@@ -318,7 +313,7 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   						<code>options</code>
   				</li>
   				<li class="arg">
-  						<code>callback</code>
+  						<code>cb</code>
   				</li>
   			</ul><span class="paren">)</span>
   		</div>
@@ -332,8 +327,6 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
   	<div class="meta">
   				<p>
-  				Defined in
-  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L251">source/Mappedin.getVenue.js:251</a>
   		</p>
   
   
@@ -349,7 +342,7 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">destination</code>
-  						<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a>  |  <a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a></span>
+  						<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a>  |  <a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a>  |  <a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a>  |  <a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a></span>
   
   
   					<div class="param-description"><p>Destination.</p>
@@ -366,7 +359,7 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
   						<ul class="params-list">
   							<li class="param">
-  									<code class="param-name optional">[accessible=true]</code>
+  									<code class="param-name optional">[accessible=false]</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
@@ -374,14 +367,23 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   </div>
   
   							</li>
+  							<li class="param">
+  									<code class="param-name optional">[directionsProvider=&quot;online&quot;]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Online directions by default. See <a href="../classes/MappedinDirections.html#property_directionsProvider" class="crosslink">directionsProvider</a> for more options.</p>
+  </div>
+  
+  							</li>
   						</ul>
   				</li>
   				<li class="param">
-  						<code class="param-name">callback</code>
+  						<code class="param-name">cb</code>
   						<span class="type">DirectionsToCallback</span>
   
   
-  					<div class="param-description"><p>Callback.</p>
+  					<div class="param-description"><p>Callback. See <a href="../classes/MappedinNode.html#method_directionsToCallback" class="crosslink">directionsToCallback</a> for details.</p>
   </div>
   
   				</li>
@@ -417,8 +419,6 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
   	<div class="meta">
   				<p>
-  				Defined in
-  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L279">source/Mappedin.getVenue.js:279</a>
   		</p>
   
   
@@ -473,8 +473,6 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L158">source/Mappedin.getVenue.js:158</a>
           </p>
   
   
@@ -503,8 +501,6 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L213">source/Mappedin.getVenue.js:213</a>
           </p>
   
   
@@ -531,8 +527,6 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L235">source/Mappedin.getVenue.js:235</a>
           </p>
   
   
@@ -559,8 +553,6 @@ For example, all washroom at a given Venue could belong to one Location, or a de
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L191">source/Mappedin.getVenue.js:191</a>
           </p>
   
   
