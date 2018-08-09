@@ -195,8 +195,6 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MappedinNode Class
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
     </h1>
 </div>
 
@@ -207,9 +205,6 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
-        <div class="foundat">
-            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L499">source/Mappedin.getVenue.js:499</a>
-        </div>
 </div>
 
 
@@ -259,6 +254,14 @@
                               </li>
                               <li class="index-item method">
                                   <a href="#method_directionsToCallback">directionsToCallback</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAngle">getAngle</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAngle">getAngle</a>
 
                               </li>
                       </ul>
@@ -316,7 +319,7 @@
   						<code>options</code>
   				</li>
   				<li class="arg">
-  						<code>callback</code>
+  						<code>cb</code>
   				</li>
   			</ul><span class="paren">)</span>
   		</div>
@@ -330,8 +333,6 @@
   
   	<div class="meta">
   				<p>
-  				Defined in
-  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L605">source/Mappedin.getVenue.js:605</a>
   		</p>
   
   
@@ -347,7 +348,7 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">destination</code>
-  						<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a>  |  <a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a></span>
+  						<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a>  |  <a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a>  |  <a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a>  |  <a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a></span>
   
   
   					<div class="param-description"><p>Destination.</p>
@@ -372,14 +373,23 @@
   </div>
   
   							</li>
+  							<li class="param">
+  									<code class="param-name optional">[directionsProvider=&quot;online&quot;]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Online directions by default. See <a href="../classes/MappedinDirections.html#property_directionsProvider" class="crosslink">directionsProvider</a> for more options.</p>
+  </div>
+  
+  							</li>
   						</ul>
   				</li>
   				<li class="param">
-  						<code class="param-name">callback</code>
+  						<code class="param-name">cb</code>
   						<span class="type">DirectionsToCallback</span>
   
   
-  					<div class="param-description"><p>Callback.</p>
+  					<div class="param-description"><p>Callback. See <a href="../classes/MappedinNode.html#method_directionsToCallback" class="crosslink">directionsToCallback</a> for details.</p>
   </div>
   
   				</li>
@@ -415,8 +425,6 @@
   
   	<div class="meta">
   				<p>
-  				Defined in
-  		<a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L633">source/Mappedin.getVenue.js:633</a>
   		</p>
   
   
@@ -453,6 +461,118 @@
   
   
   </div>
+  <div id="method_getAngle" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAngle"></a>
+  		getAngle
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>to</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Calculate the angle between this node and another</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">to</code>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a></span>
+  
+  
+  					<div class="param-description"><p>Other node in angle.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_getAngle" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAngle"></a>
+  		getAngle
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>to</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Calculate the distance between this node and another</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">to</code>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a></span>
+  
+  
+  					<div class="param-description"><p>Other node to calculate distance from.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
                   </div>
               </div>
 
@@ -471,8 +591,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L513">source/Mappedin.getVenue.js:513</a>
           </p>
   
   
@@ -501,8 +619,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L579">source/Mappedin.getVenue.js:579</a>
           </p>
   
   
@@ -529,8 +645,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L522">source/Mappedin.getVenue.js:522</a>
           </p>
   
   
@@ -557,8 +671,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L557">source/Mappedin.getVenue.js:557</a>
           </p>
   
   
@@ -585,8 +697,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L528">source/Mappedin.getVenue.js:528</a>
           </p>
   
   
@@ -613,8 +723,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L533">source/Mappedin.getVenue.js:533</a>
           </p>
   
   

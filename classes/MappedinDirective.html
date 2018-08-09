@@ -195,8 +195,6 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MappedinDirective Class
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
     </h1>
 </div>
 
@@ -207,9 +205,6 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
-        <div class="foundat">
-            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L655">source/Mappedin.getVenue.js:655</a>
-        </div>
 </div>
 
 
@@ -257,15 +252,21 @@
 
                               </li>
                               <li class="index-item property">
-                                  <a href="#property_information">information</a>
+                                  <a href="#property_actionType">actionType</a>
 
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_bearingType">bearingType</a>
+
+                                      <span class="flag static">static</span>
                               </li>
                               <li class="index-item property">
                                   <a href="#property_instruction">instruction</a>
 
                               </li>
                               <li class="index-item property">
-                                  <a href="#property_type">type</a>
+                                  <a href="#property_node">node</a>
 
                               </li>
                       </ul>
@@ -282,7 +283,7 @@
           <a class="fa fa-link toc-anchor" href="#property_action"></a>
           action
       </h3>
-      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+      <span class="type">ActionType</span>
   
   
   
@@ -290,43 +291,69 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L664">source/Mappedin.getVenue.js:664</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>Optional Action type. An Action is the type of thing being performed at a Node: Departing, arriving, turning, or entering a Connection</p>
+          <p>The action being performed at a Node. The object contains an <a href="../classes/MappedinDirective.html#property_actionType" class="crosslink">actionType</a> and if the type is TURN, there is also a <a href="../classes/MappedinDirective.html#property_bearingType" class="crosslink">bearingType</a>.</p>
   
       </div>
   
   
   
   </div>
-  <div id="property_information" class="property item">
+  <div id="property_actionType" class="property item">
       <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_information"></a>
-          information
+          <a class="fa fa-link toc-anchor" href="#property_actionType"></a>
+          actionType
       </h3>
-      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+      <span class="type">DEPARTURE, TAKEVORTEX, TURN, ARRIVAL</span>
   
   
   
+          <span class="flag final">const</span>
   
+          <span class="flag static">static</span>
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L669">source/Mappedin.getVenue.js:669</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>Optional Information type.</p>
+          <p>The possible action types a <a href="../classes/MappedinDirective.html" class="crosslink">MappedinDirective</a> can have.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_bearingType" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_bearingType"></a>
+          bearingType
+      </h3>
+      <span class="type">STRAIGHT, RIGHT, SLIGHTRIGHT, LEFT, SLIGHTLEFT</span>
+  
+  
+  
+          <span class="flag final">const</span>
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The possible bearings a <a href="../classes/MappedinDirective.html" class="crosslink">MappedinDirective</a> turn can have.</p>
   
       </div>
   
@@ -346,8 +373,6 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L674">source/Mappedin.getVenue.js:674</a>
           </p>
   
   
@@ -361,12 +386,12 @@
   
   
   </div>
-  <div id="property_type" class="property item">
+  <div id="property_node" class="property item">
       <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_type"></a>
-          type
+          <a class="fa fa-link toc-anchor" href="#property_node"></a>
+          node
       </h3>
-      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+      <span class="type"><a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a></span>
   
   
   
@@ -374,15 +399,13 @@
   
       <div class="meta">
                   <p>
-                  Defined in
-          <a href="https://github.com/MappedIn/platform-api/blob/1/source/Mappedin.getVenue.js#L659">source/Mappedin.getVenue.js:659</a>
           </p>
   
   
       </div>
   
       <div class="description">
-          <p>Directive type: Turn when you get to this Node. You can turn left, slight left, straight, slight right, or right.</p>
+          <p>Node where instruction takes place.</p>
   
       </div>
   
