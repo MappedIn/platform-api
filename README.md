@@ -5,10 +5,10 @@ Welcome to the Mappedin Web SDK. Please report any issues you find directly to y
 Check out the [demo](examples/Demo), and the full [API docs](http://mappedin.github.io/platform-api/).
 
 ### Current Version
-The current version of the Mappedin Web SDK is v1.34.0, and can be included in your application via script tag, like so:
+The current version of the Mappedin Web SDK is v1.46.7, and can be included in your application via script tag, like so:
 
 ```xml
-<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.34.0/mappedin.js"></script>
+<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.41.6/mappedin.js"></script>
 ```
 
 ## Getting Started
@@ -212,14 +212,12 @@ The callback will be executed when the new map is fully loaded. The first time a
 ### Wayfinding
 The Mappedin Web SDK has built in wayfinding, with text directions and an animated, 3D path. You can navigate from a Node to another Node, or to a Location. This lets you go from a specific point on the map (ie, where the user is right now) to the closest entrance for their desired destination. This is especially useful for things that have multiple functionally identical locations throughout a venue, like Washrooms. Those are typically represented as a single location, with multiple entrances throughout the Venue. This makes it trivial to have a "Find nearest washroom" button.
 
-To find directions, use the node's `directionsTo` function (there is a similar `directionsFrom`). This takes a destination, a boolean indicating whether you want accessible directions or not (ie, don't take stairs and escalators) and a callback for when the directions have been calculated and returned. This makes a network call to retrieve the directions quickly from the Mappedin Directions server.
+To find directions, use the `directionsTo` function (there is a similar `directionsFrom`) on a Node, Polygon, or Location. This takes a destination, an options object indicating whether you want accessible directions or not (ie, don't take stairs and escalators) whether you want offline or the legacy online directions, and a callback for when the directions have been calculated and returned.
 
 In your callback, if successful you will get a directions object with a path property you can pass to `mapView.drawPath()` and `mapView.focusOn()`.
 
-The directions engine doesn't work directly with Polygons, but you will typically have access to them, and want to highlight them.
-
 ```js
-startNode.directionsTo(endNode, null, function(error, directions) {
+startNode.directionsTo(endNode, { accessible: false, directionsProvider: "offline" }, function(error, directions) {
   if (error || directions.path.length == 0) {
     // Some kind of network error, or those two points aren't connected, or are invalid
     return;

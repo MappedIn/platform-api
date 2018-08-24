@@ -156,7 +156,7 @@ function drawRandomPath() {
 
 	// Some polygons don't have entrance nodes, need to check before getting directions
 	if (startNode != null && endNode != null) {
-		startNode.directionsTo(endNode, null, function(error, directions) {
+		startNode.directionsTo(endNode, { accessible: false, directionsProvider: "offline" }, function(error, directions) {
 			if (error || directions.path.length == 0) {
 				drawRandomPath()
 				return
