@@ -8,13 +8,6 @@
         "indexModule": "Mappedin"
     },
     "files": {
-        "docs/assets/vendor/github-slugger/slugger.js": {
-            "name": "docs/assets/vendor/github-slugger/slugger.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
         "mappedin-docs-theme/assets/vendor/github-slugger/slugger.js": {
             "name": "mappedin-docs-theme/assets/vendor/github-slugger/slugger.js",
             "modules": {},
@@ -179,6 +172,13 @@
                 "Easing": 1,
                 "Tween": 1
             },
+            "fors": {},
+            "namespaces": {}
+        },
+        "frog.js": {
+            "name": "frog.js",
+            "modules": {},
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -500,8 +500,8 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.Search.js",
-            "line": 5,
-            "description": "A class to access the Mappedin Smart Search API. This will be created for you as part of Mappedin.{{#crossLink \"Mappedin/initailize:method\"}}{{/crossLink}}, but you can also create one manually.",
+            "line": 4,
+            "description": "A class to access the Mappedin Search API. This will be created for you as part of Mappedin.{{#crossLink \"Mappedin/initailize:method\"}}{{/crossLink}}, but you can also create one manually.",
             "params": [
                 {
                     "name": "options",
@@ -591,7 +591,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 321,
+            "line": 323,
             "description": "A {{#crossLink \"MappedinVortex\"}}{{/crossLink}} is a special entity that represents a link between two or more {{#crossLink \"MappedinMap\"}}{{/crossLink}}s at a given {{#crossLink \"MappedinVenue\"}}{{/crossLink}}. It is typically something like an elevator or stairs. These are also known as Connections in some parts of the system.\n\nThey can be marked (wheelchair) Accessible or not for pathfinding purposes. If you ask for Accessible directions, paths that include non-accessible Vortexes like Stairs will not be used."
         },
         "MappedinMapGroup": {
@@ -604,7 +604,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 364,
+            "line": 366,
             "description": "A {{#crossLink \"MappedinMapGroup\"}}{{/crossLink}} is a collection of maps, usually representing the different floors of a single building. All Maps will be in a MapGroup, but if your Venue is only a single building (like a mall) you can likely ignore MapGroups entirely."
         },
         "MappedinMap": {
@@ -617,7 +617,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 418,
+            "line": 420,
             "description": "A {{#crossLink \"MappedinMap\"}}{{/crossLink}} belonging to a specific {{#crossLink \"MappedinVenue\"}}{{/crossLink}}. Typically represents a certain floor. Give this to a {{#crossLink \"MapView\"}}{{/crossLink}} to display to the user.\n\nA Map can have more properties such as 'elevation', 'name' (e.g. Level 1), and 'shortName' (e.g. L1). The elevation property can be used to determine the order of the floors (first, second, etc). Elevation is 0 based, going up and down in integers representing the number of floors above or below 0, which is ground level.\n\nThe {{#crossLink \"Mappedin\"}}{{/crossLink}} 'things' object is where you would specify what properties you want to download for Maps. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.\n\nSee below for an example a 'things' object with available Map properties specified:\n\n\tthings: {\n\t\tvenue: [],\n\t\tlocations: [],\n\t\tcategories: [],\n\t\tmaps: ['name', 'elevation', 'shortName']\n\t}"
         },
         "MappedinNode": {
@@ -630,7 +630,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 542,
+            "line": 544,
             "description": "A {{#crossLink \"MappedinNode\"}}{{/crossLink}} represents a position, anchored to a specific {{#crossLink \"MappedinMap\"}}{{/crossLink}}.\n\nA Node can have more properties but usually the default is sufficient. The {{#crossLink \"Mappedin\"}}{{/crossLink}} 'things' object is where you would specify what properties you want to download for Nodes. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need."
         },
         "MappedinDirections": {
@@ -643,7 +643,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 890,
+            "line": 895,
             "description": "A {{#crossLink \"MappedinDirections\"}}{{/crossLink}} object will contain an array of {{#crossLink \"MappedinNode\"}}{{/crossLink}}s on a path, and a corresponding list of {{#crossLink \"MappedinDirective\"}}{{/crossLink}} objects representing the instructions to display to the user."
         },
         "MappedinDirective": {
@@ -656,7 +656,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1113,
+            "line": 1126,
             "description": "A {{#crossLink \"MappedinDirective\"}}{{/crossLink}} is an instruction for a user to get from one place to another."
         },
         "MappedinPolygon": {
@@ -669,7 +669,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1168,
+            "line": 1181,
             "description": "The {{#crossLink \"MappedinPolygon\"}}{{/crossLink}} class represents the 3D shape of a {{#crossLink \"MappedinLocation\"}}{{/crossLink}} on a {{#crossLink \"MappedinMap\"}}{{/crossLink}}. Polygons have access to Locations they belong to, and any entrances to the Polygon.\n\nA Polygon can have more properties but usually the default is sufficient. The {{#crossLink \"Mappedin\"}}{{/crossLink}} 'things' object is where you would specify what properties you want to download for Polygons. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need."
         },
         "MappedinVenue": {
@@ -682,7 +682,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1328,
+            "line": 1343,
             "description": "A {{#crossLink \"MappedinVenue\"}}{{/crossLink}} is a specific place (like a mall) with one or more Maps (typically representing different floors) and Locations (stores, washrooms, elevators, etc).\n\nAll core aspects of the Venue's data, such as {{#crossLink \"MappedinCategory\"}}{{/crossLink}}s, {{#crossLink \"MappedinLocation\"}}{{/crossLink}}s, {{#crossLink \"MappedinMap\"}}{{/crossLink}}s, {{#crossLink \"MappedinPolygon\"}}{{/crossLink}}s and {{#crossLink \"MappedinNode\"}}{{/crossLink}}s can be accessed through the Venue.\n\nA Venue can have more properties such as 'name' and 'slug'. The {{#crossLink \"Mappedin\"}}{{/crossLink}} 'things' object is where you would specify what properties you want to download for Venues. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.\n\nSee below for an example a 'things' object with available Venue properties specified:\n\n\tthings: {\n\t\tvenue: ['slug', 'name', 'language', 'address', 'city', 'state', 'postal', 'telephone', 'latitude', 'longitude', 'website', 'operationHours'],\n\t\tlocations: [],\n\t\tcategories: [],\n\t\tmaps: []\n\t}"
         },
         "MappedinEvent": {
@@ -695,7 +695,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1407,
+            "line": 1422,
             "description": "An event."
         },
         "Mappedin": {
@@ -828,32 +828,6 @@
     },
     "elements": {},
     "classitems": [
-        {
-            "file": "docs/assets/vendor/github-slugger/slugger.js",
-            "line": 12,
-            "description": "Generate a unique slug.",
-            "params": [
-                {
-                    "name": "value",
-                    "description": "String of text to slugify",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "A unique slug string",
-                "type": "String"
-            },
-            "class": "Analytics"
-        },
-        {
-            "file": "docs/assets/vendor/github-slugger/slugger.js",
-            "line": 37,
-            "description": "Reset - Forget all previous slugs",
-            "return": {
-                "description": "void"
-            },
-            "class": "Analytics"
-        },
         {
             "file": "mappedin-docs-theme/assets/vendor/github-slugger/slugger.js",
             "line": 12,
@@ -1661,7 +1635,7 @@
         },
         {
             "file": "source/Mappedin.MapManager.js",
-            "line": 287,
+            "line": 293,
             "description": "Expand maps to display within view",
             "itemtype": "method",
             "name": "expandMaps",
@@ -1713,7 +1687,7 @@
         },
         {
             "file": "source/Mappedin.MapManager.js",
-            "line": 388,
+            "line": 394,
             "description": "Contract maps and display the current map",
             "itemtype": "method",
             "name": "contractMaps",
@@ -2872,7 +2846,7 @@
         },
         {
             "file": "source/Mappedin.Search.js",
-            "line": 19,
+            "line": 18,
             "description": "The types of assets available for this venue.",
             "access": "private",
             "tagname": "",
@@ -2883,7 +2857,7 @@
         },
         {
             "file": "source/Mappedin.Search.js",
-            "line": 134,
+            "line": 142,
             "description": "Makes a call to the Mappedin Smart Search API with the provided query, retuning a Promise that will fulfill with a\nSearchResults object. This will contain a list of `hits`, which can currently be SearchItems (either SearchLocations or SearchEvents).\n\nThese are currently different from the objects you get directly from the Mappedin API,\ncontaining a subset of their data, but you can match on their IDs.\n\nThe data is broken down into pages. You can specify the size (defaults to 10).",
             "itemtype": "method",
             "name": "search",
@@ -2922,7 +2896,7 @@
         },
         {
             "file": "source/Mappedin.Search.js",
-            "line": 196,
+            "line": 204,
             "description": "Makes a call to the Mappedin Smart Search Suggestions API with the provided query, retuning a Promise that will fulfill with a\nSuggestions object. This will contain a list of `hits`, which are words that match full search results. This should be used\nto aid in autocoplete for a search bar. It's ordered for you by most relevant.",
             "itemtype": "method",
             "name": "suggest",
@@ -3036,7 +3010,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 314,
+            "line": 316,
             "description": "Directions callback.",
             "itemtype": "method",
             "name": "directionsToCallback",
@@ -3056,7 +3030,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 335,
+            "line": 337,
             "description": "Vortex ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Vortex with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -3065,7 +3039,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 376,
+            "line": 378,
             "description": "MapGroup ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another MapGroup with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -3074,7 +3048,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 400,
+            "line": 402,
             "description": "Maps within this MapGroup.",
             "itemtype": "property",
             "name": "maps",
@@ -3083,7 +3057,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 444,
+            "line": 446,
             "description": "Map ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Map with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -3092,7 +3066,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 513,
+            "line": 515,
             "description": "Polygons on this Map.",
             "itemtype": "property",
             "name": "polygons",
@@ -3101,7 +3075,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 531,
+            "line": 533,
             "description": "Map Group this map belongs to.",
             "itemtype": "property",
             "name": "mapGroup",
@@ -3110,7 +3084,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 557,
+            "line": 559,
             "description": "Node ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Node with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -3119,7 +3093,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 566,
+            "line": 568,
             "description": "ID of Map that the Node is located on.",
             "itemtype": "property",
             "name": "map",
@@ -3128,7 +3102,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 572,
+            "line": 574,
             "description": "X coordinate of Node's position.",
             "itemtype": "property",
             "name": "x",
@@ -3137,7 +3111,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 577,
+            "line": 579,
             "description": "Y coordinate of Node's position.",
             "itemtype": "property",
             "name": "y",
@@ -3146,7 +3120,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 606,
+            "line": 608,
             "description": "Adjacent Nodes.",
             "itemtype": "property",
             "name": "paths",
@@ -3155,7 +3129,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 628,
+            "line": 630,
             "description": "Locations attached to this Node.",
             "itemtype": "property",
             "name": "locations",
@@ -3164,7 +3138,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 654,
+            "line": 656,
             "description": "Calculate the angle between this node and another",
             "itemtype": "method",
             "name": "getAngle",
@@ -3183,7 +3157,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 668,
+            "line": 670,
             "description": "Calculate the distance between this node and another",
             "itemtype": "method",
             "name": "getAngle",
@@ -3198,7 +3172,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 700,
+            "line": 702,
             "description": "Gets directions from this Node to the target Node or Location.",
             "itemtype": "method",
             "name": "directionsTo",
@@ -3239,7 +3213,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 883,
+            "line": 888,
             "description": "Directions callback.",
             "itemtype": "method",
             "name": "directionsToCallback",
@@ -3259,7 +3233,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1085,
+            "line": 1098,
             "description": "Total distance of path in meters",
             "itemtype": "property",
             "name": "distance",
@@ -3268,7 +3242,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1090,
+            "line": 1103,
             "description": "Directions to display to the user.",
             "itemtype": "property",
             "name": "directions",
@@ -3277,7 +3251,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1095,
+            "line": 1108,
             "description": "Collection of Nodes that form a path.",
             "itemtype": "property",
             "name": "path",
@@ -3286,7 +3260,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1101,
+            "line": 1114,
             "description": "The source of wayfinding directions.",
             "itemtype": "property",
             "name": "directionsProvider",
@@ -3297,7 +3271,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1123,
+            "line": 1136,
             "description": "Node where instruction takes place.",
             "itemtype": "property",
             "name": "node",
@@ -3306,7 +3280,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1128,
+            "line": 1141,
             "description": "The action being performed at a Node. The object contains an {{#crossLink \"MappedinDirective/actionType:property\"}}{{/crossLink}} and if the type is TURN, there is also a {{#crossLink \"MappedinDirective/bearingType:property\"}}{{/crossLink}}.",
             "itemtype": "property",
             "name": "action",
@@ -3315,7 +3289,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1133,
+            "line": 1146,
             "description": "Text Instruction to display to user.",
             "itemtype": "property",
             "name": "instruction",
@@ -3324,7 +3298,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1139,
+            "line": 1152,
             "description": "The possible action types a {{#crossLink \"MappedinDirective\"}}{{/crossLink}} can have.",
             "itemtype": "property",
             "name": "actionType",
@@ -3335,7 +3309,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1153,
+            "line": 1166,
             "description": "The possible bearings a {{#crossLink \"MappedinDirective\"}}{{/crossLink}} turn can have.",
             "itemtype": "property",
             "name": "bearingType",
@@ -3346,7 +3320,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1182,
+            "line": 1195,
             "description": "Polygon ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Polygon with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -3355,7 +3329,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1191,
+            "line": 1204,
             "description": "ID of Map that Polygon is located on.",
             "itemtype": "property",
             "name": "map",
@@ -3364,7 +3338,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1219,
+            "line": 1232,
             "description": "Locations attached to the Polygon.",
             "itemtype": "property",
             "name": "locations",
@@ -3373,7 +3347,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1244,
+            "line": 1257,
             "description": "Polygon's entrance Nodes.",
             "itemtype": "property",
             "name": "entrances",
@@ -3382,7 +3356,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1265,
+            "line": 1278,
             "description": "Gets directions from this Location to the target Node or Location.",
             "itemtype": "method",
             "name": "directionsTo",
@@ -3423,7 +3397,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1385,
+            "line": 1400,
             "description": "Theme ID.",
             "itemtype": "property",
             "name": "id",
@@ -3432,7 +3406,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1419,
+            "line": 1434,
             "description": "Event ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Event with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -3441,7 +3415,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1447,
+            "line": 1462,
             "description": "Location this Event is occuring at.",
             "itemtype": "property",
             "name": "location",
@@ -3450,7 +3424,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1662,
+            "line": 1677,
             "description": "Collection of all Categories within the Venue.",
             "itemtype": "property",
             "name": "categories",
@@ -3459,7 +3433,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1669,
+            "line": 1684,
             "description": "Collection of all Locations within the Venue.",
             "itemtype": "property",
             "name": "locations",
@@ -3468,7 +3442,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1676,
+            "line": 1691,
             "description": "Collection of all Maps within the Venue.",
             "itemtype": "property",
             "name": "maps",
@@ -3477,7 +3451,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1683,
+            "line": 1698,
             "description": "Collection of all Nodes within the Venue.",
             "itemtype": "property",
             "name": "nodes",
@@ -3486,7 +3460,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1690,
+            "line": 1705,
             "description": "Collection of all Polygons within the Venue.",
             "itemtype": "property",
             "name": "polygons",
@@ -3495,7 +3469,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1697,
+            "line": 1712,
             "description": "Collection of all Events within the Venue.",
             "itemtype": "property",
             "name": "events",
@@ -3504,7 +3478,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1704,
+            "line": 1719,
             "description": "Collection of all MapGroups within the Venue.",
             "itemtype": "property",
             "name": "mapGroups",
@@ -3513,7 +3487,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1711,
+            "line": 1726,
             "description": "Collection of all Vortexes within the Venue.",
             "itemtype": "property",
             "name": "vortexes",
@@ -3522,7 +3496,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1810,
+            "line": 1825,
             "description": "The possible types of collections of objects you can get from the Venue. To be used to look up items using {{#crossLink \"Mappedin/getCollectionItemById:method\"}}{{/crossLink}}.",
             "itemtype": "property",
             "name": "collectionType",
@@ -3533,7 +3507,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1830,
+            "line": 1845,
             "description": "Gets an object (Node, Polygon, etc.) if it exists within the Venue by looking up its Mappedin ID or External ID.",
             "itemtype": "method",
             "name": "getCollectionItemById",
@@ -3557,7 +3531,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1908,
+            "line": 1923,
             "description": "A one stop function to download all of the information you need for a given {{#crossLink \"MappedinVenue\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getVenue",
@@ -4055,6 +4029,13 @@
             "module": "Mappedin"
         },
         {
+            "file": "frog.js",
+            "line": 38,
+            "description": "2. Test cases\n\nOnce they have a 'working' solution (ie, it will give the right number in simple cases), stop them and read this:\n\nCongratulations, you have passed the coding part of this test. \n\nNow assume another developer wrote this function and you have to come up with a test plan. What test cases\nwould you come up with that you would want to make sure the developer has handled?\n\nIt is OK if you come up with cases that will break your old code at this point.",
+            "class": "",
+            "module": "Mappedin"
+        },
+        {
             "file": "service-worker.js",
             "line": 2,
             "description": "Offline fallback service worker\n\nThis service worker is designed for offline fallback mode. If you have a network connection at all, it will get the most recent data and use that. If the network is unavailable, it will use the last downloaded version.\nIt has special logic to handle the paging behaviour from the Mappedin API, as a workaround for a weird bug with XHR and Service Workers where \"unsafe\" headers are available in fetch but not XHR.\n\nNOTE: Using this with the Mappedin Web SDK will ensure all the resources the SDK needs are available (since it downloads everything up front), but if you want icons/logos/images from Location objects you will need to ensure your app also\ntries to download them up front as well. If you do, they will be automatically cached.\n\nNOTE2: This will cache all network traffic (which could give you offline support for free for other parts of your app) If you want to limit it to only traffic for the SDK you will have structure your app so the Mappedin\ncode lives in it's own folder, and you register the service worker to only handle requests from things in that folder. Read about Service Workers for more details.",
@@ -4065,15 +4046,15 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.MapManager.js:287"
+            "line": " source/Mappedin.MapManager.js:293"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Search.js:134"
+            "line": " source/Mappedin.Search.js:142"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Search.js:196"
+            "line": " source/Mappedin.Search.js:204"
         },
         {
             "message": "unknown tag: name",
@@ -4081,51 +4062,43 @@
         },
         {
             "message": "replacing incorrect tag: function with method",
-            "line": " source/Mappedin.getVenue.js:314"
+            "line": " source/Mappedin.getVenue.js:316"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:654"
+            "line": " source/Mappedin.getVenue.js:656"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.getVenue.js:654"
+            "line": " source/Mappedin.getVenue.js:656"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:668"
+            "line": " source/Mappedin.getVenue.js:670"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:700"
+            "line": " source/Mappedin.getVenue.js:702"
         },
         {
             "message": "replacing incorrect tag: function with method",
-            "line": " source/Mappedin.getVenue.js:883"
+            "line": " source/Mappedin.getVenue.js:888"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:1265"
+            "line": " source/Mappedin.getVenue.js:1278"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:1830"
+            "line": " source/Mappedin.getVenue.js:1845"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.getVenue.js:1830"
+            "line": " source/Mappedin.getVenue.js:1845"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.getVenue.js:1908"
-        },
-        {
-            "message": "Missing item type\nGenerate a unique slug.",
-            "line": " docs/assets/vendor/github-slugger/slugger.js:12"
-        },
-        {
-            "message": "Missing item type\nReset - Forget all previous slugs",
-            "line": " docs/assets/vendor/github-slugger/slugger.js:37"
+            "line": " source/Mappedin.getVenue.js:1923"
         },
         {
             "message": "Missing item type\nGenerate a unique slug.",
@@ -4190,6 +4163,10 @@
         {
             "message": "Missing item type\nLabels a specific polygon (or area of 3D space) with a text label that lives in 3D space.\nThat means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.\nThe text will flip 180 degress when the camera rotates so it's never totally upside-down.\n\nPossible options = {\n\tpolygon - The polygon to make a label for\n\tcanvasBounds - Optional, to do this without a real Mappedin Polygon\n\theight - If you don't have a real polygon, you will need to set a height\n\ttext - The full name text to make the label\n\tshortText - The short name text to make the label\n\tmargin - The amount of space to leave before starting the text\n\tcolor - A optional special color if you don't want to use mapView.colors.text\n\tfontSize - How big to make the font. Defaults to 12\n\tfont - A THREE.Font object, if you have your own font you want to use.\n\tscaleMin - What percentage we can shrink the label to if it won't fit at 100%\n\tscaleStep - How much to decrement the scale each time it doesn't fit, so we don't end up with too many different font sizes\n}\n\nYou must provide AT LEAST text and either polygon or canvasBounds + height.",
             "line": " source/Mappedin.MapView2D.js:835"
+        },
+        {
+            "message": "Missing item type\n2. Test cases\n\nOnce they have a 'working' solution (ie, it will give the right number in simple cases), stop them and read this:\n\nCongratulations, you have passed the coding part of this test. \n\nNow assume another developer wrote this function and you have to come up with a test plan. What test cases\nwould you come up with that you would want to make sure the developer has handled?\n\nIt is OK if you come up with cases that will break your old code at this point.",
+            "line": " frog.js:38"
         },
         {
             "message": "Missing item type\nOffline fallback service worker\n\nThis service worker is designed for offline fallback mode. If you have a network connection at all, it will get the most recent data and use that. If the network is unavailable, it will use the last downloaded version.\nIt has special logic to handle the paging behaviour from the Mappedin API, as a workaround for a weird bug with XHR and Service Workers where \"unsafe\" headers are available in fetch but not XHR.\n\nNOTE: Using this with the Mappedin Web SDK will ensure all the resources the SDK needs are available (since it downloads everything up front), but if you want icons/logos/images from Location objects you will need to ensure your app also\ntries to download them up front as well. If you do, they will be automatically cached.\n\nNOTE2: This will cache all network traffic (which could give you offline support for free for other parts of your app) If you want to limit it to only traffic for the SDK you will have structure your app so the Mappedin\ncode lives in it's own folder, and you register the service worker to only handle requests from things in that folder. Read about Service Workers for more details.",
