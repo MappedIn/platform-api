@@ -8,7 +8,7 @@ Check out the [demo](examples/Demo), and the full [API docs](http://mappedin.git
 The current version of the Mappedin Web SDK is v1.46.7, and can be included in your application via script tag, like so:
 
 ```xml
-<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.41.6/mappedin.js"></script>
+<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.46.7/mappedin.js"></script>
 ```
 
 ## Getting Started
