@@ -127,15 +127,6 @@
             "fors": {},
             "namespaces": {}
         },
-        "source/Mappedin.SmartLabel.js": {
-            "name": "source/Mappedin.SmartLabel.js",
-            "modules": {},
-            "classes": {
-                "SmartLabel": 1
-            },
-            "fors": {},
-            "namespaces": {}
-        },
         "source/Mappedin.TextLabel.js": {
             "name": "source/Mappedin.TextLabel.js",
             "modules": {},
@@ -227,7 +218,6 @@
                 "Marker": 1,
                 "MapView3D": 1,
                 "Search": 1,
-                "SmartLabel": 1,
                 "TextLabel": 1,
                 "MappedinCategory": 1,
                 "MappedinLocation": 1,
@@ -567,19 +557,6 @@
                     ]
                 }
             ]
-        },
-        "SmartLabel": {
-            "name": "SmartLabel",
-            "shortname": "SmartLabel",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "module": "Mappedin",
-            "file": "source/Mappedin.SmartLabel.js",
-            "line": 59,
-            "description": "An internal representaion of a 2D text label. Make your own with {{#crossLink \"MapView/labelPolygon:method\"}}{{/crossLink}}."
         },
         "TextLabel": {
             "name": "TextLabel",
