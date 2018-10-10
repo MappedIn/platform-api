@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.CameraControls.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+var TWEEN = require(&quot;@tweenjs/tween.js&quot;);
+
+import {
+	Euler,
+	EventDispatcher,
+	MOUSE,
+	PlaneGeometry,
+	Matrix4,
+	MeshBasicMaterial,
+	Mesh,
+	Raycaster,
+	Vector2,
+	Vector3,
+	Clock,
+} from &#x27;three&#x27;;
+
+import TouchAnchor from &#x27;./Mappedin.CameraControls.TouchAnchor&#x27;;
+import InputSet from &#x27;./Mappedin.CameraControls.InputSet&#x27;;
+
+/**
+* The advanced, manual camera controls for {{#crossLink &quot;MapView&quot;}}{{/crossLink}}. You probably don&#x27;t need to use this at all, instead relying on the MapView&#x27;s {{#crossLink &quot;MapView/focusOn:method&quot;}}{{/crossLink}}, {{#crossLink &quot;MapView/resetCamera:method&quot;}}{{/crossLink}} and built in touch/mouse controls.
+* This class will let you do things like change the min/max zoom, tilt, and pan, attach to camera events, and move/animate the camera to specifc points.
+*
+* The camera works by setting an anchor point on the scene at ground level and pointing the camera at it. {{#crossLink &quot;CameraControls/zoom:method&quot;}}{{/crossLink}} controls how far the camera is from the anchor, and {{#crossLink &quot;CameraControls/tilt:method&quot;}}{{/crossLink}}/{{#crossLink &quot;CameraControls/rotate:method&quot;}}{{/crossLink}} controls the angle the camera is rotated about it.
+* The camera will always be pointed directly at the anchor point. {{#crossLink &quot;CameraControls/pan:method&quot;}}{{/crossLink}} or {{#crossLink &quot;CameraControls/setPosition:method&quot;}}{{/crossLink}} will move that anchor around on the 2D ground plane.
+*
+* Created for you automatically with a MapView, don&#x27;t re-create yourself.
+*
+* @class CameraControls
+*/
+var CameraControls = function (camera, canvas, scene, mapView) {
+	Object.assign(this, EventDispatcher.prototype);
+	this.camera = camera;
+	this.canvas = canvas;
+	this.elevation = camera.parent;
+	this.orbit = this.elevation.parent;
+	var intersection;
+
+	var TWO_PI = Math.PI * 2;
+
+	// @TODO: figure out a zero-magic solution
+	const CAMERA_ZRANGE = 100;
+
+	/**
+	* Factor that controls how fast zooming in and out happens in response to mouse wheel events
+	*
+	* @property zoomSpeed {Float}
+	* @default 5.0
+	*/
+	this.zoomSpeed = 5.0;
+
+	/**
+	* Factor to multiple mouse movement by to get tilt/rotation.
+	*
+	* @property rotateSpeed {Float}
+	* @default 100
+	*/
+	this.rotateSpeed = 100;
+
+	/**
+	* Disable or re-enable user input.
+	*
+	* @property enabled {Boolean}
+	* @default true
+	*/
+	this.enabled = true;
+
+	/**
+	* Disable or re-enable user zoom.
+	*
+	* @property enableZoom {Boolean}
+	* @default true
+	*/
+	this.enableZoom = true;
+
+	/**
+	* Disable or re-enable user pan.
+	*
+	* @property enablePan {Boolean}
+	* @default true
+	*/
+	this.enablePan = true;
+
+	/**
+	* Disable or re-enable user tilt/rotation.
+	*
+	* @property enableRotate {Boolean}
+	* @default true
+	*/
+	this.enableRotate = true;
+
+	/**
+	* This is actually the minium distance the camera can get from it&#x27;s anchor on the ground. May be worth changing if your map has very tall buildings to avoid the camera clipping through them.
+	*
+	* @property minZoom {Number}
+	* @default 375
+	*/
+	this.minZoom = 375;
+
+	/**
+	* Maximum distance the camera can get from it&#x27;s anchor on the ground. Setting this too high will result in parts of the map falling out of the camera&#x27;s clipping plane and disappearing.
+	*
+	* @property maxZoom {Number}
+	* @default 10000
+	*/
+	this.maxZoom = 10000;
+
+	/**
+	* Initial min zoom; zoom cannot be restricted beyond this.
+	*
+	* @property initialMinZoom {Number}
+	* @default 375
+	*/
+	this.initialMinZoom = 375;
+
+	/**
+	* Initial max zoom; zoom cannot be restricted beyond this.
+	*
+	* @property initialMaxZoom {Number}
+	* @default 10000
+	*/
+	this.initialMaxZoom = 10000;
+
+	// Internal Documentation
+	/*
+	* Minimum distance the camera can have from the ground anchor, when recalculating through expandZoomLimits.
+	*
+	* @property minExpandedZoom {Number}
+	* @default 375
+	*/
+	this.minExpandedZoom = 375;
+
+	// Internal Documentation
+	/*
+	* Minimum distance the camera can have from the ground anchor, when recalculating through expandZoomLimits.
+	* @TODO: figure out how this can be dynamic
+	*
+	* @property maxExpandedZoom {Number}
+	* @default 100000
+	*/
+	this.maxExpandedZoom = 100000;
+
+	/**
+	* Multiplier for min and max zoom, for convenience.
+	*
+	* @property zoomFactor {Number}
+	* @default 1
+	*/
+	this.zoomFactor = 1;
+
+	/**
+	* Constrains the camera from panning to far away from the scene. It&#x27;s set automatically based on the size of the map.
+	* If you want to change anything, you probably want to change the margin property, which is the factor the min and max in
+	* each dimension are multiplied by to give the true bounds. For example, on a truely huge venue a 1.25 margin could get you
+	* way out into space when zoomed in.
+	*
+	* @property panBounds {Object}
+		@property panBounds.margin {Number} The factor the multiply the size of the geometery by to give the true camera bounds.
+		@property panBounds.min {Object} An x, y pair representing the bounds of one corner of the map.
+		@property panBounds.max {Object} An x, y pair representing the bounds of the other corner of the map.
+	*/
+	this.panBounds = {
+		margin: 1.25,
+		min: {
+			x : Infinity,
+			y : Infinity
+		},
+		max: {
+			x : - Infinity,
+			y : - Infinity
+		},
+		center: {
+			x: 0,
+			y: 0,
+		},
+		radius: 200
+	};
+
+	/**
+	* Minium camera tilt, in radians. If it&#x27;s anything other than 0, you won&#x27;t be able to look at the venue from the top down perspective.
+	*
+	* @property minTilt {Number}
+	* @default 0.0
+	*/
+	this.minTilt = 0.0;
+
+	/**
+	* Minium camera tilt, in radians. If you set it too high, the camera will be able to tilt down through the geometery of the scene, which will produce clipping issues.
+	*
+	* @property maxTilt {Number}
+	* @default 1.2
+	*/
+	this.maxTilt = 1.2;
+
+	/**
+	* If you would really prefer to pan with the right mouse button and tilt/rotate with the left, you can swap the values here to achieve that.
+	*
+	* @property mouseButtons {Object}
+		@property mouseButtons.ORBIT=MOUSE.RIGHT {MOUSE} The button to use for tilt/rotation. Defaults to &#x60;MOUSE.RIGHT&#x60;.
+		@property mouseButtons.ZOOM=MOUSE.MIDDLE {MOUSE} The button to use for zoom behaviour. Don&#x27;t change this.
+		@property mouseButtons.PAN=MOUSE.LEFT {MOUSE} The button to use for panning the camera. Defaults to &#x60;MOUSE.LEFT&#x60;.
+	*/
+	this.mouseButtons = { ORBIT: MOUSE.RIGHT, ZOOM: MOUSE.MIDDLE, PAN: MOUSE.LEFT };
+	var scope = this;
+
+	var cameraPlaneGeometery = new PlaneGeometry(1000000, 1000000); // Should set this to be the map bounds later
+	var cameraPlaneMaterial = new MeshBasicMaterial({color: 0x000000, visible: false });
+	var cameraPlane = new Mesh(cameraPlaneGeometery, cameraPlaneMaterial);
+
+	var raycaster = new Raycaster();
+
+	scene.add(cameraPlane);
+
+	var STATE = { NONE : - 1, ROTATE : 0, DOLLY : 1, PAN : 2, WHEEL_ZOOM : 3, TOUCH_TILT : 4, TOUCH_DOLLY : 5, TOUCH_PAN : 6, MULTI: 7};
+
+	var state = STATE.NONE;
+
+	var mouse = new Vector2();
+	var touches = [];
+	var touchOrigin = { offsetLeft: 0, offsetTop: 0 };
+
+	var rotateStart = new Vector2();
+	var rotateEnd = new Vector2();
+	var rotateDelta = new Vector2();
+
+	var panStart = new Vector2();
+	var panCameraStart = new Vector2();
+	var panEnd = new Vector2();
+	var panDelta = new Vector3();
+
+	var floorAnchor = new Vector3();
+
+	var dollyStart = new Vector2();
+	var dollyEnd = new Vector2();
+	var dollyDelta = new Vector2();
+
+	var resetZoom = false; // Indicates whether to reset the camera position and zoom level when panning while mouse zooming
+	var zoomStart;
+
+	var clock = new Clock(true);
+	var lastWheelTime = 0;
+
+	var WHEEL_ZOOM_MULTIPLIER = 10000;
+
+	//var currentTween = null;
+
+	/**
+	* Camera events you can attach a listener to (with &#x60;controls.addListener(event, function)&#x60;), if you want to do certain things. They&#x27;ll be fired both by touch events and by functions you can call yourself like pan() and tilt()/
+	*
+	* @property CAMERA_EVENTS {Object}
+	* @final
+	  @property CAMERA_EVENTS.CHANGE_EVENT {Object} Fired whenever the camera changes.
+	  @property CAMERA_EVENTS.PAN_START_EVENT {Object} Fired when the camera starts panning.
+	  @property CAMERA_EVENTS.PAN_END_EVENT {Object} Fired when the camera finishes panning.
+	  @property CAMERA_EVENTS.ROTATE_START_EVENT {Object} Fired when the camera starts rotating.
+	  @property CAMERA_EVENTS.ROTATE_END_EVENT {Object} Fired when the camera stops rotating.
+	  @property CAMERA_EVENTS.ZOOM_START_EVENT  {Object} Fired when the camera starts zooming.
+	  @property CAMERA_EVENTS.ZOOM_END_EVENT {Object} Fired when the camera finishes zooming.
+	  @property CAMERA_EVENTS.MULTI_START_EVENT {Object} Fired when the camera starts animating or you called setMulti. It means any one or more of pan, tilt, rotate and zoom could be changing. The individual pan/tilt/rotate/zoom events will NOT be fired.
+	  @property CAMERA_EVENTS.MULTI_END_EVNT {Object} Fired when the camera stops animating, or has finished the setMulti call.
+	  */
+	this.CAMERA_EVENTS = {};
+	this.CAMERA_EVENTS.CHANGE_EVENT = { type: &#x27;change&#x27; };
+
+	this.CAMERA_EVENTS.PAN_START_EVENT = { type: &#x27;panStart&#x27; };
+	this.CAMERA_EVENTS.PAN_END_EVENT = { type: &#x27;panEnd&#x27; };
+
+	this.CAMERA_EVENTS.ROTATE_START_EVENT = { type: &#x27;rotateStart&#x27; };
+	this.CAMERA_EVENTS.ROTATE_END_EVENT = { type: &#x27;rotateEnd&#x27; };
+
+	this.CAMERA_EVENTS.ZOOM_START_EVENT = { type: &#x27;zoomStart&#x27; };
+	this.CAMERA_EVENTS.ZOOM_END_EVENT = { type: &#x27;zoomEnd&#x27; };
+
+	this.CAMERA_EVENTS.MULTI_START_EVENT = { type: &#x27;multiStart&#x27; };
+	this.CAMERA_EVENTS.MULTI_END_EVENT = { type: &#x27;multiEnd&#x27; };
+
+	this.INTERACTION_EVENTS = {};
+	this.INTERACTION_EVENTS.USER_PAN_EVENT = { type: &#x27;userPan&#x27; };
+	this.INTERACTION_EVENTS.USER_ROTATE_EVENT = { type: &#x27;userRotate&#x27; };
+	this.INTERACTION_EVENTS.USER_DOLLY_EVENT = { type: &#x27;userDolly&#x27; };
+	this.INTERACTION_EVENTS.USER_ZOOM_EVENT = { type: &#x27;userZoom&#x27; };
+	this.INTERACTION_EVENTS.USER_TILT_EVENT = { type: &#x27;userTilt&#x27; };
+
+	var changeEvent = this.CAMERA_EVENTS.CHANGE_EVENT;
+	var panStartEvent = this.CAMERA_EVENTS.PAN_START_EVENT;
+	var panEndEvent = this.CAMERA_EVENTS.PAN_END_EVENT;
+	var rotateStartEvent = this.CAMERA_EVENTS.ROTATE_START_EVENT;
+	var rotateEndEvent = this.CAMERA_EVENTS.ROTATE_END_EVENT;
+	var zoomStartEvent = this.CAMERA_EVENTS.ZOOM_START_EVENT;
+	var zoomEndEvent = this.CAMERA_EVENTS.ZOOM_END_EVENT;
+	var multiStartEvent = this.CAMERA_EVENTS.MULTI_START_EVENT;
+	var multiEndEvent = this.CAMERA_EVENTS.MULTI_END_EVENT;
+
+	var userPanEvent = this.INTERACTION_EVENTS.USER_PAN_EVENT;
+	var userRotateEvent = this.INTERACTION_EVENTS.USER_ROTATE_EVENT;
+	var userDollyEvent = this.INTERACTION_EVENTS.USER_DOLLY_EVENT;
+	var userZoomEvent = this.INTERACTION_EVENTS.USER_ZOOM_EVENT;
+	var userTiltEvent = this.INTERACTION_EVENTS.USER_TILT_EVENT;
+
+	/**
+	* Pans the camera right and down from the current position
+	*
+	* @method pan
+	* @param right {Number} The units to move right. Negative will pan left. This is in relation to the global coordinate system, not the current camera rotation.
+	* @param down {Number} The units to move down. Negative will pan up. This is in relation to the global coordinate system, not the current camera rotation.
+	*/
+	this.pan = function(right, down) {
+		if (isNaN(right) || isNaN(down)) { return; }
+
+		scope.setPosition(scope.orbit.position.x + right, scope.orbit.position.y + down);
+	};
+
+	/**
+	* Sets the camera anchor to a specifc x/y positon, in the global reference frame. 0,0 will be roughly the middle of the map, and panBounds holds the min/max points.
+	*
+	* @method setPosition
+	* @param x {Number} The x position to move the camera to. +x will take you right, from the default camera rotation of 0.
+	* @param y {Number} The y position to move the camera to. +y will take you down (towards the viewer) in the default camera rotation of 0.
+	*/
+	this.setPosition = function(x, y) {
+		if (isNaN(x) || isNaN(y)) { return; }
+
+		if (state ==  STATE.NONE) {
+			scope.dispatchEvent(panStartEvent);
+		}
+		const dx = x - scope.panBounds.center.x;
+		const dy = y - scope.panBounds.center.y;
+		const targetDistanceFromBounds = Math.sqrt(dx * dx + dy * dy);
+		if (targetDistanceFromBounds &gt; scope.panBounds.radius) {
+			const angle = Math.atan2(dy, dx);
+			const target = {
+				x: Math.cos(angle) * scope.panBounds.radius + scope.panBounds.center.x,
+				y: Math.sin(angle) * scope.panBounds.radius + scope.panBounds.center.y
+			};
+			scope.orbit.position.x = target.x;
+			scope.orbit.position.y = target.y;
+		}
+		else {
+			scope.orbit.position.x = x;
+			scope.orbit.position.y = y;
+		}
+
+		scope.dispatchEvent(changeEvent);
+
+		if (state ==  STATE.NONE) {
+			scope.dispatchEvent(panEndEvent);
+		}
+	};
+
+	/**
+	* Sets the rotation to a specific orientation, in radians. Mostly useful to orient the map a certain way for a physical directory.
+	*
+	* @method setRotation
+	* @param radians {Number} Absolute rotation to set the camera to, in radians. 0 in the starting point.
+	*/
+	this.setRotation = function (radians) {
+		if (isNaN(radians)) { return; }
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateStartEvent);
+		}
+
+		scope.orbit.rotation.z = radians % TWO_PI;
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateEndEvent);
+		}
+	};
+
+	/**
+	* Rotates the camera a set number of radians relative to the current rotation. Useful for an idle rotation animation.
+	*
+	* @method rotate
+	* @param radians {Number} Number of radians to rotate the camera.
+	*/
+	this.rotate = function (radians) {
+		if (isNaN(radians)) { return; }
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateStartEvent);
+		}
+
+		scope.orbit.rotation.z = (scope.orbit.rotation.z + radians) % TWO_PI;
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateEndEvent);
+		}
+	};
+
+	/**
+	* Sets the tilt to a specific level, in radians. 0 is top down. Bounded by minTilt and maxTilt.
+	*
+	* @method setTilt
+	* @param radians {Number} Tilt to set the camera to, in radians.
+	*/
+	this.setTilt = function(radians) {
+		if (isNaN(radians)) { return; }
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateStartEvent);
+		}
+		scope.elevation.rotation.x = Math.max(Math.min(radians, scope.maxTilt), scope.minTilt);
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateEndEvent);
+		}
+	};
+
+	/**
+	* Tilts the camera up or down by some number of radians. Bounded by minTilt and maxTilt.
+	*
+	* @method tilt
+	* @param radians {Number} Number of radians to increase or decrease the current tilt by.
+	*/
+	this.tilt = function(radians) {
+		if (isNaN(radians)) { return; }
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateStartEvent);
+		}
+		scope.elevation.rotation.x = Math.max(Math.min(radians + scope.getTilt(), scope.maxTilt), scope.minTilt);
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(rotateEndEvent);
+		}
+	};
+
+	/**
+	* Sets the camera to be a certain distance from the anchor point, along it&#x27;s tilt and rotation.
+	* Keeps it inside minZoom and maxZoom.
+	*
+	* @method setZoom
+	* @param zoom {Number} The distance to set the camera to.
+	*/
+	this.setZoom = function (zoom) {
+		if (isNaN(zoom)) { return;	}
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(zoomStartEvent);
+		}
+
+		var z = Math.min(Math.max(zoom, scope.getZoomScaledMin()), scope.getZoomScaledMax());
+
+		scope.camera.position.z = z;
+		scope.camera.near = z / CAMERA_ZRANGE;
+		scope.camera.far = z * CAMERA_ZRANGE;
+		scope.camera.updateProjectionMatrix();
+
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(zoomEndEvent);
+		}
+	};
+
+
+	/**
+	* Moves the camera towards or away from the camera by a set amount. Positive will zoom in (bringing the distance closer to 0).
+	*
+	* @method zoom
+	* @param zoom {Number} The distance to increase or decrease the zoom.
+	*/
+	this.zoom = function (zoomDelta) {
+		if (isNaN(zoomDelta)) { return;	}
+
+		if (state ==  STATE.NONE) {
+			scope.dispatchEvent(zoomStartEvent);
+		}
+
+		var newZoom = scope.getZoom() - zoomDelta;
+		scope.camera.position.z = Math.min(Math.max(newZoom, scope.minZoom * scope.zoomFactor), scope.maxZoom * scope.zoomFactor);
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(zoomEndEvent);
+		}
+	};
+
+
+	/**
+	* Zooms the camera in on the center of the current view.
+	*
+	* @method zoomIn
+	* @param duration
+	* @param curve
+	* @param callback
+	*/
+	this.zoomIn = function(duration, curve, callback) {
+		var zoom = this.getZoom();
+		this.animateCamera({
+			zoom: zoom / 1.5,
+		}, duration, curve, callback);
+	};
+
+
+	/**
+	* Zooms the camera out from the center of the current view.
+	*
+	* @method zoomOut
+	* @param duration
+	* @param curve
+	* @param callback
+	*/
+	this.zoomOut = function(duration, curve, callback) {
+		var zoom = this.getZoom();
+		this.animateCamera({
+			zoom: zoom * 1.5,
+		}, duration, curve, callback);
+	};
+
+
+	/**
+	* Expands the zoom limits to allow zooming to the specified distance.
+	*
+	* @method expandZoomLimits
+	* @param zoom {Number} The distance to allow zooming to.
+	* @param buffer {Number} The factor by which the user should be able to zoom beyond the specified distance.
+	*/
+	this.expandZoomLimits = function (zoom, buffer) {
+		if (!buffer) buffer = 1.2;
+		if ((zoom * buffer) &gt; scope.maxZoom) {
+			scope.maxZoom = Math.min(zoom * buffer, scope.maxExpandedZoom);
+		}
+		if ((zoom / buffer) &lt; scope.minZoom) {
+			scope.minZoom = Math.max(zoom / buffer, scope.minExpandedZoom);
+		}
+	};
+
+	/**
+	* Restricts the zoom limits, but will not restrict beyond the current zoom level.
+	*
+	* @method restrictZoomLimits
+	* @param zoom {Number} The number to limit zooming to.
+	* @param buffer {Number} The factor by which the user should be able to zoom beyond the specified distance.
+	*/
+	this.restrictZoomLimits = function(zoom, buffer) {
+		if (!buffer) buffer = 1.2;
+
+		if (zoom * buffer &gt; scope.initialMaxZoom &amp;&amp; zoom * buffer &lt; scope.maxZoom) {
+			scope.maxZoom = Math.max(scope.getZoom(), zoom * buffer);
+		}
+		if (zoom / buffer &lt; scope.initialMinZoom &amp;&amp; zoom / buffer &gt; scope.minZoom) {
+			scope.minZoom = Math.min(scope.getZoom(), zoom / buffer);
+		}
+	};
+
+
+	/**
+	* Returns the current camera position.
+	*
+	* @method getPosition
+	* @return {Object} An {x, y} object of the current camera postion.
+	*/
+	this.getPosition = function () {
+		return {x: scope.orbit.position.x, y: scope.orbit.position.y};
+	};
+
+	/**
+	* Returns the current camera rotation.
+	*
+	* @method getRotation
+	* @return {Number} The current rotation of the camera, in radians.
+	*/
+	this.getRotation = function () {
+		return scope.orbit.rotation.z;
+	};
+
+	/**
+	* Returns the current camera tilt
+	*
+	* @method getTilt
+	* @return {Number} The current tilt of the camera, in radians.
+	*/
+	this.getTilt = function () {
+		return scope.elevation.rotation.x;
+	};
+
+	/**
+	* Returns the current camera zoom
+	*
+	* @method getZoom
+	* @return {Number} The distance of the camera from the anchor.
+	*/
+	this.getZoom = function() {
+		return scope.camera.position.z;
+	};
+
+	/**
+	* Returns true if the camera is currently moving (it&#x27;s animating, the user is manipulating it).
+	*
+	* @method isCameraMoving
+	* @return {Boolean} True if the camera is moving, false otherwise.
+	*/
+	this.isCameraMoving = function() {
+		return state != STATE.NONE;
+	};
+
+	/**
+	* Returns the actual zoom minimum based on real-world distance.
+	*
+	* @method getZoomScaledMin
+	* @return {Number} The actual zoom minimum in map units.
+	*/
+	this.getZoomScaledMin = function() {
+		return scope.minZoom * scope.zoomFactor;
+	};
+
+	/**
+	* Returns the actual zoom maximum based on visible map size.
+	*
+	* @method getZoomScaledMax
+	* @return {Number} The actual zoom maximum in map units.
+	*/
+	this.getZoomScaledMax = function() {
+		var min = scope.minZoom * scope.zoomFactor;
+		return Math.max(scope.maxZoom, 1.5 * min);
+	};
+
+	var isAnimating = function() {
+		return TWEEN.getAll().some(function (value) {
+			return value._mMapAnimation;
+		});
+	};
+
+	/**
+	* Animates the camera from it&#x27;s current position to the state specified in target. You only
+	* need to specify the properties you actually want to change.
+	*
+	* You can also specify a duration, animation curve, and a callback for when it&#x27;s done.
+	*
+	* @method animateCamera
+	* @param target {Object} A list of optional parameters you can set that represent the camera state.
+		@param [target.position] {Object} An {x, y} object representing the position to move to.
+		@param [target.zoom] {Number} The zoom level to end at.
+		@param [target.tilt] {Number} The tilt to end at, in radians.
+		@param [target.rotation] {Number} The rotation to end at, in radians.
+		@param [target.doNotAutoStart=false] {Boolean} Set this to true if you want to start the tween yourself.
+	* @param [duration] {Number} The duration to animate the camera for, in ms.
+	* @param [curve] {Mappedin.Easing} The animation curve to use for the animation.
+	* @param [callback] {Function} A callback that will be executed when the animation is done.
+	* @return {Mappedin.Tween} The tween being used, if you want to do anything to control it manually. Do not overide it&#x27;s events.
+	*/
+	this.animateCamera = function (target, duration, curve, callback) {
+		var tweenStart = {};
+		var tweenEnd = {};
+
+		var position = scope.getPosition();
+
+		if (target.position != null) {
+			if (target.position.x !== undefined) {
+				tweenStart.x = position.x;
+				tweenEnd.x = target.position.x;
+			}
+			if (target.position.y !== undefined) {
+				tweenStart.y = position.y;
+				tweenEnd.y = target.position.y;
+			}
+		}
+
+
+		if (target.zoom !== undefined) {
+			tweenStart.zoom = Math.min(Math.max(scope.getZoom(), scope.getZoomScaledMin()), scope.getZoomScaledMax());
+			tweenEnd.zoom = Math.min(Math.max(target.zoom, scope.getZoomScaledMin()), scope.getZoomScaledMax());
+		}
+
+		if (target.rotation !== undefined) {
+			tweenStart.rotation = scope.getRotation();
+			tweenEnd.rotation = target.rotation % (2 * Math.PI);
+		}
+
+		if (target.tilt !== undefined) {
+			tweenStart.tilt = scope.getTilt();
+			tweenEnd.tilt = Math.max(Math.min(target.tilt, scope.maxTilt), scope.minTilt);
+		}
+
+		var tween = new TWEEN.Tween(tweenStart).to(tweenEnd, duration)
+			.onUpdate(function (between) {
+				scope.setMulti(
+					{
+						x: between.x !== undefined ? between.x : undefined,
+						y: between.y !== undefined ? between.y : undefined
+					}, between.zoom !== undefined ? between.zoom : undefined,
+					between.rotation !== undefined ? between.rotation : undefined,
+					between.tilt !== undefined ? between.tilt : undefined
+				);
+			})
+			.onComplete(function() {
+				// Why doesn&#x27;t this dispatch multiEndEvent..?
+				if (callback) {
+					callback();
+				}
+			})
+			.onStart(function() {
+				if (state != STATE.MULTI) {
+					state = STATE.MULTI;
+					scope.dispatchEvent(multiStartEvent);
+				}
+				scope.dispatchEvent(changeEvent);
+			});
+
+		if (curve) {
+			tween.easing(curve);
+		} else {
+			tween.easing(TWEEN.Easing.Quadratic.In);
+		}
+
+		if (!target.doNotAutoStart) {
+			tween.start();
+			mapView.tryRendering();
+		}
+
+		tween._mMapAnimation = true;
+
+		return tween;
+	};
+	/**
+	* Allows you to set any of the Camera&#x27;s position, zoom, rotation and tilt at once, with one function.
+	*
+	* @method setMulti
+	* @param [position] {Object} an {x, y} object representing the new position.
+	* @param [zoom] {Number} The new zoom distance.
+	* @param [rotation] {Number} The new rotation, in radians.
+	* @param [tilt] {Number} The new tilt, in radians.
+	*/
+	this.setMulti = function(position, zoom, rotation, tilt) {
+		if (state ==  STATE.NONE) {
+			scope.dispatchEvent(multiStartEvent);
+		}
+
+		if (position != null) {
+			if (position.x !== undefined &amp;&amp; !isNaN(position.x)) {
+				scope.orbit.position.x = position.x;
+			}
+
+			if (position.y !== undefined &amp;&amp; !isNaN(position.y)) {
+				scope.orbit.position.y = position.y;
+			}
+		}
+
+		if (zoom !== undefined &amp;&amp; !isNaN(zoom)) {
+			scope.camera.position.z = Math.min(Math.max(zoom, scope.getZoomScaledMin()), scope.getZoomScaledMax());
+		}
+
+		if (rotation !== undefined &amp;&amp; !isNaN(rotation)) {
+			scope.orbit.rotation.z = rotation;
+		}
+
+		if (tilt !== undefined &amp;&amp; !isNaN(tilt)) {
+			scope.elevation.rotation.x = Math.max(Math.min(tilt, scope.maxTilt), scope.minTilt);
+		}
+
+		scope.dispatchEvent(changeEvent);
+
+		if (state == STATE.NONE) {
+			scope.dispatchEvent(multiEndEvent);
+		}
+	};
+
+	function handleMouseDownRotate(event) {
+		rotateStart.set(event.clientX, event.clientY);
+		scope.dispatchEvent(rotateStartEvent);
+		scope.dispatchEvent(userRotateEvent);
+	}
+
+	function handleMouseDownDolly(event) {
+		dollyStart.set(event.clientX, event.clientY);
+		scope.dispatchEvent(zoomStartEvent);
+		scope.dispatchEvent(userDollyEvent);
+	}
+
+	function handleMouseDownPan() {
+		var pos = raycastToFloor(mouse);
+
+
+		panStart.set(pos.x, pos.y);
+		panCameraStart.set(scope.orbit.position.x, scope.orbit.position.y);
+		scope.dispatchEvent(panStartEvent);
+		scope.dispatchEvent(userPanEvent);
+	}
+
+	function handleMouseMoveRotate(event) {
+		rotateEnd.set(event.clientX, event.clientY);
+		rotateDelta.subVectors(rotateEnd, rotateStart);
+
+		scope.rotate(-rotateDelta.x / scope.rotateSpeed);
+		scope.setTilt(scope.getTilt() - rotateDelta.y / scope.rotateSpeed);
+
+		rotateStart.copy(rotateEnd);
+
+		scope.dispatchEvent(changeEvent);
+	}
+
+	function handleMouseMoveDolly(event) {
+		dollyEnd.set(event.clientX, event.clientY);
+
+		dollyDelta.subVectors(dollyEnd, dollyStart);
+
+		scope.setZoom(dollyDelta.y * scope.zoomSpeed);
+		dollyStart.copy(dollyEnd);
+
+		scope.dispatchEvent(changeEvent);
+	}
+
+	function handleMouseMovePan() {
+		var pos = raycastToFloor(mouse);
+		panEnd.set(pos.x, pos.y);
+
+		panDelta.subVectors(panEnd, panStart);
+		scope.setPosition(panCameraStart.x - panDelta.x, panCameraStart.y - panDelta.y);
+
+		scope.dispatchEvent(changeEvent);
+	}
+
+	/**
+	* Anything we need to do after we render the camera, like update anchors for the mouse/touch controls.
+	*
+	* @method postRender
+	* @private
+	*/
+	this.postRender = function () {
+		if (state == STATE.PAN || state == STATE.TOUCH_PAN) {
+			raycaster.setFromCamera(mouse, camera);
+			intersection = raycaster.intersectObject(cameraPlane, false)[0];
+			if (intersection) {
+				panStart.set(intersection.point.x, intersection.point.y);
+				panCameraStart.set(scope.orbit.position.x, scope.orbit.position.y);
+			}
+		}
+
+		if (state == STATE.WHEEL_ZOOM &amp;&amp; resetZoom) {
+			resetZoom = false;
+			zoomStart = scope.getZoom();
+			floorAnchor = raycastToFloor(mouse);
+			panCameraStart.set(scope.orbit.position.x, scope.orbit.position.y);
+		}
+
+		if (state == STATE.MULTI &amp;&amp; isAnimating() == false) {
+			state = STATE.NONE;
+			scope.dispatchEvent(multiEndEvent);
+		}
+	};
+
+	function scrollDelta(event) {
+		var delta = 0;
+
+		if (event.wheelDelta !== undefined) {
+			// WebKit / Opera / Explorer 9
+
+			delta = event.wheelDelta;
+		} else if (event.detail !== undefined) {
+			// Firefox
+
+			delta = - event.detail;
+		}
+		return delta;
+	}
+
+	function canScrollZoom(event) {
+		var delta = scrollDelta(event);
+
+		var currentZoom = scope.getZoom();
+
+		return !(delta &lt; 0 &amp;&amp; currentZoom == scope.getZoomScaledMax() || delta &gt; 0 &amp;&amp; currentZoom == scope.getZoomScaledMin());
+	}
+
+	function handleMouseWheel(event) {
+		if (!canScrollZoom(event)) {
+			if (lastWheelTime &gt; 0) {
+				scope.dispatchEvent(zoomEndEvent);
+				scope.dispatchEvent(userZoomEvent);
+			}
+			lastWheelTime = 0;
+			state = STATE.NONE;
+
+			return;
+		}
+
+		var currentZoom = scope.getZoom();
+
+		var zoom = currentZoom - (scrollDelta(event) * currentZoom / WHEEL_ZOOM_MULTIPLIER * scope.zoomSpeed);
+		scope.setZoom(zoom);
+
+		var zoomPercent = zoom / zoomStart;
+
+		panDelta.subVectors(floorAnchor, panCameraStart).multiplyScalar(1 - zoomPercent);
+
+		scope.setPosition(panCameraStart.x + panDelta.x, panCameraStart.y + panDelta.y);
+
+
+		scope.dispatchEvent(changeEvent);
+	}
+
+
+	function onMouseDown(event) {
+		if (scope.enabled === false) return;
+		mouseToScene(event);
+		event.preventDefault();
+
+		if (state == STATE.WHEEL_ZOOM) {
+			scope.dispatchEvent(zoomEndEvent);
+		}
+
+		if (event.button === scope.mouseButtons.ORBIT) {
+			if (scope.enableRotate === false) return;
+
+			handleMouseDownRotate(event);
+
+			state = STATE.ROTATE;
+		} else if (event.button === scope.mouseButtons.ZOOM) {
+			if (scope.enableZoom === false) return;
+
+			handleMouseDownDolly(event);
+
+			state = STATE.DOLLY;
+		} else if (event.button === scope.mouseButtons.PAN) {
+			if (scope.enablePan === false) return;
+
+			handleMouseDownPan(event);
+
+			state = STATE.PAN;
+		}
+
+		if (state !== STATE.NONE) {
+			scope.canvas.addEventListener(&#x27;mousemove&#x27;, onMouseMove, false);
+			window.addEventListener(&#x27;mouseup&#x27;, onMouseUp, false);
+			window.addEventListener(&#x27;mouseout&#x27;, onMouseUp, false);
+		}
+	}
+
+	function onMouseMove(event) {
+		if (scope.enabled === false) return;
+		event.preventDefault();
+		mouseToScene(event);
+
+		if (state === STATE.ROTATE) {
+			if (scope.enableRotate === false) return;
+
+			handleMouseMoveRotate(event);
+		} else if (state === STATE.DOLLY) {
+			if (scope.enableZoom === false) return;
+
+			handleMouseMoveDolly(event);
+		} else if (state === STATE.PAN) {
+			if (scope.enablePan === false) return;
+
+			handleMouseMovePan(event);
+		} else if (state === STATE.WHEEL_ZOOM) {
+			resetZoom = true;
+			state = STATE.NONE;
+		}
+	}
+
+	function onMouseUp() {
+		if (scope.enabled === false) return;
+
+		document.removeEventListener(&#x27;mousemove&#x27;, onMouseMove, false);
+		window.removeEventListener(&#x27;mouseup&#x27;, onMouseUp, false);
+		window.removeEventListener(&#x27;mouseout&#x27;, onMouseUp, false);
+
+		switch (state) {
+			case STATE.PAN:
+				scope.dispatchEvent(scope.CAMERA_EVENTS.PAN_END_EVENT);
+				break;
+			case STATE.DOLLY:
+				scope.dispatchEvent(scope.CAMERA_EVENTS.ZOOM_END_EVENT);
+				break;
+			case STATE.ROTATE:
+				scope.dispatchEvent(scope.CAMERA_EVENTS.ROTATE_END_EVENT);
+				break;
+		}
+
+		state = STATE.NONE;
+	}
+
+	function onMouseWheel(event) {
+		if (scope.enabled === false || scope.enableZoom === false || (state !== STATE.NONE &amp;&amp; state !== STATE.WHEEL_ZOOM)) return;
+
+		event.preventDefault();
+		event.stopPropagation();
+
+		mouseToScene(event);
+
+		if (canScrollZoom(event)) {
+			lastWheelTime = clock.getElapsedTime();
+		}
+		if (state != STATE.WHEEL_ZOOM &amp;&amp; canScrollZoom(event)) {
+			scope.canvas.addEventListener(&#x27;mousemove&#x27;, onMouseMove, false);
+			state = STATE.WHEEL_ZOOM;
+			zoomStart = scope.getZoom();
+			floorAnchor = raycastToFloor(mouse);
+			panCameraStart.set(scope.orbit.position.x, scope.orbit.position.y);
+
+			scope.dispatchEvent(zoomStartEvent);
+		}
+
+		handleMouseWheel(event);
+	}
+
+
+	function handleTouchStartPan(event) {
+		var pos = raycastToFloor(event.x ? event : touches[0]);
+
+		panStart.set(pos.x, pos.y);
+		panCameraStart.set(scope.orbit.position.x, scope.orbit.position.y);
+
+		scope.dispatchEvent(userPanEvent);
+		scope.dispatchEvent(panStartEvent);
+	}
+
+	function handleTouchMovePan(event) {
+		var pos = raycastToFloor(event.x ? event : touches[0]);
+
+		panEnd.set(pos.x, pos.y);
+
+		panDelta.subVectors(panEnd, panStart);
+
+		scope.setPosition(panCameraStart.x - panDelta.x, panCameraStart.y - panDelta.y);
+
+
+		scope.dispatchEvent(changeEvent);
+	}
+
+	function handleTouchStartDolly () {
+		scope.touchInputs = new InputSet(touches[0], touches[1]);
+		var dx = touches[ 0 ].x - touches[ 1 ].x;
+		var dy = touches[ 0 ].y - touches[ 1 ].y;
+		zoomStart = scope.getZoom();
+		var pos = {x: touches[ 0 ].x - (dx / 2), y: touches[ 0 ].y - (dy / 2)};
+		floorAnchor = raycastToFloor(pos);
+
+		scope.orbit.updateMatrixWorld();
+
+		scope.touchAnchor1 = new TouchAnchor(touches[0], scope.camera, cameraPlane);
+
+		scope.touchAnchor2 = new TouchAnchor(touches[1], scope.camera, cameraPlane);
+
+		panCameraStart.set(scope.orbit.position.x, scope.orbit.position.y);
+
+		scope.dispatchEvent(userDollyEvent);
+		scope.dispatchEvent(multiStartEvent);
+	}
+
+	function handleTouchMoveDolly () {
+		scope.touchInputs.update(touches[0], touches[1]);
+		const first = scope.touchInputs.first;
+		const second = scope.touchInputs.second;
+
+		scope.touchAnchor1.viewCoordinate = { x: first.x, y: first.y };
+		scope.touchAnchor2.viewCoordinate = { x: second.x, y: second.y };
+
+		var newMatrix = makeTransformFromTouchAnchors(scope.touchAnchor1, scope.touchAnchor2);
+		if (newMatrix) {
+			setCameraFromTransformMatrix(newMatrix);
+		}
+
+		scope.orbit.updateMatrixWorld();
+		scope.touchAnchor1.updateAnchorState(scope.camera, first);
+		scope.touchAnchor2.updateAnchorState(scope.camera, second);
+	}
+
+	function handleTouchStartTilt (event) {
+		rotateStart.set(event.touches[1].clientX, event.touches[1].clientY);
+		scope.dispatchEvent(userTiltEvent);
+		scope.dispatchEvent(rotateStartEvent);
+	}
+
+	function handleTouchMoveTilt (event) {
+		rotateEnd.set(event.touches[1].clientX, event.touches[1].clientY);
+		rotateDelta.subVectors(rotateEnd, rotateStart);
+
+		scope.setTilt(scope.getTilt() - rotateDelta.y / scope.rotateSpeed);
+
+		rotateStart.copy(rotateEnd);
+	}
+
+	function handleTouchEnd() {
+
+	}
+
+	function onTouchStart(event) {
+		if (scope.enabled === false) return;
+
+		updateTouchOrigin(event);
+		touchToScene(event);
+		switch (event.touches.length) {
+			case 1:	// one-fingered touch: pan
+				if (scope.enableRotate === false) return;
+
+				handleTouchStartPan(event);
+				state = STATE.TOUCH_PAN;
+				break;
+
+			case 2:	// two-fingered touch: dolly
+				if (scope.enableZoom === false) return;
+
+				handleTouchStartDolly(event);
+				state = STATE.TOUCH_DOLLY;
+				break;
+
+			case 3: // three-fingered touch: tilt
+				if (scope.enablePan === false) return;
+
+				handleTouchStartTilt(event);
+				state = STATE.TOUCH_TILT;
+				break;
+
+			default:
+				state = STATE.NONE;
+		}
+
+		if (state !== STATE.NONE) {
+			// Probably don&#x27;t need to do anything
+		}
+	}
+
+	function onTouchMove(event) {
+		if (scope.enabled === false) return;
+		event.preventDefault();
+		event.stopPropagation();
+
+		touchToScene(event);
+		switch (event.touches.length) {
+			case 3: // one-fingered touch: rotate
+				if (scope.enableRotate === false) return;
+				if (state !== STATE.TOUCH_TILT) return;
+
+				handleTouchMoveTilt(event);
+				break;
+
+			case 2: // two-fingered touch: zoom
+				if (scope.enableZoom === false) return;
+				if (state !== STATE.TOUCH_DOLLY) return;
+
+				handleTouchMoveDolly(event);
+				break;
+
+			case 1: // One-fingered touch: pan
+				if (scope.enablePan === false) return;
+				if (state !== STATE.TOUCH_PAN) return;
+
+				handleTouchMovePan(event);
+				break;
+
+			default:
+				state = STATE.NONE;
+		}
+	}
+
+	function onTouchEnd(event) {
+		if (scope.enabled === false) return;
+
+		handleTouchEnd(event);
+
+		state = STATE.NONE;
+	}
+
+	function onContextMenu(event) {
+		event.preventDefault();
+	}
+
+	function differenceBetweenAngles(a, b) {
+		return (
+			(((b - a + Math.PI) % (Math.PI * 2)) + ((Math.PI * 2)) % (Math.PI * 2))
+		) - Math.PI;
+	}
+
+	/*
+	From two touch anchors, determine a world-transform matrix for the camera
+	that will keep those anchors attached to the same world position.
+
+	Ported from iOS camera controls&#x27; move function.
+	TODO: Document this better; see CE-750.
+	*/
+	function makeTransformFromTouchAnchors(touchAnchor1, touchAnchor2) {
+		scope.orbit.updateMatrixWorld();
+		scope.camera.updateProjectionMatrix();
+
+		let p = scope.camera.projectionMatrix.clone();
+
+		let w1 = touchAnchor1.worldCoordinate;
+		let w2 = touchAnchor2.worldCoordinate;
+
+		let nw1 = touchAnchor1.reUnproject();
+		let nw2 = touchAnchor2.reUnproject();
+
+		let s1 = touchAnchor1.viewCoordinate;
+		let s2 = touchAnchor2.viewCoordinate;
+
+		let xd1 = w2.x - w1.x;
+		let yd1 = w2.y - w1.y;
+		let angle1 = Math.atan2(yd1, xd1);
+
+		let xd2 = nw2.x - nw1.x;
+		let yd2 = nw2.y - nw1.y;
+		let angle2 = Math.atan2(yd2, xd2);
+
+		let zAngleDelta = differenceBetweenAngles(angle1, angle2);
+
+		let yawAdjustment = new Matrix4();
+		yawAdjustment.makeRotationZ(-zAngleDelta);
+		let t = yawAdjustment.clone();
+		t.multiply(touchAnchor1.snapHolderMatrix);
+
+		// Matrix subscript helper
+		let m = (o, a, b) =&gt; o.elements[(a - 1) * 4 + b - 1];
+
+		let x1 = m(p, 1, 1) * m(t, 1, 1) - s1.x * m(p, 3, 4) * m(t, 3, 1);
+		let y1 = m(p, 1, 1) * m(t, 1, 2) - s1.x * m(p, 3, 4) * m(t, 3, 2);
+		let z1 = m(p, 1, 1) * m(t, 1, 3) - s1.x * m(p, 3, 4) * m(t, 3, 3);
+		let c1 = w1.x * x1 + w1.y * y1 + w1.z * z1;
+
+		let x2 = m(p, 2, 2) * m(t, 2, 1) - s1.y * m(p, 3, 4) * m(t, 3, 1);
+		let y2 = m(p, 2, 2) * m(t, 2, 2) - s1.y * m(p, 3, 4) * m(t, 3, 2);
+		let z2 = m(p, 2, 2) * m(t, 2, 3) - s1.y * m(p, 3, 4) * m(t, 3, 3);
+		let c2 = w1.x * x2 + w1.y * y2 + w1.z * z2;
+
+		var x3 = m(p, 1, 1) * m(t, 1, 1) - s2.x * m(p, 3, 4) * m(t, 3, 1);
+		var y3 = m(p, 1, 1) * m(t, 1, 2) - s2.x * m(p, 3, 4) * m(t, 3, 2);
+		var z3 = m(p, 1, 1) * m(t, 1, 3) - s2.x * m(p, 3, 4) * m(t, 3, 3);
+		var c3 = w2.x * x3 + w2.y * y3 + w2.z * z3;
+
+		let xb = m(p, 2, 2) * m(t, 2, 1) - s2.y * m(p, 3, 4) * m(t, 3, 1);
+		let yb = m(p, 2, 2) * m(t, 2, 2) - s2.y * m(p, 3, 4) * m(t, 3, 2);
+		let zb = m(p, 2, 2) * m(t, 2, 3) - s2.y * m(p, 3, 4) * m(t, 3, 3);
+		let cb = w2.x * xb + w2.y * yb + w2.z * zb;
+
+		let dx1 = Math.abs(x3 - x1);
+		let dy1 = Math.abs(y3 - y1);
+		let dz1 = Math.abs(z3 - z1);
+		let dx2 = Math.abs(x3 - x2);
+		let dy2 = Math.abs(y3 - y2);
+		let dz2 = Math.abs(z3 - z2);
+
+		let dx3 = Math.abs(xb - x1);
+		let dy3 = Math.abs(yb - y1);
+		let dz3 = Math.abs(zb - z1);
+		let dx4 = Math.abs(xb - x2);
+		let dy4 = Math.abs(yb - y2);
+		let dz4 = Math.abs(zb - z2);
+
+		let min1 = Math.min((dx1 + dy1 + dz1), (dx2 + dy2 + dz2));
+		let min2 = Math.min((dx3 + dy3 + dz3), (dx4 + dy4 + dz4));
+
+		if (min1 &lt; min2) {
+			x3 = xb;
+			y3 = yb;
+			z3 = zb;
+			c3 = cb;
+		}
+
+		let x4 = x2 * z1 - x1 * z2;
+		let y4 = y2 * z1 - y1 * z2;
+		let c4 = c2 * z1 - c1 * z2;
+
+		let x5 = x3 * z2 - x2 * z3;
+		let y5 = y3 * z2 - y2 * z3;
+		let c5 = c3 * z2 - c2 * z3;
+
+		let x = (c5 * y4 - c4 * y5) / (x5 * y4 - x4 * y5);
+		let y = (c5 * x4 - c4 * x5) / (y5 * x4 - y4 * x5);
+
+
+		let y6 = y2 * x1 - y1 * x2;
+		let z6 = z2 * x1 - z1 * x2;
+		let c6 = c2 * x1 - c1 * x2;
+
+		let y7 = y3 * x2 - y2 * x3;
+		let z7 = z3 * x2 - z2 * x3;
+		let c7 = c3 * x2 - c2 * x3;
+
+		let z = (c7 * y6 - c6 * y7) / (z7 * y6 - z6 * y7);
+
+		let finalTransformMatrix = t.clone();
+		finalTransformMatrix.elements[12] = x;
+		finalTransformMatrix.elements[13] = y;
+		finalTransformMatrix.elements[14] = z;
+		if (z &gt; 0) {
+			return finalTransformMatrix;
+		} else {
+			return null;
+		}
+	}
+
+	/*
+	Set the rotation, position and zoom of the camera system from a matrix
+	representing the desired world transform of the camera&#x27;s point.
+	*/
+	function setCameraFromTransformMatrix(transform) {
+		scope.orbit.updateMatrixWorld();
+
+		let newAngle = new Euler();
+		newAngle.setFromRotationMatrix(transform, &quot;ZYX&quot;);
+
+		let zoom = transform.elements[14] / Math.cos(newAngle.x);
+		let rotation = newAngle.z;
+
+		let vectorToGround = new Vector3(0, 0, 1);
+		vectorToGround.applyEuler(newAngle);
+		vectorToGround.setLength(zoom);
+
+		let groundPosition = new Vector3();
+		groundPosition.setFromMatrixPosition(transform);
+		groundPosition.sub(vectorToGround);
+
+		scope.setPosition(groundPosition.x, groundPosition.y);
+		scope.setZoom(zoom);
+		scope.setRotation(rotation);
+	}
+
+	function getMousePos(canvas, evt) {
+		return {
+			x: evt.offsetX,
+			y: evt.offsetY
+		};
+	}
+
+	function getTouchPos(canvas, touch) {
+		return {
+			x: (touch.clientX - touchOrigin.offsetLeft),
+			y: (touch.clientY - touchOrigin.offsetTop)
+		};
+	}
+
+	function updateTouchOrigin(event) {
+		var touchOriginElement = scope.canvas;
+		touchOrigin.offsetLeft = touchOriginElement.getBoundingClientRect().left;
+		touchOrigin.offsetTop = touchOriginElement.getBoundingClientRect().top;
+	}
+
+	function raycastToFloor(pos) {
+		raycaster.setFromCamera(pos, camera);
+
+		var intersection = raycaster.intersectObject(cameraPlane, false)[0];
+		if (intersection) {
+			return intersection.point;
+		} else {
+			return new Vector3();
+		}
+	}
+
+	function mouseToScene(event) {
+		var pos = getMousePos(scope.canvas, event);
+		mouse.x = (pos.x / scope.canvas.width * mapView.resolutionScale) * 2 - 1;
+		mouse.y = - (pos.y / scope.canvas.height * mapView.resolutionScale) * 2 + 1;
+
+		return mouse;
+	}
+
+	function touchToScene(event) {
+		touches = [];
+		for (var i = 0, iLen = event.touches.length; i &lt; iLen; i++) {
+			var touch = event.touches[i];
+			var pos = getTouchPos(scope.canvas, touch);
+			touches.push(new Vector2((pos.x / scope.canvas.width * mapView.resolutionScale) * 2 - 1, - (pos.y / scope.canvas.height * mapView.resolutionScale) * 2 + 1));
+		}
+		mouse = touches[0];
+	}
+
+	/**
+	* Should probably be &quot;pre-render&quot;. Anything we need to do before rendering the scene.
+	*
+	* @method update
+	* @private
+	*/
+	this.update = function() {
+		TWEEN.update();
+		if (lastWheelTime &gt; 0 &amp;&amp; state == STATE.WHEEL_ZOOM &amp;&amp; clock.getElapsedTime() - lastWheelTime &gt; .2) {
+			lastWheelTime = 0;
+			state = STATE.NONE;
+			scope.dispatchEvent(zoomEndEvent);
+
+			scope.dispatchEvent(userZoomEvent);
+			scope.canvas.removeEventListener(&#x27;mousemove&#x27;, onMouseMove, false);
+		}
+	};
+
+	/**
+	* Disposes of the camera and all of it&#x27;s events.
+	*
+	* @method dispose
+	* @private
+	*/
+	this.dispose = function() {
+		scope.canvas.removeEventListener(&#x27;contextmenu&#x27;, onContextMenu, false);
+		scope.canvas.removeEventListener(&#x27;mousedown&#x27;, onMouseDown, false);
+		scope.canvas.removeEventListener(&#x27;mousewheel&#x27;, onMouseWheel, false);
+		scope.canvas.removeEventListener(&#x27;MozMousePixelScroll&#x27;, onMouseWheel, false); // firefox
+
+		scope.canvas.removeEventListener(&#x27;touchstart&#x27;, onTouchStart, false);
+		scope.canvas.removeEventListener(&#x27;touchend&#x27;, onTouchEnd, false);
+		scope.canvas.removeEventListener(&#x27;touchmove&#x27;, onTouchMove, false);
+
+		scope.canvas.removeEventListener(&#x27;mousemove&#x27;, onMouseMove, false);
+		window.removeEventListener(&#x27;mouseup&#x27;, onMouseUp, false);
+		window.removeEventListener(&#x27;mouseout&#x27;, onMouseUp, false);
+
+		scene.remove(cameraPlane);
+	};
+
+	this.canvas.addEventListener(&#x27;contextmenu&#x27;, onContextMenu, false);
+
+	this.canvas.addEventListener(&#x27;mousedown&#x27;, onMouseDown, false);
+	this.canvas.addEventListener(&#x27;mousewheel&#x27;, onMouseWheel, false);
+	this.canvas.addEventListener(&#x27;MozMousePixelScroll&#x27;, onMouseWheel, false); // firefox
+
+	this.canvas.addEventListener(&#x27;touchstart&#x27;, onTouchStart, false);
+	this.canvas.addEventListener(&#x27;touchend&#x27;, onTouchEnd, false);
+	this.canvas.addEventListener(&#x27;touchmove&#x27;, onTouchMove, false);
+};
+export default CameraControls;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

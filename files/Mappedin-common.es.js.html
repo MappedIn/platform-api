@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mappedin-common.es.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import test3DCapabilities from &#x27;./source/Mappedin.3DTest&#x27;;
+import getMappedinVenue from &#x27;./source/Mappedin.getVenue&#x27;;
+import TestResults from &#x27;./source/Mappedin.3DTestResults&#x27;;
+
+const TEST_KEY = &quot;mappedin3DTestSuccess&quot;;
+
+/**
+ * The possible modes {{#crossLink &quot;MapView&quot;}}{{/crossLink}} can be in. Typically you will use TEST, which will run a 3D compatibility test the user loads the page and then load load either the 2D or 3D version of MapView. On subsequent loads, it will use the saved result to avoid running a new test.
+ * FORCE_TEST will make sure a new test is run and the results are saved, whereas 3D and 2D will force the MapView directly into 2D or 3D mode without checking for compatibility. 2D should always work but some browsers/devices do not have the WebGL support needed for 3D, so be careful.
+ * @property modes
+ * @type {TEST, 3D, 2D, FORCE_TEST}
+ * @final
+ * @static
+ */
+export const modes = {&quot;TEST&quot;: &quot;TEST&quot;, &quot;3D&quot;: &quot;3D&quot;, &quot;2D&quot;: &quot;2D&quot;, &quot;FORCE_TEST&quot;: &quot;FORCE_TEST&quot;};
+
+/**
+ * This is the typical function to call before instatiating a {{#crossLink &quot;MapView&quot;}}{{/crossLink}}. It will either perform a test to determine if the current device is capable of running in 3D mode,
+ * and store the results, or if prior results are available, just use those. Then, it will setMapView to be the constructor for the proper mode. This lets
+ * the developer write their website without having to know or care whether the user is experiencing it in 2D or 3D. The callback you pass into the function will give you
+ * the results, however, if you care, and you can also determine it from the &#x60;type&#x60; property on the MapView you create.
+ *
+ * If you would like to force the test to run again, use the {{#crossLink &quot;Mappedin/forceTest:method&quot;}}{{/crossLink}} method instead. Or, if you want to force the user into a specific mode, use {{#crossLink &quot;Mappedin/force2D:method&quot;}}{{/crossLink}} or {{#crossLink &quot;Mappedin/force3D:method&quot;}}{{/crossLink}} respectively.
+ * Note while 2D should work for basically anyone, if the user&#x27;s device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.
+ *
+ * @method test3D
+ * @param container {div} The div to run the test in. Works best if it&#x27;s the same as where the MapView will go, as the number of pixels being rendered is a factor.
+ * @param callback {function} The function to call when the test is complete and either 2D or 3D mode is ready. The callback will be fired with a &#x60;result&#x60; key, a boolean that will be true if you are in 3D mode, and the result of the benchmark.
+ * @param loadMapViewByMode {function} Function to call with test results, typically used to switch map {{#crossLink &quot;Mappedin/modes:property&quot;}}{{/crossLink}}.
+ */
+export function test3D(container, callback, loadMapViewByMode) {
+	try {
+		var localStorage = window.localStorage;
+		var savedResults = localStorage.getItem(TEST_KEY);
+		if (savedResults != null) {
+			if (loadMapViewByMode) {
+				loadMapViewByMode(savedResults == &quot;true&quot;);
+			}
+			return callback(null, savedResults == &quot;true&quot;, null);
+		}
+	} catch (e) {
+		// Couldn&#x27;t load saved results, we&#x27;ll have to run the test
+	}
+
+	return forceTest(container, callback, loadMapViewByMode);
+}
+
+/**
+ * Forces the Mapview to perform it&#x27;s 3D test. It attempts to save the result the test is not run again on subsequent loads. This lets you override that behaviour.
+ * The callback will be executed when the test is complete and either the 2D or 3D Mapview is loaded.
+ *
+ * @method forceTest
+ * @param container {div} The div to run the test in. Works best if it&#x27;s the same as where the MapView will go, as the number of pixels being rendered is a factor.
+ * @param callback {function} The function to call when the test is complete and either 2D or 3D mode is ready. The callback will be fired with a &#x60;result&#x60; key, a boolean that will be true if you are in 3D mode, and the result of the benchmark.
+ * @param loadMapViewByMode {function} Function to call with test results, typically used to switch map {{#crossLink &quot;Mappedin/modes:property&quot;}}{{/crossLink}}.
+ */
+export function forceTest(container, callback, loadMapViewByMode) {
+	test3DCapabilities(container, function (result, success, benchmark) {
+		// Don&#x27;t save the results if you fail the benchmark
+		if (success == true || result !== TestResults.RESULT.FAILED_TOO_SLOW) {
+			try {
+				var localStorage = window.localStorage;
+				localStorage.setItem(TEST_KEY, success);
+			} catch (e) {
+			//We couldn&#x27;t store the test results, so we&#x27;ll have to re-test every time. Oh well.
+			}
+		}
+		if (loadMapViewByMode) {
+			loadMapViewByMode(success);
+		}
+		callback(result, success, benchmark);
+	});
+}
+
+/**
+ * Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a {{#crossLink &quot;MappedinVenue&quot;}}{{/crossLink}} populated with all your data.
+ *
+ * The things object parameter is where you specify what fields you want to download for each object in the Mappedin API.
+ * This SDK will ensure it has the 2D or 3D files it needs, but it won&#x27;t download anything extra (like the names of locations) unless you specify it here.
+ * This is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.
+ *
+ *	things: {
+ *		venue: [&#x27;slug&#x27;, &#x27;name&#x27;],
+ *		locations: [&#x27;name&#x27;, &#x27;type&#x27;, &#x27;description&#x27;, &#x27;icon&#x27;, &#x27;logo&#x27;],
+ *		categories: [&#x27;name&#x27;],
+ *		maps: [&#x27;name&#x27;, &#x27;elevation&#x27;, &#x27;shortName&#x27;]
+ * 	}
+ *
+ *
+ * If you would like to force the test to run again, use the {{#crossLink &quot;Mappedin/forceTest:method&quot;}}{{/crossLink}} method instead. Or, if you want to force the user into a specific mode, use {{#crossLink &quot;Mappedin/force2D:method&quot;}}{{/crossLink}} or {{#crossLink &quot;Mappedin/force3D:method&quot;}}{{/crossLink}} respectively.
+ * Note while 2D should work for basically anyone, if the user&#x27;s device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.
+ *
+ * @method getVenue
+ * @param options {Object} Any options you need to specify to talk to the Mappedin API.
+ * @param options.clientId {String} The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one.
+ * @param options.clientSecret {String} The secret/password that goes along with your ID.
+ * @param options.perspective {String} The name of the perspective you are using for 2D and 3D. Probably &quot;Website&quot;. This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.
+ *	  @param [options.perspective.perspective2D] {String} Use if you have a different perspective to use in 2D mode.
+ *	  @param [options.perspective.perspective3D] {String} Use if you have a different perspective to use in 3D mode.
+ * @param options.venue {String} The &quot;slug&quot; that identifies the specific Venue you are interested in. Mappedin can tell you what it is. Developer accounts often start with &quot;api-demo1&quot;.
+ * @param options.things {Object} The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and &#x60;id&#x60; is always included, but it won&#x27;t download anything extra (like the names of locations) unless you specify it here.
+ *	  @param options.things.venue {[String]} The Venue information you want. &#x27;slug&#x27; and &#x27;name&#x27; are typical, but you may also want others. Speak to Mappedin to see what is available.
+ *	  @param options.things.locations {[String]} The fields you will be using for any Locations. You probably want at least &#x27;name&#x27; and &#x27;type&#x27;. You will also probably want &#x27;description&#x27; and &#x27;logo&#x27;, but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.
+ *	  @param options.things.categories {[String]} The fields you will use for each Category. Typically &#x27;name&#x27; at a minimum, but other common fields are &#x27;description&#x27;, &#x27;picture&#x27;, &#x27;sortOrder&#x27; or &#x27;parents&#x27; (for hierarchical categories) as well.
+ *	  @param options.things.maps {[String]} The fields on each Map you are interested in. You&#x27;ll probably want one or both of &#x27;name&#x27; or &#x27;shortName&#x27;, and &#x27;elevation&#x27; to sort.
+ *	  @param [options.things.polygons] {[String]} The Polygon fields you want. The default is probably sufficient.
+ *	  @param [options.things.nodes] {[String]} The Node fields you want. The default is probably sufficient.
+ * @param mode {String} one of Mappedin.{{#crossLink &quot;Mappedin/modes:property&quot;}}{{/crossLink}}.
+ * @param callback {Function} This function is called when the Venue data is loaded, or there is a problem.
+ * @param callback.error {String} If there is an error, you will get it here. Typically this will only be useful for developers when building/testing. It&#x27;s not usually something a user can deal with.
+ * @param callback.result {Mappedin} A Mappedin data object with all the data you asked for. It will have a Venue property with a Venue object, and Locations, Categories, Nodes, Maps, and Polygons arrays.
+ */
+export function getVenue(options, mode, callback) {
+	if (mode == modes[&quot;TEST&quot;]) {
+		console.error(&quot;You need to run the 3D test, or call force3D or force2D first.&quot;);
+		return;
+	}
+
+	options.things.venue = options.things.venue || [];
+	options.things.venue.push(&#x27;slug&#x27;, &#x27;defaultMap&#x27;);
+
+	options.things.nodes = options.things.nodes || [];
+	options.things.nodes.push(&#x27;x&#x27;, &#x27;y&#x27;, &#x27;paths&#x27;, &#x27;map&#x27;);
+
+	options.things.polygons = options.things.polygons || [];
+	options.things.locations = options.things.locations || [];
+	options.things.locations.push(&#x27;sortOrder,parent&#x27;);
+	options.things.maps = options.things.maps || [];
+	options.things.maps.push(&#x27;height&#x27;, &#x27;width&#x27;, &#x27;georeference&#x27;);
+	if (mode == modes[&quot;2D&quot;]) {
+		options.perspective =  options.perspective2D || options.perspective || &quot;Perspective&quot;;
+		options.things.maps.push(&#x27;tiles&#x27;, &#x27;perspectives&#x27;);
+		options.things.polygons.push(&#x27;vertexes&#x27;);
+		options.do2D = true;
+	} else if (mode == modes[&quot;3D&quot;]) {
+		options.perspective = options.perspective3D || options.perspective || undefined;
+		options.things.maps.push(&#x27;scene&#x27;);
+		options.things.polygons.push(&#x27;canvasBounds&#x27;, &#x27;map&#x27;, &#x27;image&#x27;, &#x27;perspectives&#x27;);
+		options.do2D = false;
+	}
+	getMappedinVenue(options, callback);
+}
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

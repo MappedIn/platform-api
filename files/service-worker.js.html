@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>service-worker.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/* global Promise */
+/**
+	Offline fallback service worker
+
+	This service worker is designed for offline fallback mode. If you have a network connection at all, it will get the most recent data and use that. If the network is unavailable, it will use the last downloaded version.
+	It has special logic to handle the paging behaviour from the Mappedin API, as a workaround for a weird bug with XHR and Service Workers where &quot;unsafe&quot; headers are available in fetch but not XHR.
+
+	NOTE: Using this with the Mappedin Web SDK will ensure all the resources the SDK needs are available (since it downloads everything up front), but if you want icons/logos/images from Location objects you will need to ensure your app also
+	tries to download them up front as well. If you do, they will be automatically cached.
+
+	NOTE2: This will cache all network traffic (which could give you offline support for free for other parts of your app) If you want to limit it to only traffic for the SDK you will have structure your app so the Mappedin
+	code lives in it&#x27;s own folder, and you register the service worker to only handle requests from things in that folder. Read about Service Workers for more details.
+ */
+
+var CACHE = &#x27;mappedin-sdk&#x27;;
+
+// Start the service worker right away. You can also cache specific files ahead of time, but the Mappedin SDK doesn&#x27;t need to do this.
+self.addEventListener(&#x27;install&#x27;, function(event) {
+	console.info(&quot;Service worker for &quot; + CACHE + &quot; is being installed.&quot;);
+
+	// Start the service worker right away
+	event.waitUntil(self.skipWaiting());
+});
+
+self.addEventListener(&#x27;activate&#x27;, function (event) {
+	console.info(&quot;Service worker for &quot; + CACHE + &quot; activated.&quot;);
+
+	// Just take over the old service worker, if present
+	event.waitUntil(self.clients.claim());
+});
+
+// Intercept all HTTPS GET requests
+self.addEventListener(&#x27;fetch&#x27;, function(event) {
+	if (event.request.method !== &#x27;GET&#x27; || !event.request.url.startsWith(&quot;https&quot;)) {
+		return event.respondWith(fetch(event.request));
+	}
+
+	// Try network and if it fails, go for the cached copy.
+	event.respondWith(fromNetwork(event.request));
+});
+
+// Get the data from the network if available, otherwise fall back with the cache
+function fromNetwork(request) {
+	return new Promise(function (fulfill, reject) {
+		var fetchRequest = request.clone();
+		// Handle legacy pagination special case due to weird XHR/Service Worker conflict
+		// We should be able to remove this in a few months.
+		if (request.url.includes(&quot;mappedin.com&quot;)) {
+			getNextLink(request).then(function (data) {
+				var headerOptions = {};
+				for (var key of request.headers.keys()) {
+					headerOptions[key] = request.headers.get(key);
+				}
+				var responseInit = {
+					status: data.response.status,
+					statusText: data.response.statusText,
+					headers: headerOptions
+				};
+				var newResponse = new Response(data.body, responseInit);
+				update(fetchRequest, newResponse.clone());
+				fulfill(newResponse);
+			}, function (response) {
+				fulfill(fromCache(fetchRequest));
+			});
+		// Normal case. Fetch from network and update cache, or fulfill from cache if network error
+		} else {
+			fetch(request).then(function (response) {
+				update(fetchRequest, response.clone());
+				var fetchResponse = response;
+
+				fulfill(fetchResponse);
+			}, function(response) {
+				fulfill(fromCache(fetchRequest));
+			});
+		}
+	});
+}
+
+// Handles Mappedin pagination by combining all the pages together and returing a single response.
+// Should be removable in a few months
+function getNextLink(request) {
+	return new Promise(function (resolve, reject) {
+		if (request) {
+			fetch(request).then(function (response) {
+				response.text().then(function (body) {
+					// New request with the same headers
+					var link = parseNextLink(response.headers.get(&quot;link&quot;));
+					if (link == null) {
+						resolve({body: body, response: response});
+					} else {
+						var init = {
+							method: request.method,
+							headers: request.headers,
+							mode: &#x27;cors&#x27;,
+							credentials: request.credentials,
+							redirect: &#x27;manual&#x27;   // let browser handle redirects
+						};
+
+						// Get the next array and concat them into one big array
+						getNextLink(new Request(link, init)).then(function (nextLink) {
+							resolve({
+								body: body.slice(0, -1) + &quot;, &quot; + nextLink.body.slice(1),
+								response: response
+							});
+						});
+					}
+				});
+			}, function(response) {
+				reject();
+			});
+		} else {
+			resolve({ body: &quot;[]&quot;, response: null});
+		}
+	});
+}
+
+// Parse the link header into the next URL to grab data from, for pagination
+function parseNextLink(linkHeader) {
+	if (!linkHeader) {
+		return null;
+	}
+	var linkValues = linkHeader.replace(/,\s*&lt;/g, &#x27;,\0&lt;&#x27;).split(&#x27;\0&#x27;);
+	for (var i = 0, iLen = linkValues.length; i &lt; iLen; ++i) {
+		var linkValue = linkValues[i];
+		var linkValueMatch = /^\s*&lt;(.+)&gt;\s*;/.exec(linkValue);
+		if (!linkValueMatch) {
+			continue;
+		}
+		var uriReference = linkValueMatch[1];
+		var linkParamsStartIndex = linkValueMatch.index + linkValueMatch[0].length;
+		var linkParams = linkValue.slice(linkParamsStartIndex).split(&#x27;;&#x27;);
+		for (var j = 0, jLen = linkParams.length; j &lt; jLen; ++j) {
+			var linkParam = linkParams[j];
+			var linkParamMatch = /^\s*(.+)\s*=\s*&quot;?([^&quot;]+)&quot;?\s*$/.exec(linkParam);
+			if (!linkParamMatch) {
+				continue;
+			}
+			var parmname = linkParamMatch[1];
+			var ptoken = linkParamMatch[2];
+			if (parmname === &#x27;rel&#x27; &amp;&amp; ptoken === &#x27;next&#x27;) {
+				return uriReference;
+			}
+		}
+	}
+	return null;
+}
+
+// Open the cache and pull the stored request out from the last time it was downloaded
+function fromCache(request) {
+	return caches.open(CACHE).then(function (cache) {
+		return cache.match(request).then(function (matching) {
+			return matching;
+		});
+	});
+}
+
+
+// Whenever we get a response from the network, cache it for next time.
+// Don&#x27;t cache it if it&#x27;s a bad response.
+function update(request, response) {
+	if (!response || response.status !== 200) {
+		return response;
+	}
+	return caches.open(CACHE).then(function (cache) {
+		return cache.put(request, response).then(function () {
+			return response;
+		});
+	});
+}
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

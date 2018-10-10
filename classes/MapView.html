@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.21.1
+                                  Version: 1.46.0
                                 </a>
                             </h4>
                         </div>
@@ -144,6 +144,9 @@
                                         <a href="../classes/MappedinLocation.html">MappedinLocation</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/MappedinMap.html">MappedinMap</a>
                                     </li>
                                     <li>
@@ -195,6 +198,8 @@
 
 <div class="page-header">
     <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MapView Class
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
     </h1>
 </div>
 
@@ -205,6 +210,9 @@
             Module: <a href="../modules/Mappedin.html">Mappedin</a>
 
 
+        <div class="foundat">
+            Defined In: <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L1">source/Mappedin.MapView.js:1</a>
+        </div>
 </div>
 
 
@@ -240,6 +248,8 @@
 
 	<div class="meta">
 				<p>
+				Defined in
+		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L1">source/Mappedin.MapView.js:1</a>
 		</p>
 
 
@@ -407,7 +417,7 @@
 
                               </li>
                               <li class="index-item method">
-                                  <a href="#method_drawPath">drawPath</a>
+                                  <a href="#method_drawPathSegment">drawPathSegment</a>
 
                               </li>
                               <li class="index-item method">
@@ -597,6 +607,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L265">source/Mappedin.MapView.js:265</a>
   		</p>
   
   
@@ -648,6 +660,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L274">source/Mappedin.MapView.js:274</a>
   		</p>
   
   
@@ -699,6 +713,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L99">source/Mappedin.MapView.js:99</a>
   		</p>
   
   
@@ -750,6 +766,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L321">source/Mappedin.MapView.js:321</a>
   		</p>
   
   
@@ -795,6 +813,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L256">source/Mappedin.MapView.js:256</a>
   		</p>
   
   
@@ -832,6 +852,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L246">source/Mappedin.MapView.js:246</a>
   		</p>
   
   
@@ -884,6 +906,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapManager.js#L397">source/Mappedin.MapManager.js:397</a>
   		</p>
   
   
@@ -968,6 +992,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L347">source/Mappedin.MapView.js:347</a>
   		</p>
   
   
@@ -1034,6 +1060,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L455">source/Mappedin.MapView.js:455</a>
   		</p>
   
   
@@ -1111,6 +1139,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L305">source/Mappedin.MapView.js:305</a>
   		</p>
   
   
@@ -1216,6 +1246,88 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L489">source/Mappedin.MapView.js:489</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Draws an entire path. It takes a list of Nodes and will break them into separate pathSegments on every map change, putting the resultant segment on the right Map.</p>
+  <p>If you have a special use case (like off graph nodes, or Venues with same Vortexes) use the <a href="../classes/MapView.html#method_drawPathSegment" class="crosslink">drawPathSegment</a> function.</p>
+  <p>Returns an array of pathSegments if you want to customize the animation triggers. The pathSegements are added to the scene, chained together, and start animating automatically.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">path</code>
+  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Nodes, probably from a Node's <a href="../classes/MappedinNode.html#method_directionsTo" class="crosslink">directionsTo</a> call.</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[options]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  					<div class="param-description"><p>A list of style options for the path. Not everything is supported in 2D. See drawPath for available options. Note that drawDuration is per segment.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type">PathSegment</span>:
+  					<p>An array of pathSegments.</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_drawPathSegment" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_drawPathSegment"></a>
+  		drawPathSegment
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>path</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">options</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type">PathSegment</span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L504">source/Mappedin.MapView.js:504</a>
   		</p>
   
   
@@ -1311,84 +1423,6 @@
   		</div>
   
   </div>
-  <div id="method_drawPath" class="method item">
-  	<span class="method-signature">
-  	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_drawPath"></a>
-  		drawPath
-  	</span>
-  
-  		<div class="args">
-  			<span class="paren">(</span><ul class="args-list inline commas">
-  				<li class="arg">
-  						<code>path</code>
-  				</li>
-  				<li class="arg">
-  						<code class="optional">options</code>
-  				</li>
-  			</ul><span class="paren">)</span>
-  		</div>
-  		<span class="returns-inline">
-  			<span class="type">PathSegment</span>
-  		</span>
-  	</span>
-  
-  
-  
-  
-  
-  
-  
-  	<div class="meta">
-  				<p>
-  		</p>
-  
-  
-  
-  	</div>
-  
-  	<div class="description"><p>Draws an entire path. It takes a list of Nodes and will break them into separate pathSegments on every map change, putting the resultant segment on the right Map.</p>
-  <p>If you have a special use case (like off graph nodes, or Venues with same Vortexes) use the MapView/drawPathSegment:method function.</p>
-  <p>Returns an array of pathSegments if you want to customize the animation triggers. The pathSegements are added to the scene, chained together, and start animating automatically.</p>
-  </div>
-  
-  		<div class="params">
-  			<h4>Parameters:</h4>
-  
-  			<ul class="params-list">
-  				<li class="param">
-  						<code class="param-name">path</code>
-  						<span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
-  
-  
-  					<div class="param-description"><p>An array of Nodes, probably from a Node's <a href="../classes/MappedinNode.html#method_directionsTo" class="crosslink">directionsTo</a> call.</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name optional">[options]</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  						<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  
-  					<div class="param-description"><p>A list of style options for the path. Not everything is supported in 2D. See drawPath for available options. Note that drawDuration is per segment.</p>
-  </div>
-  
-  				</li>
-  			</ul>
-  		</div>
-  
-  		<div class="returns">
-  			<h4>Returns:</h4>
-  
-  			<div class="returns-description">
-  						<span class="type">PathSegment</span>:
-  					<p>An array of pathSegments.</p>
-  
-  			</div>
-  		</div>
-  
-  </div>
   <div id="method_enableImageFlippingForAllLocations" class="method item">
   	<span class="method-signature">
   	<span class="name anchorable-toc">
@@ -1413,6 +1447,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L435">source/Mappedin.MapView.js:435</a>
   		</p>
   
   
@@ -1482,6 +1518,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L445">source/Mappedin.MapView.js:445</a>
   		</p>
   
   
@@ -1556,6 +1594,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapManager.js#L296">source/Mappedin.MapManager.js:296</a>
   		</p>
   
   
@@ -1666,6 +1706,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L143">source/Mappedin.MapView.js:143</a>
   		</p>
   
   
@@ -1806,6 +1848,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L130">source/Mappedin.MapView.js:130</a>
   		</p>
   
   
@@ -1905,6 +1949,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L118">source/Mappedin.MapView.js:118</a>
   		</p>
   
   
@@ -1983,6 +2029,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L202">source/Mappedin.MapView.js:202</a>
   		</p>
   
   
@@ -2031,6 +2079,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L467">source/Mappedin.MapView.js:467</a>
   		</p>
   
   
@@ -2094,6 +2144,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L370">source/Mappedin.MapView.js:370</a>
   		</p>
   
   
@@ -2157,6 +2209,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L360">source/Mappedin.MapView.js:360</a>
   		</p>
   
   
@@ -2220,6 +2274,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L569">source/Mappedin.MapView.js:569</a>
   		</p>
   
   
@@ -2279,6 +2335,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L185">source/Mappedin.MapView.js:185</a>
   		</p>
   
   
@@ -2327,6 +2385,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L175">source/Mappedin.MapView.js:175</a>
   		</p>
   
   
@@ -2387,6 +2447,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L414">source/Mappedin.MapView.js:414</a>
   		</p>
   
   
@@ -2471,6 +2533,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L380">source/Mappedin.MapView.js:380</a>
   		</p>
   
   
@@ -2478,7 +2542,7 @@
   	</div>
   
   	<div class="description"><p>Labels a specific Polygon (or area of 3D space) with a <a href="../classes/TextLabel.html" class="crosslink">TextLabel</a> that lives in 3D space. That means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.
-  The text will flip 180 degress when the camera rotates so it's never totally upside-down.</p>
+  The text will flip 180 degrees when the camera rotates so it's never totally upside-down.</p>
   <p>It also sets the hover label (in 2D and 3D).
   Many of these options do nothing in 2D, as TextLabels are not supported, but it won't break anything.</p>
   <p>You must provide text, and either a Polygon, or a canvasBounds and height</p>
@@ -2558,7 +2622,7 @@
   												<code class="param-name">align</code>
   												<span class="type">"left"  |  "right"  |  "center"</span>
   
-  											<div class="param-description">Whether the TextLabel should be anchored against the (x,y), or the opposite (horizinal) side of the box, or in the middle. It is always vertically centered.</div>
+  											<div class="param-description">Whether the TextLabel should be anchored against the (x,y), or the opposite (horizontal) side of the box, or in the middle. It is always vertically centered.</div>
   										</li>
   									</ul>
   							</li>
@@ -2609,10 +2673,10 @@
   							</li>
   							<li class="param">
   									<code class="param-name optional">[font]</code>
-  									<span class="type">#crossLink "MapView/createFont:method"</span>
+  									<span class="type"></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>A THREE.Font object, if you have your own font you want to use. Create it with }{{/crossLink}}.</p>
+  								<div class="param-description"><p>A CSS style string font. ie "sans-serif". Note: Support for a THREE.Font object is still supported, but is deprecated.</p>
   </div>
   
   							</li>
@@ -2621,7 +2685,7 @@
   									<span class="type">Float</span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>The minimum percentange we can shrink the label to if it won't fit within the bounds at 100%. If it doesn't fit at that level, it won't be created.</p>
+  								<div class="param-description"><p>The minimum percentage we can shrink the label to if it won't fit within the bounds at 100%. If it doesn't fit at that level, it won't be created.</p>
   </div>
   
   							</li>
@@ -2678,6 +2742,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L212">source/Mappedin.MapView.js:212</a>
   		</p>
   
   
@@ -2735,6 +2801,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L295">source/Mappedin.MapView.js:295</a>
   		</p>
   
   
@@ -2776,6 +2844,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L283">source/Mappedin.MapView.js:283</a>
   		</p>
   
   
@@ -2832,6 +2902,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L427">source/Mappedin.MapView.js:427</a>
   		</p>
   
   
@@ -2862,6 +2934,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L339">source/Mappedin.MapView.js:339</a>
   		</p>
   
   
@@ -2892,6 +2966,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L531">source/Mappedin.MapView.js:531</a>
   		</p>
   
   
@@ -2928,6 +3004,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L106">source/Mappedin.MapView.js:106</a>
   		</p>
   
   
@@ -2979,6 +3057,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L330">source/Mappedin.MapView.js:330</a>
   		</p>
   
   
@@ -3030,6 +3110,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L522">source/Mappedin.MapView.js:522</a>
   		</p>
   
   
@@ -3048,7 +3130,7 @@
   						<span class="type">PathSegment</span>
   
   
-  					<div class="param-description"><p>A segment returned from MapView/drawPathSegment:method or <a href="../classes/MapView.html#method_drawPath" class="crosslink">drawPath</a></p>
+  					<div class="param-description"><p>A segment returned from <a href="../classes/MapView.html#method_drawPathSegment" class="crosslink">drawPathSegment</a> or <a href="../classes/MapView.html#method_drawPath" class="crosslink">drawPath</a></p>
   </div>
   
   				</li>
@@ -3075,6 +3157,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L194">source/Mappedin.MapView.js:194</a>
   		</p>
   
   
@@ -3114,6 +3198,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L539">source/Mappedin.MapView.js:539</a>
   		</p>
   
   
@@ -3175,6 +3261,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L90">source/Mappedin.MapView.js:90</a>
   		</p>
   
   
@@ -3232,6 +3320,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L235">source/Mappedin.MapView.js:235</a>
   		</p>
   
   
@@ -3297,6 +3387,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L549">source/Mappedin.MapView.js:549</a>
   		</p>
   
   
@@ -3336,6 +3428,8 @@
   
   	<div class="meta">
   				<p>
+  				Defined in
+  		<a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L226">source/Mappedin.MapView.js:226</a>
   		</p>
   
   
@@ -3381,6 +3475,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L36">source/Mappedin.MapView.js:36</a>
           </p>
   
   
@@ -3474,6 +3570,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L66">source/Mappedin.MapView.js:66</a>
           </p>
   
   
@@ -3501,6 +3599,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L26">source/Mappedin.MapView.js:26</a>
           </p>
   
   
@@ -3529,6 +3629,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L74">source/Mappedin.MapView.js:74</a>
           </p>
   
   
@@ -3555,6 +3657,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L82">source/Mappedin.MapView.js:82</a>
           </p>
   
   
@@ -3583,6 +3687,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L17">source/Mappedin.MapView.js:17</a>
           </p>
   
   
@@ -3611,6 +3717,8 @@
   
       <div class="meta">
                   <p>
+                  Defined in
+          <a href="https://github.com/MappedIn/platform-api/blob/0/source/Mappedin.MapView.js#L58">source/Mappedin.MapView.js:58</a>
           </p>
   
   

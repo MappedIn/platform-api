@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/utils.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+&#x27;use strict&#x27;;
+import uuid from &#x27;uuid/v4&#x27;;
+import { Box3, Vector3 } from &#x27;three&#x27;;
+import { LatLonSpherical as LatLon } from &#x27;geodesy&#x27;;
+/**
+ *	Utils function listing
+ *
+ * - scrubMaterial
+ * - getDeviceID
+ * - getSessionID
+ * - getObjectID
+ * - getObject
+ * - getBoundingBox
+ * - getBiggestBoundingBox
+ * - upackBoundingBox
+ * - getMapScale
+ * - throttle -&gt; taken from lodash.js
+ */
+
+
+
+export function scrubMaterial(material) {
+	if (material &amp;&amp; material.map) {
+		material.map.dispose();
+		material.map = undefined;
+	}
+	material.dispose();
+}
+
+var MI_UUID;
+export function getDeviceID() {
+	if (!MI_UUID) {
+		try {
+			var UUID_KEY = &#x27;mi-uuid&#x27;;
+
+			MI_UUID = localStorage.getItem(UUID_KEY);
+
+			if (!MI_UUID) {
+				MI_UUID = uuid();
+				localStorage.setItem(UUID_KEY, MI_UUID);
+			}
+		} catch (_) {
+			MI_UUID = &#x27;NLS-&#x27; + uuid();
+		}
+	}
+
+	return MI_UUID;
+}
+
+var MI_SESSION;
+export function getSessionID() {
+	if (!MI_SESSION) {
+		try {
+			var SESSION_KEY = &#x27;mi-session&#x27;;
+
+			MI_SESSION = sessionStorage.getItem(SESSION_KEY);
+
+			if (!MI_SESSION) {
+				MI_SESSION = uuid();
+				sessionStorage.setItem(SESSION_KEY, MI_SESSION);
+			}
+		} catch (_) {
+			MI_SESSION = &#x27;NSS-&#x27; + uuid();
+		}
+	}
+
+	return MI_SESSION;
+}
+
+// Takes a Mappedin Object or id and returns the ID, so our functions can take both
+export function getObjectId(object) {
+	return typeof object === &#x27;string&#x27; ? object : object.id;
+}
+
+// Takes a Mappedin object or ID and the array to look in and retuns the Object, so our functions can take both
+export function getObject(obj, array) {
+	if (array == undefined) { return obj; }
+	if (typeof obj == &quot;string&quot;) {
+		return array.find(function (o) {
+			return o.id == obj;
+		});
+	}
+	return obj;
+}
+
+export function getBoundingBox(object) {
+	const box3 = new Box3();
+	return box3.setFromObject(object);
+}
+
+export function getBiggestBoundingBox(objects) {
+	const min = new Vector3(Infinity, Infinity, Infinity);
+	const max = new Vector3(-Infinity, -Infinity, -Infinity);
+
+	objects.forEach((object) =&gt; {
+		const bbox = new Box3().setFromObject(object);
+		min.min(bbox.min);
+		max.max(bbox.max);
+	});
+
+	return { min, max };
+}
+
+export function unpackBoundingBox(boundingBox) {
+	const { min, max } = boundingBox;
+
+	return [
+		new Vector3(min.x, min.y, min.z),
+		new Vector3(max.x, min.y, min.z),
+		new Vector3(min.x, max.y, min.z),
+		new Vector3(max.x, max.y, min.z),
+		new Vector3(min.x, min.y, max.z),
+		new Vector3(max.x, min.y, max.z),
+		new Vector3(min.x, max.y, max.z),
+		new Vector3(max.x, max.y, max.z)
+	];
+}
+
+export function getMapScale(map) {
+	var mapScale;
+	try {
+		var anchor1 = map.georeference[0];
+		var anchor2 = map.georeference[2];
+
+		var ll1 = new LatLon(anchor1.target.x, anchor1.target.y);
+		var ll2 = new LatLon(anchor2.target.x, anchor2.target.y);
+
+		var worldDistance = ll1.distanceTo(ll2);
+		var xDiff = (anchor1.control.x - anchor2.control.x);
+		var yDiff = (anchor1.control.y - anchor2.control.y);
+		var mapDistance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+		mapScale = mapDistance / worldDistance;
+	} catch (e) {
+		mapScale = 1;
+		console.warn(e);
+		console.warn(&quot;Couldn&#x27;t georeference &quot; + (map.name || map.shortName || map.id) + &quot;. Probably not enough geocoordinates.&quot;);
+	}
+	return mapScale;
+}
+
+export function getNorth(map) {
+	var north;
+	try {
+		// Could get the max/min and use that, to spread out any error
+		var anchor1 = map.georeference[0];
+		var anchor2 = map.georeference[2];
+
+		var ll1 = new LatLon(anchor1.target.x, anchor1.target.y);
+		var ll2 = new LatLon(anchor2.target.x, anchor2.target.y);
+
+		var bearing = ((ll1.finalBearingTo(ll2)) + 360 % 360) * Math.PI / 180;
+		var angle = Math.atan2(anchor2.control.y - anchor1.control.y, anchor2.control.x - anchor1.control.x);
+
+		north = -(bearing - angle - (Math.PI / 2));
+	}
+	catch (e) {
+		north = 0;
+		console.warn(e);
+		console.warn(&quot;Couldn&#x27;t georeference &quot; + (map.name || map.shortName || map.id) + &quot;. Probably not enough geocoordinates.&quot;);
+	}
+	return north;
+}
+
+// lodash throttle function
+export function throttle(func, wait, options) {
+	var context, args, result;
+	var timeout = null;
+	var previous = 0;
+	if (!options) options = {};
+	var later = function() {
+		previous = options.leading === false ? 0 : Date.now();
+		timeout = null;
+		result = func.apply(context, args);
+		if (!timeout) context = args = null;
+	};
+	return function() {
+		var now = Date.now();
+		if (!previous &amp;&amp; options.leading === false) previous = now;
+		var remaining = wait - (now - previous);
+		context = this;
+		args = arguments;
+		if (remaining &lt;= 0 || remaining &gt; wait) {
+			if (timeout) {
+				clearTimeout(timeout);
+				timeout = null;
+			}
+			previous = now;
+			result = func.apply(context, args);
+			if (!timeout) context = args = null;
+		} else if (!timeout &amp;&amp; options.trailing !== false) {
+			timeout = setTimeout(later, remaining);
+		}
+		return result;
+	};
+}
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

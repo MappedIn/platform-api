@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.Search.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import { getSessionID, getDeviceID } from &#x27;./utils.js&#x27;;
+
+/* global Promise */
+/**
+* A class to access the Mappedin Search API. This will be created for you as part of Mappedin.{{#crossLink &quot;Mappedin/initailize:method&quot;}}{{/crossLink}}, but you can also create one manually.
+*
+* @class Search
+* @param options {Object} A list of configuration options for the search API.
+	@param [options.venue] {String} The venue slug to search for
+ 	@param [options.key] {String} Your search key
+ 	@param [options.secret] {String} Your search secret
+	@param [options.smart] {Boolean} Whether the new Smart Search should be used.
+	@param [options.endpoint] {String} The endpoint for search.
+*/
+var Search = function (options) {
+	options = options || {};
+
+	/**
+	* The types of assets available for this venue.
+	*
+	* @private
+	* @property ASSET_TYPES {LOCATION, EVENT}
+	*/
+	this.ASSET_TYPES = {
+		LOCATION: &quot;location&quot;,
+		EVENT: &quot;event&quot;
+	};
+
+	var scope = this;
+
+	scope.useSmartSearch = options.smart;
+
+	var endpoint = options.endpoint || options.baseUrl ||
+		(scope.useSmartSearch ? &quot;https://api-gateway.mappedin.com/search/&quot; : &quot;https://search.mappedin.com/&quot;);
+	var venue = options.venue;
+
+	var key = options.key;
+	var secret = options.secret;
+
+
+	var SEARCH_URL = &quot;/search&quot;;
+	var SUGGEST_URL = (scope.useSmartSearch ? &quot;/search&quot; : &quot;/suggest&quot;);
+	var headers = {
+		&#x27;Authorization&#x27;: &#x27;Basic &#x27; + btoa(key + &#x27;:&#x27; + secret),
+		&#x27;mi-context&#x27;: &#x27;web&#x27;,
+		&#x27;mi-session&#x27;: getSessionID(),
+		&#x27;mi-device&#x27;: getDeviceID()
+	};
+
+	// inspired by http://stackoverflow.com/a/23639793/5468479
+	var objToParams = function (obj) {
+		var str = Object.keys(obj)
+			.map(function (key) {
+				return key + &#x27;=&#x27; + encodeURIComponent(obj[key]);
+			})
+			.join(&#x27;&amp;&#x27;);
+		return str;
+	};
+
+	var SearchItem = function (data) {
+		this.assetType = data.assetType;
+		this.score = data.score;
+		this.name = data.name;
+		this.id = data.id;
+		this.description = data.description;
+		if (scope.useSmartSearch) {
+			this.strength = data.strength;
+			if (data.ids) {
+				this.id = data.ids[0];
+				this.assetType = &#x27;location&#x27;;
+			}
+			else {
+				this.id = data.id;
+				this.assetType = &#x27;category&#x27;;
+			}
+		}
+	};
+
+	var SearchLocation = function (data) {
+		SearchItem.call(this, data);
+		this.categories = data.categories;
+		this.logo = data.logo;
+	};
+
+	var SearchCategory = function (data) {
+		SearchItem.call(this, data);
+	};
+
+	var SearchEvent = function (data) {
+		SearchItem.call(this, data);
+		this.location = data.location;
+		this.startData = data.startDate;
+		this.endData = data.endDate;
+		this.showDate = data.showDate;
+	};
+
+	var SearchResults = function (query, data, options) {
+		this.query = query;
+		this.total = data.total;
+		this.page = options.pn || 1;
+
+		if (scope.useSmartSearch) {
+			const { categories: categoryHits, locations: locationHits  } = data;
+			const smartHits = {
+				locations: [],
+				categories: [],
+			};
+			smartHits.locations = locationHits.map(function (object) {
+				return new SearchLocation(object);
+			});
+			smartHits.categories = categoryHits.map(function (object) {
+				return new SearchCategory(object);
+			});
+			this.hits = smartHits;
+		} else {
+			this.hits = data.hits.map(function (object) {
+				switch (object.assetType) {
+					case scope.ASSET_TYPES.LOCATION :
+						return new SearchLocation(object);
+					case scope.ASSET_TYPES.EVENT :
+						return new SearchEvent(object);
+				}
+			});
+		}
+
+		this.getNextPage = function () {
+			options.pn += 1;
+			return scope.search(query, options);
+		};
+
+		this.hasNextPage = function () {
+			return options.pn * (options.ps) &lt; data.total;
+		};
+	};
+
+	var Suggestions = function (query, data) {
+		this.query = query;
+		this.total = data.total;
+		this.hits = data[&quot;hits&quot;].map(hit =&gt; hit.text);
+	};
+
+	/**
+	* Makes a call to the Mappedin Smart Search API with the provided query, retuning a Promise that will fulfill with a
+	* SearchResults object. This will contain a list of &#x60;hits&#x60;, which can currently be SearchItems (either SearchLocations or SearchEvents).
+	*
+	* These are currently different from the objects you get directly from the Mappedin API,
+	* containing a subset of their data, but you can match on their IDs.
+	*
+	* The data is broken down into pages. You can specify the size (defaults to 10).
+	*
+	* @method search
+	* @param query {String} The string to search for
+	* @param [options] {Object} Any optional parameters you need to pass to the search API
+		@param [options.ps] {Number} Number of search results to return. Defaults to 10. You can get the next page from SearchResults.next
+		@param [options.type] {ASSET_TYPE} If you want to limit your results to a specific type of SearcItem, specify it here. Currently either ASSET_TYPES.LOCATION or ASSET_TYPES.EVENT
+
+	* @returns {Promise} The promise will resolve with either a SearchResults object if successful, or an error with a &#x60;message&#x60; and &#x60;status&#x60; if it fails
+
+		SearchResults has the following propertyies and methods:
+			query: The search query that triggered this search
+			total: The total number of results.
+			hits: The array of SearchItems in the current page.
+
+			A SearchItem is an object that contains an id property that could match the id of a Location or Event on your Venue object. This is NOT GUARANTEED, however, as the data could have changed since the getVenue call was performed.
+
+			nextPage() -&gt; A promise that will resolve with the next page of SearchResults
+	*/
+	this.search = function (query, options) {
+		options = options || {};
+		options[&quot;q&quot;] = query;
+
+		if (scope.useSmartSearch) {
+			options[&quot;ln&quot;] = options[&quot;ln&quot;] == undefined ? 20 : options[&quot;ln&quot;];
+			options[&quot;cn&quot;] = options[&quot;cn&quot;] == undefined ? 5 : options[&quot;cn&quot;];
+			options[&quot;lang&quot;] = options[&quot;lang&quot;] == undefined ? &quot;en&quot; : options[&quot;lang&quot;];
+		} else {
+			options[&quot;ps&quot;] = options[&quot;ps&quot;] == undefined ? 10 : options[&quot;ps&quot;];
+			options[&quot;pn&quot;] = options[&quot;pn&quot;] == undefined ? 1 : options[&quot;pn&quot;];
+		}
+
+		var url = endpoint + venue + SEARCH_URL + &#x27;?&#x27; + objToParams(options);
+		var reqOptions = {
+			method: &#x27;GET&#x27;,
+			mode: &#x27;cors&#x27;,
+			headers: headers
+		};
+		return new Promise(function (resolve, reject) {
+			if (query.length == 0) {
+				reject({message: &quot;Empty search&quot;, response: {}});
+				return;
+			}
+			fetch(url, reqOptions).then(function (response) {
+				if (response.status != 200) {
+					reject({message: response.status + &quot; &quot; + response.statusText, response: response});
+				} else {
+					response.json().then(function (data) {
+						resolve(new SearchResults(query, data, options));
+					}, reject);
+				}
+			}, reject);
+		});
+	};
+
+	/**
+	* Makes a call to the Mappedin Smart Search Suggestions API with the provided query, retuning a Promise that will fulfill with a
+	* Suggestions object. This will contain a list of &#x60;hits&#x60;, which are words that match full search results. This should be used
+	* to aid in autocoplete for a search bar. It&#x27;s ordered for you by most relevant.
+	*
+	* @method suggest
+	* @param query {String} The string to get autocomplete suggestions for
+	* @returns {Promise} The promise will resolve with either a Suggestions object if successful, or an error with a &#x60;message&#x60; and &#x60;status&#x60; if it fails
+
+		Suggestions has the following propertyies and methods:
+			query: The suggestion query that triggered this list of suggestions (to make sure it&#x27;s still what&#x27;s in the text bar)
+			total: The total number of suggestions.
+			hits: The array of Strings matching the query
+	*/
+	this.suggest = function(query) {
+		if (scope.useSmartSearch) {
+			console.warn(&#x27;Smart Search doesn\&#x27;t support the Suggest API; please use the Search API.&#x27;);
+			const emptyData = {
+				total: 0,
+				hits: [],
+			};
+			return new Suggestions(query, emptyData);
+		}
+		options = {};
+		options[&quot;q&quot;] = query.toLowerCase();
+
+		var url = endpoint + venue + SUGGEST_URL + &#x27;?&#x27; + objToParams(options);
+		var reqOptions = {
+			method: &#x27;GET&#x27;,
+			mode: &#x27;cors&#x27;,
+			headers: headers
+		};
+
+		return new Promise(function (resolve, reject) {
+			if (query.length == 0) {
+				reject({message: &quot;Empty query&quot;, response: {}});
+				return;
+			}
+			fetch(url, reqOptions).then(function (response) {
+				if (response.status != 200) {
+					reject({message: response.status + &quot; &quot; + response.statusText, response: response});
+				} else {
+					response.json().then(function (data) {
+						resolve(new Suggestions(query, data));
+					}, reject);
+				}
+			}, reject);
+		});
+	};
+};
+
+export default Search;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

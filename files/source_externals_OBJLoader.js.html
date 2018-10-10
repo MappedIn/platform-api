@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/externals/OBJLoader.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import {
+	DefaultLoadingManager,
+	FileLoader,
+	Group,
+	BufferGeometry,
+	BufferAttribute,
+	MeshPhongMaterial,
+	Mesh,
+} from &#x27;three&#x27;;
+
+/**
+ * @author mrdoob / http://mrdoob.com/
+ */
+
+var OBJLoader = function ( manager ) {
+
+	this.manager = ( manager !== undefined ) ? manager : DefaultLoadingManager;
+
+	this.materials = null;
+
+};
+
+OBJLoader.prototype = {
+
+	constructor: OBJLoader,
+
+	load: function ( url, onLoad, onProgress, onError ) {
+
+		var scope = this;
+
+		var loader = new FileLoader( scope.manager );
+		loader.setPath( this.path );
+		loader.load( url, function ( text ) {
+
+			onLoad( scope.parse( text ) );
+
+		}, onProgress, onError );
+
+	},
+
+	setPath: function ( value ) {
+
+		this.path = value;
+
+	},
+
+	setMaterials: function ( materials ) {
+
+		this.materials = materials;
+
+	},
+
+	parse: function ( text ) {
+
+		console.time( &#x27;OBJLoader&#x27; );
+
+		var objects = [];
+		var object;
+		var foundObjects = false;
+		var vertices = [];
+		var normals = [];
+		var uvs = [];
+
+		function addObject( name ) {
+
+			var geometry = {
+				vertices: [],
+				normals: [],
+				uvs: []
+			};
+
+			var material = {
+				name: &#x27;&#x27;,
+				smooth: true
+			};
+
+			object = {
+				name: name,
+				geometry: geometry,
+				material: material
+			};
+
+			objects.push( object );
+
+		}
+
+		function parseVertexIndex( value ) {
+
+			var index = parseInt( value );
+
+			return ( index &gt;= 0 ? index - 1 : index + vertices.length / 3 ) * 3;
+
+		}
+
+		function parseNormalIndex( value ) {
+
+			var index = parseInt( value );
+
+			return ( index &gt;= 0 ? index - 1 : index + normals.length / 3 ) * 3;
+
+		}
+
+		function parseUVIndex( value ) {
+
+			var index = parseInt( value );
+
+			return ( index &gt;= 0 ? index - 1 : index + uvs.length / 2 ) * 2;
+
+		}
+
+		function addVertex( a, b, c ) {
+
+			object.geometry.vertices.push(
+				vertices[ a ], vertices[ a + 1 ], vertices[ a + 2 ],
+				vertices[ b ], vertices[ b + 1 ], vertices[ b + 2 ],
+				vertices[ c ], vertices[ c + 1 ], vertices[ c + 2 ]
+			);
+
+		}
+
+		function addNormal( a, b, c ) {
+
+			object.geometry.normals.push(
+				normals[ a ], normals[ a + 1 ], normals[ a + 2 ],
+				normals[ b ], normals[ b + 1 ], normals[ b + 2 ],
+				normals[ c ], normals[ c + 1 ], normals[ c + 2 ]
+			);
+
+		}
+
+		function addUV( a, b, c ) {
+
+			object.geometry.uvs.push(
+				uvs[ a ], uvs[ a + 1 ],
+				uvs[ b ], uvs[ b + 1 ],
+				uvs[ c ], uvs[ c + 1 ]
+			);
+
+		}
+
+		function addFace( a, b, c, d,  ua, ub, uc, ud, na, nb, nc, nd ) {
+
+			var ia = parseVertexIndex( a );
+			var ib = parseVertexIndex( b );
+			var ic = parseVertexIndex( c );
+			var id;
+
+			if ( d === undefined ) {
+
+				addVertex( ia, ib, ic );
+
+			} else {
+
+				id = parseVertexIndex( d );
+
+				addVertex( ia, ib, id );
+				addVertex( ib, ic, id );
+
+			}
+
+			if ( ua !== undefined ) {
+
+				ia = parseUVIndex( ua );
+				ib = parseUVIndex( ub );
+				ic = parseUVIndex( uc );
+
+				if ( d === undefined ) {
+
+					addUV( ia, ib, ic );
+
+				} else {
+
+					id = parseUVIndex( ud );
+
+					addUV( ia, ib, id );
+					addUV( ib, ic, id );
+
+				}
+
+			}
+
+			if ( na !== undefined ) {
+
+				ia = parseNormalIndex( na );
+				ib = parseNormalIndex( nb );
+				ic = parseNormalIndex( nc );
+
+				if ( d === undefined ) {
+
+					addNormal( ia, ib, ic );
+
+				} else {
+
+					id = parseNormalIndex( nd );
+
+					addNormal( ia, ib, id );
+					addNormal( ib, ic, id );
+
+				}
+
+			}
+
+		}
+
+		addObject( &#x27;&#x27; );
+
+		// v float float float
+		var vertex_pattern = /^v\s+([\d|\.|\+|\-|e|E]+)\s+([\d|\.|\+|\-|e|E]+)\s+([\d|\.|\+|\-|e|E]+)/;
+
+		// vn float float float
+		var normal_pattern = /^vn\s+([\d|\.|\+|\-|e|E]+)\s+([\d|\.|\+|\-|e|E]+)\s+([\d|\.|\+|\-|e|E]+)/;
+
+		// vt float float
+		var uv_pattern = /^vt\s+([\d|\.|\+|\-|e|E]+)\s+([\d|\.|\+|\-|e|E]+)/;
+
+		// f vertex vertex vertex ...
+		var face_pattern1 = /^f\s+(-?\d+)\s+(-?\d+)\s+(-?\d+)(?:\s+(-?\d+))?/;
+
+		// f vertex/uv vertex/uv vertex/uv ...
+		var face_pattern2 = /^f\s+((-?\d+)\/(-?\d+))\s+((-?\d+)\/(-?\d+))\s+((-?\d+)\/(-?\d+))(?:\s+((-?\d+)\/(-?\d+)))?/;
+
+		// f vertex/uv/normal vertex/uv/normal vertex/uv/normal ...
+		var face_pattern3 = /^f\s+((-?\d+)\/(-?\d+)\/(-?\d+))\s+((-?\d+)\/(-?\d+)\/(-?\d+))\s+((-?\d+)\/(-?\d+)\/(-?\d+))(?:\s+((-?\d+)\/(-?\d+)\/(-?\d+)))?/;
+
+		// f vertex//normal vertex//normal vertex//normal ...
+		var face_pattern4 = /^f\s+((-?\d+)\/\/(-?\d+))\s+((-?\d+)\/\/(-?\d+))\s+((-?\d+)\/\/(-?\d+))(?:\s+((-?\d+)\/\/(-?\d+)))?/;
+
+		var object_pattern = /^[og]\s+(.+)/;
+
+		var smoothing_pattern = /^s\s+(\d+|on|off)/;
+
+		//
+
+		var lines = text.split( &#x27;\n&#x27; );
+
+		for ( var i = 0; i &lt; lines.length; i ++ ) {
+
+			var line = lines[ i ];
+			line = line.trim();
+
+			var result;
+
+			if ( line.length === 0 || line.charAt( 0 ) === &#x27;#&#x27; ) {
+
+				continue;
+
+			} else if ( ( result = vertex_pattern.exec( line ) ) !== null ) {
+
+				// [&quot;v 1.0 2.0 3.0&quot;, &quot;1.0&quot;, &quot;2.0&quot;, &quot;3.0&quot;]
+
+				vertices.push(
+					parseFloat( result[ 1 ] ),
+					parseFloat( result[ 2 ] ),
+					parseFloat( result[ 3 ] )
+				);
+
+			} else if ( ( result = normal_pattern.exec( line ) ) !== null ) {
+
+				// [&quot;vn 1.0 2.0 3.0&quot;, &quot;1.0&quot;, &quot;2.0&quot;, &quot;3.0&quot;]
+
+				normals.push(
+					parseFloat( result[ 1 ] ),
+					parseFloat( result[ 2 ] ),
+					parseFloat( result[ 3 ] )
+				);
+
+			} else if ( ( result = uv_pattern.exec( line ) ) !== null ) {
+
+				// [&quot;vt 0.1 0.2&quot;, &quot;0.1&quot;, &quot;0.2&quot;]
+
+				uvs.push(
+					parseFloat( result[ 1 ] ),
+					parseFloat( result[ 2 ] )
+				);
+
+			} else if ( ( result = face_pattern1.exec( line ) ) !== null ) {
+
+				// [&quot;f 1 2 3&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, undefined]
+
+				addFace(
+					result[ 1 ], result[ 2 ], result[ 3 ], result[ 4 ]
+				);
+
+			} else if ( ( result = face_pattern2.exec( line ) ) !== null ) {
+
+				// [&quot;f 1/1 2/2 3/3&quot;, &quot; 1/1&quot;, &quot;1&quot;, &quot;1&quot;, &quot; 2/2&quot;, &quot;2&quot;, &quot;2&quot;, &quot; 3/3&quot;, &quot;3&quot;, &quot;3&quot;, undefined, undefined, undefined]
+
+				addFace(
+					result[ 2 ], result[ 5 ], result[ 8 ], result[ 11 ],
+					result[ 3 ], result[ 6 ], result[ 9 ], result[ 12 ]
+				);
+
+			} else if ( ( result = face_pattern3.exec( line ) ) !== null ) {
+
+				// [&quot;f 1/1/1 2/2/2 3/3/3&quot;, &quot; 1/1/1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot; 2/2/2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot; 3/3/3&quot;, &quot;3&quot;, &quot;3&quot;, &quot;3&quot;, undefined, undefined, undefined, undefined]
+
+				addFace(
+					result[ 2 ], result[ 6 ], result[ 10 ], result[ 14 ],
+					result[ 3 ], result[ 7 ], result[ 11 ], result[ 15 ],
+					result[ 4 ], result[ 8 ], result[ 12 ], result[ 16 ]
+				);
+
+			} else if ( ( result = face_pattern4.exec( line ) ) !== null ) {
+
+				// [&quot;f 1//1 2//2 3//3&quot;, &quot; 1//1&quot;, &quot;1&quot;, &quot;1&quot;, &quot; 2//2&quot;, &quot;2&quot;, &quot;2&quot;, &quot; 3//3&quot;, &quot;3&quot;, &quot;3&quot;, undefined, undefined, undefined]
+
+				addFace(
+					result[ 2 ], result[ 5 ], result[ 8 ], result[ 11 ],
+					undefined, undefined, undefined, undefined,
+					result[ 3 ], result[ 6 ], result[ 9 ], result[ 12 ]
+				);
+
+			} else if ( ( result = object_pattern.exec( line ) ) !== null ) {
+
+				// o object_name
+				// or
+				// g group_name
+
+				var name = result[ 1 ].trim();
+
+				if ( foundObjects === false ) {
+
+					foundObjects = true;
+					object.name = name;
+
+				} else {
+
+					addObject( name );
+
+				}
+
+			} else if ( /^usemtl /.test( line ) ) {
+
+				// material
+
+				object.material.name = line.substring( 7 ).trim();
+
+			} else if ( /^mtllib /.test( line ) ) {
+
+				// mtl file
+
+			} else if ( ( result = smoothing_pattern.exec( line ) ) !== null ) {
+
+				// smooth shading
+
+				object.material.smooth = result[ 1 ] === &quot;1&quot; || result[ 1 ] === &quot;on&quot;;
+
+			} else {
+
+				throw new Error( &quot;Unexpected line: &quot; + line );
+
+			}
+
+		}
+
+		var container = new Group();
+
+		for ( var i = 0, l = objects.length; i &lt; l; i ++ ) {
+
+			object = objects[ i ];
+			var geometry = object.geometry;
+
+			var buffergeometry = new BufferGeometry();
+
+			buffergeometry.addAttribute( &#x27;position&#x27;, new BufferAttribute( new Float32Array( geometry.vertices ), 3 ) );
+
+			if ( geometry.normals.length &gt; 0 ) {
+
+				buffergeometry.addAttribute( &#x27;normal&#x27;, new BufferAttribute( new Float32Array( geometry.normals ), 3 ) );
+
+			} else {
+
+				buffergeometry.computeVertexNormals();
+
+			}
+
+			if ( geometry.uvs.length &gt; 0 ) {
+
+				buffergeometry.addAttribute( &#x27;uv&#x27;, new BufferAttribute( new Float32Array( geometry.uvs ), 2 ) );
+
+			}
+
+			var material;
+
+			if ( this.materials !== null ) {
+
+				material = this.materials.create( object.material.name );
+
+			}
+
+			if ( !material ) {
+
+				material = new MeshPhongMaterial();
+				material.name = object.material.name;
+
+			}
+
+			material.flatShading = !object.material.smooth;
+
+			var mesh = new Mesh( buffergeometry, material );
+			mesh.name = object.name;
+
+			container.add( mesh );
+
+		}
+
+		console.timeEnd( &#x27;OBJLoader&#x27; );
+
+		return container;
+
+	}
+
+};
+
+export default OBJLoader;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

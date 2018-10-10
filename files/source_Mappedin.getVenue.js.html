@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.getVenue.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import { getMapScale } from &#x27;./utils.js&#x27;;
+import { getCurrentLocationState } from &#x27;./location-utils&#x27;;
+
+/* globals Promise */
+/*
+* An interface for the Mappedin Platform API
+*
+* @class Venue
+* @static
+*/
+&#x27;use strict&#x27;;
+
+var baseUrl = &#x27;https://web-proxy.mappedin.com/1/&#x27;;
+
+//
+// utilities
+//
+
+function addToSet(array, value) {
+	if (array.indexOf(value) &lt; 0) {
+		array.push(value);
+	}
+}
+
+function assignMissing(target, source) {
+	var keys = Object.keys(source);
+	for (var i = 0, iLen = keys.length; i &lt; iLen; ++i) {
+		var key = keys[i];
+		if (!(key in target)) {
+			target[key] = source[key];
+		}
+	}
+}
+
+function defineGetter(proto, name, getter) {
+	Object.defineProperty(proto.prototype, name, {
+		configurable: false,
+		enumerable: false,
+		get: getter,
+		set: undefined
+	});
+}
+
+function defineLazyGetter(proto, name, enumerator) {
+	defineGetter(proto, name, function getter() {
+		var cache = this._cache[name];
+		if (cache === undefined) {
+			cache = this._cache[name] = enumerator.call(this);
+		}
+		return cache;
+	});
+}
+
+//
+// resources
+//
+
+/**
+ * A {{#crossLink &quot;MappedinCategory&quot;}}{{/crossLink}} is a collection of similar Locations.
+ *
+ * A Category can have more properties such as &#x27;name&#x27;, or &#x27;parents&#x27; (for hierarchical categories) as well.
+ * For example, you may have a Fashion category, which has a Men&#x27;s Fashion and Women&#x27;s Fashion category. A Men&#x27;s clothing store would belong to the Men’s Fashion category, but not necessarily be present in the Fashion category&#x27;s list of Locations.
+ *
+ * The {{#crossLink &quot;Mappedin&quot;}}{{/crossLink}} &#x27;things&#x27; object is where you would specify what properties you want to download for Categories. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.
+ *
+ * See below for an example a &#x27;things&#x27; object with available Category properties specified:
+ *
+ *	things: {
+ *		venue: [],
+ *		locations: [],
+ *		categories: [&#x27;venue&#x27;, &#x27;name&#x27;, &#x27;language&#x27;, &#x27;externalId&#x27;, &#x27;parents&#x27;],
+ *		maps: []
+ * 	}
+ *
+ * @class MappedinCategory
+ */
+function MappedinCategory(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Category ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Category with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+MappedinCategory._fetch = function (mappedin, cb) {
+	var query = {
+		fields: mappedin._things.categories,
+		venue: mappedin._venue,
+	};
+	mappedin._getArray(&#x27;category&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinCategory(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Locations in this Category.
+ *
+ * @property locations
+ * @type [MappedinLocation]
+ */
+defineLazyGetter(MappedinCategory, &#x27;locations&#x27;, function () {
+	var related = [];
+	var locations = this._mappedin.locations;
+	var id = this._data.id;
+	for (var i = 0, iLen = locations.length; i &lt; iLen; ++i) {
+		var location = locations[i];
+		var through = location._data.categories;
+		if (Array.isArray(through)) {
+			for (var j = 0, jLen = through.length; j &lt; jLen; ++j) {
+				if (through[j] === id) {
+					related.push(location);
+					break;
+				}
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * A {{#crossLink &quot;MappedinLocation&quot;}}{{/crossLink}} is something like a store or washroom on a {{#crossLink &quot;MappedinMap&quot;}}{{/crossLink}}. It has an ID and will be linked to zero or more {{#crossLink &quot;MappedinNode&quot;}}{{/crossLink}}s and {{#crossLink &quot;MappedinPolygon&quot;}}{{/crossLink}}s.
+ *
+ * A Location&#x27;s Nodes and Polygons can be on multiple Maps, or in multiple non-adjacent places on the same Map.
+ *  For example, all washroom at a given Venue could belong to one Location, or a department store could live on multiple floors. A Washroom Location might a have a few Polygons spread throughout the Venue for each one that exists, but a single store might just have one presence, and therefore one Polygon. Some Locations just have a single point and only have Nodes.
+ *
+ * A Location can have more properties (typically things like &#x27;name&#x27;, &#x27;externalId&#x27;, &#x27;type&#x27;, &#x27;categories&#x27;, &#x27;description&#x27;, &#x27;logo&#x27;, etc).
+ *
+ * The {{#crossLink &quot;Mappedin&quot;}}{{/crossLink}} &#x27;things&#x27; object is where you would specify what properties you want to download for Locations. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.
+ *
+ * See below for an example a &#x27;things&#x27; object with available Location properties specified:
+ *
+ *	things: {
+ *		venue: [],
+ *		locations: [&#x27;venue&#x27;, &#x27;name&#x27;, &#x27;type&#x27;, &#x27;icon&#x27;, &#x27;logo&#x27;, &#x27;language&#x27;, &#x27;externalId&#x27;, &#x27;description&#x27;, &#x27;categories&#x27;, &#x27;phone&#x27;, &#x27;operationHours&#x27;, &#x27;social&#x27;, &#x27;tags&#x27;, &#x27;parents&#x27;, &#x27;sortOrder&#x27;],
+ *		categories: [],
+ *		maps: []
+ * 	}
+ *
+ * @class MappedinLocation
+ */
+function MappedinLocation(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Location ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Location with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+MappedinLocation._fetch = function (mappedin, cb) {
+	var fields = mappedin._things.locations.slice();
+	if (mappedin._things.categories) {
+		addToSet(fields, &#x27;categories&#x27;);
+	}
+	if (mappedin._things.nodes) {
+		addToSet(fields, &#x27;nodes&#x27;);
+	}
+	if (mappedin._things.polygons) {
+		addToSet(fields, &#x27;polygons&#x27;);
+	}
+	if (mappedin._things.locationStates) {
+		addToSet(fields, &#x27;states&#x27;);
+	}
+	var query = {
+		fields: fields,
+		venue: mappedin._venue,
+	};
+	mappedin._getArray(&#x27;location&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinLocation(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Polygons this Location is attached to.
+ *
+ * @property polygons
+ * @type [MappedinPolygon]
+ */
+defineLazyGetter(MappedinLocation, &#x27;polygons&#x27;, function () {
+	var related = [];
+	var through = this._data.polygons;
+	var index = this._mappedin._polygonsById;
+	if (Array.isArray(through)) {
+		for (var i = 0, iLen = through.length; i &lt; iLen; ++i) {
+			var polygonId = through[i].id;
+			var polygon = index[polygonId];
+			if (polygon != null) {
+				related.push(polygon);
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * Nodes this Location is attached to.
+ *
+ * @property nodes
+ * @type [MappedinNode]
+ */
+defineLazyGetter(MappedinLocation, &#x27;nodes&#x27;, function () {
+	var related = [];
+	var through = this._data.nodes;
+	var index = this._mappedin._nodesById;
+	if (through) {
+		for (var i = 0, iLen = through.length; i &lt; iLen; ++i) {
+			var nodeId = through[i].node;
+			var node = index[nodeId];
+			if (node != null) {
+				related.push(node);
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * Parent of this Location, if any. Used in cases where one Location is inside another, more &quot;important&quot; Location.
+ *
+ * @property parent
+ * @type MappedinLocation
+ */
+defineLazyGetter(MappedinLocation, &#x27;parent&#x27;, function () {
+	var related;
+	var locations = this._mappedin._locationsById;
+	var parentId = this._data.parent;
+	if (parentId !== undefined) {
+		related = locations[parentId];
+	}
+	return related;
+});
+
+defineLazyGetter(MappedinLocation, &#x27;state&#x27;, function () {
+	return getCurrentLocationState(this._data, this._mappedin.locationStates);
+});
+
+/**
+ * Gets directions from this Location to the target Node or Location.
+ *
+ * @method
+ * @name directionsTo
+ * @param destination {MappedinLocation|MappedinNode|[MappedinNode]|MappedinPolygon} Destination.
+ * @param options {Object} Options.
+ * @param [options.accessible=false] {boolean} True if directions should be wheelchair accessible.
+ * @param [options.directionsProvider=&quot;online&quot;] {String} Online directions by default. See {{#crossLink &quot;MappedinDirections/directionsProvider:property&quot;}}{{/crossLink}} for more options.
+ * @param cb {directionsToCallback} Callback. See {{#crossLink &quot;MappedinNode/directionsToCallback:method&quot;}}{{/crossLink}} for details.
+ */
+MappedinLocation.prototype.directionsTo = function (destination, options, cb) {
+	var directionsOptions = options || {};
+	var directionsSource = directionsOptions.directionsProvider != null ? directionsOptions.directionsProvider : directionsProvider.ONLINE;
+	if (directionsSource == directionsProvider.OFFLINE) {
+		if (this._mappedin.venue.navigationGraph == null) {
+			this._mappedin.venue.navigationGraph = new NavigationGraph(this._mappedin.nodes, this._mappedin.vortexes);
+		}
+		var graph = this._mappedin.venue.navigationGraph;
+		var directions;
+		var path;
+		var accessible = directionsOptions.accessible || false;
+		var error;
+		var arriveAt;
+		if (destination instanceof MappedinLocation) {
+			path = graph.aStar(this.nodes, destination.nodes, accessible);
+			directions = new MappedinDirections(graph, path, this, destination, this._mappedin.nodes);
+		} else if (destination instanceof MappedinNode) {
+			arriveAt = destination.locations.length &gt; 0 ? destination.locations[0] : null;
+			path = graph.aStar(this.nodes, [destination], accessible);
+			directions = new MappedinDirections(graph, path, this, arriveAt, this._mappedin.nodes);
+		} else if (destination instanceof MappedinPolygon) {
+			path = graph.aStar(this.nodes, destination.entrances, accessible);
+			arriveAt = destination.locations.length &gt; 0 ? destination.locations[0] : null;
+			directions = new MappedinDirections(graph, path, this, arriveAt, this._mappedin.nodes);
+		} else if (destination instanceof Array &amp;&amp; destination.length &gt; 0 &amp;&amp; destination[0] instanceof MappedinNode) {
+			path = graph.aStar(this.nodes, destination, accessible);
+			directions = new MappedinDirections(graph, path, this, null, this._mappedin.nodes);
+		} else {
+			error = new TypeError(&#x27;destination must be a MappedinLocation, MappedinNode, MappedinPolygon or [MappedinNode]&#x27;);
+		}
+		if (directions &amp;&amp; directions.path.length == 0) {
+			error = new Error(&#x27;could not find a path to destination&#x27;);
+		}
+		cb(error, directions);
+	} else {
+		var query = {
+			originLocation: this._data.id,
+			destination: undefined,
+			location: undefined,
+			perspective: this._mappedin._do2D &amp;&amp; this._mappedin._perspective || undefined,
+			accessible: options != null &amp;&amp; directionsOptions.accessible || undefined
+		};
+		if (destination instanceof MappedinLocation) {
+			query.location = destination._data.id;
+		} else if (destination instanceof MappedinNode) {
+			query.destination = destination._data.id;
+		} else {
+			throw new TypeError(&#x27;destination must be a [MappedinLocation,MappedinNode]&#x27;);
+		}
+		this._mappedin._getObject(&#x27;directions&#x27;, query, cb);
+	}
+};
+
+/**
+ * Directions callback.
+ * @function directionsToCallback
+ * @param error {Error} Error.
+ * @param directions {MappedinDirections} Directions response.
+ */
+
+/**
+ * A {{#crossLink &quot;MappedinVortex&quot;}}{{/crossLink}} is a special entity that represents a link between two or more {{#crossLink &quot;MappedinMap&quot;}}{{/crossLink}}s at a given {{#crossLink &quot;MappedinVenue&quot;}}{{/crossLink}}. It is typically something like an elevator or stairs. These are also known as Connections in some parts of the system.
+ *
+ * They can be marked (wheelchair) Accessible or not for pathfinding purposes. If you ask for Accessible directions, paths that include non-accessible Vortexes like Stairs will not be used.
+ *
+ * @class MappedinVortex
+ */
+function MappedinVortex(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Vortex ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Vortex with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+MappedinVortex._fetch = function(mappedin, cb) {
+	var fields = mappedin._things.vortexes.slice();
+	// Some fields are required for offline directions
+	var requiredFields = [&#x27;name&#x27;, &#x27;type&#x27;, &#x27;accessible&#x27;, &#x27;weight&#x27;, &#x27;multiplier&#x27;, &#x27;nodes&#x27;];
+	requiredFields.forEach(function (field) {
+		addToSet(fields, field);
+	});
+	var query = {
+		fields: fields,
+		venue: mappedin._venue
+	};
+	mappedin._getArray(&#x27;vortex&#x27;, query, function(err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinVortex(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * A {{#crossLink &quot;MappedinMapGroup&quot;}}{{/crossLink}} is a collection of maps, usually representing the different floors of a single building. All Maps will be in a MapGroup, but if your Venue is only a single building (like a mall) you can likely ignore MapGroups entirely.
+ *
+ * @class MappedinMapGroup
+ */
+function MappedinMapGroup(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * MapGroup ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another MapGroup with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+MappedinMapGroup._fetch = function(mappedin, cb) {
+	var fields = mappedin._things.mapGroups.slice();
+	var query = {
+		fields: fields,
+		venue: mappedin._venue
+	};
+	mappedin._getArray(&#x27;map-group&#x27;, query, function(err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinMapGroup(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Maps within this MapGroup.
+ *
+ * @property maps {[MappedinMap]}
+ */
+defineLazyGetter(MappedinMapGroup, &#x27;maps&#x27;, function () {
+	var related = [];
+	var maps = this._mappedin.maps;
+	var id = this._data.id;
+	for (var i = 0, iLen = maps.length; i &lt; iLen; ++i) {
+		var map = maps[i];
+		if (map._data.group === id) {
+			related.push(map);
+		}
+	}
+	return related;
+});
+
+/**
+ * A {{#crossLink &quot;MappedinMap&quot;}}{{/crossLink}} belonging to a specific {{#crossLink &quot;MappedinVenue&quot;}}{{/crossLink}}. Typically represents a certain floor. Give this to a {{#crossLink &quot;MapView&quot;}}{{/crossLink}} to display to the user.
+ *
+ * A Map can have more properties such as &#x27;elevation&#x27;, &#x27;name&#x27; (e.g. Level 1), and &#x27;shortName&#x27; (e.g. L1). The elevation property can be used to determine the order of the floors (first, second, etc). Elevation is 0 based, going up and down in integers representing the number of floors above or below 0, which is ground level.
+ *
+ * The {{#crossLink &quot;Mappedin&quot;}}{{/crossLink}} &#x27;things&#x27; object is where you would specify what properties you want to download for Maps. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.
+ *
+ * See below for an example a &#x27;things&#x27; object with available Map properties specified:
+ *
+ *	things: {
+ *		venue: [],
+ *		locations: [],
+ *		categories: [],
+ *		maps: [&#x27;name&#x27;, &#x27;elevation&#x27;, &#x27;shortName&#x27;]
+ * 	}
+ *
+ * @class MappedinMap
+ */
+function MappedinMap(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	this._scale = getMapScale(this._data);
+	assignMissing(this, data);
+}
+
+/**
+ * Map ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Map with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+// Internal Documentation
+/*
+ *  Perspective ID
+ * @property perspectiveId {number}
+ */
+
+MappedinMap._fetch = function (mappedin, cb) {
+	var fields = mappedin._things.maps.slice();
+	if (mappedin._perspective) {
+		addToSet(fields, &#x27;perspectives&#x27;);
+	}
+	if (mappedin._things.mapGroups) {
+		addToSet(fields, &#x27;group&#x27;);
+	}
+	// Elevation is required for offline directions
+	addToSet(fields, &#x27;elevation&#x27;);
+	var query = {
+		fields: fields,
+		perspective: mappedin._perspective || undefined,
+		venue: mappedin._venue
+	};
+	mappedin._getArray(&#x27;map&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			var map = data[i];
+			if (mappedin._perspective) {
+				var per = map.perspective;
+				if (per != null) {
+					map.perspectiveId = per.id;
+					for (var j = 0, jLen = fields.length; j &lt; jLen; ++j) {
+						var field = fields[j];
+						if (mappedin._do2D) {
+							switch (field) {
+								case &#x27;width&#x27;:
+								case &#x27;height&#x27;:
+									map[field] = per.size &amp;&amp; per.size[field] || per[field];
+									break;
+								case &#x27;tiles&#x27;:
+								case &#x27;original&#x27;:
+									map[field] = per[field];
+									break;
+							}
+						} else {
+							switch (field) {
+								// We may want the camera settings later
+								case &#x27;scene&#x27;:
+									map[field] = per[field];
+									break;
+							}
+						}
+					}
+				}
+				delete map.perspective;
+			}
+			data[i] = new MappedinMap(mappedin, map);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Polygons on this Map.
+ *
+ * @property polygons {[MappedinPolygon]}
+ */
+defineLazyGetter(MappedinMap, &#x27;polygons&#x27;, function () {
+	var related = [];
+	var polygons = this._mappedin.polygons;
+	var id = this._data.id;
+	for (var i = 0, iLen = polygons.length; i &lt; iLen; ++i) {
+		var polygon = polygons[i];
+		if (polygon.map === id) {
+			related.push(polygon);
+		}
+	}
+	return related;
+});
+
+/**
+ * Map Group this map belongs to.
+ *
+ * @property mapGroup {MappedinMapGroup}
+ */
+defineLazyGetter(MappedinMap, &#x27;mapGroup&#x27;, function () {
+	var id = this._data.group;
+	var related = id &amp;&amp; this._mappedin._mapGroupsById[id] || null;
+	return related;
+});
+
+/**
+ * A {{#crossLink &quot;MappedinNode&quot;}}{{/crossLink}} represents a position, anchored to a specific {{#crossLink &quot;MappedinMap&quot;}}{{/crossLink}}.
+ *
+ * A Node can have more properties but usually the default is sufficient. The {{#crossLink &quot;Mappedin&quot;}}{{/crossLink}} &#x27;things&#x27; object is where you would specify what properties you want to download for Nodes. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.
+ *
+ * @class MappedinNode
+ */
+function MappedinNode(mappedin, data, index) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._index = index;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Node ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Node with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+/**
+ * ID of Map that the Node is located on.
+ *
+ * @property map {string}
+ */
+
+/**
+ *  X coordinate of Node&#x27;s position.
+ * @property x {number}
+ */
+
+/**
+ * Y coordinate of Node&#x27;s position.
+ * @property y {number}
+ */
+
+MappedinNode._fetch = function (mappedin, cb) {
+	var fields = mappedin._things.nodes.slice();
+	if (mappedin._things.maps) {
+		addToSet(fields, &#x27;map&#x27;);
+	}
+	// Some fields are required for offline directions
+	var requiredFields = [&#x27;weight&#x27;, &#x27;multiplier&#x27;];
+	requiredFields.forEach(function (field) {
+		addToSet(fields, field);
+	});
+	var query = {
+		fields: fields,
+		perspective: mappedin._do2D &amp;&amp; mappedin._perspective || undefined,
+		venue: mappedin._venue
+	};
+	mappedin._getArray(&#x27;node&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinNode(mappedin, data[i], i);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Adjacent Nodes.
+ *
+ * @property paths
+ * @type [MappedinNode]
+ */
+defineLazyGetter(MappedinNode, &#x27;paths&#x27;, function () {
+	var related = [];
+	var index = this._mappedin._nodesById;
+	var through = this._data.paths;
+	if (Array.isArray(through)) {
+		for (var i = 0, iLen = through.length; i &lt; iLen; ++i) {
+			var nodeId = through[i].node;
+			var node = index[nodeId];
+			if (node != null) {
+				related.push(node);
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * Locations attached to this Node.
+ *
+ * @property locations
+ * @type [MappedinLocation]
+ */
+defineLazyGetter(MappedinNode, &#x27;locations&#x27;, function () {
+	var related = [];
+	var locations = this._mappedin.locations;
+	var nodeId = this._data.id;
+	for (var i = 0, iLen = locations.length; i &lt; iLen; ++i) {
+		var location = locations[i];
+		var through = location._data.nodes;
+		if (Array.isArray(through)) {
+			for (var j = 0, jLen = through.length; j &lt; jLen; ++j) {
+				var tuple = through[j];
+				if (tuple.node === nodeId) {
+					related.push(location);
+					break;
+				}
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * Calculate the angle between this node and another
+ *
+ * @method
+ * @name getAngle
+ * @param to {MappedinNode} Other node in angle.
+ * @returns {Number}
+ */
+MappedinNode.prototype.getAngle = function (to) {
+	let xDelta = this.x - to.x;
+	let yDelta = this.y - to.y;
+	return (Math.atan2(yDelta, xDelta) + Math.PI * 2.5) % (Math.PI * 2);
+};
+
+/**
+ * Calculate the distance between this node and another
+ *
+ * @method
+ * @name getAngle
+ * @param to {MappedinNode} Other node to calculate distance from.
+ */
+MappedinNode.prototype.getDistance = function(to) {
+	let xDelta = this.x - to.x;
+	let yDelta = this.y - to.y;
+	let lengthSquared = xDelta * xDelta + yDelta * yDelta;
+	var scale;
+	if (this._mappedin._mapsById[this.map] == null) {
+		scale = 1;
+	} else {
+		scale = this._mappedin._mapsById[this.map]._scale;
+	}
+	return Math.sqrt(lengthSquared) / scale;
+};
+
+MappedinNode.prototype.getShortestEuclideanDistance = function (destinations) {
+	var origin = this;
+	var shortestSoFar = Number.MAX_VALUE;
+	destinations.forEach(function (destination) {
+		var distance = origin.getDistance(destination);
+		if (shortestSoFar &gt; distance) {
+			shortestSoFar = distance;
+		}
+	});
+	return shortestSoFar;
+};
+
+/**
+ * Gets directions from this Node to the target Node or Location.
+ *
+ * @method
+ * @name directionsTo
+ * @param destination {MappedinLocation|MappedinNode|[MappedinNode]|MappedinPolygon} Destination.
+ * @param options {Object} Options.
+ * @param [options.accessible=false] {boolean} True if directions should be wheelchair accessible.
+ * @param [options.directionsProvider=&quot;online&quot;] {String} Online directions by default. See {{#crossLink &quot;MappedinDirections/directionsProvider:property&quot;}}{{/crossLink}} for more options.
+ * @param cb {directionsToCallback} Callback. See {{#crossLink &quot;MappedinNode/directionsToCallback:method&quot;}}{{/crossLink}} for details.
+ */
+MappedinNode.prototype.directionsTo = function (destination, options, cb) {
+	var directionsOptions = options || {};
+	var directionsSource = directionsOptions.directionsProvider != null ? directionsOptions.directionsProvider : directionsProvider.ONLINE;
+	if (directionsSource == directionsProvider.OFFLINE) {
+		if (this._mappedin.venue.navigationGraph == null) {
+			this._mappedin.venue.navigationGraph = new NavigationGraph(this._mappedin.nodes, this._mappedin.vortexes);
+		}
+		var graph = this._mappedin.venue.navigationGraph;
+		var directions;
+		var path;
+		var accessible = directionsOptions.accessible || false;
+		var departFrom = this.locations.length &gt; 0 ? this.locations[0] : null;
+		var error;
+		var arriveAt;
+		if (destination instanceof MappedinLocation) {
+			path = graph.aStar([this], destination.nodes, accessible);
+			directions = new MappedinDirections(graph, path, departFrom, destination, this._mappedin.nodes);
+		} else if (destination instanceof MappedinNode) {
+			arriveAt = destination.locations.length &gt; 0 ? destination.locations[0] : null;
+			path = graph.aStar([this], [destination], accessible);
+			directions = new MappedinDirections(graph, path, departFrom, arriveAt, this._mappedin.nodes);
+		} else if (destination instanceof MappedinPolygon) {
+			path = graph.aStar([this], destination.entrances, accessible);
+			arriveAt = destination.locations.length &gt; 0 ? destination.locations[0] : null;
+			directions = new MappedinDirections(graph, path, departFrom, arriveAt, this._mappedin.nodes);
+		} else if (destination instanceof Array &amp;&amp; destination.length &gt; 0 &amp;&amp; destination[0] instanceof MappedinNode) {
+			path = graph.aStar([this], destination, accessible);
+			directions = new MappedinDirections(graph, path, departFrom, null, this._mappedin.nodes);
+		} else {
+			error = new TypeError(&#x27;destination must be a MappedinLocation, MappedinNode, MappedinPolygon or [MappedinNode]&#x27;);
+		}
+		if (directions &amp;&amp; directions.path.length == 0) {
+			error = new Error(&#x27;could not find a path to destination&#x27;);
+		}
+		cb(error, directions);
+	} else {
+		var query = {
+			origin: this._data.id,
+			destination: undefined,
+			location: undefined,
+			perspective: this._mappedin._do2D &amp;&amp; this._mappedin._perspective || undefined,
+			accessible: options != null &amp;&amp; directionsOptions.accessible || undefined
+		};
+		if (destination instanceof MappedinLocation) {
+			query.location = destination._data.id;
+		} else if (destination instanceof MappedinNode) {
+			query.destination = destination._data.id;
+		} else {
+			throw new TypeError(&#x27;destination must be a [MappedinLocation,MappedinNode]&#x27;);
+		}
+		this._mappedin._getObject(&#x27;directions&#x27;, query, cb);
+	}
+};
+
+function Edge(origin, destination, vortex = null) {
+	this.origin = origin;
+	this.destination = destination;
+	this.vortex = vortex;
+	var weight;
+	var multiplier;
+	if (vortex != null) {
+		var originElevation = origin._mappedin._mapsById[origin.map].elevation;
+		var destinationElevation = destination._mappedin._mapsById[destination.map].elevation;
+		var elevationDelta = Math.abs(originElevation - destinationElevation);
+		this.distance = 0;
+		weight = vortex.weight || (vortex.type === &#x27;elevator&#x27; ? 2000 : 1000);
+		multiplier = vortex.multiplier || 1;
+		this.weight = elevationDelta * multiplier + weight;
+	} else {
+		this.distance = this.origin.getDistance(this.destination);
+		weight = destination.weight || 0;
+		multiplier = destination.multiplier || 1;
+		this.weight = this.distance * multiplier + weight;
+	}
+}
+
+Edge.prototype.getAngle = function () {
+	return this.origin.getAngle(this.destination);
+};
+
+Edge.prototype.getDistance = function () {
+	return this.distance;
+};
+
+function NavigationGraph(nodes, vortexes) {
+	var edges = [];
+	nodes.forEach(function (origin) {
+		edges[origin._index] = [];
+		var pathLength = origin.paths.length;
+		var destinations = origin.paths;
+		for (var j = 0; j &lt; pathLength; j++) {
+			var destination = destinations[j];
+			edges[origin._index].push(new Edge(origin, destination));
+		}
+	});
+
+	vortexes.forEach(function (vortex) {
+		var vortexNodes = vortex.nodes;
+		var originIndex = 0;
+		if (vortexNodes != undefined) {
+			while (originIndex &lt; vortexNodes.length - 1) {
+				var origin = vortex._mappedin._nodesById[vortexNodes[originIndex]];
+				if (origin != null) {
+					var destinationIndex = originIndex + 1;
+					while (destinationIndex &lt; vortexNodes.length) {
+						var destination = vortex._mappedin._nodesById[vortexNodes[destinationIndex]];
+						if (destination != null) {
+							edges[origin._index].push(new Edge(origin, destination, vortex));
+							edges[destination._index].push(new Edge(destination, origin, vortex));
+						}
+						destinationIndex ++;
+					}
+				}
+				originIndex ++;
+			}
+		}
+	});
+	this.edges = edges;
+	//TODO: handle nodes not in venue nodes
+}
+
+NavigationGraph.prototype.aStar = function (origins, destinations, accessible) {
+	if (origins.length == 0 || destinations.length == 0) {
+		return null;
+	}
+	var frontier = [];
+	var cameFrom = {};
+	var costSoFar = {};
+
+	origins.forEach(function (origin) {
+		var priority = origin.getShortestEuclideanDistance(destinations);
+		frontier.push({origin: origin, priority: priority});
+		var id = origin.id;
+		cameFrom[id] = null;
+		costSoFar[id] = 0;
+	});
+
+	frontier.sort(function (a, b) {
+		return a.priority - b.priority;
+	});
+	while (frontier.length &gt; 0) {
+		var current = frontier[0];
+		if  (destinations.includes(current.origin)) {
+			var directions = [];
+			var step = cameFrom[current.origin.id];
+			while (step != null) {
+				directions.push(step);
+				var nextStep = cameFrom[step.origin.id];
+				if (nextStep != null) {
+					step = nextStep;
+				} else {
+					step = null;
+				}
+			}
+			return directions.reverse();
+		}
+		for (var i = 0; i &lt; this.edges[current.origin._index].length; i++) {
+			var edge = this.edges[current.origin._index][i];
+			if (accessible &amp;&amp; edge.vortex != null &amp;&amp; !edge.vortex.accessible) {
+				continue;
+			}
+			var newCost = costSoFar[current.origin.id] + edge.weight;
+			if (costSoFar[edge.destination.id] == null || newCost &lt; costSoFar[edge.destination.id]) {
+				costSoFar[edge.destination.id] = newCost;
+				var cost = newCost + edge.destination.getShortestEuclideanDistance(destinations);
+				frontier.push({origin: edge.destination, priority: cost});
+				cameFrom[edge.destination.id] = edge;
+			}
+		}
+		frontier.splice(0, 1);
+		frontier.sort(function (a, b) {
+			return a.priority - b.priority;
+		});
+	}
+	return null;
+};
+
+/**
+ * Directions callback.
+ * @function directionsToCallback
+ * @param error {Error} Error.
+ * @param directions {MappedinDirections} Directions response.
+ */
+
+/**
+ * A {{#crossLink &quot;MappedinDirections&quot;}}{{/crossLink}} object will contain an array of {{#crossLink &quot;MappedinNode&quot;}}{{/crossLink}}s on a path, and a corresponding list of {{#crossLink &quot;MappedinDirective&quot;}}{{/crossLink}} objects representing the instructions to display to the user.
+ * @class MappedinDirections
+ */
+function MappedinDirections(graph, steps, departFrom, arriveAt, venueNodes) {
+	if (steps != null &amp;&amp; steps.length &gt; 0) {
+		var distance = 0;
+		var stepsLength = steps.length;
+		var path = new Array(stepsLength + 1);
+		for (var i = 0; i &lt; stepsLength; i++) {
+			path[i] = steps[i].origin;
+		}
+		path[stepsLength] = steps[stepsLength - 1].destination;
+		var instructions = [];
+		var prevNode = null;
+		var prevEdge = null;
+		for (var index = 0; index &lt; stepsLength; index++) {
+			var edge = steps[index];
+			var origin = edge.origin;
+			var destination = edge.destination;
+			distance += edge.getDistance();
+			var instruction;
+			if (index == 0) {
+				if (departFrom != null) {
+					instruction = &quot;Depart from &quot; + departFrom.name;
+				} else {
+					instruction = &quot;Depart from current location&quot;;
+				}
+				instructions.push(new MappedinDirective(origin, {type: actionType.DEPARTURE}, departFrom, instruction));
+			}
+			if (edge.vortex != null) {
+				var fromMap = origin._mappedin._mapsById[origin.map];
+				var toMap = origin._mappedin._mapsById[destination.map];
+				instruction = &quot;Take &quot; + edge.vortex.name + &quot; to &quot; + toMap.name;
+				instructions.push(new MappedinDirective(
+					origin,
+					{type: actionType.TAKEVORTEX, fromMap: fromMap, toMap: toMap},
+					edge.vortex,
+					instruction));
+			} else {
+				var bearingChangeThreshold = Math.PI * 0.1;
+				if (prevNode != null &amp;&amp; prevEdge != null) {
+					// All edges out of current node
+					var exits = graph.edges[origin._index];
+					// Edges out of current node but not backwards or selected edge
+					var otherExits = [];
+					for (var j = 0; j &lt; exits.length; j++) {
+						var otherExit = exits[j];
+						if (otherExit.destination != prevNode &amp;&amp; otherExit.destination != edge.destination) {
+							otherExits.push(otherExit);
+						}
+					}
+					if (otherExits.length &gt; 0) {
+						var relativeBearingAngle = -differenceBetweenAngles(prevEdge.getAngle(), edge.getAngle());
+						var closestOptionDelta = Math.PI;
+						for (var k = 0; k &lt; otherExits.length; k ++) {
+							var exit = otherExits[k];
+							var newDelta = -differenceBetweenAngles(edge.getAngle(), exit.getAngle());
+							closestOptionDelta = Math.min(closestOptionDelta, Math.abs(newDelta));
+						}
+						if (prevEdge.vortex != null) {
+							instruction = &quot;Exit out of &quot; + prevEdge.vortex.type;
+							instructions.push(new MappedinDirective(
+								origin,
+								{type: actionType.TURN, bearing: &quot;Straight&quot;, referencePosition: &quot;At&quot;},
+								prevEdge.vortex,
+								instruction));
+						} else if (Math.abs(relativeBearingAngle) &gt;= bearingChangeThreshold || Math.abs(closestOptionDelta) &lt;= bearingChangeThreshold) {
+							var relativeBearing;
+							var relativeBearingString;
+							if (relativeBearingAngle &lt;= -Math.PI / 4.0) {
+								relativeBearing = bearingType.RIGHT;
+								relativeBearingString = &quot;Turn right&quot;;
+							} else if (relativeBearingAngle &lt;= -bearingChangeThreshold) {
+								relativeBearing = bearingType.SLIGHTRIGHT;
+								relativeBearingString = &quot;Turn slightly right&quot;;
+							} else if (relativeBearingAngle &lt;= bearingChangeThreshold) {
+								relativeBearing = bearingType.STRAIGHT;
+								relativeBearingString = &quot;Head straight&quot;;
+							} else if (relativeBearingAngle &lt;= Math.PI / 4.0) {
+								relativeBearing = bearingType.SLIGHTLEFT;
+								relativeBearingString = &quot;Turn slightly left&quot;;
+							} else {
+								relativeBearing = bearingType.LEFT;
+								relativeBearingString = &quot;Turn left&quot;;
+							}
+							var referenceLocation = null;
+							// If current node has a Location, use as referenceLocation
+							if (venueNodes.includes(origin) &amp;&amp; origin.locations[0] != null) {
+								referenceLocation = origin.locations[0];
+							} else {
+								referenceLocation = getClosestLocationInRay(graph, prevEdge, Math.PI * 0.5, 10);
+							}
+							if (referenceLocation != null) {
+								var instructionString = relativeBearingString + &quot; at &quot; + referenceLocation.name;
+								instruction = new MappedinDirective(
+									origin,
+									{type: actionType.TURN, bearing: relativeBearing, referencePosition: &quot;At&quot;},
+									referenceLocation,
+									instructionString);
+								instruction.type = relativeBearing;
+								instructions.push(instruction);
+							} else {
+								instruction = new MappedinDirective(
+									origin,
+									{type: actionType.TURN, bearing: relativeBearing, referencePosition: &quot;At&quot;},
+									null,
+									relativeBearingString);
+								instructions.push(instruction);
+							}
+						}
+					}
+				}
+			}
+			if (index == stepsLength - 1) {
+				if (arriveAt != null) {
+					instruction = &quot;Arrive at &quot; + arriveAt.name;
+				} else {
+					instruction = &quot;Arrive at destination&quot;;
+				}
+				instructions.push(new MappedinDirective(origin, {type: actionType.ARRIVAL}, arriveAt, instruction));
+			}
+			prevNode = origin;
+			prevEdge = edge;
+		}
+		var filteredInstructions = [];
+		var previousVortex = null;
+		var distanceFromVortexThreshold = 5;
+		var length = instructions.length;
+		for (var l = length - 1; l &gt;= 0; l --) {
+			var filteredInstruction = instructions[l];
+			if (filteredInstruction.action.type == actionType.TAKEVORTEX)  {
+				previousVortex = filteredInstruction.node;
+				filteredInstructions.unshift(filteredInstruction);
+			} else if (filteredInstruction.action.type == actionType.TURN &amp;&amp; previousVortex != null) {
+				if (filteredInstruction.node.getDistance(previousVortex) &gt; distanceFromVortexThreshold) {
+					filteredInstructions.unshift(filteredInstruction);
+				}
+			} else {
+				filteredInstructions.unshift(filteredInstruction);
+			}
+		}
+		this.distance = distance;
+		this.path = path;
+		this.instructions = filteredInstructions;
+		this.directions = filteredInstructions;
+	} else {
+		this.distance = 0;
+		this.path = [];
+		this.instructions = [];
+		this.directions = filteredInstructions;
+	}
+}
+
+// Find reference Location
+// Check for for Locations until breaking angle threshold or distance threshold
+function getClosestLocationInRay(graph, startingEdge, angleThreshold, distanceThreshold) {
+	var totalAngle = 0;
+	var totalDistance = 0;
+	var currentEdge = startingEdge;
+	while (Math.abs(totalAngle) &lt; angleThreshold &amp;&amp; totalDistance &lt; distanceThreshold) {
+		var exits = graph.edges[currentEdge.destination._index];
+		var straightestEdge = null;
+		var deltaAngle = 0;
+		for (var i = 0; i &lt; exits.length; i ++) {
+			var exit = exits[i];
+			if (exit.getDistance() &gt; 0) {
+				if (straightestEdge != null) {
+					var newDelta = -differenceBetweenAngles(currentEdge.getAngle(), exit.getAngle());
+					if (Math.abs(newDelta) &lt; Math.abs(deltaAngle)) {
+						straightestEdge = exit;
+						deltaAngle = newDelta;
+					}
+				} else {
+					straightestEdge = exit;
+					deltaAngle = -differenceBetweenAngles(currentEdge.getAngle(), exit.getAngle());
+				}
+			}
+		}
+
+		if (straightestEdge != null) {
+			if (Math.abs(deltaAngle) &gt;= angleThreshold) {
+				return null;
+			}
+			totalAngle += deltaAngle;
+			totalDistance += straightestEdge.getDistance();
+
+			if (Math.abs(totalAngle) &gt;= angleThreshold || totalDistance &gt; distanceThreshold) {
+				return null;
+			}
+			if (straightestEdge.destination.locations[0] != null) {
+				return straightestEdge.destination.locations[0];
+			}
+			currentEdge = straightestEdge;
+		} else {
+			return null;
+		}
+	}
+	return null;
+}
+
+function differenceBetweenAngles(a, b) {
+	return (((b - a + Math.PI) % (Math.PI * 2) + (Math.PI * 2)) % (Math.PI * 2)) - Math.PI;
+}
+
+/**
+ * Total distance of path in meters
+ * @property distance
+ * @type {Number}
+ */
+/**
+ * Instructions to display to the user.
+ * @property instructions
+ * @type {[MappedinDirective]}
+ */
+/**
+ * Collection of Nodes that form a path.
+ * @property path
+ * @type {[MappedinNode]}
+ */
+
+/**
+ * The source of wayfinding directions.
+ * @property directionsProvider
+ * @type {&quot;online&quot;, &quot;offline&quot;}
+ * @final
+ * @static
+ */
+export const directionsProvider = {
+	&quot;ONLINE&quot;: &quot;online&quot;,
+	&quot;OFFLINE&quot;: &quot;offline&quot;,
+};
+
+/**
+ * A {{#crossLink &quot;MappedinDirective&quot;}}{{/crossLink}} is an instruction for a user to get from one place to another.
+ * @class MappedinDirective
+ */
+function MappedinDirective(origin, action, atLocation, instruction) {
+	this.node = origin;
+	this.action = action;
+	this.atLocation = atLocation;
+	this.instruction = instruction;
+}
+/**
+ * Node where instruction takes place.
+ * @property node
+ * @type {MappedinNode}
+ */
+/**
+ * The action being performed at a Node. The object contains an {{#crossLink &quot;MappedinDirective/actionType:property&quot;}}{{/crossLink}} and if the type is TURN, there is also a {{#crossLink &quot;MappedinDirective/bearingType:property&quot;}}{{/crossLink}}.
+ * @property action
+ * @type {actionType}
+ */
+/**
+ * Text Instruction to display to user.
+ * @property instruction
+ * @type {string}
+ */
+
+/**
+ * The possible action types a {{#crossLink &quot;MappedinDirective&quot;}}{{/crossLink}} can have.
+ * @property actionType
+ * @type {DEPARTURE, TAKEVORTEX, TURN, ARRIVAL}
+ * @final
+ * @static
+ */
+export const actionType = {
+	&quot;DEPARTURE&quot;: &quot;Departure&quot;,
+	&quot;TAKEVORTEX&quot;: &quot;TakeVortex&quot;,
+	&quot;TURN&quot;: &quot;Turn&quot;,
+	&quot;ARRIVAL&quot;: &quot;Arrival&quot;
+};
+
+/**
+ * The possible bearings a {{#crossLink &quot;MappedinDirective&quot;}}{{/crossLink}} turn can have.
+ * @property bearingType
+ * @type {STRAIGHT, RIGHT, SLIGHTRIGHT, LEFT, SLIGHTLEFT}
+ * @final
+ * @static
+ */
+export const bearingType = {
+	&quot;STRAIGHT&quot;: &quot;Straight&quot;,
+	&quot;RIGHT&quot;: &quot;Right&quot;,
+	&quot;SLIGHTRIGHT&quot;: &quot;SlightRight&quot;,
+	&quot;LEFT&quot;: &quot;Left&quot;,
+	&quot;SLIGHTLEFT&quot;: &quot;SlightLeft&quot;
+};
+
+/**
+ * The {{#crossLink &quot;MappedinPolygon&quot;}}{{/crossLink}} class represents the 3D shape of a {{#crossLink &quot;MappedinLocation&quot;}}{{/crossLink}} on a {{#crossLink &quot;MappedinMap&quot;}}{{/crossLink}}. Polygons have access to Locations they belong to, and any entrances to the Polygon.
+ *
+ * A Polygon can have more properties but usually the default is sufficient. The {{#crossLink &quot;Mappedin&quot;}}{{/crossLink}} &#x27;things&#x27; object is where you would specify what properties you want to download for Polygons. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.
+ *
+ * @class MappedinPolygon
+ */
+function MappedinPolygon(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Polygon ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Polygon with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+/**
+ * ID of Map that Polygon is located on.
+ *
+ * @property map {string}
+ */
+
+MappedinPolygon._fetch = function (mappedin, cb) {
+	var fields = mappedin._things.polygons.slice();
+	if (mappedin._things.maps) {
+		addToSet(fields, &#x27;map&#x27;);
+	}
+	if (mappedin._things.nodes) {
+		addToSet(fields, &#x27;entrances&#x27;);
+	}
+	var query = {
+		fields: fields,
+		perspective:  mappedin._do2D &amp;&amp; mappedin._perspective || undefined,
+		venue: mappedin._venue
+	};
+	mappedin._getArray(&#x27;polygon&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinPolygon(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Locations attached to the Polygon.
+ *
+ * @property locations {[MappedinLocation]}
+ */
+defineLazyGetter(MappedinPolygon, &#x27;locations&#x27;, function () {
+	var related = [];
+	var locations = this._mappedin.locations;
+	var id = this._data.id;
+	for (var i = 0, iLen = locations.length; i &lt; iLen; ++i) {
+		var location = locations[i];
+		var through = location._data.polygons;
+		if (Array.isArray(through)) {
+			for (var j = 0, jLen = through.length; j &lt; jLen; ++j) {
+				var tuple = through[j];
+				if (tuple.id === id) {
+					related.push(location);
+					break;
+				}
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * Polygon&#x27;s entrance Nodes.
+ *
+ * @property entrances {[MappedinNode]}
+ */
+defineLazyGetter(MappedinPolygon, &#x27;entrances&#x27;, function () {
+	var related = [];
+	var through = this._data.entrances;
+	var index = this._mappedin._nodesById;
+	if (Array.isArray(through)) {
+		for (var i = 0, iLen = through.length; i &lt; iLen; ++i) {
+			var nodeId = through[i].id;
+			var node = index[nodeId];
+			if (node != null) {
+				related.push(node);
+			}
+		}
+	}
+	return related;
+});
+
+/**
+ * Gets directions from this Location to the target Node or Location.
+ *
+ * @method
+ * @name directionsTo
+ * @param destination {MappedinLocation|MappedinNode|[MappedinNode]|MappedinPolygon} Destination.
+ * @param options {Object} Options.
+ * @param [options.accessible=false] {boolean} True if directions should be wheelchair accessible.
+ * @param [options.directionsProvider=&quot;online&quot;] {String} Online directions by default. See {{#crossLink &quot;MappedinDirections/directionsProvider:property&quot;}}{{/crossLink}} for more options.
+ * @param cb {directionsToCallback} Callback. See {{#crossLink &quot;MappedinNode/directionsToCallback:method&quot;}}{{/crossLink}} for details.
+ */
+MappedinPolygon.prototype.directionsTo = function (destination, options, cb) {
+	var directionsOptions = options || {};
+	var directionsSource = directionsOptions.directionsProvider != null ? directionsOptions.directionsProvider : directionsProvider.ONLINE;
+	if (directionsSource == directionsProvider.OFFLINE) {
+		if (this._mappedin.venue.navigationGraph == null) {
+			this._mappedin.venue.navigationGraph = new NavigationGraph(this._mappedin.nodes, this._mappedin.vortexes);
+		}
+		var graph = this._mappedin.venue.navigationGraph;
+		var directions;
+		var path;
+		var accessible = directionsOptions.accessible || false;
+		var departFrom = this.locations.length &gt; 0 ? this.locations[0] : null;
+		var arriveAt;
+		var error;
+		if (destination instanceof MappedinLocation) {
+			path = graph.aStar(this.entrances, destination.nodes, accessible);
+			directions = new MappedinDirections(graph, path, departFrom, destination, this._mappedin.nodes);
+		} else if (destination instanceof MappedinNode) {
+			arriveAt = destination.locations.length &gt; 0 ? destination.locations[0] : null;
+			path = graph.aStar(this.entrances, [destination], accessible);
+			directions = new MappedinDirections(graph, path, departFrom, arriveAt, this._mappedin.nodes);
+		} else if (destination instanceof MappedinPolygon) {
+			path = graph.aStar(this.entrances, destination.entrances, accessible);
+			arriveAt = destination.locations.length &gt; 0 ? destination.locations[0] : null;
+			directions = new MappedinDirections(graph, path, departFrom, arriveAt, this._mappedin.nodes);
+		} else if (destination instanceof Array &amp;&amp; destination.length &gt; 0 &amp;&amp; destination[0] instanceof MappedinNode) {
+			path = graph.aStar(this.entrances, destination, accessible);
+			directions = new MappedinDirections(graph, path, departFrom, null, this._mappedin.nodes);
+		} else {
+			error = new TypeError(&#x27;destination must be a MappedinLocation, MappedinNode, MappedinPolygon or [MappedinNode]&#x27;);
+		}
+		if (directions &amp;&amp; directions.path.length == 0) {
+			error = new Error(&#x27;could not find a path to destination&#x27;);
+		}
+		cb(error, directions);
+	} else {
+		var query = {
+			originLocation: this._data.id,
+			destination: undefined,
+			location: undefined,
+			perspective: this._mappedin._do2D &amp;&amp; this._mappedin._perspective || undefined,
+			accessible: directionsOptions.accessible || undefined
+		};
+		if (destination instanceof MappedinLocation) {
+			query.location = destination._data.id;
+		} else if (destination instanceof MappedinNode) {
+			query.destination = destination._data.id;
+		} else {
+			throw new TypeError(&#x27;destination must be a [MappedinLocation,MappedinNode]&#x27;);
+		}
+		this._mappedin._getObject(&#x27;directions&#x27;, query, cb);
+	}
+};
+
+/**
+ * A {{#crossLink &quot;MappedinVenue&quot;}}{{/crossLink}} is a specific place (like a mall) with one or more Maps (typically representing different floors) and Locations (stores, washrooms, elevators, etc).
+ *
+ * All core aspects of the Venue&#x27;s data, such as {{#crossLink &quot;MappedinCategory&quot;}}{{/crossLink}}s, {{#crossLink &quot;MappedinLocation&quot;}}{{/crossLink}}s, {{#crossLink &quot;MappedinMap&quot;}}{{/crossLink}}s, {{#crossLink &quot;MappedinPolygon&quot;}}{{/crossLink}}s and {{#crossLink &quot;MappedinNode&quot;}}{{/crossLink}}s can be accessed through the Venue.
+ *
+ * A Venue can have more properties such as &#x27;name&#x27; and &#x27;slug&#x27;. The {{#crossLink &quot;Mappedin&quot;}}{{/crossLink}} &#x27;things&#x27; object is where you would specify what properties you want to download for Venues. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.
+ *
+ * See below for an example a &#x27;things&#x27; object with available Venue properties specified:
+ *
+ *	things: {
+ *		venue: [&#x27;slug&#x27;, &#x27;name&#x27;, &#x27;language&#x27;, &#x27;address&#x27;, &#x27;city&#x27;, &#x27;state&#x27;, &#x27;postal&#x27;, &#x27;telephone&#x27;, &#x27;latitude&#x27;, &#x27;longitude&#x27;, &#x27;website&#x27;, &#x27;operationHours&#x27;],
+ *		locations: [],
+ *		categories: [],
+ *		maps: []
+ * 	}
+ *
+ *
+ * @class MappedinVenue
+ */
+function MappedinVenue(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	this.navigationGraph = null;
+	assignMissing(this, data);
+}
+
+MappedinVenue._fetch = function (mappedin, cb) {
+	var query = {
+		fields: mappedin._things.venue,
+		slug: mappedin._venue,
+		limit: 1
+	};
+	mappedin._getArray(&#x27;venue&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		if (data.length &lt; 1) {
+			cb(new Error(&#x27;venue not found&#x27;));
+			return;
+		}
+		var venue = new MappedinVenue(mappedin, data[0]);
+		cb(null, venue);
+	});
+};
+
+// Internal Doc
+/*
+ * An Apollo Theme.
+ *
+ * @class MappedinTheme
+ */
+function MappedinTheme(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Theme ID.
+ *
+ * @property id {string}
+ */
+
+MappedinTheme._fetch = function(mappedin, cb) {
+	// Is this called themes?
+	var fields = mappedin._things.themes.slice();
+	var query = {
+		fields: fields,
+		venue: mappedin._venue
+	};
+	mappedin._getArray(&#x27;apollo-theme&#x27;, query, function(err, data) {
+		if (err) return cb(err);
+		for (var i = 0; i &lt; data.length; ++i) {
+			data[i] = new MappedinTheme(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * An event.
+ *
+ * @class MappedinEvent
+ */
+function MappedinEvent(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+/**
+ * Event ID.
+ *
+ * This is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink &quot;Mappedin/getVenue:method&quot;}}{{/crossLink}}, but it may not be present in future calls, even if there is another Event with otherwise similar properties.
+ * An ID can never be reused if it&#x27;s, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.
+ *
+ * @property id {string}
+ */
+
+MappedinEvent._fetch = function (mappedin, cb) {
+	var fields = mappedin._things.events.slice();
+	if (mappedin._things.locations) {
+		addToSet(fields, &#x27;location&#x27;);
+	}
+	var query = {
+		fields: fields,
+		venue: mappedin._venue,
+		activeAtOrAfter: Date.now()
+	};
+	mappedin._getArray(&#x27;event&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0; i &lt; data.length; ++i) {
+			data[i] = new MappedinEvent(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+/**
+ * Location this Event is occuring at.
+ *
+ * @property location {MappedinLocation}
+ */
+defineLazyGetter(MappedinEvent, &#x27;location&#x27;, function () {
+	var related = null;
+	var through = this._mappedin._locationsById;
+	var locationId = this._data.location;
+	if (locationId != null) {
+		var location = through[locationId];
+		if (location != null) {
+			related = location;
+		}
+	}
+	return related;
+});
+
+/**
+ * A location state, that can belong to any number of {{#crossLink &quot;MappedinLocation&quot;}}{{/crossLink}}s.
+ * @class MappedinLocationState
+ */
+function MappedinLocationState(mappedin, data) {
+	this._mappedin = mappedin;
+	this._data = data;
+	this._cache = {};
+	assignMissing(this, data);
+}
+
+MappedinLocationState._fetch = function (mappedin, cb) {
+	var fields = mappedin._things.locationStates.slice();
+	var query = {
+		fields: fields,
+		venue: mappedin._venue,
+	};
+	mappedin._getArray(&#x27;location-state&#x27;, query, function (err, data) {
+		if (err) return cb(err);
+		for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+			data[i] = new MappedinLocationState(mappedin, data[i]);
+		}
+		cb(null, data);
+	});
+};
+
+var THINGS = {
+	categories: MappedinCategory,
+	locations: MappedinLocation,
+	vortexes: MappedinVortex,
+	maps: MappedinMap,
+	nodes: MappedinNode,
+	polygons: MappedinPolygon,
+	venue: MappedinVenue,
+	events: MappedinEvent,
+	mapGroups: MappedinMapGroup,
+	themes: MappedinTheme,
+	locationStates: MappedinLocationState,
+};
+
+/**
+ * Venue aggregate root.
+ *
+ * @class Mappedin
+ * @constructor
+ * @param options {Object} Initialization options.
+ * @param [options.clientId] {string} The client key/ID provided to you by Mappedin to access our API. Contact your Mappedin representative if you do not have one.
+ * @param [options.clientSecret] {string} The secret/password that goes along with your ID.
+ * @param [options.accessToken] {string} OAuth access token.
+ * @param options.perspective {String} The name of the perspective you are using for 2D and 3D. Probably &quot;Website&quot;. This controls what 3D files or 2D tiles get downloaded, and different persepctives may have different map features enabled/disabled, or have different images.
+ * @param [options.language] {string} Language name (e.g. en-US).
+ * @param  options.things {object} The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and &#x60;id&#x60; is always included, but it won&#x27;t download anything extra (like the names of locations) unless you specify it here.
+ *  @param options.things.venue {[String]} The Venue information you want. &#x27;slug&#x27; and &#x27;name&#x27; are typical, but you may also want others. Speak to Mappedin to see what is available.
+ *  @param options.things.locations {[String]} The fields you will be using for any Locations. You probably want at least &#x27;name&#x27; and &#x27;type&#x27;. You will also probably want &#x27;description&#x27; and &#x27;logo&#x27;, but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.
+ *  @param options.things.categories {[String]} The fields you will use for each Category. Typically &#x27;name&#x27; at a minimum, but other common fields are &#x27;description&#x27;, &#x27;picture&#x27;, &#x27;sortOrder&#x27; or &#x27;parents&#x27; (for hierarchical categories) as well.
+ *  @param options.things.maps {[String]} The fields on each Map you are interested in. You&#x27;ll probably want one or both of &#x27;name&#x27; or &#x27;shortName&#x27;, and &#x27;elevation&#x27; to sort.
+ *  @param [options.things.polygons] {[String]} The Polygon fields you want. The default is probably sufficient.
+ *  @param [options.things.nodes] {[String]} The Node fields you want. The default is probably sufficient.
+ * @param options.venue {string}Venue ID.
+ */
+function Mappedin(options) {
+	this._accessToken = options.accessToken || null;
+	this._baseUrl = options.baseUrl || baseUrl;
+	this._clientId = options.clientId || null;
+	this._clientSecret = options.clientSecret || null;
+	this._perspective = options.perspective || null;
+	this._language = options.language || null;
+	this._things = options.things || {};
+	this._venue = options.venue || null;
+	this._do2D = options.do2D || false;
+
+	this._data = {};
+	this._cache = {};
+	this._authorization = null;
+
+	if (this._accessToken) {
+		this._authorization = &#x27;Bearer &#x27; + this._accessToken;
+	} else if (this._clientId &amp;&amp; this._clientSecret) {
+		this._authorization = &#x27;Basic &#x27; + btoa(this._clientId + &#x27;:&#x27; + this._clientSecret);
+	}
+}
+
+Mappedin.prototype._getJSON = function (url, cb) {
+	if (this._language) {
+		url += &#x27;&amp;lang=&#x27; + encodeURIComponent(this._language);
+	}
+	var headers = {
+		&#x27;Authorization&#x27;: &#x27;Basic &#x27; + btoa(this._clientId + &quot;:&quot; + this._clientSecret),
+		&#x27;Content-Type&#x27;: &#x27;text/json&#x27;
+	};
+
+	if (this._language) {
+		headers[&#x27;Accept-Language&#x27;] = this._language;
+	}
+
+	var req = {
+		method: &#x27;GET&#x27;,
+		headers: headers
+	};
+
+	new Promise(function (resolve, reject) {
+		fetch(url, req).then(function (response) {
+			response.json()
+				.then(resolve)
+				.catch(reject);
+		})
+			.catch(reject);
+	})
+		.then(function (response) {
+			cb(null, {data: response});
+		})
+		.catch(function (error) {
+			cb(error, null);
+		});
+};
+
+function stringifyQuery(query) {
+	var queryString = &#x27;&#x27;;
+	if (query != null) {
+		var delim = &#x27;?&#x27;;
+		var keys = Object.keys(query);
+		for (var i = 0, iLen = keys.length; i &lt; iLen; ++i) {
+			var name = keys[i];
+			var value = query[name];
+			if (value != null) {
+				queryString += delim
+          + encodeURIComponent(name) + &#x27;=&#x27;
+          + encodeURIComponent(value);
+				delim = &#x27;&amp;&#x27;;
+			}
+		}
+	}
+	return queryString;
+}
+
+Mappedin.prototype._getObject = function (pathname, query, cb) {
+	var url = this._baseUrl + pathname + stringifyQuery(query);
+	this._getJSON(url, function onresponse(err, res) {
+		if (err) return cb(err);
+		var data = res.data;
+		if (Array.isArray(data)) {
+			if (data.length &lt;= 0) {
+				cb(new Error(&#x27;invalid response (array with length &lt;= 0)&#x27;));
+				return;
+			} else if (data.length &gt; 1) {
+				cb(new Error(&#x27;invalid response (array with length &gt; 1)&#x27;));
+				return;
+			} else {
+				data = data[0];
+			}
+		}
+		cb(null, data);
+	});
+};
+
+Mappedin.prototype._getArray = function (pathname, query, cb) {
+	var array;
+	var url = this._baseUrl + pathname + stringifyQuery(query);
+	this._getJSON(url, function onresponse(err, res) {
+		if (err) return cb(err);
+		var data = res.data;
+		if (!Array.isArray(data)) {
+			cb(new Error(&#x27;invalid response&#x27;));
+			return;
+		}
+		if (array) {
+			for (var i = 0, iLen = data.length; i &lt; iLen; ++i) {
+				array.push(data[i]);
+			}
+		} else {
+			array = data;
+		}
+		cb(null, array);
+	});
+};
+
+Object.keys(THINGS).forEach(function (name) {
+	defineGetter(Mappedin, name, function () {
+		var array = this._data[name];
+		if (array === undefined) {
+			throw new Error(name + &#x27; were not fetched&#x27;);
+		}
+		return array;
+	});
+});
+Object.keys(THINGS).forEach(function (name) {
+	defineLazyGetter(Mappedin, &#x27;_&#x27; + name + &#x27;ById&#x27;, function () {
+		var array = this._data[name];
+		if (array === undefined) {
+			throw new Error(name + &#x27;: not fetched&#x27;);
+		}
+		if (!Array.isArray(array)) {
+			throw new TypeError(name + &#x27;: not an Array&#x27;);
+		}
+		var index = Object.create(null);
+		for (var i = 0, iLen = array.length; i &lt; iLen; ++i) {
+			var object = array[i];
+			var objectId = object.id;
+			if (objectId != null) {
+				index[objectId] = object;
+			}
+		}
+		return index;
+	});
+	defineLazyGetter(Mappedin, &#x27;_&#x27; + name + &#x27;ByExternalId&#x27;, function () {
+		var array = this._data[name];
+		if (array === undefined) {
+			throw new Error(name + &#x27;: not fetched&#x27;);
+		}
+		if (!Array.isArray(array)) {
+			throw new TypeError(name + &#x27;: not an Array&#x27;);
+		}
+		var index = Object.create(null);
+		for (var i = 0, iLen = array.length; i &lt; iLen; ++i) {
+			var object = array[i];
+			var objectId = object.externalId;
+			if (objectId != null) {
+				index[objectId] = object;
+			}
+		}
+		return index;
+	});
+});
+
+/**
+ * Collection of all Categories within the Venue.
+ *
+ * @property categories
+ * @type [MappedinCategory]
+ */
+
+/**
+ * Collection of all Locations within the Venue.
+ *
+ * @property locations
+ * @type [MappedinLocation]
+ */
+
+/**
+ * Collection of all Maps within the Venue.
+ *
+ * @property maps
+ * @type [MappedinMap]
+ */
+
+/**
+ * Collection of all Nodes within the Venue.
+ *
+ * @property nodes
+ * @type [MappedinNode]
+ */
+
+/**
+ * Collection of all Polygons within the Venue.
+ *
+ * @property polygons
+ * @type [MappedinPolygon]
+ */
+
+/**
+ * Collection of all Events within the Venue.
+ *
+ * @property events
+ * @type [MappedinEvent]
+ */
+
+/**
+ * Collection of all MapGroups within the Venue.
+ *
+ * @property mapGroups
+ * @type [MappedinMapGroup]
+ */
+
+/**
+ * Collection of all Vortexes within the Venue.
+ *
+ * @property vortexes
+ * @type [MappedinVortex]
+ */
+
+// Internal Documentation
+/*
+ * Dictionary of all Categories within the Venue by ID.
+ *
+ * @property _categoriesById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Categories within the Venue by ExternalID.
+ *
+ * @property _categoriesByExternalId
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Locations within the Venue by ID.
+ *
+ * @property _locationsById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Locations within the Venue by ExternalID.
+ *
+ * @property _locationsByExternalId
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Maps within the Venue by ID.
+ *
+ * @property _mapsById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Nodes within the Venue by ID.
+ *
+ * @property _nodesById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Nodes within the Venue by ExternalID.
+ *
+ * @property _nodesByExternalId
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Polygons within the Venue by ID.
+ *
+ * @property _polygonsById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Polygons within the Venue by ExternalID.
+ *
+ * @property _polygonsByExternalId
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Events within the Venue by ID.
+ *
+ * @property _eventsById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Events within the Venue by ExternalID.
+ *
+ * @property _eventsByExternalId
+ * @type {Object}
+ */
+/*
+ * Dictionary of all MapGroups within the Venue by ID.
+ *
+ * @property _mapGroupsById
+ * @type {Object}
+ */
+/*
+ * Collection of all Themes within the Venue.
+ *
+ * @property themes
+ * @type [MappedinTheme]
+ */
+/*
+ * Dictionary of all Themes within the Venue by ID.
+ *
+ * @property themesById
+ * @type {Object}
+ */
+/*
+ * Dictionary of all Vortexes within the Venue by ID.
+ *
+ * @property _vortexesById
+ * @type {Object}
+ */
+
+/**
+ * The possible types of collections of objects you can get from the Venue. To be used to look up items using {{#crossLink &quot;Mappedin/getCollectionItemById:method&quot;}}{{/crossLink}}.
+ * @property collectionType
+ * @type {CATEGORY, EVENT, LOCATION, MAPGROUP, MAP, NODE, POLYGON, VENUE, VORTEX}
+ * @final
+ * @static
+ */
+export const collectionType = {
+	&quot;CATEGORY&quot;: &quot;categories&quot;,
+	&quot;EVENT&quot;: &quot;events&quot;,
+	&quot;LOCATION&quot;: &quot;locations&quot;,
+	&quot;MAPGROUP&quot;: &quot;mapGroups&quot;,
+	&quot;MAP&quot;: &quot;maps&quot;,
+	&quot;NODE&quot;: &quot;nodes&quot;,
+	&quot;POLYGON&quot;: &quot;polygons&quot;,
+	&quot;VORTEX&quot;: &quot;vortexes&quot;
+};
+
+Object.freeze(collectionType);
+
+/**
+ * Gets an object (Node, Polygon, etc.) if it exists within the Venue by looking up its Mappedin ID or External ID.
+ *
+ * @method
+ * @name getCollectionItemById
+ * @param name {collectionType} {{#crossLink &quot;Mappedin/collectionType:property&quot;}}{{/crossLink}} to look up the ID from that collection.
+ * @param id {String} Either Mappedin ID or External ID.
+ * @returns {Object}
+ */
+Mappedin.prototype.getCollectionItemById = function (name, id) {
+	var collection = this[&#x27;_&#x27; + collectionType[name] + &#x27;ById&#x27;];
+	if (collection != null &amp;&amp; collection[id] != null) {
+		return collection[id];
+	}
+	collection = this[&#x27;_&#x27; + collectionType[name] + &#x27;ByExternalId&#x27;];
+	if (collection != null &amp;&amp; collection[id] != null) {
+		return collection[id];
+	}
+	return null;
+};
+
+Mappedin.prototype._fetchAll = function (cb) {
+	var didInvokeCallback = false;
+	// Vortexes are required for offline directions
+	if (!(&#x27;vortexes&#x27; in this._things)) {
+		this._things.vortexes = [&#x27;name&#x27;, &#x27;type&#x27;, &#x27;accessible&#x27;, &#x27;weight&#x27;, &#x27;multiplier&#x27;, &#x27;nodes&#x27;];
+	}
+	if (!(&#x27;locationStates&#x27; in this._things)) {
+		this._things.locationStates = [&#x27;name&#x27;, &#x27;id&#x27;, &#x27;value&#x27;];
+	}
+	var things = this._things;
+	var names = Object.keys(things);
+	var total = names.length;
+	var progress = 0;
+	function onfetched(name, err, data) {
+		if (didInvokeCallback) {
+			return;
+		}
+		if (err) {
+			didInvokeCallback = true;
+			cb(err);
+			return;
+		}
+		this._data[name] = data;
+		if (++progress &gt;= total) {
+			didInvokeCallback = true;
+			cb();
+		}
+	}
+	for (var i = 0, iLen = names.length; i &lt; iLen; ++i) {
+		var name = names[i];
+		THINGS[name]._fetch(this, onfetched.bind(this, name));
+	}
+	if (total &lt;= 0) {
+		setTimeout(cb, 0);
+	}
+};
+
+function isString(value) {
+	return typeof value === &#x27;string&#x27; &amp;&amp; value.length &gt; 0;
+}
+
+function isThings(things) {
+	if (things == null || typeof things !== &#x27;object&#x27;) {
+		return false;
+	}
+	var keys = Object.keys(things);
+	for (var i = 0, iLen = keys.length; i &lt; iLen; ++i) {
+		var props = things[keys[i]];
+		if (!Array.isArray(props)) {
+			return false;
+		}
+		for (var j = 0, jLen = props.length; j &lt; jLen; ++j) {
+			if (!isString(props[j])) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+/**
+ * A one stop function to download all of the information you need for a given {{#crossLink &quot;MappedinVenue&quot;}}{{/crossLink}}.
+ * @method getVenue
+ * @param options {Object} Initialization options.
+ * @param [options.clientId] {string} OAuth client ID.
+ * @param [options.clientSecret] {string} OAuth client secret.
+ * @param [options.accessToken] {string} OAuth access token.
+ * @param [options.perspective] {string} Perspective name.
+ * @param [options.language] {string} Language name (e.g. en-US).
+ * @param options.things {object} The things object is where you specify what fields you want to download for each object in the Mappedin API. Only specify what you will actually use, to minmimze transfer time. This SDK will ensure it has the 2D or 3D files it needs, and &#x60;id&#x60; is always included, but it won&#x27;t download anything extra (like the names of locations) unless you specify it here.
+ *  @param options.things.venue {[String]} The Venue information you want. &#x27;slug&#x27; and &#x27;name&#x27; are typical, but you may also want others. Speak to Mappedin to see what is available.
+ *  @param options.things.locations {[String]} The fields you will be using for any Locations. You probably want at least &#x27;name&#x27; and &#x27;type&#x27;. You will also probably want &#x27;description&#x27; and &#x27;logo&#x27;, but there can be any number of Location properties and it depends on your Venue and usecase. Talk to Mappedin for more details.
+ *  @param options.things.categories {[String]} The fields you will use for each Category. Typically &#x27;name&#x27; at a minimum, but other common fields are &#x27;description&#x27;, &#x27;picture&#x27;, &#x27;sortOrder&#x27; or &#x27;parents&#x27; (for hierarchical categories) as well.
+ *  @param options.things.maps {[String]} The fields on each Map you are interested in. You&#x27;ll probably want one or both of &#x27;name&#x27; or &#x27;shortName&#x27;, and &#x27;elevation&#x27; to sort.
+ *  @param [options.things.polygons] {[String]} The Polygon fields you want. The default is probably sufficient.
+ *  @param [options.things.nodes] {[String]} The Node fields you want. The default is probably sufficient.
+ * @param options.venue {string} Venue ID.
+ * @returns {Mappedin}
+ */
+
+function getVenue(options, cb) {
+	if (!options) {
+		throw new TypeError(&#x27;options must be an Object&#x27;);
+	}
+	if (!(isString(options.clientId) &amp;&amp; isString(options.clientSecret)) &amp;&amp; !isString(options.accessToken)) {
+		throw new Error(&#x27;{clientId,clientSecret} must be a String or accessToken must be a String&#x27;);
+	}
+	if (options.perspective !== undefined &amp;&amp; !isString(options.perspective)) {
+		throw new Error(&#x27;perspective must be a String&#x27;);
+	}
+	if (options.language !== undefined &amp;&amp; !isString(options.language)) {
+		throw new Error(&#x27;language must be a String&#x27;);
+	}
+	if (!isThings(options.things)) {
+		throw new Error(&#x27;things must be an Object of [Array of String]&#x27;);
+	}
+	if (!isString(options.venue)) {
+		throw new Error(&#x27;venue must be a String&#x27;);
+	}
+	var mappedin = new Mappedin(options);
+	mappedin._fetchAll(function (err) {
+		if (err) return cb(err);
+		cb(null, mappedin);
+	});
+}
+
+export default getVenue;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

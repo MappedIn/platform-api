@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.TextLabel.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/*eslint-disable no-labels*/
+import {
+	MeshBasicMaterial,
+	ExtrudeGeometry,
+	Font,
+	Geometry,
+	Mesh,
+	Object3D
+} from &#x27;three&#x27;;
+import { getObjectId, getObject } from &#x27;./utils&#x27;;
+import HoverLabel from &#x27;./Mappedin.HoverLabel.js&#x27;;
+import {
+	TWO_PI,
+	HALF_PI,
+	ONE_AND_A_HALF_PI
+} from &#x27;./constants&#x27;;
+
+// Multiplier for the polygon label text size.
+const fontSizeMultiplier = 8;
+const DEFAULT_FONT_SIZE = 12;
+const DEFAULT_TEXT_MARGIN = 2;
+const DEFAULT_TEXT_HEIGHT_MARGIN = .5;
+// Ratio of font extrusion to font size for polygon labels. Makes it look good for malls with the defaults.
+const fontDepth = 1 / DEFAULT_FONT_SIZE;
+
+/**
+ * An internal representation of a 3D text label. Make your own with {{#crossLink &quot;MapView/labelPolygon:method&quot;}}{{/crossLink}}.
+ *
+ * @class TextLabel
+ */
+var TextLabel = function(options, venue, mapObject, DEFAULT_FONT, polygonMeshesById, textLabelsByPolygonId, textMaterials, mapView) {
+	var polyId = options.polygonId || getObjectId(options.polygon, venue.polygons);
+	var polygon = getObject(options.polygon, venue.polygons);
+	var mapScale = mapObject.getMapScale() || 1;
+
+	var canvasBounds = options.canvasBounds || polygon.canvasBounds;
+	var height = Number(options.height) || null;
+	var stateText = options.stateText ? &#x27; (&#x27; + options.stateText + &#x27;)&#x27; : &#x27;&#x27;;
+	var text = (options.shortText || options.text);
+	var hoverLabelText = options.text;
+	var margin = (options.margin || DEFAULT_TEXT_MARGIN) * mapScale;
+	var heightMargin = (options.heightMargin || DEFAULT_TEXT_HEIGHT_MARGIN) * mapScale;
+	var multiline = options.multiline == undefined ? true : options.multiline;
+
+	var color = options.color || mapView.colors.text || 0x0;
+	var fontSize = (options.fontSize || DEFAULT_FONT_SIZE) / fontSizeMultiplier;
+
+	var size = (options.size || fontSize) * mapScale;
+
+	var font = options.font || DEFAULT_FONT;
+	var scaleMin = options.scaleMin || .25;
+	var scaleStep = options.scaleStep &gt; 0 ? options.scaleStep : .25;
+	var hoverLabelMode = options.hoverLabelMode3D || HoverLabel.MODES.ALL;
+	this.hoverLabelClass = options.hoverLabelClass || &quot;mMapviewHoverLabel&quot;;
+
+	this.showHoverLabel = hoverLabelMode == HoverLabel.MODES.ALL || hoverLabelMode ==  HoverLabel.MODES.NO_TEXT_LABEL_ONLY;
+
+	var hoverIfLabelFails = hoverLabelMode == HoverLabel.MODES.ALL || hoverLabelMode == HoverLabel.MODES.NO_TEXT_LABEL_ONLY;
+
+	var labelScope = this;
+	var created = false;
+	var hideOnCreate = false;
+	var radiansRotation = 0;
+	var textAnchor, textObject;
+	var doNotCreate = false;
+
+	var textMaterial;
+	var textMesh;
+
+	textMaterial = textMaterials[color];
+	if (textMaterial == null) {
+		textMaterial = new MeshBasicMaterial({color: color});
+		textMaterials[color] = textMaterial;
+	}
+
+	this.invalid = false;
+	this.message = &quot;&quot;;
+
+	// This actually makes the geometry. Not that expensive, but it&#x27;s a bit better than creating and adding to the scene at the same time.
+	this.create = function() {
+		labelScope.invalid = true;
+		labelScope.showHoverLabel = hoverLabelMode == HoverLabel.MODES.ALL;
+
+		// This could get killed before we even get to creation
+		if (doNotCreate) {
+			return;
+		}
+		// This could fail for a few reasons. It&#x27;s not the end of the world, but you won&#x27;t get a text label on the map.
+		if (canvasBounds == null) {
+			labelScope.invalid = true;
+			labelScope.message = &quot;No Canvas Bounds. Can&#x27;t draw text &#x27;&quot; + text + &quot;&#x27;&quot;;
+			labelScope.showHoverLabel = hoverIfLabelFails;
+			return;
+		}
+
+		if (font instanceof Font == false) {
+			console.error(&quot;Invalid font for &#x27;&quot; + text + &quot;&#x27;. Make sure you provide a Mappedin.Font or Font object. Using default instead.&quot;);
+			font = DEFAULT_FONT;
+		}
+
+		var stringsToTry = [(text + stateText), text];
+
+		var lines;
+		var shrinkStep;
+		var currentScale;
+
+		var spaceWidth = font.data.glyphs[&#x27; &#x27;].ha / (font.data.resolution / size);
+		var lineHeight = (font.data.ascender - font.data.descender) / (font.data.resolution / size);
+
+		stringsToTry.forEach((stringAttempt) =&gt; {
+			if (!labelScope.invalid) return;
+			// figure out the basics
+			stringAttempt = stringAttempt.replace(font._mInvalidCharacters, &#x27;&#x27;);
+			stringAttempt = stringAttempt.trim();
+			var words = stringAttempt.split(&#x27; &#x27;);
+			var availableWidth = canvasBounds.maxWidth - (margin * 2);
+			var availableHeight = canvasBounds.maxHeight - (heightMargin * 2);
+			var maxShrinkSteps = (1 - scaleMin) / scaleStep;
+
+
+			// compute the size of each word from the font object
+			var wordSizes = words.map((word) =&gt; {
+				var characters = word.split(&#x27;&#x27;);
+				var unscaledWidth = characters.reduce((acc, val) =&gt; font.data.glyphs[val].ha + acc, 0);
+				return {
+					word: word,
+					width: unscaledWidth / (font.data.resolution / size),
+				};
+			});
+
+
+			// find the minimum number of shrink steps needed to fit the longest word
+			var minimumShrinkSteps = 0;
+
+			for (var i = 0, iLen = wordSizes.length; i &lt; iLen; i++) {
+				var width = wordSizes[i].width;
+				var wShrinkSteps = Math.ceil((width - availableWidth) / (width * scaleStep));
+				minimumShrinkSteps = Math.max(wShrinkSteps, minimumShrinkSteps);
+			}
+
+
+			// try to fit all words within bounds, shrinking and trying again if needed
+			shrink:
+			for (shrinkStep = minimumShrinkSteps; shrinkStep &lt;= maxShrinkSteps; shrinkStep++) {
+				currentScale = (1 - shrinkStep * scaleStep);
+				var thisLineWidth = wordSizes[0].width * currentScale;
+				lines = [{
+					text: wordSizes[0].word,
+					scaledWidth: thisLineWidth,
+				}];
+				for (var iWordSize = 1; iWordSize &lt; wordSizes.length; iWordSize++) {
+					var wordSize = wordSizes[iWordSize];
+					var spaceForNextWord = (wordSize.width + spaceWidth) * currentScale;
+					if (thisLineWidth + spaceForNextWord &lt; availableWidth) {
+						// Add to line
+						lines[lines.length - 1].text += &#x27; &#x27; + wordSize.word;
+						lines[lines.length - 1].scaledWidth += spaceForNextWord;
+						thisLineWidth += spaceForNextWord;
+					} else {
+						// New line
+						if (!multiline) continue shrink;
+						lines[lines.length - 1].scaledWidth = thisLineWidth;
+						thisLineWidth = wordSize.width * currentScale;
+						lines.push({
+							text: wordSize.word,
+							scaledWidth: thisLineWidth,
+						});
+					}
+				}
+				var requiredHeight = lines.length * lineHeight * currentScale;
+				if (requiredHeight &lt;= availableHeight) {
+					labelScope.invalid = false;
+					break;
+				}
+			}
+		});
+
+
+		if (labelScope.invalid) {
+			labelScope.message = &quot;Could not draw &#x27;&quot; + text + &quot;&#x27; on &quot; + polygon.id + &quot;: Too small&quot;;
+			labelScope.showHoverLabel = hoverIfLabelFails;
+			return;
+		}
+
+
+		// create the geometry for the entire text, using cached geometries per character
+		if (!font._cache) {
+			font._cache = {};
+			font._cacheDefaultSize = size;
+		}
+		var finalGeo = new Geometry();
+		var xx = 0;
+		var yy = 0;
+
+		lines.forEach((line) =&gt; {
+			xx = -(line.scaledWidth) / 2;
+			var charArray = line.text.split(&#x27;&#x27;);
+			charArray.forEach((char) =&gt; {
+				if (!font._cache[char]) {
+					font._cache[char] = new ExtrudeGeometry(font.generateShapes(char, font._cacheDefaultSize), {
+						curveSegments: 1,
+						bevelThickness: 0,
+						bevelSize: 0,
+						bevelEnabled: false,
+						amount: fontDepth * mapScale,
+					});
+				}
+				var cachedCharacter = font._cache[char];
+				var scaleFactor = currentScale * (size / font._cacheDefaultSize);
+
+				if (scaleFactor !== 1) cachedCharacter.scale(scaleFactor, scaleFactor, 1);
+				cachedCharacter.translate(xx, yy, 0);
+				finalGeo.merge(cachedCharacter);
+				cachedCharacter.translate(-xx, -yy, 0);
+				if (scaleFactor !== 1) cachedCharacter.scale(1 / scaleFactor, 1 / scaleFactor, 1);
+				xx += font.data.glyphs[char].ha / (font.data.resolution / size) * currentScale;
+			});
+
+			yy -= lineHeight * currentScale;
+		});
+
+
+		// position the resulting geometry, st up flipping, etc.
+		finalGeo.center();
+
+		textMesh = new Mesh(finalGeo, textMaterial);
+		textMesh.geometry.computeBoundingBox();
+
+		var bounds = textMesh.geometry.boundingBox;
+
+		textObject = new Object3D();
+		textObject.add(textMesh);
+
+		if (canvasBounds.align == &quot;left&quot;) {
+			textObject.translateX((bounds.max.x - bounds.min.x) / 2 + margin);
+		} else if (canvasBounds.align == &quot;right&quot;) {
+			textObject.translateX(-(bounds.max.x - bounds.min.x) / 2 - margin);
+		} else if (canvasBounds.align == &quot;center&quot;) {
+			textObject.translateX(canvasBounds.maxWidth / 2);
+		}
+
+		textAnchor = new Object3D();
+		textAnchor.add(textObject);
+
+		if (height == null) {
+			if (polygonMeshesById[polyId]) {
+				var target = polygonMeshesById[polyId];
+				if (!target.geometry.boundingBox) {
+					target.geometry.computeBoundingBox();
+				}
+				height = target.geometry.boundingBox.max.z;
+			} else {
+				height = 0;
+			}
+		}
+
+		var map = mapObject.mapClass;
+		textAnchor.translateX(canvasBounds.x - (map.width / 2));
+		textAnchor.translateY(-canvasBounds.y + (map.height / 2));
+		textAnchor.translateZ(height);
+
+		radiansRotation = -(canvasBounds.rotation * Math.PI / 180);
+
+		textAnchor.rotation.z = radiansRotation;
+
+		textAnchor.updateMatrix();
+
+		if (hideOnCreate) {
+			textObject.visible = false;
+		}
+
+		created = true;
+
+		labelScope.flipIfNeeded(mapView.controls.getRotation());
+		mapObject.add(textAnchor);
+		mapObject.textObjects.push(labelScope);
+
+		mapView.tryRendering();
+	};
+
+	// Does the actual flipping
+	var flip = function () {
+		radiansRotation = (radiansRotation + Math.PI) % TWO_PI;
+		textAnchor.rotation.z = radiansRotation;
+		textObject.position.x = -textObject.position.x;
+	};
+
+	// Ensures the text label is always upright with respects to the camera.
+	this.flipIfNeeded = function (cameraAngle) {
+		var angle = (radiansRotation - cameraAngle) % TWO_PI;
+		if (created &amp;&amp; (angle &gt; HALF_PI &amp;&amp; angle &lt; ONE_AND_A_HALF_PI || angle &lt; -HALF_PI &amp;&amp; angle &gt; -ONE_AND_A_HALF_PI)) {
+			flip();
+		}
+	};
+
+	// If bulk is set to true, you will need to modify the mapobject&#x27;s.textObject array yourself when you are done
+	this.removeSelf = function(bulk) {
+		// in case either of these were created and removed before the flag was set:
+		if (textMesh &amp;&amp; textMesh.destroy) {
+			textMesh.destroy();
+		}
+		if (textObject &amp;&amp; textObject.destroy) {
+			textObject.destroy();
+		}
+		if (textAnchor &amp;&amp; textAnchor.destroy) {
+			textAnchor.destroy();
+		}
+		if (created) {
+			if (!bulk) {
+				this.mapObject.textObjects = this.mapObject.textObjects.filter(function(object) {
+					return object != labelScope;
+				});
+				// Delete from textLabelsByPolygonId
+				Object.keys(textLabelsByPolygonId).forEach(function(key) {
+					if (textLabelsByPolygonId[key] == self) {
+						delete textLabelsByPolygonId[key];
+					}
+				});
+			}
+		} else {
+			doNotCreate = true;
+		}
+	};
+
+	// Adds itself to the scene. This is expensive, so labels adding themselves should be spread out in the renderCommandQueue
+	// this.addSelf = function () {
+	//  if (created &amp;&amp; !doNotCreate) {
+	//  }
+	// }
+
+	this.setColor = function(textColor) {
+		textMaterial = textMaterials[textColor];
+		if (textMaterial == null) {
+			textMaterial = new MeshBasicMaterial({color: textColor});
+			textMaterials[textColor] = textMaterial;
+		}
+
+		if (created) {
+			textMesh.material = textMaterial;
+			mapView.tryRendering();
+		}
+	};
+
+	this.hide = () =&gt; {
+		if (created &amp;&amp; textObject) {
+			textObject.visible = false;
+		} else {
+			hideOnCreate = true;
+		}
+	};
+
+	this.show = () =&gt; {
+		if (created &amp;&amp; textObject) {
+			textObject.visible = true;
+		}  else {
+			hideOnCreate = false;
+		}
+	};
+
+	this.clearColor = function() {
+		this.setColor(color);
+	};
+
+	this.toString = function() {
+		return hoverLabelText;
+	};
+};
+
+export default TextLabel;
+
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>
