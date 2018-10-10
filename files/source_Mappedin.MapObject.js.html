@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.MapObject.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import { Object3D } from &#x27;three&#x27;;
+import { LatLonSpherical as LatLon } from &#x27;geodesy&#x27;;
+import FlippableImage from &#x27;./Mappedin.FlippableImage&#x27;;
+import PubSub from &#x27;./Mappedin.PubSub&#x27;;
+import SceneLoader from &#x27;./scene-loader&#x27;;
+import JSONSceneLoader from &#x27;./json-scene-loader&#x27;;
+import { getMapScale, getNorth } from &#x27;./utils.js&#x27;;
+
+const tempObjectQueue = new Object3D();
+
+// Controls how many objects to show before rendering when the map is popping in.
+// The higher the number, the longer you could end up blocking the UI, but the less time it takes overall
+const MAX_SHOWS = 1;
+
+// Feature flag- whether we should try to load the scene from JSON or not
+const SCENE_FROM_JSON = false;
+
+// Internal class to keep track of the ThreeJS map object - Whether it&#x27;s downloaded, and what polygonIds match which children
+// Load returns a promise which will be done when the OBJ, MTL, and textures have been downloaded
+class MapObject {
+	//private
+	_flippableImagedById = {};
+	_started = false;
+	_loaderPromise = null;
+	_promiseResolve = null;
+
+	//public
+	objectsDictionary = {};
+	north = null;
+	mapScale = null;
+	object = new Object3D();
+	textObjects = [];
+	imagesToFlip = [];
+	markers = [];
+	renderCommandQueue = {high: [], low: [], marker: []};
+	seenByCamera = false;
+
+	constructor(mapClass, polygonMeshesById, markerWorld, showCount, mapView) {
+		// @TODO: move into class as extends to take advantage of V8 optimizations
+		Object.assign(this, PubSub.prototype);
+		this.mapView = mapView;
+		this.mapClass = mapClass;
+		this.polygonMeshesById = polygonMeshesById;
+		this.markerWorld = markerWorld;
+		this._showCount = showCount;
+		this.id = this.mapClass.id;
+		this._objLoaded = this._objLoaded.bind(this);
+		this.enableImageFlipping = this.enableImageFlipping.bind(this);
+	}
+
+	_objLoaded(object) {
+		var children = object.children;
+		for (var i = 0, iLen = children.length; i &lt; iLen; ++i) {
+			var child = children[i];
+
+			this.objectsDictionary[child.name] = child;
+			this.polygonMeshesById[child.name] = child;
+		}
+		this.object = object;
+		this.object.userData.type = &#x27;mappedin_map&#x27;;
+		this.object.userData.mapId = this.mapClass.id;
+		this.publish(&#x27;pinsNeedUpdating&#x27;, true);
+		return this._promiseResolve(this);
+	}
+
+	/***
+	Load the map, if it&#x27;s not already loaded. Returns the old promise if it&#x27;s already done, so you can safely call it whenever needed.
+
+	If needed, this could be modified to
+
+	Returns a Promise that will be Done when the OBJ, MTL and textures have been downloaded, and the objectsDictionary has been generated.
+
+	**/
+	load() {
+		if (!this._started) {
+			this._started = true;
+			this._loaderPromise = new Promise((resolve, reject) =&gt; {
+				this._promiseResolve = resolve;
+				// if scene assets already loaded
+				if (this.mapClass.object3D != null) {
+					return this._objLoaded(this.mapClass.object3D);
+				}
+				//otherwise, load assets
+				try {
+					if (SCENE_FROM_JSON &amp;&amp; this.mapClass.scene.polygons) {
+						// new loading method
+						var polyLocation = this.mapClass.scene.polygons;
+						JSONSceneLoader.load(polyLocation, this.mapClass)
+							.then(this._objLoaded);
+					}
+					else {
+						var mtl = this.mapClass.scene.mtl;
+						var obj = this.mapClass.scene.obj;
+						SceneLoader.load(obj, mtl)
+							.then(this._objLoaded)
+							.catch(reject);
+					}
+				} catch (e) {
+					reject(&quot;ERROR: No 3D files for map &quot; + (this.mapClass.name || this.mapClass.shortName || this.mapClass.id || this.mapClass));
+				}
+			});
+		}
+		return this._loaderPromise;
+	}
+
+	_dispose(objectToDispose) {
+		var object = objectToDispose;
+
+		for (var i = object.children.length - 1; i &gt;= 0; i--) {
+			this._dispose(object.children[i]);
+		}
+		object.destroy();
+
+		delete this.objectsDictionary[object.name];
+		delete this.polygonMeshesById[object.name];
+	}
+
+	destroy() {
+		this.removeLabels();
+		this.removeMarkers();
+		this.disableAllImageFlipping();
+		this._dispose(this.object);
+	}
+
+	add(childObjectToAdd) {
+		tempObjectQueue.add(childObjectToAdd);
+		this.load().then(() =&gt; {
+			var objectsToAdd = tempObjectQueue.children.filter(childObject =&gt; childObject.uuid === childObjectToAdd.uuid);
+			if (objectsToAdd.length === 1) {
+				this.object.add(childObjectToAdd);
+			}
+		});
+	}
+
+	getPositionLatLon(lat, lon) {
+		var anchor = this.mapClass.georeference[0];
+		var anchorLatLon = new LatLon(anchor.target.x, anchor.target.y);
+
+		var targetLatLon = new LatLon(lat, lon);
+
+		var worldDistance = anchorLatLon.distanceTo(targetLatLon);
+		var worldBearing = (anchorLatLon.finalBearingTo(targetLatLon) + 360 % 360) * Math.PI / 180;
+
+		var mappedinDistance = worldDistance * this.getMapScale(this.mapClass);
+		var mappedinBearing = (worldBearing + this.getNorth(this.mapClass));
+
+		var deltaX = Math.sin(mappedinBearing) * mappedinDistance;
+		var deltaY = Math.cos(mappedinBearing) * mappedinDistance;
+
+		return this.mapView.convertTo3DMapPosition({
+			x: anchor.control.x + deltaX,
+			y: anchor.control.y - deltaY
+		});
+	}
+
+	getMapScale() {
+		if (this.mapScale == null) {
+			this.mapScale = getMapScale(this.mapClass);
+		}
+		return this.mapScale;
+	}
+
+	getNorth() {
+		if (this.north == null) {
+			this.north = getNorth(this.mapClass);
+		}
+		return this.north;
+	}
+
+	enableImageFlipping(polygonId, rotation) {
+		rotation = rotation || 0;
+		if (this._flippableImagedById[polygonId]) { return; }
+		this._flippableImagedById[polygonId] = true;
+		if (this.object &amp;&amp; Object.keys(this.object).length &gt; 0) {
+			var image = this.object.getObjectByName(polygonId + &quot;_image&quot;);
+			if (image) {
+				const flippableImage = new FlippableImage({ image, rotation });
+				this.imagesToFlip.push(flippableImage);
+				this.publish(&#x27;flippablesNeedUpdating&#x27;);
+				this.publish(&#x27;render&#x27;);
+			} else {
+				//console.log(&quot;No logo for &quot; + polygonId + &quot;_image&quot;)
+			}
+		}
+	}
+
+	disableAllImageFlipping() {
+		for (var i = 0, iLen = this.imagesToFlip.length; i &lt; iLen; i++) {
+			this.imagesToFlip[i].reset();
+		}
+		this.imagesToFlip = [];
+		this._flippableImagedById = {};
+	}
+
+	addMarkers() {
+		for (let i = 0; i &lt; this.markers.length; i++) {
+			var marker = this.markers[i];
+			if (marker._mAnchor) {
+				this.markerWorld.addBody(marker._mAnchor);
+				this.markerWorld.addBody(marker._mShadowElement);
+
+				this.markerWorld.addConstraint(marker._mConstraint);
+			}
+			this.mapView.container.appendChild(marker.div);
+			this.publish(&#x27;updateMarkerPosition&#x27;, marker);
+			marker.show();
+			this.publish(&#x27;render&#x27;);
+		}
+	}
+
+	removeMarkers(destroy = false) {
+		for (let i = 0; i &lt; this.markers.length; i++) {
+			const marker = this.markers[i];
+			marker.hide();
+			if (marker._mAnchor) {
+				this.markerWorld.removeConstraint(marker._mConstraint);
+				this.markerWorld.removeBody(marker._mAnchor);
+				this.markerWorld.removeBody(marker._mShadowElement);
+			}
+			if (destroy) {
+				this.mapView.container.removeChild(marker.div);
+				marker.destroy();
+			}
+		}
+		if (destroy) {
+			this.markers = [];
+
+			// Remove markers that have yet to be created
+			const almostMarkers = this.renderCommandQueue.marker;
+			for (let i = 0; i &lt; almostMarkers.length; i++) {
+				let marker = almostMarkers[i];
+				marker.hide();
+				if (marker._mAnchor) {
+					this.markerWorld.removeConstraint(marker._mConstraint);
+					this.markerWorld.removeBody(marker._mAnchor);
+					this.markerWorld.removeBody(marker._mShadowElement);
+				}
+				marker.destroy();
+			}
+			this.renderCommandQueue.marker = [];
+		}
+		this.publish(&#x27;render&#x27;);
+	}
+
+	removeLabels() {
+		if (!Array.isArray(this.textObjects)) {
+			return;
+		}
+
+		for (var j = 0, jLen = this.textObjects.length; j &lt; jLen; ++j) {
+			var textObject = this.textObjects[j];
+			textObject.removeSelf(true);
+			textObject = undefined;
+		}
+		this.textObjects = [];
+	}
+
+	_popinChildObjects() {
+		this.object.traverse((object) =&gt; {
+			if (object.children.length == 0 &amp;&amp; object.type == &quot;Mesh&quot; &amp;&amp; object.material.map) {
+				object.visible = false;
+				this.renderCommandQueue.high.push(() =&gt; {
+					object.visible = true;
+					if (this._showCount &gt;= MAX_SHOWS) {
+						this._showCount = 0;
+						this.publish(&#x27;render:now&#x27;);
+					}
+
+					this._showCount++;
+				});
+			}
+		});
+	}
+}
+
+export default MapObject;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/externals/promise.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+/* globals define, ActiveXObject */
+/* eslint camelcase: off */
+/*
+ *  Copyright 2012-2013 (c) Pierre Duquesne &lt;stackp@online.fr&gt;
+ *  Licensed under the New BSD License.
+ *  https://github.com/stackp/promisejs
+ */
+
+(function(exports) {
+	function Promise() {
+		this._callbacks = [];
+	}
+
+	Promise.prototype.then = function(func, context) {
+		var p;
+		if (this._isdone) {
+			p = func.apply(context, this.result);
+		} else {
+			p = new Promise();
+			this._callbacks.push(function () {
+				var res = func.apply(context, arguments);
+				if (res &amp;&amp; typeof res.then === &#x27;function&#x27;)
+					res.then(p.done, p);
+			});
+		}
+		return p;
+	};
+
+	Promise.prototype.done = function() {
+		this.result = arguments;
+		this._isdone = true;
+		for (var i = 0; i &lt; this._callbacks.length; i++) {
+			this._callbacks[i].apply(null, arguments);
+		}
+		this._callbacks = [];
+	};
+
+	function join(promises) {
+		var p = new Promise();
+		var results = [];
+
+		if (!promises || !promises.length) {
+			p.done(results);
+			return p;
+		}
+
+		var numdone = 0;
+		var total = promises.length;
+
+		function notifier(i) {
+			return function() {
+				numdone += 1;
+				results[i] = Array.prototype.slice.call(arguments);
+				if (numdone === total) {
+					p.done(results);
+				}
+			};
+		}
+
+		for (var i = 0; i &lt; total; i++) {
+			promises[i].then(notifier(i));
+		}
+
+		return p;
+	}
+
+	function chain(funcs, args) {
+		var p = new Promise();
+		if (funcs.length === 0) {
+			p.done.apply(p, args);
+		} else {
+			funcs[0].apply(null, args).then(function() {
+				funcs.splice(0, 1);
+				chain(funcs, arguments).then(function() {
+					p.done.apply(p, arguments);
+				});
+			});
+		}
+		return p;
+	}
+
+	/*
+     * AJAX requests
+     */
+
+	function _encode(data) {
+		var payload = &quot;&quot;;
+		if (typeof data === &quot;string&quot;) {
+			payload = data;
+		} else {
+			var e = encodeURIComponent;
+			var params = [];
+
+			for (var k in data) {
+				if (data.hasOwnProperty(k)) {
+					params.push(e(k) + &#x27;=&#x27; + e(data[k]));
+				}
+			}
+			payload = params.join(&#x27;&amp;&#x27;);
+		}
+		return payload;
+	}
+
+	function new_xhr() {
+		var xhr;
+		if (window.XMLHttpRequest) {
+			xhr = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			try {
+				xhr = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+			} catch (e) {
+				xhr = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+			}
+		}
+		return xhr;
+	}
+
+
+	function ajax(method, url, data, headers) {
+		var p = new Promise();
+		var xhr, payload;
+		data = data || {};
+		headers = headers || {};
+
+		try {
+			xhr = new_xhr();
+		} catch (e) {
+			p.done(promise.ENOXHR, &quot;&quot;);
+			return p;
+		}
+
+		payload = _encode(data);
+		if (method === &#x27;GET&#x27; &amp;&amp; payload) {
+			url += &#x27;?&#x27; + payload;
+			payload = null;
+		}
+
+		xhr.open(method, url);
+
+		var content_type = &#x27;application/x-www-form-urlencoded&#x27;;
+		for (var h in headers) {
+			if (headers.hasOwnProperty(h)) {
+				if (h.toLowerCase() === &#x27;content-type&#x27;)
+					content_type = headers[h];
+				else
+					xhr.setRequestHeader(h, headers[h]);
+			}
+		}
+		xhr.setRequestHeader(&#x27;Content-type&#x27;, content_type);
+
+
+		function onTimeout() {
+			xhr.abort();
+			p.done(promise.ETIMEOUT, &quot;&quot;, xhr);
+		}
+
+		var timeout = promise.ajaxTimeout;
+		if (timeout) {
+			var tid = setTimeout(onTimeout, timeout);
+		}
+
+		xhr.onreadystatechange = function() {
+			if (timeout) {
+				clearTimeout(tid);
+			}
+			if (xhr.readyState === 4) {
+				var err = (!xhr.status ||
+                           (xhr.status &lt; 200 || xhr.status &gt;= 300) &amp;&amp;
+                           xhr.status !== 304);
+				p.done(err, xhr.responseText, xhr);
+			}
+		};
+
+		xhr.send(payload);
+		return p;
+	}
+
+	function _ajaxer(method) {
+		return function(url, data, headers) {
+			return ajax(method, url, data, headers);
+		};
+	}
+
+	var promise = {
+		Promise: Promise,
+		join: join,
+		chain: chain,
+		ajax: ajax,
+		get: _ajaxer(&#x27;GET&#x27;),
+		post: _ajaxer(&#x27;POST&#x27;),
+		put: _ajaxer(&#x27;PUT&#x27;),
+		del: _ajaxer(&#x27;DELETE&#x27;),
+
+		/* Error codes */
+		ENOXHR: 1,
+		ETIMEOUT: 2,
+
+		/**
+         * Configuration parameter: time in milliseconds after which a
+         * pending AJAX request is considered unresponsive and is
+         * aborted. Useful to deal with bad connectivity (e.g. on a
+         * mobile network). A 0 value disables AJAX timeouts.
+         *
+         * Aborted requests resolve the promise with a ETIMEOUT error
+         * code.
+         */
+		ajaxTimeout: 0
+	};
+
+	if (typeof define === &#x27;function&#x27; &amp;&amp; define.amd) {
+		/* AMD support */
+		define(function() {
+			return promise;
+		});
+	} else {
+		exports.promise = promise;
+	}
+})(this);
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

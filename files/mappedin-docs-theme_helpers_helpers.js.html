@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>mappedin-docs-theme/helpers/helpers.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+var PROJECT;
+
+module.exports = {
+  log: function() {
+    var slicedArgs = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
+    console.log.apply(console, slicedArgs);
+  },
+
+  setupGlobals: function() {
+    PROJECT = this;
+    return &#x27;&#x27;;
+  },
+
+  setupClass: function() {
+    var classes = this.classes;
+
+    for(var i = 0; i &lt; classes.length; i++) {
+      if(classes[i].name === this.name) {
+        this.isPrivate = !isPublic(classes[i]);
+        break;
+      }
+    }
+  },
+
+  setupModule: function() {
+    var self = this;
+    var moduleClasses = [];
+
+    this.classes.forEach(function(c) {
+      if(c.module === self.name) {
+        moduleClasses.push(c);
+      }
+    });
+
+    this.filteredModuleClasses = moduleClasses;
+  },
+
+  isPrivate: function(context, options) {
+    return isPublic(context) ? options.inverse(this) : options.fn(this);
+  },
+
+  publicClasses: function(context, options) {
+    &#x27;use strict&#x27;;
+    var ret = &quot;&quot;;
+
+    for (var i = 0; i &lt; context.length; i++) {
+      if (isPublic(context[i])) {
+        ret = ret + options.fn(context[i]);
+      }
+    }
+
+    return ret;
+  },
+
+  /**
+   * Hack for:
+   * https://github.com/yui/yuidoc/issues/198
+   *
+   * Usage:
+   *   {{#crossLinkWrapper type}}{{#crossLink type}}{{/crossLink}}{{/crossLinkWrapper}}
+   */
+  crossLinkWrapper: function(context, options) {
+    if (!context) return &#x27;&#x27;;
+    var types_raw = context.split(&#x27;|&#x27;);
+    var types_linked = options.fn(this).split(&#x27;|&#x27;);
+
+    return types_raw.map(function(type, i) {
+      if (/\[\]/.test(type)) {
+        if (/&lt;\/a&gt;/.test(types_linked[i])) {
+          return types_linked[i].replace(&#x27;&lt;/a&gt;&#x27;, &#x27;[]&lt;/a&gt;&#x27;);
+        } else {
+          return types_linked[i].trim() + &#x27;[]&#x27;;
+        }
+      } else {
+        return types_linked[i];
+      }
+    }).join(&#x27; | &#x27;);
+  },
+
+  notEmpty: function(context, options) {
+    &#x27;use strict&#x27;;
+
+    if(context &amp;&amp; Array.isArray(context)) {
+      return context.length &gt; 0 ? options.fn(this) : options.inverse(this);
+    } else {
+      return (!context || !String(context).replace(/\s/g, &#x27;&#x27;)) ? options.inverse(this) : options.fn(this);
+    }
+  },
+
+  hasStaticMethods: function(context, options) {
+    &#x27;use strict&#x27;;
+    var hasStatic = false;
+    if (!context) return &#x27;&#x27;;
+    for (var i = 0; i &lt; context.length; i++) {
+      if (context[i][&#x27;static&#x27;]) {
+        hasStatic = true;
+        break;
+      }
+    }
+    if (hasStatic) {
+      return options.fn(this);
+    }
+    return &#x27;&#x27;;
+  },
+
+  hasInstanceMethods: function(context, options) {
+    &#x27;use strict&#x27;;
+    var hasInstance = false;
+    if (!context) return &#x27;&#x27;;
+    for (var i = 0; i &lt; context.length; i++) {
+      if (!context[i][&#x27;static&#x27;]) {
+        hasInstance = true;
+        break;
+      }
+    }
+    if (hasInstance) {
+      return options.fn(this);
+    }
+    return &#x27;&#x27;;
+  },
+
+  search: function(classes, modules) {
+    &#x27;use strict&#x27;;
+    var ret = &#x27;&#x27;;
+
+    for (var i = 0; i &lt; classes.length; i++) {
+      if (i &gt; 0) {
+        ret += &#x27;, &#x27;;
+      }
+      ret += &quot;\&quot;&quot; + &#x27;classes/&#x27; + classes[i].displayName + &quot;\&quot;&quot;;
+    }
+
+    if (ret.length &gt; 0 &amp;&amp; modules.length &gt; 0) {
+      ret += &#x27;, &#x27;;
+    }
+
+    for (var j = 0; j &lt; modules.length; j++) {
+      if (j &gt; 0) {
+        ret += &#x27;, &#x27;;
+      }
+      ret += &quot;\&quot;&quot; + &#x27;modules/&#x27; + modules[j].displayName + &quot;\&quot;&quot;;
+    }
+
+    return ret;
+  },
+
+  or: function(a, b, options) {
+    if(a || b) {
+      return options.fn(this);
+    }
+    return &#x27;&#x27;;
+  },
+
+  eq: function(v1, v2, options) {
+    if(v1 == v2) {
+      return options.fn(this);
+    } else {
+      return options.inverse(this);
+    }
+  },
+
+  deEmberifiedName: function() {
+    var name = this.projectName || &#x27;&#x27;;
+
+    var delimiter = name.indexOf(&#x27;-&#x27;) &gt; -1 ? &#x27;-&#x27; : &#x27; &#x27;;
+    var segments = name.split(delimiter);
+
+    if(segments[0].toLowerCase() === &#x27;ember&#x27;) {
+      name = segments.slice(1, segments.length).join(delimiter).trim();
+    }
+
+    return name;
+  },
+
+  projectTag: function() {
+    return getTagFromVersion(PROJECT.projectVersion);
+  },
+
+  githubFoundAt: function() {
+    var meta = getFileMeta(this.file);
+    return generateGhFileUrl(meta.url, meta.version, meta.file, this.line);
+  },
+
+  fileName: function() {
+    var meta = getExternalFileMeta(this.file);
+    return meta ? this.file.replace(new RegExp(meta.path, &#x27;i&#x27;), meta.name) : this.file;
+  },
+
+  forwardToIndexModule: function() {
+    return &#x27;&lt;script type=&quot;text/javascript&quot;&gt;&#x27; +
+              &#x27;window.location.replace(&quot;modules/&#x27; + this.projectIndexModule + &#x27;.html&quot;);&#x27; +
+           &#x27;&lt;/script&gt;&#x27;
+  }
+};
+
+function getTagFromVersion(version) {
+  if (version === &#x27;master&#x27; || version.charAt(0).toLowerCase() === &#x27;v&#x27;) {
+    return version;
+  } else {
+    return version.split(&#x27;.&#x27;).pop();
+  }
+}
+
+function isPublic(context) {
+  return context.itemtype || (!context.itemtype &amp;&amp; context.access === &#x27;public&#x27;);
+}
+
+function getFileMeta(file) {
+  var externalMeta = getExternalFileMeta(file)
+
+  if (externalMeta) {
+    return {
+      file: file.replace(new RegExp(externalMeta.path, &#x27;i&#x27;), &#x27;&#x27;),
+      version: getTagFromVersion(externalMeta.version),
+      url: externalMeta.url
+    };
+  } else {
+    return {
+      file: file,
+      version: getTagFromVersion(PROJECT.projectVersion),
+      url: PROJECT.projectUrl
+    };
+  }
+}
+
+function getExternalFileMeta(file) {
+  var externalDocs = PROJECT.projectExternalDocs || [];
+
+  return externalDocs.find(function(externalDoc) {
+    return !!(file || &#x27;&#x27;).match(new RegExp(externalDoc.path, &#x27;i&#x27;));
+  });
+}
+
+function generateGhFileUrl(baseUrl, version, file, line) {
+  return baseUrl + &#x27;/blob/&#x27; + version + &#x27;/&#x27; + file + &#x27;#L&#x27; + line;
+}
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

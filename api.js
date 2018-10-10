@@ -13,6 +13,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "MappedinDirective",
         "MappedinEvent",
         "MappedinLocation",
+        "MappedinLocationState",
         "MappedinMap",
         "MappedinMapGroup",
         "MappedinNode",
@@ -21,6 +22,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "MappedinVortex",
         "Marker",
         "Search",
+        "SmartLabel",
         "TextLabel",
         "Tween"
     ],

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>source/Mappedin.SmartLabel.js - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.46.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+<div class="page-header">
+    <h1><i class="fa fa-file-code-o" aria-hidden="true"></i>  File</h1>
+</div>
+
+<div class="file">
+    <pre class="prettyprint linenums">
+import PubSub from &#x27;./Mappedin.PubSub.js&#x27;;
+
+import {
+	BufferGeometry,
+	LineBasicMaterial,
+	Line,
+	Float32BufferAttribute
+} from &#x27;three&#x27;;
+
+import { throttle } from &#x27;./utils&#x27;;
+
+const indexOfAll = (arr, val, prop) =&gt; {
+	const indices = [];
+	arr.forEach((el, i) =&gt; (el[prop] === val || el[prop].includes(val)) &amp;&amp; indices.push(i));
+	return indices;
+};
+
+class TwoDPoint {
+	constructor(id, position, options = {}) {
+		options.offset = options.offset ? options.offset : { x: 0, y: 0 };
+
+		this.id = id;
+		this.y = position.x + options.offset.x;
+		this.x = position.y + options.offset.y;
+		this.offset = options.offset;
+
+		Object.assign(this, options);
+
+		this.update = this.update.bind(this);
+	}
+
+	update(x, y) {
+		this.x = x + this.offset.x;
+		this.y = y + this.offset.y;
+		return this;
+	}
+}
+
+const defaultOptions = {
+	orientation: null,
+	textSize: 18,
+	maxTextDivWidth: 140,
+	textLines: 2,
+	borderSize: 2,
+	shrinkAmount: 0,
+	color: &#x27;#000000&#x27;,
+	markerBuffer: 5,
+	lineHeight: 20,
+	textDivHeight: 40,
+	textDivWidth: 100,
+	textClass: &#x27;&#x27;,
+	pinColor: 0x000000,
+	activeColor: &#x27;white&#x27;,
+	inactiveColor: &#x27;rgb(128,128,128)&#x27;,
+	markerClass: &#x27;&#x27;,
+	markerSize: 20,
+};
+
+/**
+ * An internal representaion of a 2D text label. Make your own with {{#crossLink &quot;MapView/labelPolygon:method&quot;}}{{/crossLink}}.
+ *
+ * @class SmartLabel
+ */
+class SmartLabel {
+	styles = {
+		east: {
+			textAlign: &#x27;left&#x27;,
+		},
+		north: {
+			textAlign: &#x27;center&#x27;,
+			verticalAlign: &#x27;bottom&#x27;
+		},
+		west: {
+			textAlign: &#x27;right&#x27;
+		},
+	};
+
+	constructor(options, mapObject, polygonMeshesById, textLabelsByPolygonId, mapView, collisionPoints) {
+		Object.assign(this, PubSub.prototype);
+
+		// externals
+		this.mapObject = mapObject;
+		this.mapView = mapView;
+		this.textLabelsByPolygonId = textLabelsByPolygonId;
+		this.polygonMeshesById = polygonMeshesById;
+		this.collisionPoints = collisionPoints;
+
+		// options
+		this.id = options.polygonId;
+		this.polygonId = options.polygonId;
+		this.polygon = options.polygon;
+		this._mPosition = options.position;
+		this._mOriginalPosition = options.position;
+		this.heightAbovePolygon = options.heightAbovePolygon &gt;= 0 ? options.heightAbovePolygon : null;
+		this.label = options.label || options.text || &#x27;&#x27;;
+		this._mMapId = options.polygon.map || null;
+		this.isActive = options.isActive || false;
+		this._misHidden = options.hidden || false;
+		this.currentOrientation = options.orientation;
+		this.color = options.color || &#x27;#000000&#x27;;
+		this.markerBuffer = options.markerBuffer || 5;
+		this.originalColor = options.color || &#x27;#000000&#x27;;
+		this.height = options.height;
+		this.collisionsAgainst = {};
+		this.screenRenderBuffer = options.screenRenderBuffer || 250;
+		this.rank = options.rank || 0;
+
+		this.borderSize = options.borderSize || defaultOptions.borderSize;
+		this.shrinkAmount = options.shrinkAmount || defaultOptions.shrinkAmount;
+
+		if (options.stateText) {
+			this.label += &#x60; (${options.stateText})&#x60;;
+		}
+
+		// Text div options
+		this.textSize = options.textSize || defaultOptions.textSize;
+		this.maxTextWidth = options.maxTextDivWidth || defaultOptions.maxTextDivWidth;
+		this.lineHeight = options.lineHeight || this.textSize || defaultOptions.lineHeight;
+		// max width allowed
+		this.textHeight = options.textDivHeight || defaultOptions.textDivHeight;
+		this.textWidth = options.textDivWidth || defaultOptions.textDivWidth;
+
+		this.textLines = options.textLines || defaultOptions.textLines;
+		this.textClass = options.textClass || defaultOptions.textClass;
+
+
+		// marker options
+		this.pinColor = options.pinColor || defaultOptions.pinColor;
+		this.activeColor = options.activeColor || defaultOptions.activeColor;
+		this.inactiveColor = options.inactiveColor || defaultOptions.inactiveColor;
+		this.markerClass = options.markerClass || defaultOptions.markerClass;
+		this.markerSize = options.markerSize || defaultOptions.markerSize;
+		this.options = options;
+
+		// Control Internals
+
+		this.m_translateX = 0;
+		this.m_translateY = 0;
+		this.m_rotateZ = 0;
+		this.created = false;
+		this.isShowing = false;
+		this._mShowMarker = false;
+		this._mShowLine = false;
+		this._mShowLabel = false;
+		this.type = &#x27;pin&#x27;;
+		this.textDiv = null;
+		this.offsets = [];
+
+		this.previousOrientation = null;
+
+		// Bindings
+		this.create = this.create.bind(this);
+		this.destroy = this.destroy.bind(this);
+
+		this.show = this.show.bind(this);
+		this.hide = this.hide.bind(this);
+
+		this.setPosition = this.setPosition.bind(this);
+		this.addEventListener = this.addEventListener.bind(this);
+		this.createLineSegment = this.createLineSegment.bind(this);
+		this.calculateHeightOfPolygon = this.calculateHeightOfPolygon.bind(this);
+
+		this.setColor = this.setColor.bind(this);
+		this.clearColor = this.clearColor.bind(this);
+		this.setOrientation = throttle(this.setOrientation, options.smartLabelOrientationDelay).bind(this);
+		this.createMarkerDiv = this.createMarkerDiv.bind(this);
+		this.updateMarkerStyles = this.updateMarkerStyles.bind(this);
+		this.updateTextStyles = this.updateTextStyles.bind(this);
+		this.updateStyles = this.updateStyles.bind(this);
+		this.registerSelf = this.registerSelf.bind(this);
+		this.deregisterSelf = this.deregisterSelf.bind(this);
+		this.checkCollisions = this.checkCollisions.bind(this);
+		this._calculateOrientations = this.calculateOrientations.bind(this);
+		this.determineOrientation = this.determineOrientation.bind(this);
+		this.updateCollisionPoints = this.updateCollisionPoints.bind(this);
+		this.updateLabelCollisions = this.updateLabelCollisions.bind(this);
+		this.flipIfNeeded = () =&gt; {};
+	}
+
+	updateMarkerStyles() {
+		if (this.markerDiv) {
+			this.markerDiv.style.opacity = this._mShowMarker ? 1 : 0;
+			this.markerDiv.style.top = &#x60;${-1 * this.borderSize}px&#x60;;
+			this.markerDiv.style.border = &#x60;${this.borderSize}px solid white&#x60;;
+			this.markerDiv.style.pointerEvents = &#x27;none&#x27;;
+			this.markerDiv.style.width = &#x60;${this.markerSize}px&#x60;;
+			this.markerDiv.style.height = &#x60;${this.markerSize}px&#x60;;
+			this.markerDiv.style.backgroundColor = this.color;
+		}
+	}
+
+	updateTextStyles() {
+		if (this.textDiv) {
+			if (this.polygon.map !== this.mapView.currentMap &amp;&amp; this._mShowLabel) {
+				this.textDiv.style.opacity = this._mShowLabel ? 1 : 0;
+			}
+
+			this.textDiv.style.opacity = this._mShowLabel ? 1 : 0;
+			this.textDiv.style.maxWidth = &#x60;${this.maxTextWidth}px&#x60;;
+
+			if (this.textHeight &amp;&amp; this.orientations) {
+				this.textDiv.style.maxHeight = &#x60;${this.textHeight}px&#x60;;
+				this.textDiv.style.height = &#x60;${this.textHeight}px&#x60;;
+				const offset = this.orientations[this.currentOrientation || &#x27;north&#x27;];
+
+				// The calculations for orientation rely on textHeight having already been computed
+				this.textDiv.style.top = &#x60;${offset.y}px&#x60;;
+				this.textDiv.style.left = &#x60;${offset.x}px&#x60;;
+
+				// apply orientation specific styling
+				const styles = this.styles[this.currentOrientation || &#x27;north&#x27;];
+				Object.keys(styles).forEach((key) =&gt; {
+					const value = styles[key];
+					this.textDiv.style[key] = value;
+				});
+			}
+		}
+	}
+
+	updateStyles() {
+		// optimization: flag which div is dirty and do it conditionally
+		this.updateMarkerStyles();
+		this.updateTextStyles();
+	}
+
+	createMarkerDiv() {
+		const { mapView } = this;
+		const markerDiv = document.createElement(&#x27;div&#x27;);
+
+		markerDiv.className = &#x60;pin-marker ${this.polygon.id} ${this.markerClass}&#x60;;
+
+		// could move to main.css
+		markerDiv.style.position = &#x27;absolute&#x27;;
+		markerDiv.style.willChange = &#x27;transform, opacity&#x27;;
+		markerDiv.style.borderRadius = &#x27;50%&#x27;;
+
+		if (!mapView.container.contains(markerDiv)) {
+			mapView.container.appendChild(markerDiv);
+		}
+		return markerDiv;
+	}
+
+	// only one div for text, we repostiion in update label
+	createTextDiv(label) {
+		const { mapView } = this;
+		const textDiv = document.createElement(&#x27;div&#x27;);
+
+		textDiv.innerHTML = label;
+		textDiv.className = &#x60;pin-marker-text ${this.polygon.id} ${this.textClass}&#x60;;
+
+		textDiv.style.lineHeight = &#x60;${this.lineHeight}px&#x60;;
+
+		// could be moved to main.css
+		textDiv.style.transition = &#x27;opacity 300ms linear&#x27;;
+		textDiv.style.textShadow = &#x27;1px 1px 0px #FFFFFF, -1px -1px 0px #FFFFFF, 1px -1px 0px #FFFFFF, -1px 1px 0px #FFFFFF&#x27;;
+		textDiv.style.fontFamily = &#x27;Helvetica,Arial,sans-serif&#x27;;
+		textDiv.style.position = &#x27;absolute&#x27;;
+		textDiv.style.pointerEvents = &#x27;none&#x27;;
+		textDiv.style.willChange = &#x27;transform&#x27;;
+		textDiv.style.overflowY = &#x27;hidden&#x27;;
+		textDiv.style.overflowX = &#x27;hidden&#x27;;
+		textDiv.style.padding = &#x27;1px&#x27;;
+
+		if (!mapView.container.contains(textDiv)) {
+			mapView.container.appendChild(textDiv);
+		}
+
+		// Determine how tall we should make the div based on the number of lines of content
+		// Must be in a setTimout (or always returns 1)
+		setTimeout(() =&gt; {
+			const rect = textDiv.getBoundingClientRect();
+			const height = rect.height;
+			const textLineCount = Math.round(height) / this.lineHeight;
+			// Set the height of the div to be the lineHeight * numberOfLines
+			if (textLineCount &lt; this.textLines) {
+				this.textHeight = textLineCount * this.lineHeight;
+			} else {
+				this.textHeight = this.textLines * this.lineHeight;
+			}
+			this.textWidth = rect.width;
+			this.orientations = this._calculateOrientations();
+			this.registered = this.registerSelf();
+			this.updateStyles();
+		}, 0);
+		return textDiv;
+	}
+
+	// Calculate the orientations for the text div based off of its current width
+	calculateOrientations(point = this._mPosition) {
+		const { markerSize, markerBuffer, textWidth, textHeight} = this;
+		const offsets = {
+			east: {
+				x: markerSize + markerBuffer,
+				y: ((markerSize / 2) + (-1 * textHeight / 2)) - this.borderSize,
+			},
+			north: {
+				x: (markerSize / 2) - (textWidth / 2),
+				y: -1 * textHeight - markerBuffer,
+			},
+			west: {
+				x:  -1 * textWidth - markerBuffer,
+				y:  (markerSize / 2) - (textHeight / 2) - this.borderSize,
+			}
+		};
+
+		return offsets;
+	}
+
+	create() {
+		const { doNotCreate, label, inactiveColor, created } = this;
+
+		this.mapObject.textObjects.push(this);
+
+		if (doNotCreate || created) {
+			return;
+		}
+		this.color = inactiveColor;
+
+		// set the height of the marker
+		this.polygonHeight = this.calculateHeightOfPolygon();
+
+		const pinHeight = this.height || this.polygonHeight + this.heightAbovePolygon;
+		// move the marker
+		if (this.heightAbovePolygon) {
+			this._mPosition.z = pinHeight;
+			this._mOriginalPosition.z = pinHeight;
+		}
+
+		this.height = pinHeight;
+
+		this.line = this.createLineSegment();
+
+		// TODO: re-arrage this into a parent div for markers and a parent div for text (z-index)
+		this.markerDiv = this.createMarkerDiv();
+		this.textDiv = this.createTextDiv(label);
+
+		this.updateStyles();
+		this.mapView.scene.add(this.line.object);
+
+		this.created = true;
+		this.show();
+	}
+
+	calculateHeightOfPolygon() {
+		if (this.polygonMeshesById[this.polygon.id]) {
+			var target = this.polygonMeshesById[this.polygon.id];
+			if (!target.geometry.boundingBox) {
+				target.geometry.computeBoundingBox();
+			}
+
+			return target.geometry.boundingBox.max.z;
+		}
+
+		return 0;
+	}
+
+	createLineSegment(position = this._mPosition) {
+		const geometry = new BufferGeometry();
+
+		const positions = [
+			position.x, position.y, 0,
+			position.x, position.y, this.height,
+		];
+
+		geometry.addAttribute(&#x27;position&#x27;, new Float32BufferAttribute(positions, 3));
+
+		const material = new LineBasicMaterial({ color: 0xFFFFFF });
+
+		const lineObject = new Line(geometry, material);
+		const line = {
+			id: lineObject.id,
+			object: lineObject,
+		};
+
+		line.object.material.visible = false;
+
+		return line;
+	}
+
+	// show the marker on the map
+	show() {
+		if (this.polygon.map !== this.mapView.currentMap) {
+			return;
+		}
+
+		if (!this.isShowing) {
+			this._mShowMarker = true;
+			this._mShowLabel = true;
+
+			if (this.line &amp;&amp; this.line.object) {
+				this.line.object.material.visible = true;
+				this._mShowLine = true;
+			}
+
+			this.color = this.activeColor;
+
+			this.isShowing = true;
+			this.updateStyles();
+		}
+	}
+
+	// hide the marker on the map
+	hide() {
+		if (this.isShowing) {
+			this._mShowLabel = false;
+			this._mShowMarker = false;
+
+			if (this.line &amp;&amp; this.line.object) {
+				this.line.object.material.visible = false;
+				this._mShowLine = false;
+			}
+
+			if (this.polygon.map !== this.mapView.currentMap) {
+				this.deregisterSelf();
+			}
+
+			this.color = this.inactiveColor;
+
+			this.isShowing = false;
+			this.updateStyles();
+		}
+	}
+
+	// the pin needs to be able to register itself in the collision engine
+	registerSelf() {
+		// register the four corners of each orientation
+		const options = {
+			rank: this.rank,
+			polygon: this.polygon.id,
+			map: this.polygon.map
+		};
+
+		Object.keys(this.orientations).forEach((orientation) =&gt; {
+			const offset = this.orientations[orientation];
+			const id = &#x60;${this.polygon.id}-text-${orientation}&#x60;;
+			const position = {
+				x: this._mPosition.x,
+				y: this._mPosition.y,
+			};
+			this.collisionPoints.push(
+				new TwoDPoint(
+					id,
+					position,
+					{
+						orientation,
+						offset,
+						...options
+					}),
+				new TwoDPoint(
+					id,
+					position,
+					{
+						orientation,
+						offset: {
+							x: offset.x + this.textWidth,
+							y: offset.y
+						},
+						...options}),
+				new TwoDPoint(
+					id,
+					position,
+					{
+						orientation,
+						offset: {
+							x: offset.x + this.textWidth,
+							y: offset.y + this.textHeight
+						},
+						...options
+					}),
+				new TwoDPoint(
+					id,
+					position,
+					{
+						orientation,
+						offset: {
+							x: offset.x,
+							y: offset.y + this.textHeight,
+						},
+						...options
+					})
+			);
+		});
+
+		const markerId = &#x60;${this.polygon.id}-marker&#x60;;
+		// register the four corners of the marker
+		this.collisionPoints.push(
+			new TwoDPoint(
+				markerId,
+				{ x: this._mPosition.x, y: this._mPosition.y, },
+				{ orientation: &#x27;marker&#x27;, ...options }
+			),
+			new TwoDPoint(
+				markerId,
+				{ x: this._mPosition.x + this.markerSize, y: this._mPosition.y, },
+				{ orientation: &#x27;marker&#x27;, ...options }
+			),
+			new TwoDPoint(
+				markerId,
+				{ x: this._mPosition.x + this.markerSize, y: this._mPosition.y + this.markerSize, },
+				{ orientation: &#x27;marker&#x27;, ...options }
+			),
+			new TwoDPoint(
+				markerId,
+				{ x: this._mPosition.x, y: this._mPosition.y + this.markerSize, },
+				{ orientation: &#x27;marker&#x27;, ...options }
+			)
+		);
+
+		return true;
+	}
+
+	// remove yourself from the collision space
+	deregisterSelf() {
+		var twoDMarkerIndexes = indexOfAll(this.collisionPoints, this.polygon.id, &#x27;id&#x27;);
+		this.collisionPoints.splice(twoDMarkerIndexes[0], twoDMarkerIndexes.length);
+	}
+
+	setOrientation(orientation) {
+		this.currentOrientation = orientation;
+		this.show();
+		if (orientation !== this.currentOrientation) {
+			this.mapView.tryRendering();
+		}
+		return true;
+	}
+
+	setColor (textColor) {
+		this.textColor = textColor;
+	}
+
+	clearColor () {
+		this.setColor(this.originalColor);
+	}
+
+	setPosition(position) {
+		if (position) {
+			this._mPosition = position;
+			this.updateStyles();
+			this.mapView.tryRendering();
+		}
+	}
+
+	// Check if this marker collides with any other markers and their labels
+	checkCollisions(myPoints = [], collisionPoints) {
+		const myCollisions = { hasCollided: 0, collisionCount: 0};
+		// Some other higher ranked label has already decided it will show above this
+		if (this.collisionsAgainst.collisionCount &gt;= 3) {
+			return this.collisionsAgainst;
+		}
+
+		// O(n + m) where m is number of markers and n is number of divs per marker
+		// currently 0(4m) || O(m)
+		// this makes us assume that array is all of rectangles... need a better way to iterate over it or add some data to the first vertex in the list
+		for (let j = 0; j &lt; myPoints.length; j += 4) {
+			const topLeft = myPoints[j];
+			const bottomRight = myPoints[j + 2];
+			const orientation = topLeft.orientation;
+			myCollisions[orientation] = 0;
+
+			for (let i = 0; i &lt; collisionPoints.length; i++) {
+				const { x, y, id, polygon, map, rank, orientation: collisionOrientation } = collisionPoints[i];
+
+				// Don&#x27;t do collisions with your own marker
+				if (id === this.polygon.id || id.includes(this.polygon.id)) {
+					continue;
+				}
+
+				// skip diff maps
+				if (map !== this.polygon.map) {
+					continue;
+				}
+
+				if (x &gt;= topLeft.x
+					&amp;&amp; x &lt;= bottomRight.x
+					&amp;&amp; y &gt;= topLeft.y
+					&amp;&amp; y &lt;= bottomRight.y) {
+					// calculate collisions with
+					if (this.rank &lt;= rank) {
+						// only increment the collision count the first item an orientation hits
+						// collisionCount = # of orientations facing collisions
+						if (!myCollisions[orientation]) {
+							myCollisions.collisionCount += 1;
+						}
+						myCollisions.hasCollided = 1;
+						myCollisions[orientation] = 1;
+					} else {
+						// Tell other polygons about collisions against them
+						const collidingLabel = this.textLabelsByPolygonId[polygon].collisionsAgainst;
+
+						collidingLabel.hasCollided = 1;
+
+						if (!collidingLabel.collisionCount) {
+							collidingLabel.collisionCount = 0;
+						}
+
+						if (!collidingLabel[collisionOrientation]) {
+							collidingLabel[collisionOrientation] = 1;
+							collidingLabel.collisionCount += 1;
+						}
+					}
+				}
+			}
+		}
+
+		return myCollisions;
+	}
+
+	updateCollisionPoints(x = this.m_translateX, y = this.m_translateY) {
+		this.twoDMarkerIndexes = indexOfAll(this.collisionPoints, this.polygon.id, &#x27;id&#x27;);
+		return this.twoDMarkerIndexes.map(index =&gt; this.collisionPoints[index].update(x, y));
+	}
+
+	determineOrientation(collisions = this.updatedCollisions, collisionsAgainst = this.collisionsAgainst) {
+		if (!this.isInScreen) {
+			return;
+		}
+		// Merge the collisions against and collisions with
+		if (collisionsAgainst.hasCollided) {
+			Object.keys(this.orientations).forEach((orientation) =&gt; {
+				if (!collisions[orientation]) {
+					collisions[orientation] = collisionsAgainst[orientation];
+				}
+			});
+		}
+
+		if (collisionsAgainst.marker) {
+			this.hide();
+		}
+		// determine which direction the marker should go
+		else if (collisions.collisionCount &gt;= 3) {
+			this.hide();
+		} else if (this.orientations) {
+			let orientationSet = false;
+
+			Object.keys(this.orientations).forEach((orientation) =&gt; {
+				const isColliding = collisions[orientation];
+				if (isColliding || orientationSet) {
+					// continue;
+				} else  {
+					this.setOrientation(orientation);
+					orientationSet = true;
+				}
+			});
+		}
+		this.collisionsAgainst = {};
+		return;
+	}
+
+	// Check what collisions are occuring
+	updateLabelCollisions() {
+		this.updatedCollisions = this.checkCollisions(this.collisions, this.collisionPoints);
+	}
+
+	setTransform(transforms) {
+		if (this.polygon.map !== this.mapView.currentMap) {
+			return;
+		}
+		this.m_translateX = transforms.x;
+		this.m_translateY = transforms.y;
+		this.m_rotateZ = transforms.rotateZ || &#x27;&#x27;;
+
+		// This optimization only updates the marker if it is within the viewable 2d screen space (with some buffer)
+		// It also ensure the marker doesn&#x27;t need to be moved off screen still
+		// It makes sense to do this with marker collisions too in determinOri/checkCollisions
+		const oldXY = { x: this.m_translateX, y: this.m_translateY };
+
+		// todo: dont compute these every time probably recompute when canvasWidth changes
+		const left = -1 * this.screenRenderBuffer;
+		const right = this.mapView.canvasWidth + this.screenRenderBuffer;
+		const top = - 1 * this.screenRenderBuffer;
+		const bottom = this.mapView.canvasHeight + this.screenRenderBuffer;
+
+
+		const willBeOutOfScreen = transforms.x &lt; left || transforms.x &gt; right || transforms.y &lt; top || transforms.y &gt; bottom;
+		const isOnScreen = oldXY.x &lt; left || oldXY.x &gt; right || oldXY.y &lt; top || oldXY.y &gt; bottom;
+		if (willBeOutOfScreen &amp;&amp; !isOnScreen) {
+			this.isInScreen = false;
+			return;
+		}
+
+		var translate = &#x27;translate(&#x27; + (transforms.x - (this.markerSize / 2)) + &#x27;px, &#x27; + (transforms.y - (this.markerSize / 2)) + &#x27;px)&#x27;;
+		var rotate = &#x27;rotate(&#x27; + transforms.rotateZ + &#x27;rad)&#x27;;
+		var transform = translate + &#x27; &#x27; + rotate;
+
+		if (this.textDiv) {
+			this.textDiv.style.transform = transform;
+		}
+
+		if (this.markerDiv) {
+			this.markerDiv.style.transform = transform;
+		}
+
+		this.isInScreen = true;
+		this.collisions = this.updateCollisionPoints();
+
+		this.publish(&#x27;update-position&#x27;, { x: transforms.x, y: transforms.y, rotateZ: transforms.rotateZ });
+		return true;
+	}
+
+	// remove yourself from the scene
+	removeSelf () {
+		if (this.line &amp;&amp; this.line.object.destroy) {
+			this.line.object.destroy();
+		}
+
+		if (this.mapView.container.contains(this.textDiv)) {
+			this.mapView.container.removeChild(this.textDiv);
+			this.textDiv = null;
+		}
+
+		if (this.mapView.container.contains(this.markerDiv)) {
+			this.mapView.container.removeChild(this.markerDiv);
+			this.markerDiv = null;
+		}
+
+		this.deregisterSelf();
+
+		if (this.created) {
+			// remove yourself from the map object too right?
+			this.mapObject.textObjects = this.mapObject.textObjects.filter(function(object) {
+				return object != this;
+			});
+		} else {
+			this.doNotCreate = true;
+		}
+	}
+
+	// Needed to maintain TextLabel API
+	destroy() {
+		this.removeSelf();
+		return;
+	}
+
+	addEventListener (ev, response) {
+		this.markerDiv.addEventListener(ev, response);
+	}
+}
+
+export default SmartLabel;
+
+    </pre>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>
