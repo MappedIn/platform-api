@@ -13,6 +13,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "MappedinDirective",
         "MappedinEvent",
         "MappedinLocation",
+        "MappedinLocationState",
         "MappedinMap",
         "MappedinMapGroup",
         "MappedinNode",

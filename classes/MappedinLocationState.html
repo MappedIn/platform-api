@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>MappedinDirections - The Mappedin Web SDK</title>
+    <title>MappedinLocationState - The Mappedin Web SDK</title>
     <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
@@ -197,7 +197,7 @@
 
 
 <div class="page-header">
-    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MappedinDirections Class
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MappedinLocationState Class
     </h1>
 </div>
 
@@ -213,7 +213,7 @@
 
 
   <div class="class-description">
-  <p>A <a href="../classes/MappedinDirections.html" class="crosslink">MappedinDirections</a> object will contain an array of <a href="../classes/MappedinNode.html" class="crosslink">MappedinNode</a>s on a path, and a corresponding list of <a href="../classes/MappedinDirective.html" class="crosslink">MappedinDirective</a> objects representing the instructions to display to the user.</p>
+  <p>A location state, that can belong to any number of <a href="../classes/MappedinLocation.html" class="crosslink">MappedinLocation</a>s.</p>
 
   </div>
 
@@ -223,7 +223,6 @@
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
 
-            <li role="presentation"><a href="#tab_properties" aria-controls="tab_properties" role="tab" data-toggle="tab">Properties</a></li>
 
 
         </ul>
@@ -246,144 +245,11 @@
 
           <div id="tab_index" role="tabpanel" class="tab-pane active" >
 
-                  <div class="index-section properties">
-                      <h3>Properties</h3>
-
-                      <ul class="index-list properties">
-                              <li class="index-item property">
-                                  <a href="#property_directionsProvider">directionsProvider</a>
-
-                                      <span class="flag static">static</span>
-                              </li>
-                              <li class="index-item property">
-                                  <a href="#property_distance">distance</a>
-
-                              </li>
-                              <li class="index-item property">
-                                  <a href="#property_instructions">instructions</a>
-
-                              </li>
-                              <li class="index-item property">
-                                  <a href="#property_path">path</a>
-
-                              </li>
-                      </ul>
-                  </div>
 
 
           </div>
 
 
-              <div id="tab_properties" role="tabpanel" class="tab-pane">
-                  <div class="item-list">
-  <div id="property_directionsProvider" class="property item">
-      <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_directionsProvider"></a>
-          directionsProvider
-      </h3>
-      <span class="type">"online", "offline"</span>
-  
-  
-  
-          <span class="flag final">const</span>
-  
-          <span class="flag static">static</span>
-  
-      <div class="meta">
-                  <p>
-          </p>
-  
-  
-      </div>
-  
-      <div class="description">
-          <p>The source of wayfinding directions.</p>
-  
-      </div>
-  
-  
-  
-  </div>
-  <div id="property_distance" class="property item">
-      <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_distance"></a>
-          distance
-      </h3>
-      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-  
-  
-  
-  
-  
-      <div class="meta">
-                  <p>
-          </p>
-  
-  
-      </div>
-  
-      <div class="description">
-          <p>Total distance of path in meters</p>
-  
-      </div>
-  
-  
-  
-  </div>
-  <div id="property_instructions" class="property item">
-      <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_instructions"></a>
-          instructions
-      </h3>
-      <span class="type"><a href="../classes/MappedinDirective.html" class="crosslink">[MappedinDirective]</a></span>
-  
-  
-  
-  
-  
-      <div class="meta">
-                  <p>
-          </p>
-  
-  
-      </div>
-  
-      <div class="description">
-          <p>Instructions to display to the user.</p>
-  
-      </div>
-  
-  
-  
-  </div>
-  <div id="property_path" class="property item">
-      <h3 class="name anchorable-toc">
-          <a class="fa fa-link toc-anchor" href="#property_path"></a>
-          path
-      </h3>
-      <span class="type"><a href="../classes/MappedinNode.html" class="crosslink">[MappedinNode]</a></span>
-  
-  
-  
-  
-  
-      <div class="meta">
-                  <p>
-          </p>
-  
-  
-      </div>
-  
-      <div class="description">
-          <p>Collection of Nodes that form a path.</p>
-  
-      </div>
-  
-  
-  
-  </div>
-                  </div>
-              </div>
 
 
       </div>
