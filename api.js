@@ -21,7 +21,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "MappedinVenue",
         "MappedinVortex",
         "Marker",
+        "Navigator",
         "Search",
+        "SmartLabel",
         "TextLabel",
         "Tween"
     ],

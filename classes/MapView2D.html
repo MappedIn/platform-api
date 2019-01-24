@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.46.1
+                                  Version: 1.50.0
                                 </a>
                             </h4>
                         </div>
@@ -177,7 +177,13 @@
                                         <a href="../classes/Marker.html">Marker</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
                                     </li>
                                     <li>
                                         <a href="../classes/TextLabel.html">TextLabel</a>
@@ -1501,7 +1507,7 @@
   			</ul><span class="paren">)</span>
   		</div>
   		<span class="returns-inline">
-  			<span class="type"></span>
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>
   		</span>
   	</span>
   
@@ -1520,7 +1526,8 @@
   
   	</div>
   
-  	<div class="description"><p>Expand maps to display within view</p>
+  	<div class="description"><p>Expand maps to display within view, typically used for multi-floor navigation. When passed a connection, maps included will not be displayed, instead, their 2d projection
+  will be available in the resulting promise, which can be used to display a 2D component in the client-side app.</p>
   </div>
   
   		<div class="params">
@@ -1529,10 +1536,10 @@
   			<ul class="params-list">
   				<li class="param">
   						<code class="param-name">mapIds</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
   
   
-  					<div class="param-description"><p>[Array] Array of mapIds to display while expanded</p>
+  					<div class="param-description"><p>Array of mapIds or mapObjects to display while expanded. For connections, pass { connection: true, maps: [], connectionNodes: [], }</p>
   </div>
   
   				</li>
@@ -1590,9 +1597,59 @@
   			<h4>Returns:</h4>
   
   			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>:
+  					<p>Promise that resolves to 2d screen projections of each layer/map (see example)</p>
+  
   			</div>
   		</div>
   
+  		<div class="example">
+  			<h4>Example:</h4>
+  
+  			<div class="example-content">
+  				<pre class="code prettyprint"><code>// expand maps with 3 connection maps in between
+  expandMaps(
+      '55e89771d982bc06ca000000',
+          {
+              connection: true,
+              // connection nodes are an exit node from the '55e89771' man and entry node for the '55e9c73f' map
+              connectionNodes: [{
+                  map: "55e89771",
+                  x: 6232,
+                  y: 4575
+              }, {
+                  map: "55e9c73",
+                  x: 5945.000000000001,
+                  y: 4059.000000000001
+              }],
+              maps: [
+                  '55e9acbf',
+                  '55e8a9ed',
+                  '55e85e23'
+              ]
+          },
+          '55e9c73f'
+       );
+  
+       // resulting promise (sorted by elevation (top to bottom))
+  
+       [
+          {
+              min: { x: -100, y: -50 },
+              max: { x: -100, y: -50 }
+          },
+          {
+              min: { x: -100, y: -50 },
+              max: { x: -100, y: -50 }
+          },
+          {
+              min: { x: -100, y: -50 },
+              max: { x: -100, y: -50 }
+          }
+       ]</code></pre>
+  
+  			</div>
+  		</div>
   </div>
   <div id="method_focusOn" class="method item inherited">
   	<span class="method-signature">

@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.46.1
+                                  Version: 1.50.0
                                 </a>
                             </h4>
                         </div>
@@ -177,7 +177,13 @@
                                         <a href="../classes/Marker.html">Marker</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
                                     </li>
                                     <li>
                                         <a href="../classes/TextLabel.html">TextLabel</a>
@@ -370,6 +376,10 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
 
                               </li>
                               <li class="index-item property">
+                                  <a href="#property_enablePedestal">enablePedestal</a>
+
+                              </li>
+                              <li class="index-item property">
                                   <a href="#property_enableRotate">enableRotate</a>
 
                               </li>
@@ -386,11 +396,19 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
 
                               </li>
                               <li class="index-item property">
+                                  <a href="#property_maxPedestal">maxPedestal</a>
+
+                              </li>
+                              <li class="index-item property">
                                   <a href="#property_maxTilt">maxTilt</a>
 
                               </li>
                               <li class="index-item property">
                                   <a href="#property_maxZoom">maxZoom</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_minPedestal">minPedestal</a>
 
                               </li>
                               <li class="index-item property">
@@ -450,6 +468,9 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
   				<li class="arg">
   						<code class="optional">callback</code>
   				</li>
+  				<li class="arg">
+  						<code class="optional">options</code>
+  				</li>
   			</ul><span class="paren">)</span>
   		</div>
   		<span class="returns-inline">
@@ -494,7 +515,7 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>An {x, y} object representing the position to move to.</p>
+  								<div class="param-description"><p>An {x, y, z} object representing the position to move to.</p>
   </div>
   
   							</li>
@@ -565,6 +586,28 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
   					<div class="param-description"><p>A callback that will be executed when the animation is done.</p>
   </div>
   
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[options]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  					<div class="param-description"><p>An Options object</p>
+  </div>
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name optional">[mode=cancel]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Mode determines what happens when multiple animateCamera calls happen at once. By Default,
+  it will cancel and omit any previous animations. Set to "chain" to chain instead</p>
+  </div>
+  
+  							</li>
+  						</ul>
   				</li>
   			</ul>
   		</div>
@@ -1228,7 +1271,7 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
   						<span class="flag optional" title="This parameter is optional.">optional</span>
   
   
-  					<div class="param-description"><p>an {x, y} object representing the new position.</p>
+  					<div class="param-description"><p>an {x, y, z} object representing the new position.</p>
   </div>
   
   				</li>
@@ -1935,6 +1978,33 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
   
   
   </div>
+  <div id="property_enablePedestal" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_enablePedestal"></a>
+          enablePedestal
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Disable or re-enable user pedestal.</p>
+  
+      </div>
+  
+          <p><br><strong>Default:</strong> false</p>
+  
+  
+  </div>
   <div id="property_enableRotate" class="property item">
       <h3 class="name anchorable-toc">
           <a class="fa fa-link toc-anchor" href="#property_enableRotate"></a>
@@ -2043,6 +2113,34 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
   
   
   </div>
+  <div id="property_maxPedestal" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_maxPedestal"></a>
+          maxPedestal
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Max amount to allow scrolling maps down
+  (In Z-axis units, at the origin, down is positive)</p>
+  
+      </div>
+  
+          <p><br><strong>Default:</strong> Infinity</p>
+  
+  
+  </div>
   <div id="property_maxTilt" class="property item">
       <h3 class="name anchorable-toc">
           <a class="fa fa-link toc-anchor" href="#property_maxTilt"></a>
@@ -2094,6 +2192,34 @@ The camera will always be pointed directly at the anchor point. <a href="../clas
       </div>
   
           <p><br><strong>Default:</strong> 10000</p>
+  
+  
+  </div>
+  <div id="property_minPedestal" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_minPedestal"></a>
+          minPedestal
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Max amount to allow scrolling maps up
+  (In Z-axis units, at the origin, up is negative)</p>
+  
+      </div>
+  
+          <p><br><strong>Default:</strong> -Infinity</p>
   
   
   </div>
