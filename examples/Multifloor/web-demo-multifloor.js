@@ -1,19 +1,6 @@
 (function () {
 	var $ = id => document.getElementById(id);
 
-	var config = {};
-	if (typeof MappedinConfig != 'undefined') {
-		config = MappedinConfig;
-		if (config.clientId) {
-			document.getElementById("client_id").style.display = "none";
-			document.getElementById("client_id_label").style.display = "none";
-		}
-		if (config.clientSecret) {
-			document.getElementById("client_secret").style.display = "none";
-			document.getElementById("client_secret_label").style.display = "none";
-		}
-	}
-
 	var venue;
 
 	var mapList = $("mapList");
@@ -43,9 +30,14 @@
 	var schema = {
 		type: 'object',
 		properties: {
-			venue_slug: {
+			client_id: {
 				type: 'string',
-				default: 'mappedin-demo-mall'
+			},
+			client_secret: {
+				type: 'string',
+			},
+			venue_slug: {
+				type: 'string'
 			},
 			padding_left: {
 				type: 'string',
@@ -120,7 +112,9 @@
 			},
 		},
 		required: [
-			'venue_slug'
+			'venue_slug',
+			'client_id',
+			'client_secret'
 		]
 	};
 
@@ -292,8 +286,6 @@
 					pinSettingsCb.onchange = function () {
 						settingsPanel.className = pinSettingsCb.checked ? 'pinned' : 'hidden';
 					};
-
-					debug = settings.debug_mapview;
 
 					var mapviewOptions = {
 						debug: settings.debug_mapview,
