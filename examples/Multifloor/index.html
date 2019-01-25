@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Map Review Tool</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+
+<body>
+  <div id="mapView"></div>
+	<div id="padding_outline"></div>
+  <select id="mapList" ></select>
+
+  <div id="settings">
+    <h2>Settings</h2>
+    <form id="settings-form" onsubmit="updateSettings(event)">
+			<label class="pin_settings_label" for="pin_settings">
+				<input type="checkbox" id="pin_settings" name="pin_settings" /> Pin Settings
+			</label>
+      <label id="client_id_label" for="client_id">Client ID</label>
+      <input id="client_id" name="client_id" type="text" placeholder="Input your Mappedin API key" />
+      <label id="client_secret_label" for="client_secret">Client Secret</label>
+      <input id="client_secret" name="client_secret" type="text" placeholder="Input your Mappedin API secret"/>
+      <label for="venue_slug">Venue ID</label>
+      <input id="venue_slug" name="venue_slug" type="text" placeholder="Input your Mappedin Venue slug" />
+      <label for="perspective">Perspective</label>
+      <input id="perspective" name="perspective" type="text" placeholder="Input the Perspective you want to use."/>
+			<label>Padding</label>
+			<fieldset id="padding">
+				<label>top: <input type="number" id="padding_top" min="0" max="500" /></label>
+				<label>left: <input type="number" id="padding_left" min="0" max="500" /></label>
+				<label>right: <input type="number" id="padding_right" min="0" max="500" /></label>
+				<label>bottom: <input type="number" id="padding_bottom" min="0" max="500" /></label>
+			</fieldset>
+      <label for="show_icons">
+        <input id="show_icons" name="show_icons" type="checkbox"/> Show Icons
+      </label>
+      <label for="highlight_locations">
+        <input id="highlight_locations" name="highlight_locations" type="checkbox" /> Highlight Locations
+      </label>
+      <label for="show_labels">
+        <input id="show_labels" name="show_labels" type="checkbox" checked/> Show Labels
+			</label>
+			<label for="multiline">
+        <input id="multiline" name="multilines" type="checkbox" checked/> Multiline Labels
+      </label>
+			<fieldset id="multifloor_settings">
+				<legend>Multifloor settings</legend>
+			<label for="debug_mapview">
+        <input id="debug_mapview" name="debug_mapview" type="checkbox" /> Debug MapView
+      </label>
+			<label> Start Position
+				<select id="multifloor_start_position" name="multifloor_start_position" >
+					<option value="top">TOP</option>
+					<option value="bottom">BOTTOM</option>
+				</select>
+			</label>
+			<label> Rotation
+				<input type="range" min="0" max="360" id="multifloor_map_rotation_slider" name="multifloor_map_rotation_slider" />
+				<input type="number" id="multifloor_map_rotation" name="multifloor_map_rotation" min="0" max="360" />
+			</label>
+			<label> Map Tilt
+				<input type="range" min="0" max="90" id="multifloor_map_tilt_slider" name="multifloor_map_tilt_slider" />
+				<input type="number" id="multifloor_map_tilt" name="multifloor_map_tilt" min="0" max="90" />
+			</label>
+			<label> Spacing
+				<input type="range" min="0" max="1000" id="multifloor_map_spacing_slider" name="multifloor_map_spacing_slider" />
+				<input type="number" id="multifloor_map_spacing" name="multifloor_map_spacing" min="0" max="1000" />
+			</label>
+			</fieldset>
+      <fieldset id="multifloor_navigation">
+        <legend>Multifloor navigation</legend>
+        <label> Start PolygonId
+          <input type="text" id="multifloor_navigation_start" name="multifloor_navigation_start" />
+        </label>
+        <label> End PolygonId
+          <input type="text" id="multifloor_navigation_end" name="multifloor_navigation_end" />
+        </label>
+        <button id="multifloor_navigation_navigate">Navigate</button>
+        <button id="multifloor_navigation_showhideoverview" disabled>Back to Overview</button>
+        <button id="multifloor_navigation_reset" disabled>Reset</button>
+      </fieldset>
+      <input type="submit" />
+    </form>
+  </div>
+
+  <div id="instructions">
+       left click - scroll maps up/down<br/>
+  </div>
+  <img src='mappedin.png' class="compass" id="compass"/>
+  <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.50.0/mappedin.js"></script>
+  <script src="./web-demo-multifloor.js"></script>
+</body>
+
+</html>
