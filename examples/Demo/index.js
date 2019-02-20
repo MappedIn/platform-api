@@ -106,8 +106,8 @@ function getMapsInJourney(directions) {
 }
 
 
-// Draws a random path, highlighting the locations and focusing on the path and polygons, then draws another random path after 9000
-// Includes both single and multi floor pathing
+// Draws a random path (single or multi floor), highlighting the locations and focusing on the path and polygons
+// Draws another random path after 9000 ms
 function drawRandomPath() {
 	var startLocation = getRandomInArray(polygonedLocations)
 	var startPolygon = getRandomInArray(startLocation.polygons)
