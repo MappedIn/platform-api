@@ -221,7 +221,6 @@ function onDataLoaded() {
 	mapsSortedByElevation = venue.maps.sort((a, b) => b.elevation - a.elevation);
 
 	mapView.labelAllLocations({
-		legacyLabels: true, //This is currently required for multi floor pathing
 		excludeTypes: [] // If there are certain Location types you don't want to have labels (like amenities), exclude them here)
 	})
 

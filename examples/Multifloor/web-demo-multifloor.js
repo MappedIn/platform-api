@@ -445,7 +445,6 @@
 		if (labelLocations) {
 			options = {
 				excludeTypes: ['amenity'],
-				legacyLabels: true,
 				multiline: multiline,
 				heightMargin: multiline ? undefined : 0,
 				activeColor: 'red',
