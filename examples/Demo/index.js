@@ -144,8 +144,8 @@ function drawRandomPath() {
 				mapView.navigator.hideOverview()
 			}
 
-			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
-			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+			mapView.setPolygonColor(startPolygon, mapView.colors.path)
+			mapView.setPolygonColor(endPolygon, mapView.colors.select)
 
 			try {
 				mapView.navigator.setScale(1);
@@ -195,7 +195,7 @@ function onDataLoaded() {
 		var locationPolygons = location.polygons;
 		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
 			var polygon = locationPolygons[k];
-			mapView.addInteractivePolygon(polygon.id)
+			mapView.addInteractivePolygon(polygon)
 
 			// A polygon may be attached to more than one location. If that is the case for your venue,
 			// you will need some way of determinng which is the "primary" location when it's clicked on.

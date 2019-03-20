@@ -411,8 +411,8 @@
 			var locationPolygons = location.polygons;
 			for (var l = 0, lLen = locationPolygons.length; l < lLen; ++l) {
 				var polygon = locationPolygons[l];
-				mapView.addInteractivePolygon(polygon.id);
-				polygonsToAnimateTo.push(polygon.id);
+				mapView.addInteractivePolygon(polygon);
+				polygonsToAnimateTo.push(polygon);
 			}
 		}
 
