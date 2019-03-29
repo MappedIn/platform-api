@@ -498,15 +498,24 @@
 		});
 
 		$('multifloor_navigation_start').addEventListener('change', (e) => {
-			resetNavigation();
-			selectedPolygons[0] = e.target.value;
+			const poly = venue.getCollectionItemById('POLYGON', e.target.value);
+			if (poly != undefined) {
+				selectedPolygons[0] = e.target.value;
+				highlightPolygonId(selectedPolygons[0]);
+			} else {
+				selectedPolygons[0] = '';
+			}
 		});
 
 		$('multifloor_navigation_end').addEventListener('change', (e) => {
-			resetNavigation();
-			selectedPolygons[1] = e.target.value;
+			const poly = venue.getCollectionItemById('POLYGON', e.target.value);
+			if (poly != undefined) {
+				selectedPolygons[1] = e.target.value;
+				highlightPolygonId(selectedPolygons[1], 'green');
+			} else {
+				selectedPolygons[1] = '';
+			}
 		});
-
 		$('multifloor_navigation_showhideoverview').addEventListener('click', function(e) {
 			e.preventDefault();
 			showHideOverview();
@@ -552,14 +561,20 @@
 	}
 
 	function onPolygonClicked (polygonId) {
-		if (selectedPolygons.length === 2) {
-			resetSelectedPolygons();
+		if ((selectedPolygons[0] === '') || (selectedPolygons[0] == undefined)) {
+			selectedPolygons[0] = polygonId;
 		} else {
-			selectedPolygons.push(polygonId);
+			if (selectedPolygons.length === 2) {
+				resetNavigation();
+				resetSelectedPolygons();
+			} else {
+				selectedPolygons.push(polygonId);
+			}
 		}
 		multifloorNavigationStartEl.value = selectedPolygons[0] || '';
 		multifloorNavigationEndEl.value = selectedPolygons[1] || '';
 
+		mapView.clearAllPolygonColors();
 		highlightPolygonId(selectedPolygons[0]);
 		highlightPolygonId(selectedPolygons[1], 'green');
 		$('multifloor_navigation_reset').disabled = false;
