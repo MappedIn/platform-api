@@ -2,19 +2,12 @@
     "project": {
         "name": "The Mappedin Web SDK",
         "description": "An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin",
-        "version": "1.50.0",
+        "version": "1.55.1",
         "url": "https://github.com/MappedIn/platform-api",
         "primaryColor": "#ff5000",
         "indexModule": "Mappedin"
     },
     "files": {
-        "docs/assets/vendor/github-slugger/slugger.js": {
-            "name": "docs/assets/vendor/github-slugger/slugger.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
         "mappedin-docs-theme/assets/vendor/github-slugger/slugger.js": {
             "name": "mappedin-docs-theme/assets/vendor/github-slugger/slugger.js",
             "modules": {},
@@ -322,7 +315,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.CameraControls.js",
-            "line": 29,
+            "line": 31,
             "description": "The advanced, manual camera controls for {{#crossLink \"MapView\"}}{{/crossLink}}. You probably don't need to use this at all, instead relying on the MapView's {{#crossLink \"MapView/focusOn:method\"}}{{/crossLink}}, {{#crossLink \"MapView/resetCamera:method\"}}{{/crossLink}} and built in touch/mouse controls.\nThis class will let you do things like change the min/max zoom, tilt, and pan, attach to camera events, and move/animate the camera to specifc points.\n\nThe camera works by setting an anchor point on the scene at ground level and pointing the camera at it. {{#crossLink \"CameraControls/zoom:method\"}}{{/crossLink}} controls how far the camera is from the anchor, and {{#crossLink \"CameraControls/tilt:method\"}}{{/crossLink}}/{{#crossLink \"CameraControls/rotate:method\"}}{{/crossLink}} controls the angle the camera is rotated about it.\nThe camera will always be pointed directly at the anchor point. {{#crossLink \"CameraControls/pan:method\"}}{{/crossLink}} or {{#crossLink \"CameraControls/setPosition:method\"}}{{/crossLink}} will move that anchor around on the 2D ground plane.\n\nCreated for you automatically with a MapView, don't re-create yourself."
         },
         "MapView": {
@@ -458,7 +451,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.MapView3D.js",
-            "line": 76,
+            "line": 79,
             "description": "A 3D version MapView. Requires WebGL to run, and supports full camera pan/tilt/rotation.",
             "extends": "MapView",
             "is_constructor": 1,
@@ -543,7 +536,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.Navigator.js",
-            "line": 20,
+            "line": 36,
             "description": "Navigator, responsible for displaying directions in simple and complex journeys",
             "is_constructor": 1
         },
@@ -713,7 +706,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 973,
+            "line": 977,
             "description": "A {{#crossLink \"MappedinDirections\"}}{{/crossLink}} object will contain an array of {{#crossLink \"MappedinNode\"}}{{/crossLink}}s on a path, and a corresponding list of {{#crossLink \"MappedinDirective\"}}{{/crossLink}} objects representing the instructions to display to the user."
         },
         "MappedinDirective": {
@@ -726,7 +719,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1206,
+            "line": 1210,
             "description": "A {{#crossLink \"MappedinDirective\"}}{{/crossLink}} is an instruction for a user to get from one place to another."
         },
         "MappedinPolygon": {
@@ -739,7 +732,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1261,
+            "line": 1265,
             "description": "The {{#crossLink \"MappedinPolygon\"}}{{/crossLink}} class represents the 3D shape of a {{#crossLink \"MappedinLocation\"}}{{/crossLink}} on a {{#crossLink \"MappedinMap\"}}{{/crossLink}}. Polygons have access to Locations they belong to, and any entrances to the Polygon.\n\nA Polygon can have more properties but usually the default is sufficient. The {{#crossLink \"Mappedin\"}}{{/crossLink}} 'things' object is where you would specify what properties you want to download for Polygons. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need."
         },
         "MappedinVenue": {
@@ -752,7 +745,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1412,
+            "line": 1416,
             "description": "A {{#crossLink \"MappedinVenue\"}}{{/crossLink}} is a specific place (like a mall) with one or more Maps (typically representing different floors) and Locations (stores, washrooms, elevators, etc).\n\nAll core aspects of the Venue's data, such as {{#crossLink \"MappedinCategory\"}}{{/crossLink}}s, {{#crossLink \"MappedinLocation\"}}{{/crossLink}}s, {{#crossLink \"MappedinMap\"}}{{/crossLink}}s, {{#crossLink \"MappedinPolygon\"}}{{/crossLink}}s and {{#crossLink \"MappedinNode\"}}{{/crossLink}}s can be accessed through the Venue.\n\nA Venue can have more properties such as 'name' and 'slug'. The {{#crossLink \"Mappedin\"}}{{/crossLink}} 'things' object is where you would specify what properties you want to download for Venues. Only specify what you will actually use, to minmimze transfer time. Work with your Mappedin developer relations contact to set up any custom properties you need.\n\nSee below for an example a 'things' object with available Venue properties specified:\n\n\tthings: {\n\t\tvenue: ['slug', 'name', 'language', 'address', 'city', 'state', 'postal', 'telephone', 'latitude', 'longitude', 'website', 'operationHours'],\n\t\tlocations: [],\n\t\tcategories: [],\n\t\tmaps: []\n\t}"
         },
         "MappedinEvent": {
@@ -765,7 +758,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1491,
+            "line": 1495,
             "description": "An event."
         },
         "MappedinLocationState": {
@@ -778,7 +771,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "source/Mappedin.getVenue.js",
-            "line": 1549,
+            "line": 1553,
             "description": "A location state, that can belong to any number of {{#crossLink \"MappedinLocation\"}}{{/crossLink}}s."
         },
         "Mappedin": {
@@ -911,32 +904,6 @@
     },
     "elements": {},
     "classitems": [
-        {
-            "file": "docs/assets/vendor/github-slugger/slugger.js",
-            "line": 12,
-            "description": "Generate a unique slug.",
-            "params": [
-                {
-                    "name": "value",
-                    "description": "String of text to slugify",
-                    "type": "String"
-                }
-            ],
-            "return": {
-                "description": "A unique slug string",
-                "type": "String"
-            },
-            "class": "Analytics"
-        },
-        {
-            "file": "docs/assets/vendor/github-slugger/slugger.js",
-            "line": 37,
-            "description": "Reset - Forget all previous slugs",
-            "return": {
-                "description": "void"
-            },
-            "class": "Analytics"
-        },
         {
             "file": "mappedin-docs-theme/assets/vendor/github-slugger/slugger.js",
             "line": 12,
@@ -1085,7 +1052,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 53,
+            "line": 55,
             "description": "Factor that controls how fast zooming in and out happens in response to mouse wheel events",
             "itemtype": "property",
             "name": "zoomSpeed",
@@ -1095,7 +1062,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 61,
+            "line": 63,
             "description": "Factor to multiple mouse movement by to get tilt/rotation.",
             "itemtype": "property",
             "name": "rotateSpeed",
@@ -1105,7 +1072,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 69,
+            "line": 71,
             "description": "Disable or re-enable user input.",
             "itemtype": "property",
             "name": "enabled",
@@ -1115,7 +1082,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 77,
+            "line": 79,
             "description": "Disable or re-enable user zoom.",
             "itemtype": "property",
             "name": "enableZoom",
@@ -1125,7 +1092,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 85,
+            "line": 87,
             "description": "Disable or re-enable user pan.",
             "itemtype": "property",
             "name": "enablePan",
@@ -1135,7 +1102,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 93,
+            "line": 95,
             "description": "Disable or re-enable user pedestal.",
             "itemtype": "property",
             "name": "enablePedestal",
@@ -1145,7 +1112,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 101,
+            "line": 103,
             "description": "Max amount to allow scrolling maps down\n(In Z-axis units, at the origin, down is positive)",
             "itemtype": "property",
             "name": "maxPedestal",
@@ -1155,7 +1122,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 110,
+            "line": 112,
             "description": "Max amount to allow scrolling maps up\n(In Z-axis units, at the origin, up is negative)",
             "itemtype": "property",
             "name": "minPedestal",
@@ -1165,7 +1132,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 119,
+            "line": 121,
             "description": "Disable or re-enable user tilt/rotation.",
             "itemtype": "property",
             "name": "enableRotate",
@@ -1175,7 +1142,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 127,
+            "line": 129,
             "description": "This is actually the minium distance the camera can get from it's anchor on the ground. May be worth changing if your map has very tall buildings to avoid the camera clipping through them.",
             "itemtype": "property",
             "name": "minZoom",
@@ -1185,7 +1152,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 135,
+            "line": 137,
             "description": "Maximum distance the camera can get from it's anchor on the ground. Setting this too high will result in parts of the map falling out of the camera's clipping plane and disappearing.",
             "itemtype": "property",
             "name": "maxZoom",
@@ -1195,7 +1162,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 143,
+            "line": 145,
             "description": "Initial min zoom; zoom cannot be restricted beyond this.",
             "itemtype": "property",
             "name": "initialMinZoom",
@@ -1205,7 +1172,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 151,
+            "line": 153,
             "description": "Initial max zoom; zoom cannot be restricted beyond this.",
             "itemtype": "property",
             "name": "initialMaxZoom",
@@ -1215,14 +1182,14 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 159,
+            "line": 161,
             "description": "ignoreZoomLimits; use with caution for special effects",
             "default": "false",
             "class": "CameraControls"
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 184,
+            "line": 186,
             "description": "Multiplier for min and max zoom, for convenience.",
             "itemtype": "property",
             "name": "zoomFactor",
@@ -1232,7 +1199,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 192,
+            "line": 194,
             "description": "Constrains the camera from panning to far away from the scene. It's set automatically based on the size of the map.\nIf you want to change anything, you probably want to change the margin property, which is the factor the min and max in\neach dimension are multiplied by to give the true bounds. For example, on a truely huge venue a 1.25 margin could get you\nway out into space when zoomed in.",
             "itemtype": "property",
             "name": "panBounds",
@@ -1258,7 +1225,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 220,
+            "line": 222,
             "description": "Minium camera tilt, in radians. If it's anything other than 0, you won't be able to look at the venue from the top down perspective.",
             "itemtype": "property",
             "name": "minTilt",
@@ -1268,7 +1235,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 228,
+            "line": 230,
             "description": "Minium camera tilt, in radians. If you set it too high, the camera will be able to tilt down through the geometery of the scene, which will produce clipping issues.",
             "itemtype": "property",
             "name": "maxTilt",
@@ -1278,7 +1245,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 237,
+            "line": 239,
             "description": "If you would really prefer to pan with the right mouse button and tilt/rotate with the left, you can swap the values here to achieve that.",
             "itemtype": "property",
             "name": "mouseButtons",
@@ -1304,7 +1271,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 301,
+            "line": 303,
             "description": "Camera events you can attach a listener to (with `controls.addListener(event, function)`), if you want to do certain things. They'll be fired both by touch events and by functions you can call yourself like pan() and tilt()/",
             "itemtype": "property",
             "name": "CAMERA_EVENTS",
@@ -1361,7 +1328,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 358,
+            "line": 374,
             "description": "Pans the camera right and down from the current position",
             "itemtype": "method",
             "name": "pan",
@@ -1381,7 +1348,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 371,
+            "line": 387,
             "description": "Sets the camera anchor to a specifc x/y positon, in the global reference frame. 0,0 will be roughly the middle of the map, and panBounds holds the min/max points.",
             "itemtype": "method",
             "name": "setPosition",
@@ -1401,7 +1368,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 408,
+            "line": 424,
             "description": "Sets the rotation to a specific orientation, in radians. Mostly useful to orient the map a certain way for a physical directory.",
             "itemtype": "method",
             "name": "setRotation",
@@ -1416,7 +1383,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 429,
+            "line": 445,
             "description": "Rotates the camera a set number of radians relative to the current rotation. Useful for an idle rotation animation.",
             "itemtype": "method",
             "name": "rotate",
@@ -1431,7 +1398,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 450,
+            "line": 466,
             "description": "Sets the tilt to a specific level, in radians. 0 is top down. Bounded by minTilt and maxTilt.",
             "itemtype": "method",
             "name": "setTilt",
@@ -1446,7 +1413,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 470,
+            "line": 486,
             "description": "Tilts the camera up or down by some number of radians. Bounded by minTilt and maxTilt.",
             "itemtype": "method",
             "name": "tilt",
@@ -1461,7 +1428,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 491,
+            "line": 507,
             "description": "Sets the camera to be a certain distance from the anchor point, along it's tilt and rotation.\nKeeps it inside minZoom and maxZoom.",
             "itemtype": "method",
             "name": "setZoom",
@@ -1476,7 +1443,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 520,
+            "line": 536,
             "description": "Moves the camera towards or away from the camera by a set amount. Positive will zoom in (bringing the distance closer to 0).",
             "itemtype": "method",
             "name": "zoom",
@@ -1491,7 +1458,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 543,
+            "line": 559,
             "description": "Zooms the camera in on the center of the current view.",
             "itemtype": "method",
             "name": "zoomIn",
@@ -1513,7 +1480,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 559,
+            "line": 575,
             "description": "Zooms the camera out from the center of the current view.",
             "itemtype": "method",
             "name": "zoomOut",
@@ -1535,7 +1502,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 575,
+            "line": 591,
             "description": "Expands the zoom limits to allow zooming to the specified distance.",
             "itemtype": "method",
             "name": "expandZoomLimits",
@@ -1555,7 +1522,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 592,
+            "line": 608,
             "description": "Restricts the zoom limits, but will not restrict beyond the current zoom level.",
             "itemtype": "method",
             "name": "restrictZoomLimits",
@@ -1575,7 +1542,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 611,
+            "line": 627,
             "description": "Returns the current camera position.",
             "itemtype": "method",
             "name": "getPosition",
@@ -1587,7 +1554,25 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 635,
+            "line": 657,
+            "description": "The amount the camera is shifted up/down\n(corresponds to scroll amount in multifloor mode)\n100% == camera is as far up as it will go\n0% == camera is as far down as it will go",
+            "class": "CameraControls"
+        },
+        {
+            "file": "source/Mappedin.CameraControls.js",
+            "line": 676,
+            "description": "Returns whether the maps are scrolled to bottom",
+            "class": "CameraControls"
+        },
+        {
+            "file": "source/Mappedin.CameraControls.js",
+            "line": 686,
+            "description": "Returns whether the maps are scrolled to top",
+            "class": "CameraControls"
+        },
+        {
+            "file": "source/Mappedin.CameraControls.js",
+            "line": 696,
             "description": "Returns the current camera rotation.",
             "itemtype": "method",
             "name": "getRotation",
@@ -1599,7 +1584,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 645,
+            "line": 706,
             "description": "Returns the current camera tilt",
             "itemtype": "method",
             "name": "getTilt",
@@ -1611,7 +1596,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 655,
+            "line": 716,
             "description": "Returns the current camera zoom",
             "itemtype": "method",
             "name": "getZoom",
@@ -1623,7 +1608,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 665,
+            "line": 726,
             "description": "Returns true if the camera is currently moving (it's animating, the user is manipulating it).",
             "itemtype": "method",
             "name": "isCameraMoving",
@@ -1635,7 +1620,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 675,
+            "line": 736,
             "description": "Returns the actual zoom minimum based on real-world distance.",
             "itemtype": "method",
             "name": "getZoomScaledMin",
@@ -1647,7 +1632,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 685,
+            "line": 746,
             "description": "Returns the actual zoom maximum based on visible map size.",
             "itemtype": "method",
             "name": "getZoomScaledMax",
@@ -1659,7 +1644,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 713,
+            "line": 774,
             "description": "Animates the camera from it's current position to the state specified in target. You only\nneed to specify the properties you actually want to change.\n\nYou can also specify a duration, animation curve, and a callback for when it's done.",
             "itemtype": "method",
             "name": "animateCamera",
@@ -1728,7 +1713,7 @@
                     "props": [
                         {
                             "name": "mode",
-                            "description": "Mode determines what happens when multiple animateCamera calls happen at once. By Default, \n\t\tit will cancel and omit any previous animations. Set to \"chain\" to chain instead",
+                            "description": "Mode determines what happens when multiple animateCamera calls happen at once. By Default,\n\t\tit will cancel and omit any previous animations. Set to \"chain\" to chain instead",
                             "type": "Object",
                             "optional": true,
                             "optdefault": "cancel"
@@ -1744,7 +1729,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 839,
+            "line": 900,
             "description": "Allows you to set any of the Camera's position, zoom, rotation and tilt at once, with one function.",
             "itemtype": "method",
             "name": "setMulti",
@@ -1778,7 +1763,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 972,
+            "line": 1044,
             "description": "Anything we need to do after we render the camera, like update anchors for the mouse/touch controls.",
             "itemtype": "method",
             "name": "postRender",
@@ -1788,7 +1773,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 1539,
+            "line": 1611,
             "description": "Should probably be \"pre-render\". Anything we need to do before rendering the scene.",
             "itemtype": "method",
             "name": "update",
@@ -1798,7 +1783,7 @@
         },
         {
             "file": "source/Mappedin.CameraControls.js",
-            "line": 1557,
+            "line": 1629,
             "description": "Disposes of the camera and all of it's events.",
             "itemtype": "method",
             "name": "dispose",
@@ -1808,7 +1793,7 @@
         },
         {
             "file": "source/Mappedin.MapManager.js",
-            "line": 275,
+            "line": 277,
             "description": "Expand maps to display within view, typically used for multi-floor navigation. When passed a connection, maps included will not be displayed, instead, their 2d projection\n\t will be available in the resulting promise, which can be used to display a 2D component in the client-side app.",
             "itemtype": "method",
             "name": "expandMaps",
@@ -1865,7 +1850,7 @@
         },
         {
             "file": "source/Mappedin.MapManager.js",
-            "line": 407,
+            "line": 409,
             "description": "Contract maps and display the current map",
             "itemtype": "method",
             "name": "contractMaps",
@@ -1900,8 +1885,20 @@
             "class": "MapView"
         },
         {
+            "file": "source/Mappedin.MapManager.js",
+            "line": 454,
+            "description": "Scroll maps up\nThis will shift maps down to show next one (above)",
+            "class": "MapView"
+        },
+        {
+            "file": "source/Mappedin.MapManager.js",
+            "line": 467,
+            "description": "Scroll maps down\nThis will shift maps up to show next one (below)",
+            "class": "MapView"
+        },
+        {
             "file": "source/Mappedin.MapObject.js",
-            "line": 69,
+            "line": 150,
             "description": "Load the map, if it's not already loaded. Returns the old promise if it's already done, so you can safely call it whenever needed.\n\nIf needed, this could be modified to\n\nReturns a Promise that will be Done when the OBJ, MTL and textures have been downloaded, and the objectsDictionary has been generated.",
             "class": "MapView"
         },
@@ -2246,11 +2243,20 @@
             "description": "Resets the pan, tilt and rotation of the camera and sets the zoom to fit the {{#crossLink \"MapView/currentMap:property\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "resetCamera",
+            "params": [
+                {
+                    "name": "forceOrigin",
+                    "description": "Flag to forcibly reset the camera to origin (0, 0) instead of the centre of the map's bounding box.",
+                    "type": "Boolean",
+                    "optional": true,
+                    "optdefault": "false"
+                }
+            ],
             "class": "MapView"
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 202,
+            "line": 203,
             "description": "Returns the angle that points to north, in radians, from the default orientation.",
             "itemtype": "method",
             "name": "getNorth",
@@ -2262,7 +2268,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 212,
+            "line": 213,
             "description": "Takes an element on the DOM and rotates it such that the top is pointing north. It will rotate with the camera, staying locked\non north. If you would like to align it do a different direction, or a different side of the element, pass in an offset. This\nis how you would do a compass rose.\n\nThis will modify your element's transform.",
             "itemtype": "method",
             "name": "lockNorth",
@@ -2282,7 +2288,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 226,
+            "line": 227,
             "description": "Stops the MapView from trying to rotate your element with the camera. Do this if you remove the element, or want to stop it from rotating.",
             "itemtype": "method",
             "name": "unlockNorth",
@@ -2297,7 +2303,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 235,
+            "line": 236,
             "description": "Given a polygon/polygon id, set it to a specific color, and set any text label associated with that polygon to another color.",
             "itemtype": "method",
             "name": "setPolygonColor",
@@ -2326,7 +2332,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 246,
+            "line": 247,
             "description": "Resets a Polygon back to it's original color.\nIf the user is hovering over a polygon, it will still have the hover effect.",
             "itemtype": "method",
             "name": "clearPolygonColor",
@@ -2341,7 +2347,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 256,
+            "line": 257,
             "description": "Resets ALL Polygons you have changed with {{#crossLink \"MapView/setPolygonColor:method\"}}{{/crossLink}} back to their original color.\nThe hover effect will still be present if the user is currently hovering over a Polygon.",
             "itemtype": "method",
             "name": "clearAllPolygonColors",
@@ -2349,8 +2355,8 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 265,
-            "description": "Makes a Polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.",
+            "line": 266,
+            "description": "Makes a single Polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.",
             "itemtype": "method",
             "name": "addInteractivePolygon",
             "params": [
@@ -2364,10 +2370,39 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 274,
+            "line": 275,
+            "description": "Makes all polygons attached to a location hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive\nThis is a convenience function for calling {{#crossLink \"MapView/addInteractivePolygon:method\"}}{{/crossLink}} on all the polygons attached to all locations. You may also make individual polygons interactive with the addInteractivePolygon method instead of, or in addition to this method.",
+            "itemtype": "method",
+            "name": "addInteractivePolygonsForAllLocations",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "props": [
+                        {
+                            "name": "excludeTypes",
+                            "description": "A list of Location types to skip. All locations of this type will be treated as non-iteractive",
+                            "type": "[String]",
+                            "optional": true,
+                            "optdefault": "[]"
+                        },
+                        {
+                            "name": "locations",
+                            "description": "An array of Location objects. Overrides the default of making all locations interactive, and instead applies to only the locations specified here.",
+                            "type": "[MappedinLocation]",
+                            "optional": true
+                        }
+                    ]
+                }
+            ],
+            "class": "MapView"
+        },
+        {
+            "file": "source/Mappedin.MapView.js",
+            "line": 287,
             "description": "Makes a polygon no longer hoverable/clickable.",
             "itemtype": "method",
-            "name": "addInteractivePolygon",
+            "name": "removeInteractivePolygon",
             "params": [
                 {
                     "name": "polygon",
@@ -2379,7 +2414,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 283,
+            "line": 296,
             "description": "This is called when an interactive Polygon is clicked on.\nYou will almost certainly want to replace this with your own function in your client app.\nReturn \"false\" if you have consumed the event and it shouldn't bubble down to other Polygons beneath this one.",
             "itemtype": "method",
             "name": "onPolygonClicked",
@@ -2398,7 +2433,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 295,
+            "line": 308,
             "description": "This is fired when the user taps/clicks on the MapView without hitting an interactive Polygon.\nYou will almost certainly want to replace this with your own function in your client app.\nYou would probably use this to clear any Polygon highlighting, in certain situations.",
             "itemtype": "method",
             "name": "onNothingClicked",
@@ -2406,7 +2441,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 305,
+            "line": 318,
             "description": "This creates a div with whatever HTML you provide, anchors it to `position` in 3D space, and optionally applies a css class you provide.\n`position` should be something you got from {{#crossLink \"MapView/getPositionPolygon:method\"}}{{/crossLink}} or {{#crossLink \"MapView/getPositionNode:method\"}}{{/crossLink}}.\nThe {{#crossLink \"Marker\"}}{{/crossLink}} is added for you, on to the {{#crossLink \"MapView/currentMap:property\"}}{{/crossLink}}, (or the one you specify).",
             "itemtype": "method",
             "name": "createMarker",
@@ -2447,7 +2482,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 321,
+            "line": 334,
             "description": "Adds an already created {{#crossLink \"Marker\"}}{{/crossLink}} to the scene. The Marker constructor is more powerful than the {{#crossLink \"MapView/createMarker:method\"}}{{/crossLink}} convenience function.",
             "itemtype": "method",
             "name": "addMarker",
@@ -2462,7 +2497,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 330,
+            "line": 343,
             "description": "Removes a {{#crossLink \"Marker\"}}{{/crossLink}} you have added previously.",
             "itemtype": "method",
             "name": "removeMarker",
@@ -2477,7 +2512,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 339,
+            "line": 352,
             "description": "Removes all Markers (from all Maps, not just the current one).",
             "itemtype": "method",
             "name": "removeAllMarkers",
@@ -2485,7 +2520,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 347,
+            "line": 360,
             "description": "Takes an x/y pair in Mappedin coordinate space and gives you an object suitable to use as a Marker's position.\n**Be careful about using this:** The coordinate system could change arbitrarily and without notice. You are better off\nusing a specific Node or Polygon as an anchor. If you need to use this for some reason, talk to your Mappedin representative.",
             "itemtype": "method",
             "name": "convertTo3DMapPosition",
@@ -2506,7 +2541,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 360,
+            "line": 373,
             "description": "Gives you the top center of a Polygon in 3d scene space. Suitable for use as a {{#crossLink \"Marker\"}}{{/crossLink}}'s position.",
             "itemtype": "method",
             "name": "getPositionPolygon",
@@ -2525,7 +2560,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 370,
+            "line": 383,
             "description": "Gives you the position of a Mappedin node in the 3D scene. Suitable for use as a {{#crossLink \"Marker\"}}{{/crossLink}}'s position.",
             "itemtype": "method",
             "name": "getPositionNode",
@@ -2544,7 +2579,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 380,
+            "line": 393,
             "description": "Labels a specific Polygon (or area of 3D space) with a {{#crossLink \"TextLabel\"}}{{/crossLink}} that lives in 3D space. That means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.\nThe text will flip 180 degrees when the camera rotates so it's never totally upside-down.\n\nIt also sets the hover label (in 2D and 3D).\nMany of these options do nothing in 2D, as TextLabels are not supported, but it won't break anything.\n\nYou must provide text, and either a Polygon, or a canvasBounds and height",
             "itemtype": "method",
             "name": "labelPolygon",
@@ -2665,7 +2700,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 414,
+            "line": 427,
             "description": "Labels all Locations, in order of distance from the center of the Map. See {{#crossLink \"MapView/labelPolygon:method\"}}{{/crossLink}} for available label options.\nThe options are all optional, as the text and Polygon properties will be set for each Location.",
             "itemtype": "method",
             "name": "labelAllLocations",
@@ -2701,7 +2736,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 427,
+            "line": 440,
             "description": "Removes all labels from all Maps.",
             "itemtype": "method",
             "name": "removeAllLabels",
@@ -2709,7 +2744,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 435,
+            "line": 448,
             "description": "Let any image attached to a Polygon attached to a Location flip 180 degrees with the camera so it's always upright.",
             "itemtype": "method",
             "name": "enableImageFlippingForAllLocations",
@@ -2738,7 +2773,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 445,
+            "line": 458,
             "description": "Mark a specific Polygon so, if it has an image, it rotates with the camera.",
             "itemtype": "method",
             "name": "enableImageFlippingForPolygon",
@@ -2765,7 +2800,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 455,
+            "line": 468,
             "description": "Create a font for use in 3D by passing in a JSON object generated from https://gero3.github.io/facetype.js/\nIgnored in 2D, retuning null",
             "deprecated": true,
             "deprecationMessage": "Use static method MapView3D.{{#crossLink \"MapView3D/createFont:method\"}}{{/crossLink}} instead",
@@ -2786,7 +2821,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 467,
+            "line": 480,
             "description": "Calculates the length of the connected path in list of Nodes. Breaks in the path (to go to other floors) count as 0 distance. The Z value is also ignored.",
             "itemtype": "method",
             "name": "getPathLength",
@@ -2805,7 +2840,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 489,
+            "line": 502,
             "description": "Draws an entire path. It takes a list of Nodes and will break them into separate pathSegments on every map change, putting the resultant segment on the right Map.\n\nIf you have a special use case (like off graph nodes, or Venues with same Vortexes) use the {{#crossLink \"MapView/drawPathSegment:method\"}}{{/crossLink}} function.\n\nReturns an array of pathSegments if you want to customize the animation triggers. The pathSegements are added to the scene, chained together, and start animating automatically.",
             "itemtype": "method",
             "name": "drawPath",
@@ -2830,7 +2865,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 504,
+            "line": 517,
             "description": "Takes a list of {x, y} pairs in Mappedin coordinate space and draws a connected path on the specified Map. Use this function for special cases not handled by the drawPath convenience function.\nReturns a pathSegment. You will need to call it's {{#crossLink \"Tween\"}}{{/crossLink}}.start() function to begin animation and make the path segment visible.\nYou can customize the Tween.js tween if you like, but make sure tryRendering is always called in onUpdate or the path may stop.",
             "itemtype": "method",
             "name": "drawPathSegment",
@@ -2892,7 +2927,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 522,
+            "line": 535,
             "description": "Removes a specific path segement from the map it's on.",
             "itemtype": "method",
             "name": "removePathSegment",
@@ -2907,7 +2942,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 531,
+            "line": 544,
             "description": "Removes all pathSegments from all Maps.",
             "itemtype": "method",
             "name": "removeAllPaths",
@@ -2915,7 +2950,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 539,
+            "line": 552,
             "description": "Sets the clear color of the Map something else, it you want it to fit it more with your website. Otherwise the div will be white where there is no Map visible.",
             "itemtype": "method",
             "name": "setBackgroundColor",
@@ -2937,7 +2972,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 549,
+            "line": 562,
             "description": "The scene only renders when something has changed. This should be something a 3rd party developer doesn't need to worry about,\nbut if you are doing something weird, or have your own special tween for something, you will want to call this function.\nYou can call it as often as you want, it just sets a flag that we need to render again, and renders a few frames if we weren't already doing that.\nIgnored in 2D.",
             "itemtype": "method",
             "name": "tryRendering",
@@ -2945,13 +2980,13 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 559,
+            "line": 572,
             "description": "Resets the MapView to the default state.",
             "class": "MapView"
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 569,
+            "line": 582,
             "description": "Finds the main Location associated with a Polygon. This means a Location\nattached to the Polygon that has no parents, or, if there are none of those,\na Location nearest the top of some hierarchy that does have the Polygon attached.\n\nThis means if there are multiple hierarchies of Locations attached to the Polygon,\nthe one that gets returned is not guaranteed to be what you want.",
             "itemtype": "method",
             "name": "getPrimaryLocationForPolygon",
@@ -2970,7 +3005,7 @@
         },
         {
             "file": "source/Mappedin.MapView.js",
-            "line": 618,
+            "line": 631,
             "description": "Create a font for use in 3D by passing in a JSON object generated from https://gero3.github.io/facetype.js/\nIgnored in 2D, retuning null",
             "static": 1,
             "params": [
@@ -3000,13 +3035,13 @@
         },
         {
             "file": "source/Mappedin.MapView2D.js",
-            "line": 835,
+            "line": 869,
             "description": "Labels a specific polygon (or area of 3D space) with a text label that lives in 3D space.\nThat means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.\nThe text will flip 180 degress when the camera rotates so it's never totally upside-down.\n\nPossible options = {\n\tpolygon - The polygon to make a label for\n\tcanvasBounds - Optional, to do this without a real Mappedin Polygon\n\theight - If you don't have a real polygon, you will need to set a height\n\ttext - The full name text to make the label\n\tshortText - The short name text to make the label\n\tmargin - The amount of space to leave before starting the text\n\tcolor - A optional special color if you don't want to use mapView.colors.text\n\tfontSize - How big to make the font. Defaults to 12\n\tfont - A THREE.Font object, if you have your own font you want to use.\n\tscaleMin - What percentage we can shrink the label to if it won't fit at 100%\n\tscaleStep - How much to decrement the scale each time it doesn't fit, so we don't end up with too many different font sizes\n}\n\nYou must provide AT LEAST text and either polygon or canvasBounds + height.",
             "class": "MapView2D"
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 494,
+            "line": 502,
             "description": "Fired when clicking on a map when in multi-floor mode. Return true in passed function to also get event for onPolygonClicked",
             "itemtype": "event",
             "name": "onMapClicked",
@@ -3021,7 +3056,7 @@
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 501,
+            "line": 509,
             "description": "Fired when clicking on an interactive polygon. Return true in passed function to prevent polygon propagation",
             "itemtype": "event",
             "name": "onPolygonClicked",
@@ -3036,7 +3071,7 @@
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 508,
+            "line": 516,
             "description": "Fired when clicking outside of any interactive polygons",
             "itemtype": "event",
             "name": "onNothingClicked",
@@ -3044,13 +3079,13 @@
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 1520,
+            "line": 1571,
             "description": "Adds a pin to a specific polygon that lives in both 2D and 3D space.\nThe pin is tied to a location on the map where a line in 3D is placed.\nThe 3D location at the top of this line is translated into a screen position and used to display a label that can orient itself based on other labels.\nCurrently the labels have three orientation that the text tries to fit itself into (east, north, west of the marker)\n\n\t\tPossible options = {\n\t\t\tmarkerClass - The CSS class to apply to the marker of the hover label\n\t\t\ttextClass - The CSS class to apply to the text shown with the marker\n\t\t\tpolygon - The polygon used to position the label\n\t\t\tmap - Provide the map id if it is not also attached to the polygon\n\t\t\theight - Where the pin should appear vertically in pixels. This option overrides\n\t\t\t\tthe heightAbovePolygon option.\n\t\t\theightAbovePolygon - Where the pin should appear relative to the top of the polygon\n\t\t\t\tin pixels.\n\t\t\tlabel | text - The text or html string to appear as the label\n\t\t\tmarkerBuffer - The amount of space to leave around the marker part of the label (default: 5)\n\t\t\ttextDivHeight - Override the maximimum height of the text being shown in pixels. This value is typically\n\t\t\t\tcalculated dynamically based off the number of lines of text showing. (default: dynamic, fallback: 40),\n\t\t\ttextDivWidth - The maximium width the text should have in pixels. (default: 100),\n\t\t\tactiveMarkerSize - size of the marker in pixels when it is active (default: 20),\n\t\t\tinactiveMarkerSize - size of the marker in pixels when it is inactive (default: 20),\n\t\t\tactiveColor - An optional color for the marker (default: white)\n\t\t\tinactiveColor - An optional color for the marker (default: rgb(128,128,128))\n\t\t\tpinColor - An optional color for the pin (default: white)\n\t\t\ttextSize - font size of the label (default: 18px)\n\t\t}",
             "class": "MapView3D"
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 1760,
+            "line": 1812,
             "description": "Draws path in 3D space\n\nDraws an entire path. It takes a list of nodes and will break them into separate path segments on every man change, putting the resultant segment on the right map.\n\nIf you have a special use case (like off graph nodes, or venues with same map vortexes) use the drawPathSegment function.",
             "itemtype": "method",
             "name": "drawPath",
@@ -3175,7 +3210,7 @@
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 2468,
+            "line": 2583,
             "description": "True if the canvas should be measured every frame. This is ideal to handle the user resizing the browser window on occasion, but\nmay not be optimal if you are trying to resize the MapView dynamically all the time.",
             "itemtype": "property",
             "name": "shouldMeasureCanvas",
@@ -3184,7 +3219,7 @@
         },
         {
             "file": "source/Mappedin.MapView3D.js",
-            "line": 2580,
+            "line": 2706,
             "description": "Destroys instance and frees resources",
             "itemtype": "method",
             "name": "destroy",
@@ -3192,7 +3227,7 @@
         },
         {
             "file": "source/Mappedin.MultiFloorView.js",
-            "line": 236,
+            "line": 253,
             "description": "Display 2D screen projections of each 3D map object in the journey. Useful for drawing 2D elements on screen.",
             "itemtype": "attribute",
             "name": "projections",
@@ -3208,7 +3243,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 48,
+            "line": 73,
             "description": "Display 2D screen projections of each 3D map object in the journey. Useful for drawing 2D elements on screen.",
             "readonly": "",
             "return": {
@@ -3222,7 +3257,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 72,
+            "line": 97,
             "description": "Draws virtual Layers (private)",
             "itemtype": "method",
             "name": "_drawVirtualLayer",
@@ -3236,7 +3271,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 117,
+            "line": 191,
             "description": "Sets up the navigator for a set of directions. Typically uses directions returned by `startNode.directionsTo()` calls.\n\nThis can be used to update the directions object any time.",
             "itemtype": "method",
             "name": "setDirections",
@@ -3263,7 +3298,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 132,
+            "line": 206,
             "description": "Sets multiplier scale to better fit 4K and 8K screens at 1:1 pixel ratio. If stuff is too small on 4K screens, set to 2, etc.",
             "itemtype": "method",
             "name": "setScale",
@@ -3278,36 +3313,11 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 143,
-            "description": "Enters journey overview mode. Handles multi-floor navigation and drawing of the path.\n\nNote: Pass directions if they haven't been set using `Navigator.setDirections()`",
+            "line": 300,
+            "description": "Sets up navigator settings. Typically uses options as documented by `Navigator.showOverview()`\n\t*",
             "itemtype": "method",
-            "name": "showOverview",
+            "name": "setOptions",
             "params": [
-                {
-                    "name": "directions",
-                    "description": "Optional parameters to customize specific behaviours.",
-                    "type": "Object",
-                    "optional": true,
-                    "props": [
-                        {
-                            "name": "path",
-                            "description": "Array of nodes representing path to travel",
-                            "type": "Array",
-                            "optional": true
-                        },
-                        {
-                            "name": "instructions",
-                            "description": "Array of instructions for journey",
-                            "type": "Array",
-                            "optional": true
-                        }
-                    ]
-                },
-                {
-                    "name": "[directions.animationDuration}",
-                    "description": "Time in ms for the animation to take",
-                    "type": "Number"
-                },
                 {
                     "name": "options",
                     "description": "Options Object",
@@ -3320,6 +3330,27 @@
                             "type": "Boolean",
                             "optional": true,
                             "optdefault": "false"
+                        },
+                        {
+                            "name": "drawConnectionMarkers",
+                            "description": "Draw multi-floor connection markers",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "true"
+                        },
+                        {
+                            "name": "drawDepartureMarker",
+                            "description": "Draw marker indicating departure",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "true"
+                        },
+                        {
+                            "name": "drawDestinationMarker",
+                            "description": "Draw marker indicating destination",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "true"
                         },
                         {
                             "name": "debug",
@@ -3345,6 +3376,12 @@
                         {
                             "name": "pathOptions",
                             "description": "Options for path drawing. See {{#crossLink \"MapView3D/drawPath\"}}{{/crossLink}} options for customizing path",
+                            "type": "Object",
+                            "optional": true
+                        },
+                        {
+                            "name": "focusOptions",
+                            "description": "Options for focusing on the path when in single floor mode. See See {{#crossLink \"MapView3D/focusOn\"}}{{/crossLink}}",
                             "type": "Object",
                             "optional": true
                         },
@@ -3380,6 +3417,47 @@
                     ]
                 }
             ],
+            "class": "Navigator"
+        },
+        {
+            "file": "source/Mappedin.Navigator.js",
+            "line": 339,
+            "description": "Enters journey overview mode. Handles multi-floor navigation and drawing of the path.\n\nNote: Pass directions if they haven't been set using `Navigator.setDirections()`",
+            "itemtype": "method",
+            "name": "showOverview",
+            "params": [
+                {
+                    "name": "directions",
+                    "description": "Optional parameters to customize specific behaviours.",
+                    "type": "Object",
+                    "optional": true,
+                    "props": [
+                        {
+                            "name": "path",
+                            "description": "Array of nodes representing path to travel",
+                            "type": "Array",
+                            "optional": true
+                        },
+                        {
+                            "name": "instructions",
+                            "description": "Array of instructions for journey",
+                            "type": "Array",
+                            "optional": true
+                        },
+                        {
+                            "name": "options",
+                            "description": "Options object as documented in {{#crossLink \"Navigator/setOptions\"}}{{/crossLink}}",
+                            "type": "Object",
+                            "optional": true
+                        }
+                    ]
+                },
+                {
+                    "name": "[directions.animationDuration}",
+                    "description": "Time in ms for the animation to take",
+                    "type": "Number"
+                }
+            ],
             "return": {
                 "description": "A promise that will resolve once the maps are displayed and path drawn",
                 "type": "Promise"
@@ -3388,7 +3466,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 264,
+            "line": 465,
             "description": "Exits out of navigation and focuses on currently selected map.",
             "itemtype": "method",
             "name": "hideOverview",
@@ -3400,7 +3478,29 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 280,
+            "line": 482,
+            "description": "Fired when clicking on a map connection marker when in multi-floor mode. Return true in passed in function to prevent default behavior",
+            "itemtype": "event",
+            "name": "onConnectionClicked",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "mapId",
+                            "description": "mapId of map connecting to",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "Navigator"
+        },
+        {
+            "file": "source/Mappedin.Navigator.js",
+            "line": 501,
             "description": "Zooms into a specific map in the journey. This can be useful when showing the user detailed directions on a specific map\n\t*",
             "itemtype": "method",
             "name": "zoomIn",
@@ -3419,7 +3519,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 305,
+            "line": 539,
             "description": "Reset overview state",
             "itemtype": "method",
             "name": "reset",
@@ -3427,7 +3527,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 314,
+            "line": 557,
             "description": "Zooms back out into overview mode, displaying the whole journey, draws the full path once again.\n\t*",
             "itemtype": "method",
             "name": "zoomOut",
@@ -3439,7 +3539,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 330,
+            "line": 573,
             "description": "Zooms back out into overview mode, displaying the whole journey, draws the full path once again.",
             "access": "private",
             "tagname": "",
@@ -3797,7 +3897,7 @@
             "line": 687,
             "description": "Calculate the distance between this node and another",
             "itemtype": "method",
-            "name": "getAngle",
+            "name": "getDistance",
             "params": [
                 {
                     "name": "to",
@@ -3884,7 +3984,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 966,
+            "line": 970,
             "description": "Directions callback.",
             "itemtype": "method",
             "name": "directionsToCallback",
@@ -3904,7 +4004,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1178,
+            "line": 1182,
             "description": "Total distance of path in meters",
             "itemtype": "property",
             "name": "distance",
@@ -3913,7 +4013,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1183,
+            "line": 1187,
             "description": "Instructions to display to the user.",
             "itemtype": "property",
             "name": "instructions",
@@ -3922,7 +4022,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1188,
+            "line": 1192,
             "description": "Collection of Nodes that form a path.",
             "itemtype": "property",
             "name": "path",
@@ -3931,7 +4031,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1194,
+            "line": 1198,
             "description": "The source of wayfinding directions.",
             "itemtype": "property",
             "name": "directionsProvider",
@@ -3942,7 +4042,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1216,
+            "line": 1220,
             "description": "Node where instruction takes place.",
             "itemtype": "property",
             "name": "node",
@@ -3951,7 +4051,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1221,
+            "line": 1225,
             "description": "The action being performed at a Node. The object contains an {{#crossLink \"MappedinDirective/actionType:property\"}}{{/crossLink}} and if the type is TURN, there is also a {{#crossLink \"MappedinDirective/bearingType:property\"}}{{/crossLink}}.",
             "itemtype": "property",
             "name": "action",
@@ -3960,7 +4060,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1226,
+            "line": 1230,
             "description": "Text Instruction to display to user.",
             "itemtype": "property",
             "name": "instruction",
@@ -3969,7 +4069,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1232,
+            "line": 1236,
             "description": "The possible action types a {{#crossLink \"MappedinDirective\"}}{{/crossLink}} can have.",
             "itemtype": "property",
             "name": "actionType",
@@ -3980,7 +4080,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1246,
+            "line": 1250,
             "description": "The possible bearings a {{#crossLink \"MappedinDirective\"}}{{/crossLink}} turn can have.",
             "itemtype": "property",
             "name": "bearingType",
@@ -3991,7 +4091,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1275,
+            "line": 1279,
             "description": "Polygon ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Polygon with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -4000,7 +4100,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1284,
+            "line": 1288,
             "description": "ID of Map that Polygon is located on.",
             "itemtype": "property",
             "name": "map",
@@ -4009,7 +4109,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1312,
+            "line": 1316,
             "description": "Locations attached to the Polygon.",
             "itemtype": "property",
             "name": "locations",
@@ -4018,7 +4118,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1337,
+            "line": 1341,
             "description": "Polygon's entrance Nodes.",
             "itemtype": "property",
             "name": "entrances",
@@ -4027,7 +4127,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1358,
+            "line": 1362,
             "description": "Gets directions from this Polygon to the target Polygon, Location, Node or array of Nodes.",
             "itemtype": "method",
             "name": "directionsTo",
@@ -4068,7 +4168,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1394,
+            "line": 1398,
             "description": "Gets the cost (combined distance and weights) and total distance(in meters) from this Polygon to the target Polygon, Location, Node or array of Nodes.",
             "itemtype": "method",
             "name": "distanceTo",
@@ -4102,7 +4202,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1469,
+            "line": 1473,
             "description": "Theme ID.",
             "itemtype": "property",
             "name": "id",
@@ -4111,7 +4211,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1503,
+            "line": 1507,
             "description": "Event ID.\n\nThis is the internal Mappedin ID, and can be used for the lifetime of the data you get back from {{#crossLink \"Mappedin/getVenue:method\"}}{{/crossLink}}, but it may not be present in future calls, even if there is another Event with otherwise similar properties.\nAn ID can never be reused if it's, say, accidentally deleted. If something more durable is required, or if the data in the Mappedin CMS is being synced from somewhere else, you should finding things using the externalId property.",
             "itemtype": "property",
             "name": "id",
@@ -4120,7 +4220,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1531,
+            "line": 1535,
             "description": "Location this Event is occuring at.",
             "itemtype": "property",
             "name": "location",
@@ -4129,7 +4229,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1773,
+            "line": 1777,
             "description": "Collection of all Categories within the Venue.",
             "itemtype": "property",
             "name": "categories",
@@ -4138,7 +4238,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1780,
+            "line": 1784,
             "description": "Collection of all Locations within the Venue.",
             "itemtype": "property",
             "name": "locations",
@@ -4147,7 +4247,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1787,
+            "line": 1791,
             "description": "Collection of all Maps within the Venue.",
             "itemtype": "property",
             "name": "maps",
@@ -4156,7 +4256,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1794,
+            "line": 1798,
             "description": "Collection of all Nodes within the Venue.",
             "itemtype": "property",
             "name": "nodes",
@@ -4165,7 +4265,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1801,
+            "line": 1805,
             "description": "Collection of all Polygons within the Venue.",
             "itemtype": "property",
             "name": "polygons",
@@ -4174,7 +4274,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1808,
+            "line": 1812,
             "description": "Collection of all Events within the Venue.",
             "itemtype": "property",
             "name": "events",
@@ -4183,7 +4283,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1815,
+            "line": 1819,
             "description": "Collection of all MapGroups within the Venue.",
             "itemtype": "property",
             "name": "mapGroups",
@@ -4192,7 +4292,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1822,
+            "line": 1826,
             "description": "Collection of all Vortexes within the Venue.",
             "itemtype": "property",
             "name": "vortexes",
@@ -4201,7 +4301,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1921,
+            "line": 1925,
             "description": "The possible types of collections of objects you can get from the Venue. To be used to look up items using {{#crossLink \"Mappedin/getCollectionItemById:method\"}}{{/crossLink}}.",
             "itemtype": "property",
             "name": "collectionType",
@@ -4212,7 +4312,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 1941,
+            "line": 1945,
             "description": "Gets an object (Node, Polygon, etc.) if it exists within the Venue by looking up its Mappedin ID or External ID.",
             "itemtype": "method",
             "name": "getCollectionItemById",
@@ -4236,7 +4336,7 @@
         },
         {
             "file": "source/Mappedin.getVenue.js",
-            "line": 2022,
+            "line": 2026,
             "description": "A one stop function to download all of the information you need for a given {{#crossLink \"MappedinVenue\"}}{{/crossLink}}.",
             "itemtype": "method",
             "name": "getVenue",
@@ -4331,25 +4431,25 @@
         },
         {
             "file": "source/json-scene-loader.js",
-            "line": 81,
+            "line": 17,
             "description": "Takes in either an object containing polygons and generates a 3D scene based\non it, or a string URL to fetch those polygons from.",
             "class": "Mappedin"
         },
         {
             "file": "source/utils.js",
             "line": 5,
-            "description": "Utils function listing\n\n - scrubMaterial\n - getDeviceID\n - getSessionID\n - getObjectID\n - getObject\n - getBoundingBox\n - getBiggestBoundingBox\n - upackBoundingBox\n - getMapScale\n - throttle -> taken from lodash.js\n - getProjectionScaleFactor\n - getZoom\n - hasMultipleSegments",
+            "description": "Utils function listing\n\n - scrubMaterial\n - getDeviceID\n - getSessionID\n - getObjectID\n - getObject\n - getBoundingBox\n - getBiggestBoundingBox\n - upackBoundingBox\n - getMapScale\n - throttle -> taken from lodash.js\n - getProjectionScaleFactor\n - getZoom",
             "class": "Mappedin"
         },
         {
             "file": "source/utils.js",
-            "line": 391,
+            "line": 254,
             "description": "/*  getProjectionScaleFactor()\n/*  finds the scale ratio between screen coordinates and 3D coordinates (in X-Z plane)\n/*\n\t *                                    R\n\t *                                  /|\n\t *    C : Camera                  /  |\n\t *    PQ : Projection Plane     /    |\n\t *    OR : Origin             /      |\n\t *    F : FOV               /        |\n\t *                      Q /          |\n\t *                      /|           |\n\t *                    /  |           |\n\t *                  /    |           |\n\t *                /      |           |\n\t *              /        |           |\n\t *            / F/2      |           |\n\t *         C ------------P------------ O\n\t *\n\t *\n\t *   ProjectionScaleFactor = ( OR / PQ )\n\t *   PQ = canvasHeight / 2\n\t *   CQ = zoom\n\t *\n\t *   OR / C0 = tan(F/2)\n\t *   so OR = CO * tan(F/2)",
             "class": "Mappedin"
         },
         {
             "file": "source/utils.js",
-            "line": 429,
+            "line": 292,
             "description": "C - Camera, OP -- picture plane (canvas), S - origin,\n  QR - front side of maps Bounding Box, F: FOV\n                         Z-axis\n                     R_____|______\n                    /|     |     |\n                  /  |     |     |\n               P/    |     |     | maps BB\n              /|     |     |     |\n            /  |     |     |     |\n          /    |     |     |     |\n        / F    |E    |T    |S    |\n    C /--------|-----|-----|-----|------ orthogonal to Y axis, midpoint of focus maps\n      \\        |     |     |     |\n        \\      |     |     |     |\n          \\    |     |     |     |\n            \\  |     |     |     |\n              \\|     |     |     |\n               O\\    |     |     |\n                  \\  |     |     |\n                    \\|_____|_____|\n                     Q\n\n\n We want to get CS, which is the camera zoom",
             "class": "Mappedin"
         },
@@ -4768,39 +4868,39 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.MapManager.js:275"
+            "line": " source/Mappedin.MapManager.js:277"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.MapView3D.js:1760"
+            "line": " source/Mappedin.MapView3D.js:1812"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.MultiFloorView.js:236"
+            "line": " source/Mappedin.MultiFloorView.js:253"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:48"
+            "line": " source/Mappedin.Navigator.js:73"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:72"
+            "line": " source/Mappedin.Navigator.js:97"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:143"
+            "line": " source/Mappedin.Navigator.js:339"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:264"
+            "line": " source/Mappedin.Navigator.js:465"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:280"
+            "line": " source/Mappedin.Navigator.js:501"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:314"
+            "line": " source/Mappedin.Navigator.js:557"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -4844,35 +4944,27 @@
         },
         {
             "message": "replacing incorrect tag: function with method",
-            "line": " source/Mappedin.getVenue.js:966"
+            "line": " source/Mappedin.getVenue.js:970"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:1358"
+            "line": " source/Mappedin.getVenue.js:1362"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:1394"
+            "line": " source/Mappedin.getVenue.js:1398"
         },
         {
             "message": "unknown tag: name",
-            "line": " source/Mappedin.getVenue.js:1941"
+            "line": " source/Mappedin.getVenue.js:1945"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.getVenue.js:1941"
+            "line": " source/Mappedin.getVenue.js:1945"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.getVenue.js:2022"
-        },
-        {
-            "message": "Missing item type\nGenerate a unique slug.",
-            "line": " docs/assets/vendor/github-slugger/slugger.js:12"
-        },
-        {
-            "message": "Missing item type\nReset - Forget all previous slugs",
-            "line": " docs/assets/vendor/github-slugger/slugger.js:37"
+            "line": " source/Mappedin.getVenue.js:2026"
         },
         {
             "message": "Missing item type\nGenerate a unique slug.",
@@ -4912,11 +5004,31 @@
         },
         {
             "message": "Missing item type\nignoreZoomLimits; use with caution for special effects",
-            "line": " source/Mappedin.CameraControls.js:159"
+            "line": " source/Mappedin.CameraControls.js:161"
+        },
+        {
+            "message": "Missing item type\nThe amount the camera is shifted up/down\n(corresponds to scroll amount in multifloor mode)\n100% == camera is as far up as it will go\n0% == camera is as far down as it will go",
+            "line": " source/Mappedin.CameraControls.js:657"
+        },
+        {
+            "message": "Missing item type\nReturns whether the maps are scrolled to bottom",
+            "line": " source/Mappedin.CameraControls.js:676"
+        },
+        {
+            "message": "Missing item type\nReturns whether the maps are scrolled to top",
+            "line": " source/Mappedin.CameraControls.js:686"
+        },
+        {
+            "message": "Missing item type\nScroll maps up\nThis will shift maps down to show next one (above)",
+            "line": " source/Mappedin.MapManager.js:454"
+        },
+        {
+            "message": "Missing item type\nScroll maps down\nThis will shift maps up to show next one (below)",
+            "line": " source/Mappedin.MapManager.js:467"
         },
         {
             "message": "Missing item type\nLoad the map, if it's not already loaded. Returns the old promise if it's already done, so you can safely call it whenever needed.\n\nIf needed, this could be modified to\n\nReturns a Promise that will be Done when the OBJ, MTL and textures have been downloaded, and the objectsDictionary has been generated.",
-            "line": " source/Mappedin.MapObject.js:69"
+            "line": " source/Mappedin.MapObject.js:150"
         },
         {
             "message": "Missing item type\nZoom out to show the entire Map.",
@@ -4928,11 +5040,11 @@
         },
         {
             "message": "Missing item type\nResets the MapView to the default state.",
-            "line": " source/Mappedin.MapView.js:559"
+            "line": " source/Mappedin.MapView.js:572"
         },
         {
             "message": "Missing item type\nCreate a font for use in 3D by passing in a JSON object generated from https://gero3.github.io/facetype.js/\nIgnored in 2D, retuning null",
-            "line": " source/Mappedin.MapView.js:618"
+            "line": " source/Mappedin.MapView.js:631"
         },
         {
             "message": "Missing item type\nSimple utility function to calculate the maximum scroll bounds for our map so Leaflet\ndoes not scroll outside the map bounds",
@@ -4944,31 +5056,31 @@
         },
         {
             "message": "Missing item type\nLabels a specific polygon (or area of 3D space) with a text label that lives in 3D space.\nThat means it will be smaller when the camera is further away, and the angle you see it at will change with the camera.\nThe text will flip 180 degress when the camera rotates so it's never totally upside-down.\n\nPossible options = {\n\tpolygon - The polygon to make a label for\n\tcanvasBounds - Optional, to do this without a real Mappedin Polygon\n\theight - If you don't have a real polygon, you will need to set a height\n\ttext - The full name text to make the label\n\tshortText - The short name text to make the label\n\tmargin - The amount of space to leave before starting the text\n\tcolor - A optional special color if you don't want to use mapView.colors.text\n\tfontSize - How big to make the font. Defaults to 12\n\tfont - A THREE.Font object, if you have your own font you want to use.\n\tscaleMin - What percentage we can shrink the label to if it won't fit at 100%\n\tscaleStep - How much to decrement the scale each time it doesn't fit, so we don't end up with too many different font sizes\n}\n\nYou must provide AT LEAST text and either polygon or canvasBounds + height.",
-            "line": " source/Mappedin.MapView2D.js:835"
+            "line": " source/Mappedin.MapView2D.js:869"
         },
         {
             "message": "Missing item type\nAdds a pin to a specific polygon that lives in both 2D and 3D space.\nThe pin is tied to a location on the map where a line in 3D is placed.\nThe 3D location at the top of this line is translated into a screen position and used to display a label that can orient itself based on other labels.\nCurrently the labels have three orientation that the text tries to fit itself into (east, north, west of the marker)\n\n\t\tPossible options = {\n\t\t\tmarkerClass - The CSS class to apply to the marker of the hover label\n\t\t\ttextClass - The CSS class to apply to the text shown with the marker\n\t\t\tpolygon - The polygon used to position the label\n\t\t\tmap - Provide the map id if it is not also attached to the polygon\n\t\t\theight - Where the pin should appear vertically in pixels. This option overrides\n\t\t\t\tthe heightAbovePolygon option.\n\t\t\theightAbovePolygon - Where the pin should appear relative to the top of the polygon\n\t\t\t\tin pixels.\n\t\t\tlabel | text - The text or html string to appear as the label\n\t\t\tmarkerBuffer - The amount of space to leave around the marker part of the label (default: 5)\n\t\t\ttextDivHeight - Override the maximimum height of the text being shown in pixels. This value is typically\n\t\t\t\tcalculated dynamically based off the number of lines of text showing. (default: dynamic, fallback: 40),\n\t\t\ttextDivWidth - The maximium width the text should have in pixels. (default: 100),\n\t\t\tactiveMarkerSize - size of the marker in pixels when it is active (default: 20),\n\t\t\tinactiveMarkerSize - size of the marker in pixels when it is inactive (default: 20),\n\t\t\tactiveColor - An optional color for the marker (default: white)\n\t\t\tinactiveColor - An optional color for the marker (default: rgb(128,128,128))\n\t\t\tpinColor - An optional color for the pin (default: white)\n\t\t\ttextSize - font size of the label (default: 18px)\n\t\t}",
-            "line": " source/Mappedin.MapView3D.js:1520"
+            "line": " source/Mappedin.MapView3D.js:1571"
         },
         {
             "message": "Missing item type\nDisplay 2D screen projections of each 3D map object in the journey. Useful for drawing 2D elements on screen.",
-            "line": " source/Mappedin.Navigator.js:48"
+            "line": " source/Mappedin.Navigator.js:73"
         },
         {
             "message": "Missing item type\nTakes in either an object containing polygons and generates a 3D scene based\non it, or a string URL to fetch those polygons from.",
-            "line": " source/json-scene-loader.js:81"
+            "line": " source/json-scene-loader.js:17"
         },
         {
-            "message": "Missing item type\nUtils function listing\n\n - scrubMaterial\n - getDeviceID\n - getSessionID\n - getObjectID\n - getObject\n - getBoundingBox\n - getBiggestBoundingBox\n - upackBoundingBox\n - getMapScale\n - throttle -> taken from lodash.js\n - getProjectionScaleFactor\n - getZoom\n - hasMultipleSegments",
+            "message": "Missing item type\nUtils function listing\n\n - scrubMaterial\n - getDeviceID\n - getSessionID\n - getObjectID\n - getObject\n - getBoundingBox\n - getBiggestBoundingBox\n - upackBoundingBox\n - getMapScale\n - throttle -> taken from lodash.js\n - getProjectionScaleFactor\n - getZoom",
             "line": " source/utils.js:5"
         },
         {
             "message": "Missing item type\n/*  getProjectionScaleFactor()\n/*  finds the scale ratio between screen coordinates and 3D coordinates (in X-Z plane)\n/*\n\t *                                    R\n\t *                                  /|\n\t *    C : Camera                  /  |\n\t *    PQ : Projection Plane     /    |\n\t *    OR : Origin             /      |\n\t *    F : FOV               /        |\n\t *                      Q /          |\n\t *                      /|           |\n\t *                    /  |           |\n\t *                  /    |           |\n\t *                /      |           |\n\t *              /        |           |\n\t *            / F/2      |           |\n\t *         C ------------P------------ O\n\t *\n\t *\n\t *   ProjectionScaleFactor = ( OR / PQ )\n\t *   PQ = canvasHeight / 2\n\t *   CQ = zoom\n\t *\n\t *   OR / C0 = tan(F/2)\n\t *   so OR = CO * tan(F/2)",
-            "line": " source/utils.js:391"
+            "line": " source/utils.js:254"
         },
         {
             "message": "Missing item type\nC - Camera, OP -- picture plane (canvas), S - origin,\n  QR - front side of maps Bounding Box, F: FOV\n                         Z-axis\n                     R_____|______\n                    /|     |     |\n                  /  |     |     |\n               P/    |     |     | maps BB\n              /|     |     |     |\n            /  |     |     |     |\n          /    |     |     |     |\n        / F    |E    |T    |S    |\n    C /--------|-----|-----|-----|------ orthogonal to Y axis, midpoint of focus maps\n      \\        |     |     |     |\n        \\      |     |     |     |\n          \\    |     |     |     |\n            \\  |     |     |     |\n              \\|     |     |     |\n               O\\    |     |     |\n                  \\  |     |     |\n                    \\|_____|_____|\n                     Q\n\n\n We want to get CS, which is the camera zoom",
-            "line": " source/utils.js:429"
+            "line": " source/utils.js:292"
         },
         {
             "message": "Missing item type\nOffline fallback service worker\n\nThis service worker is designed for offline fallback mode. If you have a network connection at all, it will get the most recent data and use that. If the network is unavailable, it will use the last downloaded version.\nIt has special logic to handle the paging behaviour from the Mappedin API, as a workaround for a weird bug with XHR and Service Workers where \"unsafe\" headers are available in fetch but not XHR.\n\nNOTE: Using this with the Mappedin Web SDK will ensure all the resources the SDK needs are available (since it downloads everything up front), but if you want icons/logos/images from Location objects you will need to ensure your app also\ntries to download them up front as well. If you do, they will be automatically cached.\n\nNOTE2: This will cache all network traffic (which could give you offline support for free for other parts of your app) If you want to limit it to only traffic for the SDK you will have structure your app so the Mappedin\ncode lives in it's own folder, and you register the service worker to only handle requests from things in that folder. Read about Service Workers for more details.",
