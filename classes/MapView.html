@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.50.0
+                                  Version: 1.55.1
                                 </a>
                             </h4>
                         </div>
@@ -375,7 +375,7 @@
 
                               </li>
                               <li class="index-item method">
-                                  <a href="#method_addInteractivePolygon">addInteractivePolygon</a>
+                                  <a href="#method_addInteractivePolygonsForAllLocations">addInteractivePolygonsForAllLocations</a>
 
                               </li>
                               <li class="index-item method">
@@ -504,6 +504,10 @@
 
                               </li>
                               <li class="index-item method">
+                                  <a href="#method_removeInteractivePolygon">removeInteractivePolygon</a>
+
+                              </li>
+                              <li class="index-item method">
                                   <a href="#method_removeMap">removeMap</a>
 
                               </li>
@@ -612,7 +616,7 @@
   
   	</div>
   
-  	<div class="description"><p>Makes a Polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.</p>
+  	<div class="description"><p>Makes a single Polygon hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive and not respond to any mouse events.</p>
   </div>
   
   		<div class="params">
@@ -633,17 +637,17 @@
   
   
   </div>
-  <div id="method_addInteractivePolygon" class="method item">
+  <div id="method_addInteractivePolygonsForAllLocations" class="method item">
   	<span class="method-signature">
   	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_addInteractivePolygon"></a>
-  		addInteractivePolygon
+  		<a class="fa fa-link toc-anchor" href="#method_addInteractivePolygonsForAllLocations"></a>
+  		addInteractivePolygonsForAllLocations
   	</span>
   
   		<div class="args">
   			<span class="paren">(</span><ul class="args-list inline commas">
   				<li class="arg">
-  						<code>polygon</code>
+  						<code>options</code>
   				</li>
   			</ul><span class="paren">)</span>
   		</div>
@@ -663,7 +667,8 @@
   
   	</div>
   
-  	<div class="description"><p>Makes a polygon no longer hoverable/clickable.</p>
+  	<div class="description"><p>Makes all polygons attached to a location hoverable/clickable. Polygons you haven't called this on will be treated as non-interactive
+  This is a convenience function for calling <a href="../classes/MapView.html#method_addInteractivePolygon" class="crosslink">addInteractivePolygon</a> on all the polygons attached to all locations. You may also make individual polygons interactive with the addInteractivePolygon method instead of, or in addition to this method.</p>
   </div>
   
   		<div class="params">
@@ -671,13 +676,31 @@
   
   			<ul class="params-list">
   				<li class="param">
-  						<code class="param-name">polygon</code>
-  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  						<code class="param-name">options</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>The previously interactive Polygon/Polygon ID to make non-interactive.</p>
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name optional">[excludeTypes=[]]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">[String]</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>A list of Location types to skip. All locations of this type will be treated as non-iteractive</p>
   </div>
   
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[locations]</code>
+  									<span class="type"><a href="../classes/MappedinLocation.html" class="crosslink">[MappedinLocation]</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>An array of Location objects. Overrides the default of making all locations interactive, and instead applies to only the locations specified here.</p>
+  </div>
+  
+  							</li>
+  						</ul>
   				</li>
   			</ul>
   		</div>
@@ -2964,6 +2987,57 @@
   
   
   </div>
+  <div id="method_removeInteractivePolygon" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_removeInteractivePolygon"></a>
+  		removeInteractivePolygon
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>polygon</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Makes a polygon no longer hoverable/clickable.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">polygon</code>
+  						<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>The previously interactive Polygon/Polygon ID to make non-interactive.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
   <div id="method_removeMap" class="method item">
   	<span class="method-signature">
   	<span class="name anchorable-toc">
@@ -3124,7 +3198,13 @@
   		resetCamera
   	</span>
   
-  		<span class="paren">()</span>
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code class="optional">forceOrigin=false</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
   	</span>
   
   
@@ -3144,6 +3224,22 @@
   	<div class="description"><p>Resets the pan, tilt and rotation of the camera and sets the zoom to fit the <a href="../classes/MapView.html#property_currentMap" class="crosslink">currentMap</a>.</p>
   </div>
   
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name optional">[forceOrigin=false]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  					<div class="param-description"><p>Flag to forcibly reset the camera to origin (0, 0) instead of the centre of the map's bounding box.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
   
   
   </div>
