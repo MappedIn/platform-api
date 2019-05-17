@@ -130,7 +130,7 @@ mapView.colors = {
 #### Add Interactive Polygons
 Both the 2D and 3D maps are made out of polygons. Some of them, like those representing a specific store, should be intractable by the user. They should be able to hover over them to know it's important, and click on them to select them for more details or wayfinding. Most polygons, however, will be things like the walls and floor. Things that are just decoration and should not be clickable at all. That's where `MapView.addInteractivePolygons` comes in.
 
-There will probably be a convenience function to do this for you (similar to labelAllLocations, discussed below), but for now you will likely want to do something like this:
+There is a convenience function available as of version 1.54.0 that makes all polygons attached to a location clickable/hoverable. This function is called `MapView.addInteractivePolygonsForAllLocations`. You may also choose to do this by adding each polygon individually using something like:
 
 ```js
 var locations = venue.locations;
@@ -149,7 +149,7 @@ for (var j = 0, jLen = locations.length; j < jLen; ++j) {
 };
 ```
 
-This makes all polygons attached to a location clickable/hoverable. Without this, the map will not be very interactive.
+This will also make all polygons attached to a location clickable/hoverable. Without using either of these options, the map will not be very interactive.
 
 #### Creating text labels
 The Mappedin MapView makes it easy to add text labels directly to the scene in 3D. It also supports a hovering label banner, attached to the cursor, that is displayed when the user mouses over a specific polygon in 2D or 3D. This is done either with the `MapView.labelAllLocations` function, or directly with the `MapView.labelPolygon` function.

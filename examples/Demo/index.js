@@ -195,7 +195,6 @@ function onDataLoaded() {
 		var locationPolygons = location.polygons;
 		for (var k = 0, kLen = locationPolygons.length; k < kLen; ++k) {
 			var polygon = locationPolygons[k];
-			mapView.addInteractivePolygon(polygon)
 
 			// A polygon may be attached to more than one location. If that is the case for your venue,
 			// you will need some way of determinng which is the "primary" location when it's clicked on.
@@ -205,6 +204,9 @@ function onDataLoaded() {
 			}
 		}
 	}
+	
+	mapView.addInteractivePolygonsForAllLocations(venue.locations);
+
 	var maps = venue.maps;
 	for (var m = 0, mLen = maps.length; m < mLen; ++m) {
 		var map = maps[m];
