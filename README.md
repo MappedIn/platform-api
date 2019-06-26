@@ -167,7 +167,8 @@ This function will likely get more complicated once you have a UI for wayfinding
 function onPolygonClicked (polygonId) {
   mapView.clearAllPolygonColors();
   mapView.setPolygonColor(polygonId, mapView.colors.select);
-  mapView.focusOnPolygon(polygonId, true);
+  var polygon = venue.getCollectionItemById("POLYGON", polygonId)
+	mapView.focusOn({polygons:[polygon]})
   console.log(polygonId + " clicked");
   return false;
 };
@@ -241,7 +242,7 @@ When you call drawPath it will attempt to automatically handle breaking the path
 The directions engine will also return a set of text directions that you can display to the user. You may not need to, however, as most users understand where to go using only the animated 3D path.
 
 ### Focusing on Map Elements
-You've already seen this in a few previous snippets, but it's worth a separate discussion. There will be many situations in which you would like to move the camera to draw attention to or provide a better view of certain map elements. Typically one or more nodes (either a specific point or a path), one or more polygons, or both. This is accomplished with the `mapView.focusOn(options)` function, or the more specific `focusOnPolygon` or `focusOnPath` (which just uses `focusOn` under the hood).
+You've already seen this in a few previous snippets, but it's worth a separate discussion. There will be many situations in which you would like to move the camera to draw attention to or provide a better view of certain map elements. Typically one or more nodes (either a specific point or a path), one or more polygons, or both. This is accomplished with the `mapView.focusOn(options)` function.
 
 focusOn will take some nodes and/or polygons and animate the camera into the midpoint of them. By default, it will also change the zoom level (in or out) to fit all of those objects into the camera's field of view. It will not switch maps for you (and will actually ignore nodes and polygons not on the current map). This means you can safely pass in the entire path you get from a `directionsTo` call and not worry about which parts are on the current floor.
 

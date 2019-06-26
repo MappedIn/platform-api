@@ -58,7 +58,8 @@ var options = {
 function onPolygonClicked (polygonId) {
 	mapView.clearAllPolygonColors()
 	mapView.setPolygonColor(polygonId, mapView.colors.select)
-	mapView.focusOnPolygon(polygonId, true)
+	var polygon = venue.getCollectionItemById("POLYGON", polygonId)
+	mapView.focusOn({polygons:[polygon]})
 	console.log(polygonId + " clicked")
 	var location = locationsByPolygon[polygonId]
 	if (location != null) {
