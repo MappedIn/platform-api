@@ -5,8 +5,8 @@ var mapExpanded = false
 // options for Mappedin.getVenue
 // You will need to customize this with the data provided by Mappedin. Ask your representative if you don't have a key, secret, and slug.
 var venueOptions = {
-	clientId: "phie0deebuh6UTh7Eebae3xiek9Yaen5",
-	clientSecret: "Thu0of5aiz8WooWo",
+	clientId: "<Your API Key Here>",
+	clientSecret: "<Your API Secret Here>",
 	perspective: "Website",
 	things: {
 		venue: ['slug', 'name'],
@@ -14,7 +14,7 @@ var venueOptions = {
 		categories: ['name'],
 		maps: ['name', 'elevation', 'shortName']
 	},
-	venue: "mappedin-demo-mall"
+	venue: "<Your venue slug here>"
 };
 
 // Options for the MapView constructor
