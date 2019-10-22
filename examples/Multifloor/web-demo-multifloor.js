@@ -39,26 +39,6 @@
 			venue_slug: {
 				type: 'string'
 			},
-			padding_left: {
-				type: 'string',
-				default: '0'
-			},
-			padding_top: {
-				type: 'string',
-				default: '0'
-			},
-			padding_bottom: {
-				type: 'string',
-				default: '0'
-			},
-			padding_right: {
-				type: 'string',
-				default: '0'
-			},
-			perspective: {
-				type: 'string',
-				default: 'Website'
-			},
 			pin_settings: {
 				type: 'boolean',
 				default: true
@@ -149,16 +129,6 @@
 		return settings;
 	}
 
-	function parsePadding(settings) {
-		return {
-			top: parseInt(settings.padding_top.trim() || 0, 10),
-			left: parseInt(settings.padding_left.trim() || 0, 10),
-			right: parseInt(settings.padding_right.trim() || 0, 10),
-			bottom: parseInt(settings.padding_bottom.trim() || 0, 10),
-			type: 'pixels'
-		};
-	}
-
 	function parseMultifloorNavigation() {
 		if (multifloorNavigationStartEl.value != '') {
 			selectedPolygons[0] = multifloorNavigationStartEl.value;
@@ -172,6 +142,18 @@
 		if (selectedPolygons[0] != null && selectedPolygons[1] != null) {
 			navigate();
 		}
+	}
+
+
+	function setPadding() {
+		// TODO: This is an example of setting padding (instead of through the UI), just removed the UI interaction for now. Can improve
+		return {
+			top: 0,
+			left: 0,
+			right: 0,
+			bottom: 0,
+			type: 'pixels'
+		};
 	}
 
 	function updatePaddingOutline(padding) {
@@ -260,7 +242,7 @@
 					var venueOptions = {
 						clientId: settings.client_id,
 						clientSecret: settings.client_secret,
-						perspective: settings.perspective || undefined,
+						perspective: "Website", // Most cases will use the website perspective
 						things: {
 							venue: ['slug', 'name'],
 							locations: ['name', 'type', 'description', 'icon', 'logo', 'externalId'],
@@ -273,7 +255,7 @@
 						venue: settings.venue_slug
 					};
 
-					var padding = parsePadding(settings);
+					var padding = setPadding();
 					updatePaddingOutline(padding);
 
 					var settingsPanel = document.getElementById('settings');
@@ -571,6 +553,7 @@
 				selectedPolygons.push(polygonId);
 			}
 		}
+
 		multifloorNavigationStartEl.value = selectedPolygons[0] || '';
 		multifloorNavigationEndEl.value = selectedPolygons[1] || '';
 
