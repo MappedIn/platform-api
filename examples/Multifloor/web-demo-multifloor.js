@@ -12,9 +12,7 @@
 	var multiline;
 	var multifloorNavigationStartEl;
 	var multifloorNavigationEndEl;
-	var multifloorMapTilt;
 	var multifloorMapRotation;
-	var multifloorMapSpacing;
 	var multifloorStartPosition;
 	var expandOptions;
 	var highlightLocations;
@@ -73,23 +71,7 @@
 			multifloor_navigation_end: {
 				type: 'string',
 				default: ''
-			},
-			multifloor_map_rotation: {
-				type: 'string',
-				default: '0'
-			},
-			multifloor_start_position: {
-				type: 'string',
-				default: 'top'
-			},
-			multifloor_map_tilt: {
-				type: 'string',
-				default: 30
-			},
-			multifloor_map_spacing: {
-				type: 'string',
-				default: 1000
-			},
+			}
 		},
 		required: [
 			'venue_slug',
@@ -233,10 +215,7 @@
 					showIcons = settings.show_icons;
 					labelLocations = settings.show_labels;
 					multiline = settings.multiline;
-					multifloorMapRotation = settings.multifloor_map_rotation;
-					multifloorMapTilt = settings.multifloor_map_tilt;
-					multifloorMapSpacing = settings.multifloor_map_spacing;
-					multifloorStartPosition = settings.multifloor_start_position;
+					multifloorMapRotation = 0; // TODO: Setting this changes the rotation of the map whenever in expanded view
 					highlightLocations = settings.highlight_locations;
 
 					var venueOptions = {
@@ -292,13 +271,10 @@
 					};
 
 					expandOptions = {
-						mapSpacing: parseInt(multifloorMapSpacing, 10),
-						rotation: parseInt(multifloorMapRotation, 10),
-						padding: mapviewOptions.padding,
+						rotation: multifloorMapRotation,
 						start: multifloorStartPosition,
 						//len: 3,
 						//dir: 'down',
-						mapTilt: parseInt(multifloorMapTilt, 10),
 						debug: mapviewOptions.debug
 					};
 
@@ -502,26 +478,6 @@
 			e.preventDefault();
 			showHideOverview();
 		});
-
-		$('multifloor_map_rotation_slider').addEventListener('input', function (e) {
-			$('multifloor_map_rotation').value = parseInt(e.target.value, 10);
-			mapView.mapManager.multiFloorView.rotation = e.target.value;
-			mapView.mapManager.multiFloorView.positionMaps();
-			updateMaps();
-		});
-
-		$('multifloor_map_tilt_slider').addEventListener('input', function (e) {
-			$('multifloor_map_tilt').value = parseInt(e.target.value, 10);
-			mapView.mapManager.multiFloorView.mapTiltDegrees = e.target.value;
-			updateMaps();
-		});
-
-		$('multifloor_map_spacing_slider').addEventListener('input', function (e) {
-			//console.log('multifloorMapSpacing_slider', e.target.value);
-			$('multifloor_map_spacing').value = parseInt(e.target.value, 10);
-			mapView.mapManager.multiFloorView.mapSpacing = parseInt(e.target.value, 10);
-			updateMaps();
-		});
 	}
 
 	function onMapClicked (mapId) {
@@ -598,15 +554,6 @@
 	function expandMaps(options = {}) {
 		//console.log('expandMaps:options', options);
 		mapView.expandMaps(venue.maps.map(m => m.id), options)
-			.then(({ projections }) => {
-				const mapTilt = mapView.mapManager.multiFloorView.mapTiltDegrees;
-				$('multifloor_map_tilt_slider').value = mapTilt;
-				$('multifloor_map_tilt').value = parseInt(mapTilt, 10);
-				$('multifloor_map_spacing_slider').value = multifloorMapSpacing;// mapView.mapManager.multiFloorView.mapSpacing;
-				$('multifloor_map_spacing').value = multifloorMapSpacing;// parseInt(mapView.mapManager.multiFloorView.mapSpacing, 10);
-				$('multifloor_map_rotation_slider').value = multifloorMapRotation;// mapView.mapManager.multiFloorView.mapRotation;
-				$('multifloor_map_rotation').value = multifloorMapRotation;//parseInt(mapView.mapManager.multiFloorView.mapRotation, 10);
-			});
 	}
 
 
@@ -675,9 +622,7 @@
 			try {
 				mapView.navigator.setScale(1);
 				const expandOptions = {
-					mapSpacing: parseInt(multifloorMapSpacing, 10),
-					rotation: parseInt(multifloorMapRotation, 10),
-					mapTilt: parseInt(multifloorMapTilt, 10)
+					rotation: multifloorMapRotation,
 				};
 				mapView.navigator.showOverview(directions, { debug, expandOptions })
 					.catch(e => console.error(e));
