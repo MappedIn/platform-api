@@ -7,15 +7,12 @@
 	var debug;
 	var mapView;
 	var selectedPolygons = [];
-	var showIcons;
-	var labelLocations;
 	var multiline;
 	var multifloorNavigationStartEl;
 	var multifloorNavigationEndEl;
 	var multifloorMapRotation;
 	var multifloorStartPosition;
 	var expandOptions;
-	var highlightLocations;
 
 	var polygonsToAnimateTo = [];
 
@@ -45,18 +42,7 @@
 				type: 'boolean',
 				default: false
 			},
-			show_icons: {
-				type: 'boolean'
-			},
-			highlight_locations: {
-				type: 'boolean',
-				default: false
-			},
-			show_labels: {
-				type: 'boolean',
-				default: true
-			},
-			multiline: {
+			multiline: { // TODO:
 				type: 'boolean',
 				default: true
 			},
@@ -211,12 +197,7 @@
 
 					multifloorNavigationStartEl = $('multifloor_navigation_start');
 					multifloorNavigationEndEl = $('multifloor_navigation_end');
-
-					showIcons = settings.show_icons;
-					labelLocations = settings.show_labels;
-					multiline = settings.multiline;
 					multifloorMapRotation = 0; // TODO: Setting this changes the rotation of the map whenever in expanded view
-					highlightLocations = settings.highlight_locations;
 
 					var venueOptions = {
 						clientId: settings.client_id,
@@ -386,37 +367,24 @@
 				item.selected = true;
 			}
 
-			// Check to make highlighting works on a fast floor switch
-			if (highlightLocations && m == mLen - 1) {
-				mapView.setMap(map);
-				item.selected = true;
-			}
-
 			mapList.add(item);
 		}
 
-		if (showIcons) {
-			showAmenityIcons();
-		}
+		//TODO:
+		showAmenityIcons();
 
-
-		if (labelLocations) {
-			options = {
-				excludeTypes: ['amenity'],
-				multiline: multiline,
-				heightMargin: multiline ? undefined : 0,
-				activeColor: 'red',
-				inactiveColor: 'grey',
-				markerSize: 20
-			};
-			mapView.labelAllLocations(options);
-		}
+		options = {
+			excludeTypes: ['amenity'],
+			multiline: multiline,
+			heightMargin: multiline ? undefined : 0,
+			activeColor: 'red',
+			inactiveColor: 'grey',
+			markerSize: 20
+		};
+		mapView.labelAllLocations(options);
 
 		mapView.enableImageFlippingForAllLocations();
 
-		if (highlightLocations) {
-			highlightAllPolygons();
-		}
 		showCompass();
 
 		parseMultifloorNavigation();
@@ -517,12 +485,6 @@
 		highlightPolygonId(selectedPolygons[0]);
 		highlightPolygonId(selectedPolygons[1], 'green');
 		$('multifloor_navigation_reset').disabled = false;
-	}
-
-	function highlightAllPolygons() {
-		polygonsToAnimateTo.forEach(function (polygon) {
-			mapView.setPolygonColor(polygon);
-		});
 	}
 
 	function showAmenityIcons() {
