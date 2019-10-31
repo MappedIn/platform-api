@@ -211,7 +211,6 @@
 							polygons: ['externalId'],
 							mapGroups: ['name']
 						},
-						venue: "mappedin-demo-mall",
 						venue: settings.venue_slug
 					};
 
@@ -396,20 +395,6 @@
 				console.error(e);
 			}
 		}
-	}
-
-	function updateMaps() {
-		let multiFloorView = mapView.mapManager.multiFloorView;
-		if (debug) {
-			multiFloorView.removeMapBoundingBoxes();
-		}
-		multiFloorView.removeMaps();
-		multiFloorView.positionMaps();
-		multiFloorView.addMaps(mapView.mapManager.multiFloorView.maps);
-		if (debug) {
-			multiFloorView.addMapBoundingBoxes();
-		}
-		mapView.tryRendering();
 	}
 
 	function addEventListeners() {
