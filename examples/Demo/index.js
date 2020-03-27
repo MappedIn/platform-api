@@ -110,17 +110,29 @@ function getMapsInJourney(directions) {
 function drawMultiFloorPath(directions, startPolygon, endPolygon) {
 	var mapsInJourney = getMapsInJourney(directions)
 
-	mapView.expandMaps(mapsInJourney.map(map => map.id), { focus: true, debug: false, rotation: 0, duration: 600 })
+	var expandOptions = {
+		focus: true,
+		debug: false,
+		rotation: 0,
+		duration: 600
+	};
+
+	var pathOptions = {
+		drawConnectionSegigments: true,
+		connectionPathOptions: {
+			color: mapView.colors.path
+		}
+	};
+
+	mapView.expandMaps(mapsInJourney.map(map => map.id), expandOptions)
 		.then(() => {
 			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
 			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
-			mapView.drawPath(directions.path, {
-				drawConnectionSegments: true,
-				connectionPathOptions: {
-					color: mapView.colors.path
-				}})
+			mapView.drawPath(directions.path, pathOptions)
 			mapExpanded = true
 		})
+
+		//Draw the next Random Path
 		.then(() => new Promise((resolve) => setTimeout(resolve, 9000)))
 		.then(() => {
 			drawRandomPath()
@@ -138,6 +150,8 @@ function drawSingleFloorPath(directions, startPolygon, endPolygon) {
 	mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
 
 	mapView.drawPath(directions.path)
+
+	//Draw the next Random Path
 	new Promise((resolve) => setTimeout(resolve, 9000))
 		.then(() => {
 			drawRandomPath()
@@ -188,8 +202,9 @@ function drawRandomPath() {
 					drawSingleFloorPath(directions, startPolygon, endPolygon)
 				}
 			}
-
 		})
+	} else {
+		drawRandomPath()
 	}
 }
 
