@@ -106,6 +106,44 @@ function getMapsInJourney(directions) {
 	return sortedMapIds
 }
 
+// Expands map to show multiple floors and draws path, then draws a new path in 9000 miliseconds
+function drawMultiFloorPath(directions, startPolygon, endPolygon) {
+	var mapsInJourney = getMapsInJourney(directions)
+
+	mapView.expandMaps(mapsInJourney.map(map => map.id), { focus: true, debug: false, rotation: 0, duration: 600 })
+		.then(() => {
+			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+			mapView.drawPath(directions.path, {
+				drawConnectionSegments: true,
+				connectionPathOptions: {
+					color: mapView.colors.path
+				}})
+			mapExpanded = true
+		})
+		.then(() => new Promise((resolve) => setTimeout(resolve, 9000)))
+		.then(() => {
+			drawRandomPath()
+		})
+		.catch(e => {console.log(e)})
+}
+
+// Draws path on single floor and then draws a new path in 9000 miliseconds
+function drawSingleFloorPath(directions, startPolygon, endPolygon) {
+	setMap(startPolygon.map)
+
+	mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+	mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
+
+	mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
+
+	mapView.drawPath(directions.path)
+	new Promise((resolve) => setTimeout(resolve, 9000))
+		.then(() => {
+			drawRandomPath()
+		})
+		.catch(e => {console.log(e)})
+}
 
 // Draws a random path (single or multi floor), highlighting the locations and focusing on the path and polygons
 // Draws another random path after 9000 ms
@@ -118,20 +156,6 @@ function drawRandomPath() {
 	var endPolygon = getRandomInArray(endLocation.polygons)
 	var endNode = getRandomInArray(endPolygon.entrances)
 
-	//Options for drawing paths
-	var pathOptions = {
-		drawConnectionSegigments: true,
-		connectionPathOptions: {
-			color: mapView.colors.path
-		}
-	};
-
-	var expandOptions = {
-		focus: true,
-		rotation: 0,
-		duration: 600
-	};
-
 	// Some polygons don't have entrance nodes, need to check before getting directions
 	if (startNode != null && endNode != null) {
 		startNode.directionsTo(endNode, { accessible: false, directionsProvider: "offline" }, function(error, directions) {
@@ -141,29 +165,31 @@ function drawRandomPath() {
 			}
 
 			mapView.clearAllPolygonColors()
-			if (mapView.navigator.overviewVisible === true) {
-				mapView.navigator.hideOverview()
+			mapView.removeAllPaths()
+			if (startPolygon.map != endPolygon.map) {
+				// Multi Floor Path
+				if (mapExpanded) {
+					mapView.contractMaps({ focus: true, duration: 50 })
+					.then(() => {
+						drawMultiFloorPath(directions, startPolygon, endPolygon)
+					})
+				} else {
+					drawMultiFloorPath(directions, startPolygon, endPolygon)
+				}
+			} else {
+				// Single Floor Path
+				if (mapExpanded) {
+					mapView.contractMaps({ focus: true, duration: 50 })
+					.then(() => {
+						mapExpanded = false
+						drawSingleFloorPath(directions, startPolygon, endPolygon)
+					})
+				} else {
+					drawSingleFloorPath(directions, startPolygon, endPolygon)
+				}
 			}
 
-			mapView.setPolygonColor(startPolygon, mapView.colors.path)
-			mapView.setPolygonColor(endPolygon, mapView.colors.select)
-
-			try {
-				mapView.navigator.setScale(1);
-				mapView.navigator.showOverview(directions, {pathOptions, expandOptions})
-					.catch(e => console.error(e))
-			} catch (e) {
-				console.error(e)
-			}
-
-		new Promise((resolve) => setTimeout(resolve, 9000))
-			.then(() => {
-				drawRandomPath()
-			})
-			.catch(e => {console.log(e)})
 		})
-	} else {
-		drawRandomPath()
 	}
 }
 
