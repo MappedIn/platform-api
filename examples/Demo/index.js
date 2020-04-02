@@ -118,7 +118,7 @@ function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 			} else if (instruction.atLocation.type == "stairs") {
 				markerHTMLString = `<img src="stairs.png">`
 			} else {
-				markerHTMLString = `<img src="defaultConnection.png">`;
+				markerHTMLString = `<img src="stairs.png">`;
 			}
 			let marker = mapView.createMarker(
 				markerHTMLString,
@@ -129,7 +129,6 @@ function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 				)
 			marker.addEventListener('click', () => {
 				setMap(instruction.action.toMap.id)
-				mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
 			})
 		}
 	})
