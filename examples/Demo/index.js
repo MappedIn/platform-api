@@ -107,6 +107,7 @@ function getMapsInJourney(directions) {
 }
 
 
+// Draws markers and adds event handlers for all connections in a set of directions
 function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 	directions.instructions.forEach(function (instruction) {
 		if (instruction.action.type == "TakeVortex") {
@@ -129,6 +130,7 @@ function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 				)
 			marker.addEventListener('click', () => {
 				setMap(instruction.action.toMap.id)
+				mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
 			})
 		}
 	})
@@ -154,6 +156,7 @@ function drawRandomPath() {
 				return
 			}
 
+			// Cleanup any previous paths
 			mapView.clearAllPolygonColors()
 			mapView.removeAllPaths()
 			mapView.removeAllMarkers()
@@ -163,7 +166,7 @@ function drawRandomPath() {
 			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
 			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
 
-			// Draw Connections Markers on both maps of the connector
+			// Draw Connections Markers on both sides of a connection
 			drawConnectionMarkers(directions, startPolygon, endPolygon)
 			endNode.directionsTo(startNode, { accessible: false, directionsProvider: "offline"}, function(error, reverseDirections) {
 				drawConnectionMarkers(reverseDirections, startPolygon, endPolygon)
