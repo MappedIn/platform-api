@@ -111,16 +111,14 @@ function getMapsInJourney(directions) {
 function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 	directions.instructions.forEach(function (instruction) {
 		if (instruction.action.type == "TakeVortex") {
-			var markerHTMLString = ''
+			var markerHTMLString = '<img src="stairs.png">`' // Default connection marker 
 			if (instruction.atLocation.type == "elevator") {
 				markerHTMLString = `<img src="elevator.png">`
 			} else if (instruction.atLocation.type == "escalator")  {
 				markerHTMLString = `<img src="escalator.png">`
 			} else if (instruction.atLocation.type == "stairs") {
 				markerHTMLString = `<img src="stairs.png">`
-			} else {
-				markerHTMLString = `<img src="stairs.png">`;
-			}
+			} 
 			let marker = mapView.createMarker(
 				markerHTMLString,
 				mapView.getPositionNode(instruction.node),
