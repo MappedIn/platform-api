@@ -116,8 +116,6 @@ function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 				markerHTMLString = `<img src="elevator.png">`
 			} else if (instruction.atLocation.type == "escalator")  {
 				markerHTMLString = `<img src="escalator.png">`
-			} else if (instruction.atLocation.type == "stairs") {
-				markerHTMLString = `<img src="stairs.png">`
 			} 
 			let marker = mapView.createMarker(
 				markerHTMLString,
