@@ -111,11 +111,11 @@ function getMapsInJourney(directions) {
 function drawConnectionMarkers(directions, startPolygon, endPolygon) {
 	directions.instructions.forEach(function (instruction) {
 		if (instruction.action.type == "TakeVortex") {
-			var markerHTMLString = '<img src="stairs.png">`' // Default connection marker 
+			var markerHTMLString = '<img src="stairs.svg">`' // Default connection marker 
 			if (instruction.atLocation.type == "elevator") {
-				markerHTMLString = `<img src="elevator.png">`
+				markerHTMLString = `<img src="elevator.svg">`
 			} else if (instruction.atLocation.type == "escalator")  {
-				markerHTMLString = `<img src="escalator.png">`
+				markerHTMLString = `<img src="escalator.svg">`
 			} 
 			let marker = mapView.createMarker(
 				markerHTMLString,
@@ -169,7 +169,7 @@ function drawRandomPath() {
 			})
 
 			mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
-			mapView.drawPath(directions.path)
+			mapView.drawPath(directions.path, { radius: 8 })
 
 			new Promise((resolve) => setTimeout(resolve, 9000))
 				.then(() => {
