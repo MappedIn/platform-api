@@ -36,7 +36,7 @@ var mapviewOptions = {
 	onFirstMapLoaded: function () {
 		console.log("First map fully loaded. No more pop in.");
 	},
-	onDataLoaded: function() {
+	onDataLoaded: function () {
 		console.log("3D data loaded, map usable. Could hide loading screen here, but things will be popping in. Now you can do things that interact with the 3D scene")
 		onDataLoaded()
 	}
@@ -55,11 +55,11 @@ var options = {
 	search: searchOptions
 }
 
-function onPolygonClicked (polygonId) {
+function onPolygonClicked(polygonId) {
 	mapView.clearAllPolygonColors()
 	mapView.setPolygonColor(polygonId, mapView.colors.select)
 	var polygon = venue.getCollectionItemById("POLYGON", polygonId)
-	mapView.focusOn({polygons:[polygon]})
+	mapView.focusOn({ polygons: [polygon] })
 	console.log(polygonId + " clicked")
 	var location = locationsByPolygon[polygonId]
 	if (location != null) {
@@ -100,12 +100,37 @@ function getMapsInJourney(directions) {
 	})
 	var mapIds = new Array();
 	for (var key in uniqueMapHash) {
-	  mapIds.push(key);
+		mapIds.push(key);
 	}
 	var sortedMapIds = mapsSortedByElevation.filter(map => mapIds.indexOf(map.id) !== -1)
 	return sortedMapIds
 }
 
+
+// Draws markers and adds event handlers for all connections in a set of directions
+function drawConnectionMarkers(directions, startPolygon, endPolygon) {
+	directions.instructions.forEach(function (instruction) {
+		if (instruction.action.type == "TakeVortex") {
+			var markerHTMLString = '<img src="stairs.svg">`' // Default connection marker 
+			if (instruction.atLocation.type == "elevator") {
+				markerHTMLString = `<img src="elevator.svg">`
+			} else if (instruction.atLocation.type == "escalator")  {
+				markerHTMLString = `<img src="escalator.svg">`
+			} 
+			let marker = mapView.createMarker(
+				markerHTMLString,
+				mapView.getPositionNode(instruction.node),
+				'cssClassName',
+				instruction.node.map,
+				{ rotateWithCamera: true, ignoreCollisions: true }
+				)
+			marker.addEventListener('click', () => {
+				setMap(instruction.action.toMap.id)
+				mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
+			})
+		}
+	})
+}
 
 // Draws a random path (single or multi floor), highlighting the locations and focusing on the path and polygons
 // Draws another random path after 9000 ms
@@ -118,49 +143,39 @@ function drawRandomPath() {
 	var endPolygon = getRandomInArray(endLocation.polygons)
 	var endNode = getRandomInArray(endPolygon.entrances)
 
-	//Options for drawing paths
-	var pathOptions = {
-		drawConnectionSegigments: true,
-		connectionPathOptions: {
-			color: mapView.colors.path
-		}
-	};
-
-	var expandOptions = {
-		focus: true,
-		rotation: 0,
-		duration: 600
-	};
-
 	// Some polygons don't have entrance nodes, need to check before getting directions
 	if (startNode != null && endNode != null) {
-		startNode.directionsTo(endNode, { accessible: false, directionsProvider: "offline" }, function(error, directions) {
+		startNode.directionsTo(endNode, { accessible: false, directionsProvider: "offline" }, function (error, directions) {
 			if (error || directions.path.length == 0) {
 				drawRandomPath()
+				console.log(error)
 				return
 			}
 
+			// Cleanup any previous paths
 			mapView.clearAllPolygonColors()
-			if (mapView.navigator.overviewVisible === true) {
-				mapView.navigator.hideOverview()
-			}
+			mapView.removeAllPaths()
+			mapView.removeAllMarkers()
 
-			mapView.setPolygonColor(startPolygon, mapView.colors.path)
-			mapView.setPolygonColor(endPolygon, mapView.colors.select)
+			setMap(startPolygon.map)
 
-			try {
-				mapView.navigator.setScale(1);
-				mapView.navigator.showOverview(directions, {pathOptions, expandOptions})
-					.catch(e => console.error(e))
-			} catch (e) {
-				console.error(e)
-			}
+			mapView.setPolygonColor(startPolygon.id, mapView.colors.path)
+			mapView.setPolygonColor(endPolygon.id, mapView.colors.select)
 
-		new Promise((resolve) => setTimeout(resolve, 9000))
-			.then(() => {
-				drawRandomPath()
+			// Draw Connections Markers on both sides of a connection
+			drawConnectionMarkers(directions, startPolygon, endPolygon)
+			endNode.directionsTo(startNode, { accessible: false, directionsProvider: "offline"}, function(error, reverseDirections) {
+				drawConnectionMarkers(reverseDirections, startPolygon, endPolygon)
 			})
-			.catch(e => {console.log(e)})
+
+			mapView.focusOnPath(directions.path, [startPolygon, endPolygon], true, 2000)
+			mapView.drawPath(directions.path, { radius: 8 })
+
+			new Promise((resolve) => setTimeout(resolve, 9000))
+				.then(() => {
+					drawRandomPath()
+				})
+				.catch(e => { console.log(e) })
 		})
 	} else {
 		drawRandomPath()
@@ -176,7 +191,7 @@ function init() {
 		search = data.search
 		analytics = data.analytics
 
-	},function (error) {
+	}, function (error) {
 		window.alert("Mappedin " + error)
 	})
 }
@@ -205,7 +220,7 @@ function onDataLoaded() {
 			}
 		}
 	}
-	
+
 	mapView.addInteractivePolygonsForAllLocations(venue.locations);
 
 	var maps = venue.maps;
@@ -252,8 +267,8 @@ function onDataLoaded() {
 // 		});
 // 	})
 // } else {
-	// Otherwise, just init
-	init();
+// Otherwise, just init
+init();
 // }
 
 mapList.addEventListener("change", changeMap)
