@@ -3,10 +3,14 @@ var div = document.getElementById( 'mapView' )
 var mapExpanded = false
 
 // options for Mappedin.getVenue
-// You will need to customize this with the data provided by Mappedin. Ask your representative if you don't have a key, secret, and slug.
+// To get you started we've provided a key and secret that has access to some demo venues.
+//  - mappedin-demo-mall
+//  - mappedin-demo-retail-2
+// Speak with a Mappedin representative when you are ready to get your own key and secret set up with access to your own venues.
+// You may need to customize these options with the data provided by Mappedin for your venue.
 var venueOptions = {
-	clientId: "<Your API Key Here>",
-	clientSecret: "<Your API Secret Here>",
+	clientId: "5eab30aa91b055001a68e996",
+	clientSecret: "RJyRXKcryCMy4erZqqCbuB1NbR66QTGNXVE0x3Pg6oCIlUR1",
 	perspective: "Website",
 	things: {
 		venue: ['slug', 'name'],
@@ -14,7 +18,7 @@ var venueOptions = {
 		categories: ['name'],
 		maps: ['name', 'elevation', 'shortName']
 	},
-	venue: "<Your venue slug here>"
+	venue: "mappedin-demo-mall"
 };
 
 // Options for the MapView constructor

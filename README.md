@@ -11,6 +11,9 @@ The current version of the Mappedin Web SDK is v1.63.16, and can be included in 
 <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.63.16/mappedin.js"></script>
 ```
 
+## API keys
+In order to use the Mappedin Web SDK you will need an API Key and Secret. To get you started we've provided a key and secret in this repo that has access to some demo venues. When you're ready to start using your own venues with the Mappedin Web SDK you will need to contact a Mappedin representative to get your own unique key and secret. 
+
 ## Getting Started
 
 The Mappedin Web SDK provides a simple way to use all of the data stored in the Mappedin CMS. It consists of four main components:
