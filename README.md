@@ -11,6 +11,9 @@ The current version of the Mappedin Web SDK is v1.63.16, and can be included in 
 <script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.63.16/mappedin.js"></script>
 ```
 
+## API keys
+In order to use the Mappedin Web SDK you will need an API Key and Secret. To get you started we've provided a key and secret in this repo that has access to some demo venues. When you're ready to start using your own venues with the Mappedin Web SDK you will need to contact a Mappedin representative to get your own unique key and secret.
+
 ## Getting Started
 
 The Mappedin Web SDK provides a simple way to use all of the data stored in the Mappedin CMS. It consists of four main components:
@@ -52,7 +55,7 @@ var options = {
 ```
 
 ### Venue options
-This will be the most complicated set of options. It is here you specify your API key, secret, perspective, and "slug" for the Venue you want to download. If you don't know what those mean, ask your Mappedin representative.
+This will be the most complicated set of options. It is here you specify your API key, secret, perspective, and "slug" for the Venue you want to download. To get you started we've provided a key and secret, which we've added to each sample that has access to some demo venues.
 
 You will also specify which fields you are interested in downloading for each Mappedin object. The Mappedin CMS is very flexible, and objects like Locations can have a lot of information stored on them, some of which is custom for your Venue, and not all of which needs to be downloaded by the user when they visit your web page. The Mappedin Web SDK will ensure it downloads the information it needs for itself (like the 3D or 2D files for your Map), and it's recommended to you only add the data you will actually use yourself to keep things snappy.
 
