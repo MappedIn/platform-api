@@ -10,3 +10,8 @@ client Secret: RJyRXKcryCMy4erZqqCbuB1NbR66QTGNXVE0x3Pg6oCIlUR1
 venue IDs:
 - mappedin-demo-mall
 - mappedin-demo-retail-2
+- warehouse-demo
+- mappedin-demo-city
+- rail-demo
+- mappedin-demo-stadium
+- mappedin-demo-entertainment-park

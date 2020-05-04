@@ -6,6 +6,11 @@ var mapExpanded = false
 // To get you started we've provided a key and secret that has access to some demo venues.
 //  - mappedin-demo-mall
 //  - mappedin-demo-retail-2
+//  - warehouse-demo
+//  - mappedin-demo-city
+//  - rail-demo
+//  - mappedin-demo-stadium
+//  - mappedin-demo-entertainment-park
 // Speak with a Mappedin representative when you are ready to get your own key and secret set up with access to your own venues.
 // You may need to customize these options with the data provided by Mappedin for your venue.
 var venueOptions = {
