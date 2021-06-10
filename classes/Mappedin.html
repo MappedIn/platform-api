@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.55.1
+                                  Version: 1.69.0
                                 </a>
                             </h4>
                         </div>
@@ -171,9 +171,6 @@
                                         <a href="../classes/MapView2D.html">MapView2D</a>
                                     </li>
                                     <li>
-                                        <a href="../classes/MapView3D.html">MapView3D</a>
-                                    </li>
-                                    <li>
                                         <a href="../classes/Marker.html">Marker</a>
                                     </li>
                                     <li>
@@ -186,7 +183,16 @@
                                         <a href="../classes/SmartLabel.html">SmartLabel</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -279,15 +285,6 @@
 									<span class="flag optional" title="This parameter is optional.">optional</span>
 
 								<div class="param-description"><p>The secret/password that goes along with your ID.</p>
-</div>
-
-							</li>
-							<li class="param">
-									<code class="param-name optional">[accessToken]</code>
-									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-									<span class="flag optional" title="This parameter is optional.">optional</span>
-
-								<div class="param-description"><p>OAuth access token.</p>
 </div>
 
 							</li>
@@ -834,15 +831,6 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   
   							</li>
   							<li class="param">
-  									<code class="param-name optional">[accessToken]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>OAuth access token.</p>
-  </div>
-  
-  							</li>
-  							<li class="param">
   									<code class="param-name optional">[perspective]</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
@@ -913,6 +901,14 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
   
   								<div class="param-description"><p>Venue ID.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">includeHidden</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  								<div class="param-description"><p>Whether to include 'hidden' objects.</p>
   </div>
   
   							</li>
@@ -1495,6 +1491,20 @@ constructor, you can hide any loading screen UI and do whatever you want.</p>
   								<div class="param-description"><p>Any options from Mappedin.<a href="../classes/Mappedin.html#method_getVenue" class="crosslink">getVenue</a>.</p>
   </div>
   
+  									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name">useVenueBundle</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  											<div class="param-description">Use single Venue Bundle to download venue data</div>
+  										</li>
+  										<li class="param">
+  												<code class="param-name">bundleBaseUri</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  											<div class="param-description">Override the URL that returns the bundle venue data file. Typically used for environments with a proxy and works only when useVenueBundle is set</div>
+  										</li>
+  									</ul>
   							</li>
   							<li class="param">
   									<code class="param-name">mapview</code>

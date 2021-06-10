@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MockTransform - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.69.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> MockTransform Class
+    </h1>
+</div>
+
+  <p class="private-class">Private</p>
+
+<div class="content-meta">
+
+
+            Module: <a href="../modules/Mappedin.html">Mappedin</a>
+
+
+</div>
+
+
+
+  <div class="class-description">
+  <p>A <code>Transform</code> object which is duck-typed to look like a mapbox <code>Transform</code>
+object, to tell the <code>SourceCache</code> which tiles are currently in view of the
+camera.</p>
+
+  </div>
+
+<div>
+    <div class="page-section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
+            <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
+
+
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+              <form id="options-form" class="form-inline">
+                  Show:
+                  <label for="api-show-inherited" class="checkbox">
+                      <input type="checkbox" id="api-show-inherited" checked>
+                      Inherited
+                  </label>
+                  <label for="api-show-deprecated" class="checkbox">
+                      <input type="checkbox" id="api-show-deprecated">
+                      Deprecated
+                  </label>
+          
+              </form>
+
+          <div id="tab_index" role="tabpanel" class="tab-pane active" >
+                  <div class="index-section methods">
+                      <h3>Methods</h3>
+
+                      <ul class="index-list methods">
+                              <li class="index-item method private">
+                                  <a href="#method__recalculate">_recalculate</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_mercatorCoordinatesToWebSDK">mercatorCoordinatesToWebSDK</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_setLngLat">setLngLat</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_setMapRotation">setMapRotation</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_setMapScale">setMapScale</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_setViewportSize">setViewportSize</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_tileMercatorPosition">tileMercatorPosition</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_tileWebSDKPosition">tileWebSDKPosition</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_webSDKCoordinatesToMercator">webSDKCoordinatesToMercator</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+
+
+          </div>
+
+              <div id="tab_methods" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="method__recalculate" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method__recalculate"></a>
+  		_recalculate
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Compute intermediate values from the current camera parameters.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_mercatorCoordinatesToWebSDK" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_mercatorCoordinatesToWebSDK"></a>
+  		mercatorCoordinatesToWebSDK
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>coords</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type">Vector3</span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Given a set of coordinates in the Mapbox Mercator coordinate system,
+  return those coordinates in SDK world-space.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">coords</code>
+  						<span class="type">MercatorCoordinate</span>
+  
+  
+  					<div class="param-description"><p>coordinates in mapbox mercator projection</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type">Vector3</span>:
+  					<p>coordinates in Web SDK world space</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_setLngLat" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_setLngLat"></a>
+  		setLngLat
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>lngLat</code>
+  				</li>
+  				<li class="arg">
+  						<code>lngLatInMapSpace</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Set the location of the map's position on the globe as a long-lat
+  pair.</p>
+  <p>Note the order being swapped from lat-long; this is a mapbox convention.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">lngLat</code>
+  						<span class="type">number, number</span>
+  
+  
+  					<div class="param-description"><p>location of the map position</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">lngLatInMapSpace</code>
+  						<span class="type">Vector2</span>
+  
+  
+  					<div class="param-description"><p>position of <code>lngLat</code> in map space</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_setMapRotation" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_setMapRotation"></a>
+  		setMapRotation
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>mapRotation</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Set the amount, in degrees, by which the
+  map's y-axis is rotated relative to mercator north (around the z-axis).</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">mapRotation</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>rotation in degrees</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_setMapScale" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_setMapScale"></a>
+  		setMapScale
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>mapScale</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Set the scaling factor between three.js world units and real-world metres
+  used by the active map.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">mapScale</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>scale factor</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_setViewportSize" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_setViewportSize"></a>
+  		setViewportSize
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>viewportSize</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Set the size of the current viewport in pixels.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">viewportSize</code>
+  						<span class="type">Vector2</span>
+  
+  
+  					<div class="param-description"><p>viewport size in pixels</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_tileMercatorPosition" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_tileMercatorPosition"></a>
+  		tileMercatorPosition
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>tileId</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type">MercatorCoordinate, number</span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Return the position and scale of the given tile in Mapbox mercator
+  coordinates.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">tileId</code>
+  						<span class="type">UnwrappedTileID</span>
+  
+  
+  					<div class="param-description"><p>tile ID from mapbox</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type">MercatorCoordinate, number</span>:
+  					<p>translation and scale of tile</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_tileWebSDKPosition" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_tileWebSDKPosition"></a>
+  		tileWebSDKPosition
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>tileId</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type">Vector2, number, Vector2</span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Return the transformation of the given tile in SDK world space
+  coordinates.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">tileId</code>
+  						<span class="type">UnwrappedTileID</span>
+  
+  
+  					<div class="param-description"><p>tile ID from mapbox</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type">Vector2, number, Vector2</span>:
+  					<p>translation, scale and rotation of tile
+  (with rotation represented as (sin, cos))</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>camera</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Given the current Web SDK camera projection, convert that into a mapbox
+  transform and use that to determine which mapbox tiles are visible and
+  begin loading them.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">camera</code>
+  						<span class="type">THREE.Camera</span>
+  
+  
+  					<div class="param-description"><p>the camera projection used for rendering</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_webSDKCoordinatesToMercator" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_webSDKCoordinatesToMercator"></a>
+  		webSDKCoordinatesToMercator
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>coords</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type">MercatorCoordinate</span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Given a set of coordinates in the Web SDK coordinate system, return those
+  coordinates in Mapbox mercator projection coordinates.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">coords</code>
+  						<span class="type">Vector3</span>
+  
+  
+  					<div class="param-description"><p>coordinates in Web SDK world space</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type">MercatorCoordinate</span>:
+  					<p>coordinates in mapbox mercator projection space</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+                  </div>
+              </div>
+
+
+
+      </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

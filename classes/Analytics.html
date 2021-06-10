@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.55.1
+                                  Version: 1.69.0
                                 </a>
                             </h4>
                         </div>
@@ -171,9 +171,6 @@
                                         <a href="../classes/MapView2D.html">MapView2D</a>
                                     </li>
                                     <li>
-                                        <a href="../classes/MapView3D.html">MapView3D</a>
-                                    </li>
-                                    <li>
                                         <a href="../classes/Marker.html">Marker</a>
                                     </li>
                                     <li>
@@ -186,7 +183,16 @@
                                         <a href="../classes/SmartLabel.html">SmartLabel</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -219,7 +225,7 @@
 
 
   <div class="class-description">
-  <p>A class to access the Mappedin Analyitcs platform. Correct usage will improve Smart Search results, and lead to more accurate insights.
+  <p>A class to access the Mappedin Analytics platform. Correct usage will improve Smart Search results, and lead to more accurate insights.
 This will be created for you as part of Mappedin.<a href="../classes/Mappedin.html#method_initialize" class="crosslink">initialize</a>, but you can also create one manually. You are mostly going to use <code>locationSelected</code>.</p>
 
   </div>
@@ -231,6 +237,7 @@ This will be created for you as part of Mappedin.<a href="../classes/Mappedin.ht
           <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
             <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
 
+            <li role="presentation"><a href="#tab_properties" aria-controls="tab_properties" role="tab" data-toggle="tab">Properties</a></li>
 
 
         </ul>
@@ -268,9 +275,23 @@ This will be created for you as part of Mappedin.<a href="../classes/Mappedin.ht
                                   <a href="#method_locationSelected">locationSelected</a>
 
                               </li>
+                              <li class="index-item method">
+                                  <a href="#method_trackBlueDotEvent">trackBlueDotEvent</a>
+
+                              </li>
                       </ul>
                   </div>
 
+                  <div class="index-section properties">
+                      <h3>Properties</h3>
+
+                      <ul class="index-list properties">
+                              <li class="index-item property">
+                                  <a href="#property_BLUEDOT_EVENT">BLUEDOT_EVENT</a>
+
+                              </li>
+                      </ul>
+                  </div>
 
 
           </div>
@@ -445,9 +466,100 @@ This will be created for you as part of Mappedin.<a href="../classes/Mappedin.ht
   
   
   </div>
+  <div id="method_trackBlueDotEvent" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_trackBlueDotEvent"></a>
+  		trackBlueDotEvent
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>event</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Track an event.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">event</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>event param should be a property of the <a href="../classes/Analytics.html#property_BLUEDOT_EVENT" class="crosslink">BLUEDOT_EVENT</a> property.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
                   </div>
               </div>
 
+              <div id="tab_properties" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="property_BLUEDOT_EVENT" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_BLUEDOT_EVENT"></a>
+          BLUEDOT_EVENT
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Enum of valid bluedot events.
+  Pass a property of this into the <a href="../classes/Analytics.html#method_trackBlueDotEvent" class="crosslink">trackBlueDotEvent</a> method.
+  Valid properties are: ATTEMPT_BLUEDOT, FOUND_POSITION, FOUND_FLOOR.</p>
+  
+      </div>
+  
+  
+          <div class="example">
+              <h4>Example:</h4>
+  
+              <div class="example-content">
+                  <p>Analytics.trackBlueDotEvent(Analytics.BLUEDOT_EVENT.ATTEMPT_BLUEDOT)</p>
+  
+              </div>
+          </div>
+  
+  </div>
+                  </div>
+              </div>
 
 
       </div>

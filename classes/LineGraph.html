@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LineGraph - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.69.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> LineGraph Class
+    </h1>
+</div>
+
+  <p class="private-class">Private</p>
+
+<div class="content-meta">
+
+
+            Module: <a href="../modules/Mappedin.html">Mappedin</a>
+
+
+</div>
+
+
+
+  <div class="class-description">
+  <p>A graph on a HTML canvas element that will display the values in the given
+time series.</p>
+
+  </div>
+
+<div>
+    <div class="page-section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
+            <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
+
+
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+              <form id="options-form" class="form-inline">
+                  Show:
+                  <label for="api-show-inherited" class="checkbox">
+                      <input type="checkbox" id="api-show-inherited" checked>
+                      Inherited
+                  </label>
+                  <label for="api-show-deprecated" class="checkbox">
+                      <input type="checkbox" id="api-show-deprecated">
+                      Deprecated
+                  </label>
+          
+              </form>
+
+          <div id="tab_index" role="tabpanel" class="tab-pane active" >
+                  <div class="index-section methods">
+                      <h3>Methods</h3>
+
+                      <ul class="index-list methods">
+                              <li class="index-item method private">
+                                  <a href="#method__layout">_layout</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_element">element</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_redraw">redraw</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_setSeriesList">setSeriesList</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+
+
+          </div>
+
+              <div id="tab_methods" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="method__layout" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method__layout"></a>
+  		_layout
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Compute the CSS styling for this DOM element.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_element" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_element"></a>
+  		element
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" class="crosslink external" target="_blank">Element</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" class="crosslink external" target="_blank">Element</a></span>:
+  					<p>DOM element that can be added to display this graph</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_redraw" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_redraw"></a>
+  		redraw
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Clear this canvas and re-draw the time series lines.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_setSeriesList" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_setSeriesList"></a>
+  		setSeriesList
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>series</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Set the list of time series that this graph displays.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">series</code>
+  						<span class="type"><a href="../classes/TimeSeries.html" class="crosslink">[TimeSeries]</a></span>
+  
+  
+  					<div class="param-description"><p>series to display</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+                  </div>
+              </div>
+
+
+
+      </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

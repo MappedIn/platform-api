@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DebugUI - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.69.0
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> DebugUI Class
+    </h1>
+</div>
+
+  <p class="private-class">Private</p>
+
+<div class="content-meta">
+
+
+            Module: <a href="../modules/Mappedin.html">Mappedin</a>
+
+
+</div>
+
+
+
+  <div class="class-description">
+  <p>A DOM element that can be populated with performance information.</p>
+
+  </div>
+
+<div>
+    <div class="page-section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
+            <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
+
+
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+              <form id="options-form" class="form-inline">
+                  Show:
+                  <label for="api-show-inherited" class="checkbox">
+                      <input type="checkbox" id="api-show-inherited" checked>
+                      Inherited
+                  </label>
+                  <label for="api-show-deprecated" class="checkbox">
+                      <input type="checkbox" id="api-show-deprecated">
+                      Deprecated
+                  </label>
+          
+              </form>
+
+          <div id="tab_index" role="tabpanel" class="tab-pane active" >
+                  <div class="index-section methods">
+                      <h3>Methods</h3>
+
+                      <ul class="index-list methods">
+                              <li class="index-item method private">
+                                  <a href="#method__layout">_layout</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method__updateLayout">_updateLayout</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_addDebugControl">addDebugControl</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_addDebugControls">addDebugControls</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_element">element</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_hsv2rgb">hsv2rgb</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_removeDebugControl">removeDebugControl</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_removeDebugControls">removeDebugControls</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_reportFramePerformance">reportFramePerformance</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_setCameraTilt">setCameraTilt</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+
+
+          </div>
+
+              <div id="tab_methods" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="method__layout" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method__layout"></a>
+  		_layout
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Assign the CSS styles to this element.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method__updateLayout" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method__updateLayout"></a>
+  		_updateLayout
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Recompute CSS styles for dynamically-changing elements, such as
+  updating the position of each entry if a new entry is added.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_addDebugControl" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_addDebugControl"></a>
+  		addDebugControl
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>category</code>
+  				</li>
+  				<li class="arg">
+  						<code>name</code>
+  				</li>
+  				<li class="arg">
+  						<code>description</code>
+  				</li>
+  				<li class="arg">
+  						<code>control</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Add the given control to a panel.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">category</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>the name of the panel the control will be put under</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">name</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>the name of the control</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">description</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>a description for the control (tooltip)</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">control</code>
+  						<span class="type">DebugUIControl</span>
+  
+  
+  					<div class="param-description"><p>the control to add to the panel</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_addDebugControls" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_addDebugControls"></a>
+  		addDebugControls
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>]}</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Add the given controls to the given panels. More efficient than adding
+  controls one-by-one since it only recomputes positions after all controls
+  are added.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">]}</code>
+  						<span class="type">Category: string: name: string, description: string, control: DebugUIControl</span>
+  
+  
+  					<div class="param-description"><p>categories
+  a mapping from category to a list of control names and controls</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_element" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_element"></a>
+  		element
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" class="crosslink external" target="_blank">Element</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Return the DOM element used by this <code>DebugUI</code>, which may be
+  added as a child of any other DOM element to display it.</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" class="crosslink external" target="_blank">Element</a></span>:
+  					<p>the ui's root element</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_hsv2rgb" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_hsv2rgb"></a>
+  		hsv2rgb
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>h</code>
+  				</li>
+  				<li class="arg">
+  						<code>s</code>
+  				</li>
+  				<li class="arg">
+  						<code>v</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Convert the given HSV triple to RGB.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">h</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>hue in [0, 1]</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">s</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>saturation in [0, 1]</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">v</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>value in [0, 1]</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  					<p>THREE.Color color</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_removeDebugControl" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_removeDebugControl"></a>
+  		removeDebugControl
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>category</code>
+  				</li>
+  				<li class="arg">
+  						<code>name</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Remove the given control from a panel.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">category</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>the name of the panel the control will be put under</p>
+  </div>
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">name</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  					<div class="param-description"><p>the name of the control</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_removeDebugControls" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_removeDebugControls"></a>
+  		removeDebugControls
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>categories</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Remove the given controls from the UI.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">categories</code>
+  						<span class="type">Category: string: name: string</span>
+  
+  
+  					<div class="param-description"><p>a mapping from category to a list of control names to remove</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_reportFramePerformance" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportFramePerformance"></a>
+  		reportFramePerformance
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>entries</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Log the given entries to this performance logger, and update the display
+  accordingly. If a given key isn't already being logged, an entry will be
+  added for it. If a key is being logged but isn't reported, it will be
+  treated as if it had a value of <code>0</code> reported.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">entries</code>
+  						<span class="type">String -> number</span>
+  
+  
+  					<div class="param-description"><p>the most recent recorded values for each
+  named frame update</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_setCameraTilt" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_setCameraTilt"></a>
+  		setCameraTilt
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>tilt</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Specify the current tilt of the camera, used to decide how to prioritize labels.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">tilt</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  					<div class="param-description"><p>the current tilt of the camera away from top-down perspective, in radians</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+                  </div>
+              </div>
+
+
+
+      </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>
