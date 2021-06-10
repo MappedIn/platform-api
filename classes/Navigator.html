@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.55.1
+                                  Version: 1.69.0
                                 </a>
                             </h4>
                         </div>
@@ -171,9 +171,6 @@
                                         <a href="../classes/MapView2D.html">MapView2D</a>
                                     </li>
                                     <li>
-                                        <a href="../classes/MapView3D.html">MapView3D</a>
-                                    </li>
-                                    <li>
                                         <a href="../classes/Marker.html">Marker</a>
                                     </li>
                                     <li>
@@ -186,7 +183,16 @@
                                         <a href="../classes/SmartLabel.html">SmartLabel</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -261,6 +267,7 @@
           <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
             <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
 
+            <li role="presentation"><a href="#tab_properties" aria-controls="tab_properties" role="tab" data-toggle="tab">Properties</a></li>
 
             <li role="presentation"><a href="#tab_attrs" aria-controls="tab_attrs" role="tab" data-toggle="tab">Attributes</a></li>
 
@@ -331,6 +338,20 @@
                       </ul>
                   </div>
 
+                  <div class="index-section properties">
+                      <h3>Properties</h3>
+
+                      <ul class="index-list properties">
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_MODES">MODES</a>
+
+                              </li>
+                      </ul>
+                  </div>
 
                   <div class="index-section attrs">
                       <h3>Attributes</h3>
@@ -657,6 +678,15 @@
   
   							</li>
   							<li class="param">
+  									<code class="param-name optional">[showConnectionType=true]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Adds icon indicating connection type to connection markers</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
   									<code class="param-name optional">[debug=false]</code>
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
@@ -688,7 +718,7 @@
   									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>Options for path drawing. See <a href="../classes/MapView3D.html#method_drawPath" class="crosslink">drawPath</a> options for customizing path</p>
+  								<div class="param-description"><p>Options for path drawing. See MapView3D/drawPath options for customizing path</p>
   </div>
   
   							</li>
@@ -710,6 +740,13 @@
   </div>
   
   									<ul class="params-list">
+  										<li class="param">
+  												<code class="param-name optional">[enabled]</code>
+  												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  												<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  											<div class="param-description">Determine whether to expand the maps or remain in single map mode</div>
+  										</li>
   										<li class="param">
   												<code class="param-name optional">[focus=false]</code>
   												<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
@@ -1007,6 +1044,61 @@
                   </div>
               </div>
 
+              <div id="tab_properties" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The mode that navigator is currently in. One of SINGLEFLOOR, MULTIFLOOR_OVERVIEW, MULTIFLOOR_FOCUSED</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_MODES" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_MODES"></a>
+          MODES
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number[]</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+                  </div>
+              </div>
 
               <div id="tab_attrs" role="tabpanel" class="tab-pane">
                   <div class="item-list">

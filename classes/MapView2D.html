@@ -81,7 +81,7 @@
                     <li class="panel panel-default">
                         <div class="panel-heading" role="tab" id="sidebar-version-heading">
                             <h4 class="panel-title">
-                                  Version: 1.55.1
+                                  Version: 1.69.0
                                 </a>
                             </h4>
                         </div>
@@ -171,9 +171,6 @@
                                         <a href="../classes/MapView2D.html">MapView2D</a>
                                     </li>
                                     <li>
-                                        <a href="../classes/MapView3D.html">MapView3D</a>
-                                    </li>
-                                    <li>
                                         <a href="../classes/Marker.html">Marker</a>
                                     </li>
                                     <li>
@@ -186,7 +183,16 @@
                                         <a href="../classes/SmartLabel.html">SmartLabel</a>
                                     </li>
                                     <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
                                         <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
                                     </li>
                                     <li>
                                         <a href="../classes/Tween.html">Tween</a>
@@ -388,10 +394,6 @@
                                   <a href="#method_clearPolygonColor">clearPolygonColor</a>
 
                               </li>
-                              <li class="index-item method inherited">
-                                  <a href="#method_contractMaps">contractMaps</a>
-
-                              </li>
                               <li class="index-item method private inherited">
                                   <a href="#method_convertTo3DMapPosition">convertTo3DMapPosition</a>
 
@@ -403,6 +405,10 @@
                               </li>
                               <li class="index-item method inherited">
                                   <a href="#method_createMarker">createMarker</a>
+
+                              </li>
+                              <li class="index-item method inherited">
+                                  <a href="#method_createTooltip">createTooltip</a>
 
                               </li>
                               <li class="index-item method inherited">
@@ -419,10 +425,6 @@
                               </li>
                               <li class="index-item method inherited">
                                   <a href="#method_enableImageFlippingForPolygon">enableImageFlippingForPolygon</a>
-
-                              </li>
-                              <li class="index-item method inherited">
-                                  <a href="#method_expandMaps">expandMaps</a>
 
                               </li>
                               <li class="index-item method inherited">
@@ -486,6 +488,10 @@
 
                               </li>
                               <li class="index-item method inherited">
+                                  <a href="#method_openAllPolygons">openAllPolygons</a>
+
+                              </li>
+                              <li class="index-item method inherited">
                                   <a href="#method_removeAllLabels">removeAllLabels</a>
 
                               </li>
@@ -514,6 +520,10 @@
 
                               </li>
                               <li class="index-item method inherited">
+                                  <a href="#method_removeTooltip">removeTooltip</a>
+
+                              </li>
+                              <li class="index-item method inherited">
                                   <a href="#method_resetCamera">resetCamera</a>
 
                               </li>
@@ -535,6 +545,10 @@
                               </li>
                               <li class="index-item method inherited">
                                   <a href="#method_unlockNorth">unlockNorth</a>
+
+                              </li>
+                              <li class="index-item method inherited">
+                                  <a href="#method_updateClosedStateForPolygon">updateClosedStateForPolygon</a>
 
                               </li>
                       </ul>
@@ -892,87 +906,6 @@
   
   
   </div>
-  <div id="method_contractMaps" class="method item inherited">
-  	<span class="method-signature">
-  	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_contractMaps"></a>
-  		contractMaps
-  	</span>
-  
-  		<div class="args">
-  			<span class="paren">(</span><ul class="args-list inline commas">
-  				<li class="arg">
-  						<code>options</code>
-  				</li>
-  			</ul><span class="paren">)</span>
-  		</div>
-  	</span>
-  
-  
-  
-  
-  
-  
-  
-  	<div class="meta">
-  				<p>Inherited from
-  				<a href="../classes/MapView.html#method_contractMaps">MapView</a>:
-  		</p>
-  
-  
-  
-  	</div>
-  
-  	<div class="description"><p>Contract maps and display the current map</p>
-  </div>
-  
-  		<div class="params">
-  			<h4>Parameters:</h4>
-  
-  			<ul class="params-list">
-  				<li class="param">
-  						<code class="param-name">options</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  
-  
-  					<div class="param-description"><p>Options object @optional</p>
-  </div>
-  
-  						<ul class="params-list">
-  							<li class="param">
-  									<code class="param-name optional">[focus]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Focus the camera onto current map</p>
-  </div>
-  
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[debug]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Display cubes around focus bounding box for debug info</p>
-  </div>
-  
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[duration=300]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Duration of focus animation in ms</p>
-  </div>
-  
-  							</li>
-  						</ul>
-  				</li>
-  			</ul>
-  		</div>
-  
-  
-  </div>
   <div id="method_convertTo3DMapPosition" class="method item private inherited">
   	<span class="method-signature">
   	<span class="name anchorable-toc">
@@ -1204,7 +1137,7 @@
   						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
   
   
-  					<div class="param-description"><p>Passes on options (e.g. rotation, collisions, rotation with camera) to MapView.Marker's options argument.</p>
+  					<div class="param-description"><p>Passes on options (e.g. rotation, collisions, rotation with camera) to MapView.Marker's options argument. See <a href="../classes/Marker.html" class="crosslink">Marker</a> for more details.</p>
   </div>
   
   				</li>
@@ -1217,6 +1150,157 @@
   			<div class="returns-description">
   						<span class="type"><a href="../classes/Marker.html" class="crosslink">Marker</a></span>:
   					<p>The Marker you created, which has already been added to the scene.</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_createTooltip" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_createTooltip"></a>
+  		createTooltip
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>options</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="../classes/Tooltip.html" class="crosslink">Tooltip</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>Inherited from
+  				<a href="../classes/MapView.html#method_createTooltip">MapView</a>:
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>This creates a tooltip that allows you to pass dynamic content which will attempt
+  to position around an anchor in 3D space. The tooltip will be positioned based on one of four
+  AnchorTypes (top, bottom, left, right).</p>
+  <p><code>options.defaultAnchorType</code> and <code>options.enabledAnchorTypes</code> should be one of the constants from Mappedin.Tooltip.ANCHOR
+  <code>options.defaultAnchorType</code> will override <code>options.enabledAnchorTypes</code> if that anchor was disabled it will be automatically re-enabled</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">options</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  					<div class="param-description"><p>Passes on options (e.g. html, text, position, map, padding, defaultAnchorType, enabledAnchorTypes, collisionRank) to MapView.Tooltip's options argument.</p>
+  </div>
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name optional">[html]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Pass in custom html for your marker, if using this method you must also pass in a selector for your content.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[selector]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Used in conjuction with the html property to select the div for repositioning</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[contentHtml]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Use mappedin's default tooltip styling with custom inner html content</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[text]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>Instead of passing html pass in plain text to be displayed in the tooltip</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[position]</code>
+  									<span class="type">#crossLink "MapView/getPositionPolygon:method"</span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>should be something you got from }{{/crossLink}} or {{#crossLink "MapView/getPositionNode:method"}}{{/crossLink}}.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[map]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>The map ID where the tooltip should be displayed</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[padding]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>The distance in pixel to offset the tooltip from the anchor point.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[enabledAnchorTypes]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>An object used to disable certain anchor positions from being used.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name optional">[collisionRank]</code>
+  									<span class="type"></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>The rank of the object used when comparing colliders to determine which should be shown.</p>
+  </div>
+  
+  							</li>
+  						</ul>
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="../classes/Tooltip.html" class="crosslink">Tooltip</a></span>:
+  					<p>The Tooltip you created, which has already been added to the scene.</p>
   
   			</div>
   		</div>
@@ -1565,168 +1649,6 @@
   		</div>
   
   
-  </div>
-  <div id="method_expandMaps" class="method item inherited">
-  	<span class="method-signature">
-  	<span class="name anchorable-toc">
-  		<a class="fa fa-link toc-anchor" href="#method_expandMaps"></a>
-  		expandMaps
-  	</span>
-  
-  		<div class="args">
-  			<span class="paren">(</span><ul class="args-list inline commas">
-  				<li class="arg">
-  						<code>mapIds</code>
-  				</li>
-  				<li class="arg">
-  						<code>options</code>
-  				</li>
-  			</ul><span class="paren">)</span>
-  		</div>
-  		<span class="returns-inline">
-  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>
-  		</span>
-  	</span>
-  
-  
-  
-  
-  
-  
-  
-  	<div class="meta">
-  				<p>Inherited from
-  				<a href="../classes/MapView.html#method_expandMaps">MapView</a>:
-  		</p>
-  
-  
-  
-  	</div>
-  
-  	<div class="description"><p>Expand maps to display within view, typically used for multi-floor navigation. When passed a connection, maps included will not be displayed, instead, their 2d projection
-  will be available in the resulting promise, which can be used to display a 2D component in the client-side app.</p>
-  </div>
-  
-  		<div class="params">
-  			<h4>Parameters:</h4>
-  
-  			<ul class="params-list">
-  				<li class="param">
-  						<code class="param-name">mapIds</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-  
-  
-  					<div class="param-description"><p>Array of mapIds or mapObjects to display while expanded. For connections, pass { connection: true, maps: [], connectionNodes: [], }</p>
-  </div>
-  
-  				</li>
-  				<li class="param">
-  						<code class="param-name">options</code>
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-  
-  
-  					<div class="param-description"><p>Options object @optional</p>
-  </div>
-  
-  						<ul class="params-list">
-  							<li class="param">
-  									<code class="param-name optional">[focus=false]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Focus the camera onto expanded maps</p>
-  </div>
-  
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[debug=false]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Display cubes around focus bounding box for debug info</p>
-  </div>
-  
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[rotation=0]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Rotation of scene relative to zero (degrees)</p>
-  </div>
-  
-  							</li>
-  							<li class="param">
-  									<code class="param-name optional">[duration=300]</code>
-  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-  									<span class="flag optional" title="This parameter is optional.">optional</span>
-  
-  								<div class="param-description"><p>Duration of focus animation in ms</p>
-  </div>
-  
-  							</li>
-  						</ul>
-  				</li>
-  			</ul>
-  		</div>
-  
-  		<div class="returns">
-  			<h4>Returns:</h4>
-  
-  			<div class="returns-description">
-  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" class="crosslink external" target="_blank">Promise</a></span>:
-  					<p>Promise that resolves to 2d screen projections of each layer/map (see example)</p>
-  
-  			</div>
-  		</div>
-  
-  		<div class="example">
-  			<h4>Example:</h4>
-  
-  			<div class="example-content">
-  				<pre class="code prettyprint"><code>// expand maps with 3 connection maps in between
-  expandMaps(
-      '55e89771d982bc06ca000000',
-          {
-              connection: true,
-              // connection nodes are an exit node from the '55e89771' man and entry node for the '55e9c73f' map
-              connectionNodes: [{
-                  map: "55e89771",
-                  x: 6232,
-                  y: 4575
-              }, {
-                  map: "55e9c73",
-                  x: 5945.000000000001,
-                  y: 4059.000000000001
-              }],
-              maps: [
-                  '55e9acbf',
-                  '55e8a9ed',
-                  '55e85e23'
-              ]
-          },
-          '55e9c73f'
-       );
-  
-       // resulting promise (sorted by elevation (top to bottom))
-  
-       [
-          {
-              min: { x: -100, y: -50 },
-              max: { x: -100, y: -50 }
-          },
-          {
-              min: { x: -100, y: -50 },
-              max: { x: -100, y: -50 }
-          },
-          {
-              min: { x: -100, y: -50 },
-              max: { x: -100, y: -50 }
-          }
-       ]</code></pre>
-  
-  			</div>
-  		</div>
   </div>
   <div id="method_focusOn" class="method item inherited">
   	<span class="method-signature">
@@ -2540,6 +2462,15 @@
   </div>
   
   							</li>
+  							<li class="param">
+  									<code class="param-name optional">[translationMap]</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  									<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  								<div class="param-description"><p>A set of key-value pairs for location state translations, where the key is the kebab-cased location state in english and the value is the text that should be shown.</p>
+  </div>
+  
+  							</li>
   						</ul>
   				</li>
   			</ul>
@@ -2716,7 +2647,7 @@
   									<span class="type"></span>
   									<span class="flag optional" title="This parameter is optional.">optional</span>
   
-  								<div class="param-description"><p>A CSS style string font. ie "sans-serif". Note: Support for a THREE.Font object is still supported, but is deprecated.</p>
+  								<div class="param-description"><p>A CSS style string font. ie "sans-serif". You can specify your own font via @font-face rule with a font family, and then include that here. Note: Support for a THREE.Font object is still supported, but is deprecated.</p>
   </div>
   
   							</li>
@@ -2919,6 +2850,37 @@
   
   			</div>
   		</div>
+  
+  </div>
+  <div id="method_openAllPolygons" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_openAllPolygons"></a>
+  		openAllPolygons
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>Inherited from
+  				<a href="../classes/MapView.html#method_openAllPolygons">MapView</a>:
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>As the name suggests, all polygons will have their "closed" state set to "opened".</p>
+  </div>
+  
+  
   
   </div>
   <div id="method_removeAllLabels" class="method item inherited">
@@ -3214,6 +3176,58 @@
   
   
   					<div class="param-description"><p>A segment returned from <a href="../classes/MapView.html#method_drawPathSegment" class="crosslink">drawPathSegment</a> or <a href="../classes/MapView.html#method_drawPath" class="crosslink">drawPath</a></p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_removeTooltip" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_removeTooltip"></a>
+  		removeTooltip
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>tooltip</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>Inherited from
+  				<a href="../classes/MapView.html#method_removeTooltip">MapView</a>:
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Removes a <a href="../classes/Marker.html" class="crosslink">Marker</a> you have added previously.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">tooltip</code>
+  						<span class="type"><a href="../classes/Tooltip.html" class="crosslink">Tooltip</a></span>
+  
+  
+  					<div class="param-description"><p>A Tooltip that has previously been returned from <a href="../classes/MapView.html#method_createTooltip" class="crosslink">createTooltip</a>.</p>
   </div>
   
   				</li>
@@ -3550,6 +3564,84 @@
   					<div class="param-description"><p>The node to stop rotating. It won't reset the transform, just leave it as is.</p>
   </div>
   
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_updateClosedStateForPolygon" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_updateClosedStateForPolygon"></a>
+  		updateClosedStateForPolygon
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>options</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>Inherited from
+  				<a href="../classes/MapView.html#method_updateClosedStateForPolygon">MapView</a>:
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>A polygon can have state that renders the concept of being "closed", which is a generic blanket
+  term that can be used in general to inform the user that they can expect this polygon to not be
+  servicing customers.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">options</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+  
+  
+  
+  						<ul class="params-list">
+  							<li class="param">
+  									<code class="param-name">polygon</code>
+  									<span class="type"><a href="../classes/MappedinPolygon.html" class="crosslink">MappedinPolygon</a>  |  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+  
+  								<div class="param-description"><p>Required. The polygon or polygon id whose state is being updated.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">closed</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  								<div class="param-description"><p>Required. If true, the polygon will be marked as being closed. If false, the polygon will be marked as being open.</p>
+  </div>
+  
+  							</li>
+  							<li class="param">
+  									<code class="param-name">open</code>
+  									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  								<div class="param-description"><p>If true, a convenience parameter that is the converse of <code>options.closed</code>. Note that if both are present, <code>closed</code> will receive higher precedence.</p>
+  </div>
+  
+  							</li>
+  						</ul>
   				</li>
   			</ul>
   		</div>
