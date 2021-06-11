@@ -2,13 +2,13 @@
 
 Welcome to the Mappedin Web SDK. Please report any issues you find directly to your Mappedin technical contact.
 
-Check out the [demo](examples/Demo), and the full [API docs](http://mappedin.github.io/platform-api/).
+Check out the [demo](examples/StarterSample), and the full [API docs](http://mappedin.github.io/platform-api/).
 
 ### Current Version
 The current version of the Mappedin Web SDK is v1.63.16, and can be included in your application via script tag, like so:
 
 ```xml
-<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.63.16/mappedin.js"></script>
+<script src="https://d1p5cqqchvbqmy.cloudfront.net/websdk/v1.69.0/mappedin.js"></script>
 ```
 
 ## API keys
@@ -275,7 +275,7 @@ mapView.lockNorth(compass);
 ### Offline Mode
 The Mappedin Web SDK does not have offline support built in, but it can be enabled via a [Service Worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers). Service Workers are a relatively new part of the web, and are not well supported on many browsers. However, modern versions of Chrome and Firefox do have support, making this an excellent tool when you are building your own standalone directory type application.
 
-Check out the Mozilla docs for more information, but in brief Service Workers let you run your own JavaScript code to handle any network request from your page, and lets you provide your own response. There is an [example implementation in the demo](https://github.com/MappedIn/platform-api/blob/master/examples/Demo/service-worker.js) that should cover most use cases. It applies a cache fallback strategy: Any network requests are executed as they come in, and the results are saved in the cache and then returned to the app. If a network request fails (because of no internet access), the cached result is returned instead. This ensures you always have fresh data when you can access the network, but have a fallback option if you cannot.
+Check out the Mozilla docs for more information, but in brief Service Workers let you run your own JavaScript code to handle any network request from your page, and lets you provide your own response. There is an [example implementation in the demo](https://github.com/MappedIn/platform-api/blob/master/examples/StarterSample/service-worker.js) that should cover most use cases. It applies a cache fallback strategy: Any network requests are executed as they come in, and the results are saved in the cache and then returned to the app. If a network request fails (because of no internet access), the cached result is returned instead. This ensures you always have fresh data when you can access the network, but have a fallback option if you cannot.
 
 This works because the Mappedin Web SDK (at least in 3D mode) downloads everything it needs ahead of time. When you call Mappedin.init, it starts the process, and when you get onDataLoaded, all the data the Web SDK needs has been downloaded and cached.
 
