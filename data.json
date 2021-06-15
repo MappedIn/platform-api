@@ -2,7 +2,7 @@
     "project": {
         "name": "The Mappedin Web SDK",
         "description": "An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin",
-        "version": "1.69.0",
+        "version": "1.70.1",
         "url": "https://github.com/MappedIn/platform-api",
         "primaryColor": "#ff5000",
         "indexModule": "Mappedin"
@@ -5359,7 +5359,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 231,
+            "line": 233,
             "description": "Sets up the navigator for a set of directions. Typically uses directions returned by `startNode.directionsTo()` calls.\n\nThis can be used to update the directions object any time.",
             "itemtype": "method",
             "name": "setDirections",
@@ -5386,7 +5386,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 246,
+            "line": 248,
             "description": "Sets multiplier scale to better fit 4K and 8K screens at 1:1 pixel ratio. If stuff is too small on 4K screens, set to 2, etc.",
             "itemtype": "method",
             "name": "setScale",
@@ -5401,7 +5401,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 364,
+            "line": 366,
             "description": "Sets up navigator settings. Typically uses options as documented by `Navigator.showOverview()`\n\t*",
             "itemtype": "method",
             "name": "setOptions",
@@ -5522,7 +5522,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 410,
+            "line": 412,
             "description": "Enters journey overview mode. Handles multi-floor navigation and drawing of the path.\n\nNote: Pass directions if they haven't been set using `Navigator.setDirections()`",
             "itemtype": "method",
             "name": "showOverview",
@@ -5567,7 +5567,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 563,
+            "line": 565,
             "description": "Exits out of navigation and focuses on currently selected map.",
             "itemtype": "method",
             "name": "hideOverview",
@@ -5579,7 +5579,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 580,
+            "line": 582,
             "description": "Fired when clicking on a map connection marker when in multi-floor mode. Return true in passed in function to prevent default behavior",
             "itemtype": "event",
             "name": "onConnectionClicked",
@@ -5601,7 +5601,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 598,
+            "line": 600,
             "description": "Focus on the nodes on the current map.",
             "access": "private",
             "tagname": "",
@@ -5609,7 +5609,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 612,
+            "line": 614,
             "description": "Zooms into a specific map in the journey. This can be useful when showing the user detailed directions on a specific map\n\t*",
             "itemtype": "method",
             "name": "zoomIn",
@@ -5628,7 +5628,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 664,
+            "line": 669,
             "description": "Reset overview state",
             "itemtype": "method",
             "name": "reset",
@@ -5636,7 +5636,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 682,
+            "line": 687,
             "description": "Zooms back out into overview mode, displaying the whole journey, draws the full path once again.\n\t*",
             "itemtype": "method",
             "name": "zoomOut",
@@ -5648,7 +5648,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 698,
+            "line": 703,
             "description": "Zooms back out into overview mode, displaying the whole journey, draws the full path once again.",
             "access": "private",
             "tagname": "",
@@ -8586,19 +8586,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:410"
+            "line": " source/Mappedin.Navigator.js:412"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:563"
+            "line": " source/Mappedin.Navigator.js:565"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:612"
+            "line": " source/Mappedin.Navigator.js:614"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:682"
+            "line": " source/Mappedin.Navigator.js:687"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -8922,7 +8922,7 @@
         },
         {
             "message": "Missing item type\nFocus on the nodes on the current map.",
-            "line": " source/Mappedin.Navigator.js:598"
+            "line": " source/Mappedin.Navigator.js:600"
         },
         {
             "message": "Missing item type\nTasks that can be submitted to the renderer. The `STATIC_AND_ANIMATED` task\nis equivalent to a full re-render.",
