@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RotationalVelocityEquation - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.70.4
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Island.html">Island</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/IslandManager.html">IslandManager</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/IslandNode.html">IslandNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/.html"></a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/AABB.html">AABB</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/AngleLockEquation.html">AngleLockEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Body.html">Body</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Box.html">Box</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Broadphase.html">Broadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Capsule.html">Capsule</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Circle.html">Circle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Constraint.html">Constraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ContactEquation.html">ContactEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ContactMaterial.html">ContactMaterial</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Convex.html">Convex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/DistanceConstraint.html">DistanceConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Equation.html">Equation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/EventEmitter.html">EventEmitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/FrictionEquation.html">FrictionEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/GearConstraint.html">GearConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/GSSolver.html">GSSolver</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Heightfield.html">Heightfield</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Line.html">Line</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/LinearSpring.html">LinearSpring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/LockConstraint.html">LockConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Material.html">Material</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/NaiveBroadphase.html">NaiveBroadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Narrowphase.html">Narrowphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Object pooling utility..html">Object pooling utility.</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/OverlapKeeper.html">OverlapKeeper</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/OverlapKeeperRecord.html">OverlapKeeperRecord</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Particle.html">Particle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Plane.html">Plane</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Point.html">Point</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Polygon.html">Polygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/PrismaticConstraint.html">PrismaticConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Ray.html">Ray</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RaycastResult.html">RaycastResult</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RevoluteConstraint.html">RevoluteConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalLockEquation.html">RotationalLockEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalSpring.html">RotationalSpring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalVelocityEquation.html">RotationalVelocityEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SAPBroadphase.html">SAPBroadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Scalar.html">Scalar</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Shape.html">Shape</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartMarker.html">SmartMarker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Solver.html">Solver</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Spring.html">Spring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TopDownVehicle.html">TopDownVehicle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TupleDictionary.html">TupleDictionary</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Utils.html">Utils</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/vec2.html">vec2</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/WheelConstraint.html">WheelConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/World.html">World</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> RotationalVelocityEquation Class
+    </h1>
+</div>
+
+
+<div class="content-meta">
+
+        <div class="extends">
+            Extends: <a href="../classes/Equation.html" class="crosslink">Equation</a>
+        </div>
+
+            Module: <a href="../modules/Mappedin.html">Mappedin</a>
+
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_RotationalVelocityEquation" class="method item">
+	<span class="method-signature">
+	<span class="name anchorable-toc">
+		<a class="fa fa-link toc-anchor" href="#method_RotationalVelocityEquation"></a>
+		RotationalVelocityEquation
+	</span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>bodyA</code>
+				</li>
+				<li class="arg">
+						<code>bodyB</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</span>
+
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">bodyA</code>
+						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+
+
+
+				</li>
+				<li class="param">
+						<code class="param-name">bodyB</code>
+						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+
+
+
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+    </div>
+
+  <div class="class-description">
+  <p>Syncs rotational velocity of two bodies, or sets a relative velocity (motor).</p>
+
+  </div>
+
+<div>
+    <div class="page-section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
+            <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
+
+            <li role="presentation"><a href="#tab_properties" aria-controls="tab_properties" role="tab" data-toggle="tab">Properties</a></li>
+
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+              <form id="options-form" class="form-inline">
+                  Show:
+                  <label for="api-show-inherited" class="checkbox">
+                      <input type="checkbox" id="api-show-inherited" checked>
+                      Inherited
+                  </label>
+                  <label for="api-show-deprecated" class="checkbox">
+                      <input type="checkbox" id="api-show-deprecated">
+                      Deprecated
+                  </label>
+          
+              </form>
+
+          <div id="tab_index" role="tabpanel" class="tab-pane active" >
+                  <div class="index-section methods">
+                      <h3>Methods</h3>
+
+                      <ul class="index-list methods extends">
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_addToWlambda">addToWlambda</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeB">computeB</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeGiMf">computeGiMf</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeGiMGt">computeGiMGt</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeGq">computeGq</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeGW">computeGW</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeGWlambda">computeGWlambda</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_computeInvC">computeInvC</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_gmult">gmult</a>
+
+                              </li>
+                              <li class="index-item method inherited inherited">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+                  <div class="index-section properties">
+                      <h3>Properties</h3>
+
+                      <ul class="index-list properties extends">
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_bodyA">bodyA</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_bodyB">bodyB</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_enabled">enabled</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_G">G</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_maxForce">maxForce</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_minForce">minForce</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_multiplier">multiplier</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_needsUpdate">needsUpdate</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_relativeVelocity">relativeVelocity</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_relaxation">relaxation</a>
+
+                              </li>
+                              <li class="index-item property inherited inherited">
+                                  <a href="#property_stiffness">stiffness</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+
+          </div>
+
+              <div id="tab_methods" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="method_addToWlambda" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_addToWlambda"></a>
+  		addToWlambda
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>deltalambda</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_addToWlambda">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Add constraint velocity to the bodies.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">deltalambda</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_computeB" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeB"></a>
+  		computeB
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeB">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Computes the RHS of the SPOOK equation</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_computeGiMf" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeGiMf"></a>
+  		computeGiMf
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeGiMf">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Computes G*inv(M)*f, where M is the mass matrix with diagonal blocks for each body, and f are the forces on the bodies.</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_computeGiMGt" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeGiMGt"></a>
+  		computeGiMGt
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeGiMGt">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Computes G*inv(M)*G'</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_computeGq" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeGq"></a>
+  		computeGq
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeGq">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Computes G*q, where q are the generalized body coordinates</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_computeGW" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeGW"></a>
+  		computeGW
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeGW">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Computes G*W, where W are the body velocities</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_computeGWlambda" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeGWlambda"></a>
+  		computeGWlambda
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeGWlambda">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Computes G*Wlambda, where W are the body velocities</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_computeInvC" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_computeInvC"></a>
+  		computeInvC
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>eps</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_computeInvC">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Compute the denominator part of the SPOOK equation: C = G*inv(M)*G' + eps</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">eps</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_gmult" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_gmult"></a>
+  		gmult
+  	</span>
+  
+  		<span class="paren">()</span>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_gmult">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Multiply a jacobian entry with corresponding positions or velocities</p>
+  </div>
+  
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_update" class="method item inherited">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  			<p>Inherited from
+  			<a href="../classes/Equation.html#method_update">
+  				Equation
+  			</a>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Compute SPOOK parameters .a, .b and .epsilon according to the current parameters. See equations 9, 10 and 11 in the <a href="http://www8.cs.umu.se/kurser/5DV058/VT09/lectures/spooknotes.pdf">SPOOK notes</a>.</p>
+  </div>
+  
+  
+  
+  </div>
+                  </div>
+              </div>
+
+              <div id="tab_properties" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="property_bodyA" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_bodyA"></a>
+          bodyA
+      </h3>
+      <span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_bodyA">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>First body participating in the constraint</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_bodyB" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_bodyB"></a>
+          bodyB
+      </h3>
+      <span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_bodyB">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Second body participating in the constraint</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_enabled" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_enabled"></a>
+          enabled
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_enabled">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Whether this equation is enabled or not. If true, it will be added to the solver.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_G" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_G"></a>
+          G
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_G">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The Jacobian entry of this equation. 6 numbers, 3 per body (x,y,angle).</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_maxForce" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_maxForce"></a>
+          maxForce
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_maxForce">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Max force to apply when solving.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_minForce" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_minForce"></a>
+          minForce
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_minForce">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Minimum force to apply when solving.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_multiplier" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_multiplier"></a>
+          multiplier
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_multiplier">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The resulting constraint multiplier from the last solve. This is mostly equivalent to the force produced by the constraint.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_needsUpdate" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_needsUpdate"></a>
+          needsUpdate
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_needsUpdate">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Indicates if stiffness or relaxation was changed.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_relativeVelocity" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_relativeVelocity"></a>
+          relativeVelocity
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_relativeVelocity">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Relative velocity.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_relaxation" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_relaxation"></a>
+          relaxation
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_relaxation">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The number of time steps needed to stabilize the constraint equation. Typically between 3 and 5 time steps.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_stiffness" class="property item inherited">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_stiffness"></a>
+          stiffness
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+              <p>Inherited from
+              <a href="../classes/Equation.html#property_stiffness">
+                  Equation
+              </a>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The stiffness of this equation. Typically chosen to a large number (~1e7), but can be chosen somewhat freely to get a stable simulation.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+                  </div>
+              </div>
+
+
+      </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

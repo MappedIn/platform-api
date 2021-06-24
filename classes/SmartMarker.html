@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>SmartMarker - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.70.4
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Island.html">Island</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/IslandManager.html">IslandManager</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/IslandNode.html">IslandNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/.html"></a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/AABB.html">AABB</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/AngleLockEquation.html">AngleLockEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Body.html">Body</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Box.html">Box</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Broadphase.html">Broadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Capsule.html">Capsule</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Circle.html">Circle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Constraint.html">Constraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ContactEquation.html">ContactEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ContactMaterial.html">ContactMaterial</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Convex.html">Convex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/DistanceConstraint.html">DistanceConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Equation.html">Equation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/EventEmitter.html">EventEmitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/FrictionEquation.html">FrictionEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/GearConstraint.html">GearConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/GSSolver.html">GSSolver</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Heightfield.html">Heightfield</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Line.html">Line</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/LinearSpring.html">LinearSpring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/LockConstraint.html">LockConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Material.html">Material</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/NaiveBroadphase.html">NaiveBroadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Narrowphase.html">Narrowphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Object pooling utility..html">Object pooling utility.</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/OverlapKeeper.html">OverlapKeeper</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/OverlapKeeperRecord.html">OverlapKeeperRecord</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Particle.html">Particle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Plane.html">Plane</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Point.html">Point</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Polygon.html">Polygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/PrismaticConstraint.html">PrismaticConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Ray.html">Ray</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RaycastResult.html">RaycastResult</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RevoluteConstraint.html">RevoluteConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalLockEquation.html">RotationalLockEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalSpring.html">RotationalSpring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalVelocityEquation.html">RotationalVelocityEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SAPBroadphase.html">SAPBroadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Scalar.html">Scalar</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Shape.html">Shape</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartMarker.html">SmartMarker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Solver.html">Solver</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Spring.html">Spring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TopDownVehicle.html">TopDownVehicle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TupleDictionary.html">TupleDictionary</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Utils.html">Utils</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/vec2.html">vec2</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/WheelConstraint.html">WheelConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/World.html">World</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> SmartMarker Class
+    </h1>
+</div>
+
+
+<div class="content-meta">
+
+
+            Module: <a href="../modules/Mappedin.html">Mappedin</a>
+
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_SmartMarker" class="method item">
+	<span class="method-signature">
+	<span class="name anchorable-toc">
+		<a class="fa fa-link toc-anchor" href="#method_SmartMarker"></a>
+		SmartMarker
+	</span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code>options</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</span>
+
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name">options</code>
+						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+					<div class="param-description"><p>Passes on options (e.g. contentHtml, position, map, padding, defaultAnchorType, enabledAnchorTypes, collisionRank) to MapView.Tooltip's options argument.</p>
+</div>
+
+						<ul class="params-list">
+							<li class="param">
+									<code class="param-name optional">[contentHtml]</code>
+									<span class="type"></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>Use mappedin's default tooltip styling with custom inner html content</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[id]</code>
+									<span class="type"></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>If omitted, an id will be generated automatically</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[position]</code>
+									<span class="type">#crossLink "MapView/getPositionPolygon:method"</span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>should be something you got from }{{/crossLink}} or {{#crossLink "MapView/getPositionNode:method"}}{{/crossLink}}.</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[anchor]</code>
+									<span class="type"></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>Anchor point to node</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[map]</code>
+									<span class="type"></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>The map ID where the tooltip should be displayed</p>
+</div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[collisionRank]</code>
+									<span class="type"></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"><p>The rank of the object used when comparing colliders to determine which should be shown.</p>
+</div>
+
+							</li>
+						</ul>
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+    </div>
+
+  <div class="class-description">
+  <p>A Marker is an html element that allows users to attach an image or text to a MappedinNode, while interacting (colliding) with other elements.
+Make your own and add it directly to the map with MapView/createSmartMarker:method, or use the constructor and add it when you want.
+You will need to specify at least <code>options.position</code>, <code>options.contentHtml</code> and <code>options.map</code>.</p>
+
+  </div>
+
+<div>
+    <div class="page-section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
+
+
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+              <form id="options-form" class="form-inline">
+                  Show:
+                  <label for="api-show-inherited" class="checkbox">
+                      <input type="checkbox" id="api-show-inherited" checked>
+                      Inherited
+                  </label>
+                  <label for="api-show-deprecated" class="checkbox">
+                      <input type="checkbox" id="api-show-deprecated">
+                      Deprecated
+                  </label>
+          
+              </form>
+
+          <div id="tab_index" role="tabpanel" class="tab-pane active" >
+
+
+
+          </div>
+
+
+
+
+      </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,5124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Ray - The Mappedin Web SDK</title>
+    <meta name="description" content="An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700' rel='stylesheet' type='text/css'>
+    
+
+      <style>
+        body a {
+          color: #ff5000;
+        }
+        body a:hover {
+          color: #ff5000;
+          opacity: 0.5;
+        }
+        .navbar.navbar-default .navbar-nav> li> a:focus, .navbar.navbar-default .navbar-nav> li> a:hover {
+          color: #ff5000;
+        }
+        .navbar.navbar-default .navbar-nav> .active> a, .navbar.navbar-default .navbar-nav> .active> a:focus, .navbar.navbar-default .navbar-nav> .active> a:hover {
+          color: #ff5000;
+        }
+        #docs-main .page-header {
+          color: #ff5000;
+        }
+        #docs-main .page-section .nav-tabs {
+          border-bottom: 1px solid #ff5000;
+        }
+        #docs-main .page-section .nav-tabs> li.active a {
+          background: #ff5000;
+          border: 1px solid #ff5000;
+        }
+        #sidebar li.panel .panel-body ol> li.active, #sidebar li.panel .panel-body ol> li:hover {
+          background: #efefef;
+        }
+      </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+              <img src="../assets/img/logo.png" alt="default">
+            <span>The Mappedin Web SDK</span>
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/MappedIn/platform-api" class="fa fa-github github"></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main-wrapper" class="row">
+        <div id="content-wrapper">
+            <ol class="panel-group" id="sidebar" role="tablist" aria-multiselectable="true">
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-search-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-search" aria-expanded="true" aria-controls="collapseOne">
+                        Search
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-search" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-search-heading">
+                        <div class="panel-body">
+                            <div id="api-tabview-filter">
+                                <input type="search" id="api-filter" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    <li class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="sidebar-version-heading">
+                            <h4 class="panel-title">
+                                  Version: 1.70.4
+                                </a>
+                            </h4>
+                        </div>
+                    </li>
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-modules-heading">
+                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" href="#sidebar-modules" aria-expanded="true" aria-controls="collapseOne">
+                      Modules
+                    </a>
+                  </h4>
+                    </div>
+                    <div id="sidebar-modules" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-modules-heading">
+                        <div class="panel-body">
+                                <ol>
+                                        <li>
+                                            <a href="../modules/Mappedin.html">Mappedin</a>
+                                        </li>
+                                </ol>
+                        </div>
+                    </div>
+                </li>
+            
+                <li class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="sidebar-classes-heading">
+                        <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" href="#sidebar-classes" aria-expanded="true" aria-controls="collapseOne">
+                        Classes
+                      </a>
+                    </h4>
+                    </div>
+                    <div id="sidebar-classes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="sidebar-classes-heading">
+                        <div class="panel-body">
+                            <ol>
+                                    <li>
+                                        <a href="../classes/Analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/CameraControls.html">CameraControls</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Easing.html">Easing</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Island.html">Island</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/IslandManager.html">IslandManager</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/IslandNode.html">IslandNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Mappedin.html">Mappedin</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinCategory.html">MappedinCategory</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirections.html">MappedinDirections</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinDirective.html">MappedinDirective</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinEvent.html">MappedinEvent</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocation.html">MappedinLocation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinLocationState.html">MappedinLocationState</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMap.html">MappedinMap</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinMapGroup.html">MappedinMapGroup</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinNode.html">MappedinNode</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinPolygon.html">MappedinPolygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVenue.html">MappedinVenue</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MappedinVortex.html">MappedinVortex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView.html">MapView</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView2D.html">MapView2D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/MapView3D.html">MapView3D</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Marker.html">Marker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Navigator.html">Navigator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Search.html">Search</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/.html"></a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/AABB.html">AABB</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/AngleLockEquation.html">AngleLockEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Body.html">Body</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Box.html">Box</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Broadphase.html">Broadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Capsule.html">Capsule</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Circle.html">Circle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Constraint.html">Constraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ContactEquation.html">ContactEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ContactMaterial.html">ContactMaterial</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Convex.html">Convex</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/DistanceConstraint.html">DistanceConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Equation.html">Equation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/EventEmitter.html">EventEmitter</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/FrictionEquation.html">FrictionEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/GearConstraint.html">GearConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/GSSolver.html">GSSolver</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Heightfield.html">Heightfield</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Line.html">Line</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/LinearSpring.html">LinearSpring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/LockConstraint.html">LockConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Material.html">Material</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/NaiveBroadphase.html">NaiveBroadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Narrowphase.html">Narrowphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Object pooling utility..html">Object pooling utility.</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/OverlapKeeper.html">OverlapKeeper</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/OverlapKeeperRecord.html">OverlapKeeperRecord</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Particle.html">Particle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Plane.html">Plane</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Point.html">Point</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Polygon.html">Polygon</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/PrismaticConstraint.html">PrismaticConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Ray.html">Ray</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RaycastResult.html">RaycastResult</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RevoluteConstraint.html">RevoluteConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalLockEquation.html">RotationalLockEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalSpring.html">RotationalSpring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/RotationalVelocityEquation.html">RotationalVelocityEquation</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SAPBroadphase.html">SAPBroadphase</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Scalar.html">Scalar</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Shape.html">Shape</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabel.html">SmartLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartLabelBatchCreator.html">SmartLabelBatchCreator</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/SmartMarker.html">SmartMarker</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Solver.html">Solver</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Spring.html">Spring</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TextLabel.html">TextLabel</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/ThreeJSMarkerHandle.html">ThreeJSMarkerHandle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tooltip.html">Tooltip</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TopDownVehicle.html">TopDownVehicle</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/TupleDictionary.html">TupleDictionary</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Tween.html">Tween</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/Utils.html">Utils</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/vec2.html">vec2</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/WheelConstraint.html">WheelConstraint</a>
+                                    </li>
+                                    <li>
+                                        <a href="../classes/World.html">World</a>
+                                    </li>
+                            </ol>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <div class="content-container">
+                <div class="apidocs">
+                    <div id="docs-main">
+                        <div class="content">
+
+
+<div class="page-header">
+    <h1> <i class="fa fa-bookmark-o" aria-hidden="true"></i> Ray Class
+    </h1>
+</div>
+
+
+<div class="content-meta">
+
+
+            Module: <a href="../modules/Mappedin.html">Mappedin</a>
+
+
+</div>
+
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_Ray" class="method item">
+	<span class="method-signature">
+	<span class="name anchorable-toc">
+		<a class="fa fa-link toc-anchor" href="#method_Ray"></a>
+		Ray
+	</span>
+
+		<div class="args">
+			<span class="paren">(</span><ul class="args-list inline commas">
+				<li class="arg">
+						<code class="optional">options</code>
+				</li>
+			</ul><span class="paren">)</span>
+		</div>
+	</span>
+
+
+
+
+
+
+
+	<div class="meta">
+				<p>
+		</p>
+
+
+
+	</div>
+
+
+		<div class="params">
+			<h4>Parameters:</h4>
+
+			<ul class="params-list">
+				<li class="param">
+						<code class="param-name optional">[options]</code>
+						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+						<span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+
+						<ul class="params-list">
+							<li class="param">
+									<code class="param-name optional">[from]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[to]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[checkCollisionResponse=true]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[skipBackfaces=false]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[collisionMask=-1]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[collisionGroup=-1]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[mode=Ray.ANY]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+							<li class="param">
+									<code class="param-name optional">[callback]</code>
+									<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+									<span class="flag optional" title="This parameter is optional.">optional</span>
+
+								<div class="param-description"></div>
+
+							</li>
+						</ul>
+				</li>
+			</ul>
+		</div>
+
+
+</div>
+    </div>
+
+  <div class="class-description">
+  <p>A line with a start and end point that is used to intersect shapes. For an example, see <a href="../classes/World.html#method_raycast" class="crosslink">World.raycast</a></p>
+
+  </div>
+
+<div>
+    <div class="page-section">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab_index" aria-controls="tab_index" role="tab" data-toggle="tab">Index</a></li>
+            <li role="presentation"><a href="#tab_methods" aria-controls="tab_methods" role="tab" data-toggle="tab">Methods</a></li>
+
+            <li role="presentation"><a href="#tab_properties" aria-controls="tab_properties" role="tab" data-toggle="tab">Properties</a></li>
+
+
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+              <form id="options-form" class="form-inline">
+                  Show:
+                  <label for="api-show-inherited" class="checkbox">
+                      <input type="checkbox" id="api-show-inherited" checked>
+                      Inherited
+                  </label>
+                  <label for="api-show-deprecated" class="checkbox">
+                      <input type="checkbox" id="api-show-deprecated">
+                      Deprecated
+                  </label>
+          
+              </form>
+
+          <div id="tab_index" role="tabpanel" class="tab-pane active" >
+                  <div class="index-section methods">
+                      <h3>Methods</h3>
+
+                      <ul class="index-list methods">
+                              <li class="index-item method">
+                                  <a href="#method_getAABB">getAABB</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAABB">getAABB</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAABB">getAABB</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAABB">getAABB</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAABB">getAABB</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_getAABB">getAABB</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_intersectBodies">intersectBodies</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_intersectBodies">intersectBodies</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_intersectBodies">intersectBodies</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_intersectBodies">intersectBodies</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_intersectBodies">intersectBodies</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_intersectBodies">intersectBodies</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectBody">intersectBody</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectBody">intersectBody</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectBody">intersectBody</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectBody">intersectBody</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectBody">intersectBody</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectBody">intersectBody</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectShape">intersectShape</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectShape">intersectShape</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectShape">intersectShape</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectShape">intersectShape</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectShape">intersectShape</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_intersectShape">intersectShape</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_reportIntersection">reportIntersection</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_reportIntersection">reportIntersection</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_reportIntersection">reportIntersection</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_reportIntersection">reportIntersection</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_reportIntersection">reportIntersection</a>
+
+                              </li>
+                              <li class="index-item method private">
+                                  <a href="#method_reportIntersection">reportIntersection</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                              <li class="index-item method">
+                                  <a href="#method_update">update</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+                  <div class="index-section properties">
+                      <h3>Properties</h3>
+
+                      <ul class="index-list properties">
+                              <li class="index-item property">
+                                  <a href="#property_ALL">ALL</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ALL">ALL</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ALL">ALL</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ALL">ALL</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ALL">ALL</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ALL">ALL</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ANY">ANY</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ANY">ANY</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ANY">ANY</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ANY">ANY</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ANY">ANY</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_ANY">ANY</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_callback">callback</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_callback">callback</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_callback">callback</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_callback">callback</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_callback">callback</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_callback">callback</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_checkCollisionResponse">checkCollisionResponse</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_checkCollisionResponse">checkCollisionResponse</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_checkCollisionResponse">checkCollisionResponse</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_checkCollisionResponse">checkCollisionResponse</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_checkCollisionResponse">checkCollisionResponse</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_checkCollisionResponse">checkCollisionResponse</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_CLOSEST">CLOSEST</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_CLOSEST">CLOSEST</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_CLOSEST">CLOSEST</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_CLOSEST">CLOSEST</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_CLOSEST">CLOSEST</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_CLOSEST">CLOSEST</a>
+
+                                      <span class="flag static">static</span>
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionGroup">collisionGroup</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionGroup">collisionGroup</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionGroup">collisionGroup</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionGroup">collisionGroup</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionGroup">collisionGroup</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionGroup">collisionGroup</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionMask">collisionMask</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionMask">collisionMask</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionMask">collisionMask</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionMask">collisionMask</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionMask">collisionMask</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_collisionMask">collisionMask</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_direction">direction</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_direction">direction</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_direction">direction</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_direction">direction</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_direction">direction</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_direction">direction</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_from">from</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_from">from</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_from">from</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_from">from</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_from">from</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_from">from</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_length">length</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_length">length</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_length">length</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_length">length</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_length">length</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_length">length</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_mode">mode</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_skipBackfaces">skipBackfaces</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_skipBackfaces">skipBackfaces</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_skipBackfaces">skipBackfaces</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_skipBackfaces">skipBackfaces</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_skipBackfaces">skipBackfaces</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_skipBackfaces">skipBackfaces</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_to">to</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_to">to</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_to">to</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_to">to</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_to">to</a>
+
+                              </li>
+                              <li class="index-item property">
+                                  <a href="#property_to">to</a>
+
+                              </li>
+                      </ul>
+                  </div>
+
+
+          </div>
+
+              <div id="tab_methods" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="method_getAABB" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAABB"></a>
+  		getAABB
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>aabb</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Get the AABB of the ray.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">aabb</code>
+  						<span class="type"><a href="../classes/AABB.html" class="crosslink">AABB</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_getAABB" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAABB"></a>
+  		getAABB
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>aabb</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Get the AABB of the ray.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">aabb</code>
+  						<span class="type"><a href="../classes/AABB.html" class="crosslink">AABB</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_getAABB" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAABB"></a>
+  		getAABB
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>aabb</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Get the AABB of the ray.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">aabb</code>
+  						<span class="type"><a href="../classes/AABB.html" class="crosslink">AABB</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_getAABB" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAABB"></a>
+  		getAABB
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>aabb</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Get the AABB of the ray.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">aabb</code>
+  						<span class="type"><a href="../classes/AABB.html" class="crosslink">AABB</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_getAABB" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAABB"></a>
+  		getAABB
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>aabb</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Get the AABB of the ray.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">aabb</code>
+  						<span class="type"><a href="../classes/AABB.html" class="crosslink">AABB</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_getAABB" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_getAABB"></a>
+  		getAABB
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>aabb</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Get the AABB of the ray.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">aabb</code>
+  						<span class="type"><a href="../classes/AABB.html" class="crosslink">AABB</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBodies" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBodies"></a>
+  		intersectBodies
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>bodies</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">bodies</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Body objects.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBodies" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBodies"></a>
+  		intersectBodies
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>bodies</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">bodies</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Body objects.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBodies" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBodies"></a>
+  		intersectBodies
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>bodies</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">bodies</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Body objects.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBodies" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBodies"></a>
+  		intersectBodies
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>bodies</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">bodies</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Body objects.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBodies" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBodies"></a>
+  		intersectBodies
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>bodies</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">bodies</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Body objects.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBodies" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBodies"></a>
+  		intersectBodies
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>bodies</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">bodies</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  					<div class="param-description"><p>An array of Body objects.</p>
+  </div>
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBody" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBody"></a>
+  		intersectBody
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Shoot a ray at a body, get back information about the hit.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBody" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBody"></a>
+  		intersectBody
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Shoot a ray at a body, get back information about the hit.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBody" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBody"></a>
+  		intersectBody
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Shoot a ray at a body, get back information about the hit.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBody" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBody"></a>
+  		intersectBody
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Shoot a ray at a body, get back information about the hit.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBody" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBody"></a>
+  		intersectBody
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Shoot a ray at a body, get back information about the hit.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectBody" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectBody"></a>
+  		intersectBody
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Shoot a ray at a body, get back information about the hit.</p>
+  </div>
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectShape" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectShape"></a>
+  		intersectShape
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>shape</code>
+  				</li>
+  				<li class="arg">
+  						<code>angle</code>
+  				</li>
+  				<li class="arg">
+  						<code>position</code>
+  				</li>
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">shape</code>
+  						<span class="type"><a href="../classes/Shape.html" class="crosslink">Shape</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">angle</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">position</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectShape" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectShape"></a>
+  		intersectShape
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>shape</code>
+  				</li>
+  				<li class="arg">
+  						<code>angle</code>
+  				</li>
+  				<li class="arg">
+  						<code>position</code>
+  				</li>
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">shape</code>
+  						<span class="type"><a href="../classes/Shape.html" class="crosslink">Shape</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">angle</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">position</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectShape" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectShape"></a>
+  		intersectShape
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>shape</code>
+  				</li>
+  				<li class="arg">
+  						<code>angle</code>
+  				</li>
+  				<li class="arg">
+  						<code>position</code>
+  				</li>
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">shape</code>
+  						<span class="type"><a href="../classes/Shape.html" class="crosslink">Shape</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">angle</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">position</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectShape" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectShape"></a>
+  		intersectShape
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>shape</code>
+  				</li>
+  				<li class="arg">
+  						<code>angle</code>
+  				</li>
+  				<li class="arg">
+  						<code>position</code>
+  				</li>
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">shape</code>
+  						<span class="type"><a href="../classes/Shape.html" class="crosslink">Shape</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">angle</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">position</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectShape" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectShape"></a>
+  		intersectShape
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>shape</code>
+  				</li>
+  				<li class="arg">
+  						<code>angle</code>
+  				</li>
+  				<li class="arg">
+  						<code>position</code>
+  				</li>
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">shape</code>
+  						<span class="type"><a href="../classes/Shape.html" class="crosslink">Shape</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">angle</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">position</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_intersectShape" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_intersectShape"></a>
+  		intersectShape
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>shape</code>
+  				</li>
+  				<li class="arg">
+  						<code>angle</code>
+  				</li>
+  				<li class="arg">
+  						<code>position</code>
+  				</li>
+  				<li class="arg">
+  						<code>body</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">shape</code>
+  						<span class="type"><a href="../classes/Shape.html" class="crosslink">Shape</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">angle</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">position</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">body</code>
+  						<span class="type"><a href="../classes/Body.html" class="crosslink">Body</a></span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  
+  </div>
+  <div id="method_reportIntersection" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportIntersection"></a>
+  		reportIntersection
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>fraction</code>
+  				</li>
+  				<li class="arg">
+  						<code>normal</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">faceIndex=-1</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">fraction</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">normal</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[faceIndex=-1]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+  					<p>True if the intersections should continue</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_reportIntersection" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportIntersection"></a>
+  		reportIntersection
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>fraction</code>
+  				</li>
+  				<li class="arg">
+  						<code>normal</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">faceIndex=-1</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">fraction</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">normal</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[faceIndex=-1]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+  					<p>True if the intersections should continue</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_reportIntersection" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportIntersection"></a>
+  		reportIntersection
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>fraction</code>
+  				</li>
+  				<li class="arg">
+  						<code>normal</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">faceIndex=-1</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">fraction</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">normal</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[faceIndex=-1]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+  					<p>True if the intersections should continue</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_reportIntersection" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportIntersection"></a>
+  		reportIntersection
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>fraction</code>
+  				</li>
+  				<li class="arg">
+  						<code>normal</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">faceIndex=-1</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">fraction</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">normal</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[faceIndex=-1]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+  					<p>True if the intersections should continue</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_reportIntersection" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportIntersection"></a>
+  		reportIntersection
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>fraction</code>
+  				</li>
+  				<li class="arg">
+  						<code>normal</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">faceIndex=-1</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">fraction</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">normal</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[faceIndex=-1]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+  					<p>True if the intersections should continue</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_reportIntersection" class="method item private">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_reportIntersection"></a>
+  		reportIntersection
+  	</span>
+  
+  		<div class="args">
+  			<span class="paren">(</span><ul class="args-list inline commas">
+  				<li class="arg">
+  						<code>fraction</code>
+  				</li>
+  				<li class="arg">
+  						<code>normal</code>
+  				</li>
+  				<li class="arg">
+  						<code class="optional">faceIndex=-1</code>
+  				</li>
+  			</ul><span class="paren">)</span>
+  		</div>
+  		<span class="returns-inline">
+  			<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  		</span>
+  	</span>
+  
+  
+  
+  		<span class="flag private">private</span>
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  
+  		<div class="params">
+  			<h4>Parameters:</h4>
+  
+  			<ul class="params-list">
+  				<li class="param">
+  						<code class="param-name">fraction</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name">normal</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  				</li>
+  				<li class="param">
+  						<code class="param-name optional">[faceIndex=-1]</code>
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  						<span class="flag optional" title="This parameter is optional.">optional</span>
+  
+  
+  
+  				</li>
+  			</ul>
+  		</div>
+  
+  		<div class="returns">
+  			<h4>Returns:</h4>
+  
+  			<div class="returns-description">
+  						<span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+  					<p>True if the intersections should continue</p>
+  
+  			</div>
+  		</div>
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Should be called if you change the from or to point.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Should be called if you change the from or to point.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Should be called if you change the from or to point.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Should be called if you change the from or to point.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Should be called if you change the from or to point.</p>
+  </div>
+  
+  
+  
+  </div>
+  <div id="method_update" class="method item">
+  	<span class="method-signature">
+  	<span class="name anchorable-toc">
+  		<a class="fa fa-link toc-anchor" href="#method_update"></a>
+  		update
+  	</span>
+  
+  		<span class="paren">()</span>
+  	</span>
+  
+  
+  
+  
+  
+  
+  
+  	<div class="meta">
+  				<p>
+  		</p>
+  
+  
+  
+  	</div>
+  
+  	<div class="description"><p>Should be called if you change the from or to point.</p>
+  </div>
+  
+  
+  
+  </div>
+                  </div>
+              </div>
+
+              <div id="tab_properties" role="tabpanel" class="tab-pane">
+                  <div class="item-list">
+  <div id="property_ALL" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ALL"></a>
+          ALL
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will traverse all intersection points and executes a callback for each one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ALL" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ALL"></a>
+          ALL
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will traverse all intersection points and executes a callback for each one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ALL" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ALL"></a>
+          ALL
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will traverse all intersection points and executes a callback for each one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ALL" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ALL"></a>
+          ALL
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will traverse all intersection points and executes a callback for each one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ALL" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ALL"></a>
+          ALL
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will traverse all intersection points and executes a callback for each one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ALL" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ALL"></a>
+          ALL
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will traverse all intersection points and executes a callback for each one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ANY" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ANY"></a>
+          ANY
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray stop when it finds the first intersection point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ANY" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ANY"></a>
+          ANY
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray stop when it finds the first intersection point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ANY" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ANY"></a>
+          ANY
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray stop when it finds the first intersection point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ANY" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ANY"></a>
+          ANY
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray stop when it finds the first intersection point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ANY" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ANY"></a>
+          ANY
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray stop when it finds the first intersection point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_ANY" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_ANY"></a>
+          ANY
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray stop when it finds the first intersection point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_callback" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_callback"></a>
+          callback
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Current, user-provided result callback. Will be used if mode is Ray.ALL.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_callback" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_callback"></a>
+          callback
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Current, user-provided result callback. Will be used if mode is Ray.ALL.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_callback" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_callback"></a>
+          callback
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Current, user-provided result callback. Will be used if mode is Ray.ALL.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_callback" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_callback"></a>
+          callback
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Current, user-provided result callback. Will be used if mode is Ray.ALL.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_callback" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_callback"></a>
+          callback
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Current, user-provided result callback. Will be used if mode is Ray.ALL.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_callback" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_callback"></a>
+          callback
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Current, user-provided result callback. Will be used if mode is Ray.ALL.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_checkCollisionResponse" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_checkCollisionResponse"></a>
+          checkCollisionResponse
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Set to true if you want the Ray to take .collisionResponse flags into account on bodies and shapes.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_checkCollisionResponse" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_checkCollisionResponse"></a>
+          checkCollisionResponse
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Set to true if you want the Ray to take .collisionResponse flags into account on bodies and shapes.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_checkCollisionResponse" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_checkCollisionResponse"></a>
+          checkCollisionResponse
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Set to true if you want the Ray to take .collisionResponse flags into account on bodies and shapes.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_checkCollisionResponse" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_checkCollisionResponse"></a>
+          checkCollisionResponse
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Set to true if you want the Ray to take .collisionResponse flags into account on bodies and shapes.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_checkCollisionResponse" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_checkCollisionResponse"></a>
+          checkCollisionResponse
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Set to true if you want the Ray to take .collisionResponse flags into account on bodies and shapes.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_checkCollisionResponse" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_checkCollisionResponse"></a>
+          checkCollisionResponse
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Set to true if you want the Ray to take .collisionResponse flags into account on bodies and shapes.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_CLOSEST" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_CLOSEST"></a>
+          CLOSEST
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray traverse through all intersection points and only return the closest one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_CLOSEST" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_CLOSEST"></a>
+          CLOSEST
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray traverse through all intersection points and only return the closest one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_CLOSEST" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_CLOSEST"></a>
+          CLOSEST
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray traverse through all intersection points and only return the closest one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_CLOSEST" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_CLOSEST"></a>
+          CLOSEST
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray traverse through all intersection points and only return the closest one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_CLOSEST" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_CLOSEST"></a>
+          CLOSEST
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray traverse through all intersection points and only return the closest one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_CLOSEST" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_CLOSEST"></a>
+          CLOSEST
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+          <span class="flag static">static</span>
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>This raycasting mode will make the Ray traverse through all intersection points and only return the closest one.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_collisionGroup" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionGroup"></a>
+          collisionGroup
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionGroup" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionGroup"></a>
+          collisionGroup
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionGroup" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionGroup"></a>
+          collisionGroup
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionGroup" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionGroup"></a>
+          collisionGroup
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionGroup" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionGroup"></a>
+          collisionGroup
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionGroup" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionGroup"></a>
+          collisionGroup
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionMask" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionMask"></a>
+          collisionMask
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionMask" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionMask"></a>
+          collisionMask
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionMask" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionMask"></a>
+          collisionMask
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionMask" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionMask"></a>
+          collisionMask
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionMask" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionMask"></a>
+          collisionMask
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_collisionMask" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_collisionMask"></a>
+          collisionMask
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+          <p><br><strong>Default:</strong> -1</p>
+  
+  
+  </div>
+  <div id="property_direction" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_direction"></a>
+          direction
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_direction" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_direction"></a>
+          direction
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_direction" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_direction"></a>
+          direction
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_direction" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_direction"></a>
+          direction
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_direction" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_direction"></a>
+          direction
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_direction" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_direction"></a>
+          direction
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_from" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_from"></a>
+          from
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray start point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_from" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_from"></a>
+          from
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray start point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_from" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_from"></a>
+          from
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray start point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_from" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_from"></a>
+          from
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray start point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_from" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_from"></a>
+          from
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray start point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_from" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_from"></a>
+          from
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray start point.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_length" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_length"></a>
+          length
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Length of the ray</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_length" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_length"></a>
+          length
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Length of the ray</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_length" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_length"></a>
+          length
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Length of the ray</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_length" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_length"></a>
+          length
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Length of the ray</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_length" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_length"></a>
+          length
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Length of the ray</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_length" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_length"></a>
+          length
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Length of the ray</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The intersection mode. Should be <a href="../classes/Ray.html#property_ANY" class="crosslink">Ray.ANY</a>, <a href="../classes/Ray.html#property_ALL" class="crosslink">Ray.ALL</a> or <a href="../classes/Ray.html#property_CLOSEST" class="crosslink">Ray.CLOSEST</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The intersection mode. Should be <a href="../classes/Ray.html#property_ANY" class="crosslink">Ray.ANY</a>, <a href="../classes/Ray.html#property_ALL" class="crosslink">Ray.ALL</a> or <a href="../classes/Ray.html#property_CLOSEST" class="crosslink">Ray.CLOSEST</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The intersection mode. Should be <a href="../classes/Ray.html#property_ANY" class="crosslink">Ray.ANY</a>, <a href="../classes/Ray.html#property_ALL" class="crosslink">Ray.ALL</a> or <a href="../classes/Ray.html#property_CLOSEST" class="crosslink">Ray.CLOSEST</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The intersection mode. Should be <a href="../classes/Ray.html#property_ANY" class="crosslink">Ray.ANY</a>, <a href="../classes/Ray.html#property_ALL" class="crosslink">Ray.ALL</a> or <a href="../classes/Ray.html#property_CLOSEST" class="crosslink">Ray.CLOSEST</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The intersection mode. Should be <a href="../classes/Ray.html#property_ANY" class="crosslink">Ray.ANY</a>, <a href="../classes/Ray.html#property_ALL" class="crosslink">Ray.ALL</a> or <a href="../classes/Ray.html#property_CLOSEST" class="crosslink">Ray.CLOSEST</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_mode" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_mode"></a>
+          mode
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>The intersection mode. Should be <a href="../classes/Ray.html#property_ANY" class="crosslink">Ray.ANY</a>, <a href="../classes/Ray.html#property_ALL" class="crosslink">Ray.ALL</a> or <a href="../classes/Ray.html#property_CLOSEST" class="crosslink">Ray.CLOSEST</a>.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_skipBackfaces" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_skipBackfaces"></a>
+          skipBackfaces
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>If set to true, the ray skips any hits with normal.dot(rayDirection) &lt; 0.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_skipBackfaces" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_skipBackfaces"></a>
+          skipBackfaces
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>If set to true, the ray skips any hits with normal.dot(rayDirection) &lt; 0.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_skipBackfaces" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_skipBackfaces"></a>
+          skipBackfaces
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>If set to true, the ray skips any hits with normal.dot(rayDirection) &lt; 0.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_skipBackfaces" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_skipBackfaces"></a>
+          skipBackfaces
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>If set to true, the ray skips any hits with normal.dot(rayDirection) &lt; 0.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_skipBackfaces" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_skipBackfaces"></a>
+          skipBackfaces
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>If set to true, the ray skips any hits with normal.dot(rayDirection) &lt; 0.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_skipBackfaces" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_skipBackfaces"></a>
+          skipBackfaces
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>If set to true, the ray skips any hits with normal.dot(rayDirection) &lt; 0.</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_to" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_to"></a>
+          to
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray end point</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_to" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_to"></a>
+          to
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray end point</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_to" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_to"></a>
+          to
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray end point</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_to" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_to"></a>
+          to
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray end point</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_to" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_to"></a>
+          to
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray end point</p>
+  
+      </div>
+  
+  
+  
+  </div>
+  <div id="property_to" class="property item">
+      <h3 class="name anchorable-toc">
+          <a class="fa fa-link toc-anchor" href="#property_to"></a>
+          to
+      </h3>
+      <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+  
+  
+  
+  
+  
+      <div class="meta">
+                  <p>
+          </p>
+  
+  
+      </div>
+  
+      <div class="description">
+          <p>Ray end point</p>
+  
+      </div>
+  
+  
+  
+  </div>
+                  </div>
+              </div>
+
+
+      </div>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/prettify/prettify-min.js"></script>
+    <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="../assets/vendor/github-slugger/slugger.js"></script>
+    <script src="../assets/js/yuidoc-bootstrap.js"></script>
+</body>
+</html>
