@@ -2,12 +2,19 @@
     "project": {
         "name": "The Mappedin Web SDK",
         "description": "An easy way to render beautiful 2D or 3D maps on your website, powered by Mappedin",
-        "version": "1.70.1",
+        "version": "1.71.6",
         "url": "https://github.com/MappedIn/platform-api",
         "primaryColor": "#ff5000",
         "indexModule": "Mappedin"
     },
     "files": {
+        "__tests__/blue-dot-utils.test.js": {
+            "name": "__tests__/blue-dot-utils.test.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "docs/assets/vendor/github-slugger/slugger.js": {
             "name": "docs/assets/vendor/github-slugger/slugger.js",
             "modules": {},
@@ -442,7 +449,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "Mappedin-web.es.js",
-            "line": 39,
+            "line": 41,
             "description": "The base Mappedin module, that has references to all the other Mappedin objects you need.\n\nStart with Mappedin.initialize, which will get the data for a Venue from the Mappedin API, and set up a MapView, Search, and Analytics object for you.",
             "itemtype": "main"
         }
@@ -1347,7 +1354,7 @@
             "extension_for": [],
             "module": "Mappedin",
             "file": "Mappedin-web.es.js",
-            "line": 50,
+            "line": 52,
             "description": "Contains the functions you need to start the {{#crossLink \"MapView\"}}{{/crossLink}}. Typically you will just use `Mappedin.{{#crossLink \"Mappedin/initialize:method\"}}{{/crossLink}}`, which does all this for you, but for special cases your flow should look like this:\n 1. One of Mappedin.{{#crossLink \"Mappedin/test3D:method\"}}{{/crossLink}} (typical), .{{#crossLink \"Mappedin/forceTest:method\"}}{{/crossLink}}, .{{#crossLink \"Mappedin/force3D:method\"}}{{/crossLink}}, or .{{#crossLink \"Mappedin/force2D:method\"}}{{/crossLink}} to put the MapView into either 2D or 3D mode.\n 2. Mappedin.init to download all of the data you need from the Mappedin API.\n 3. new Mappedin.MapView, which will create the MapView and display the default {{#crossLink \"MappedinMap\"}}{{/crossLink}}.\n\nEach of those functions has a callback which you should use to trigger the next step. Once you get the final callback from the MapView\nconstructor, you can hide any loading screen UI and do whatever you want.",
             "is_constructor": 1,
             "params": [
@@ -1453,7 +1460,7 @@
             "module": "Mappedin",
             "namespace": "",
             "file": "Mappedin-web.es.js",
-            "line": 30,
+            "line": 32,
             "description": "The easing curves you can use for any animation (path drawing, camera movement, etc.)\nSee [tween.js](http://tweenjs.github.io/tween.js/examples/03_graphs.html) for your options.",
             "static": 1
         },
@@ -1468,13 +1475,19 @@
             "module": "Mappedin",
             "namespace": "",
             "file": "Mappedin-web.es.js",
-            "line": 39,
+            "line": 41,
             "description": "The Tween class from [Tween.js](https://github.com/tweenjs/tween.js). Exposed so you can create your own custom tweens.",
             "is_constructor": 1
         }
     },
     "elements": {},
     "classitems": [
+        {
+            "file": "__tests__/blue-dot-utils.test.js",
+            "line": 83,
+            "description": "Angle towards [0, 1] is 0\nAngle towards [1, 0] is Math.PI / 2",
+            "class": "Analytics"
+        },
         {
             "file": "docs/assets/vendor/github-slugger/slugger.js",
             "line": 12,
@@ -5386,7 +5399,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 248,
+            "line": 249,
             "description": "Sets multiplier scale to better fit 4K and 8K screens at 1:1 pixel ratio. If stuff is too small on 4K screens, set to 2, etc.",
             "itemtype": "method",
             "name": "setScale",
@@ -5401,7 +5414,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 366,
+            "line": 367,
             "description": "Sets up navigator settings. Typically uses options as documented by `Navigator.showOverview()`\n\t*",
             "itemtype": "method",
             "name": "setOptions",
@@ -5522,7 +5535,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 412,
+            "line": 413,
             "description": "Enters journey overview mode. Handles multi-floor navigation and drawing of the path.\n\nNote: Pass directions if they haven't been set using `Navigator.setDirections()`",
             "itemtype": "method",
             "name": "showOverview",
@@ -5567,7 +5580,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 565,
+            "line": 566,
             "description": "Exits out of navigation and focuses on currently selected map.",
             "itemtype": "method",
             "name": "hideOverview",
@@ -5579,7 +5592,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 582,
+            "line": 584,
             "description": "Fired when clicking on a map connection marker when in multi-floor mode. Return true in passed in function to prevent default behavior",
             "itemtype": "event",
             "name": "onConnectionClicked",
@@ -5601,7 +5614,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 600,
+            "line": 602,
             "description": "Focus on the nodes on the current map.",
             "access": "private",
             "tagname": "",
@@ -5609,7 +5622,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 614,
+            "line": 616,
             "description": "Zooms into a specific map in the journey. This can be useful when showing the user detailed directions on a specific map\n\t*",
             "itemtype": "method",
             "name": "zoomIn",
@@ -5628,7 +5641,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 669,
+            "line": 671,
             "description": "Reset overview state",
             "itemtype": "method",
             "name": "reset",
@@ -5636,7 +5649,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 687,
+            "line": 690,
             "description": "Zooms back out into overview mode, displaying the whole journey, draws the full path once again.\n\t*",
             "itemtype": "method",
             "name": "zoomOut",
@@ -5648,7 +5661,7 @@
         },
         {
             "file": "source/Mappedin.Navigator.js",
-            "line": 703,
+            "line": 706,
             "description": "Zooms back out into overview mode, displaying the whole journey, draws the full path once again.",
             "access": "private",
             "tagname": "",
@@ -8047,6 +8060,18 @@
             "class": "Mappedin"
         },
         {
+            "file": "source/blue-dot-utils.js",
+            "line": 280,
+            "description": "Finds which segment of a path of nodes a position is closest to.",
+            "class": "Mappedin"
+        },
+        {
+            "file": "source/blue-dot-utils.js",
+            "line": 393,
+            "description": "Determine the camera state that will look at a given position,\nfor purposes of following a blue dot path.",
+            "class": "Mappedin"
+        },
+        {
             "file": "source/json-scene-loader.js",
             "line": 15,
             "description": "Takes in either an object containing polygons and generates a 3D scene based\non it, or a string URL to fetch those polygons from.",
@@ -8176,7 +8201,7 @@
         },
         {
             "file": "Mappedin-common.es.js",
-            "line": 137,
+            "line": 138,
             "description": "Once you are in 2D or 3D mode, call this function with the options you need for the Mappedin API, and a callback that will give you a {{#crossLink \"MappedinVenue\"}}{{/crossLink}} populated with all your data.\n\nThe things object parameter is where you specify what fields you want to download for each object in the Mappedin API.\nThis SDK will ensure it has the 2D or 3D files it needs, but it won't download anything extra (like the names of locations) unless you specify it here.\nThis is a typical minimum, though you may have more location properties you are interested in. Talk to Mappedin for more information.\n\n\tthings: {\n\t\tvenue: ['slug', 'name'],\n\t\tlocations: ['name', 'type', 'description', 'icon', 'logo'],\n\t\tcategories: ['name'],\n\t\tmaps: ['name', 'elevation', 'shortName']\n\t}\n\n\nIf you would like to force the test to run again, use the {{#crossLink \"Mappedin/forceTest:method\"}}{{/crossLink}} method instead. Or, if you want to force the user into a specific mode, use {{#crossLink \"Mappedin/force2D:method\"}}{{/crossLink}} or {{#crossLink \"Mappedin/force3D:method\"}}{{/crossLink}} respectively.\nNote while 2D should work for basically anyone, if the user's device/browser does not support WebGL and you call force3D, you will get an exception when you create a MapView object.",
             "itemtype": "method",
             "name": "getVenue",
@@ -8444,7 +8469,7 @@
         },
         {
             "file": "Mappedin-web.es.js",
-            "line": 66,
+            "line": 68,
             "description": "Forces Mapview into 2D mode.",
             "itemtype": "method",
             "name": "force2D",
@@ -8460,7 +8485,7 @@
         },
         {
             "file": "Mappedin-web.es.js",
-            "line": 79,
+            "line": 81,
             "description": "Forces Mapview into 3D mode.",
             "itemtype": "method",
             "name": "force3D",
@@ -8476,7 +8501,7 @@
         },
         {
             "file": "Mappedin-web.es.js",
-            "line": 110,
+            "line": 112,
             "description": "This function will take a single options object combining all options for Mappedin.init and the MapView constructor, and the div the MapView should live in.\nIt returns a Promise that will resolve with the MapView once the 3D test has been performed, the right MapView was loaded, the data has been retrieved from the Mappedin API, and\nthe MapView has been created. It could also fail (mostly if the options you set for the Mappedin API are incorrect).\n\nThis is a convenience function that lets you avoid chaining a bunch of callbacks, calling test3D/force2D/force3D then Mappedin.init then the MapView constructor.",
             "itemtype": "method",
             "name": "initialize",
@@ -8586,19 +8611,19 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:412"
+            "line": " source/Mappedin.Navigator.js:413"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:565"
+            "line": " source/Mappedin.Navigator.js:566"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:614"
+            "line": " source/Mappedin.Navigator.js:616"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " source/Mappedin.Navigator.js:687"
+            "line": " source/Mappedin.Navigator.js:690"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -8679,6 +8704,10 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " source/utils.js:444"
+        },
+        {
+            "message": "Missing item type\nAngle towards [0, 1] is 0\nAngle towards [1, 0] is Math.PI / 2",
+            "line": " __tests__/blue-dot-utils.test.js:83"
         },
         {
             "message": "Missing item type\nGenerate a unique slug.",
@@ -8922,7 +8951,7 @@
         },
         {
             "message": "Missing item type\nFocus on the nodes on the current map.",
-            "line": " source/Mappedin.Navigator.js:600"
+            "line": " source/Mappedin.Navigator.js:602"
         },
         {
             "message": "Missing item type\nTasks that can be submitted to the renderer. The `STATIC_AND_ANIMATED` task\nis equivalent to a full re-render.",
@@ -9055,6 +9084,14 @@
         {
             "message": "Missing item type\nReturns an Object3D in the shape resembling an annulus sector.",
             "line": " source/blue-dot-utils.js:117"
+        },
+        {
+            "message": "Missing item type\nFinds which segment of a path of nodes a position is closest to.",
+            "line": " source/blue-dot-utils.js:280"
+        },
+        {
+            "message": "Missing item type\nDetermine the camera state that will look at a given position,\nfor purposes of following a blue dot path.",
+            "line": " source/blue-dot-utils.js:393"
         },
         {
             "message": "Missing item type\nTakes in either an object containing polygons and generates a 3D scene based\non it, or a string URL to fetch those polygons from.",
