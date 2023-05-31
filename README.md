@@ -1,3 +1,8 @@
+# DEPRECATED
+
+This repository has been deprecated and is no longer supported. Please visit the [Mappedin Developer Portal](https://developer.mappedin.com/) for up to date SDK information.
+
+---
 # Mappedin Web SDK
 
 Welcome to the Mappedin Web SDK. Please report any issues you find directly to your Mappedin technical contact.
